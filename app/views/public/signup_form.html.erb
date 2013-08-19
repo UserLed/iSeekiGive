@@ -1,0 +1,17 @@
+<%= link_to "Sign Up With Facebook", auth_at_provider_path(:provider => :facebook), :class => "btn btn-large btn-primary" %>
+<br/>
+<br/>
+-------OR--------
+<br/>
+<br/>
+<%= link_to "Sign Up With LinkedIn", auth_at_provider_path(:provider => :linkedin), :class => "btn btn-large btn-primary" %>
+<br/>
+<br/>
+-------OR--------
+<br/>
+<br/>
+<% if @type == "iseeker" %>
+<%= link_to "Sign Up With Email", new_iseeker_path, :class => "btn btn-large btn-primary" %>
+<% else %>
+<%= link_to "Sign Up With Email", new_igiver_path, :class => "btn btn-large btn-primary" %>
+<% end %>

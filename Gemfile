@@ -5,6 +5,7 @@ gem 'rails', '3.2.14'
 gem 'mysql2'
 gem 'thin'
 gem 'sorcery'
+gem 'country-select'
 
 gem 'activeadmin'
 
@@ -20,6 +21,7 @@ group :assets do
 end
 
 gem "jquery-rails", "2.3.0"
+gem 'fancybox-rails'
 
 gem "less-rails"
 gem "twitter-bootstrap-rails"

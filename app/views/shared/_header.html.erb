@@ -6,12 +6,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">iSeekiGive</a>
+      <%= link_to "iSeekiGive", root_path, :class => "brand" %>
       <div class="container-fluid nav-collapse">
         <ul class="nav">
-          <li><%= link_to "Link1", "/path1"  %></li>
-          <li><%= link_to "Link2", "/path2"  %></li>
-          <li><%= link_to "Link3", "/path3"  %></li>
+          <% if current_user %>
+            <li><%= link_to "Logout", logout_path  %></li>
+          <% else %>
+            <li><%= link_to "Sign Up", signup_path  %></li>
+            <li><%= link_to "Sign In", signin_path  %></li>
+          <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
