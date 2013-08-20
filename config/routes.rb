@@ -14,18 +14,13 @@ ISeekiGive::Application.routes.draw do
   resources :users do
     member do
       get  :activate
+      get :resend_confirmation
     end
   end
-  resources :iseekers do
-    collection do
-      get :resend_email
-    end
-  end
-  resources :igivers do
-    collection do
-      get :resend_email
-    end
-  end
+  
+  resources :iseekers
+  resources :igivers
+  
   resources :password_resets
   match 'login' => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
@@ -34,7 +29,8 @@ ISeekiGive::Application.routes.draw do
   match "oauth/callback" => "oauths#callback"
   match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
-
   root :to => 'public#index'
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 end

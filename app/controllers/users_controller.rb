@@ -11,4 +11,10 @@ class UsersController < ApplicationController
       not_authenticated
     end
   end
+
+  def resend_confirmation
+    @user = User.find(params[:id])
+    @user.resend_activation_email!
+    redirect_to request.referrer, :notice => "Please check your email to activate your account!"
+  end
 end

@@ -83,20 +83,32 @@ Rails.application.config.sorcery.configure do |config|
   # For information about LinkedIn API:
   # - user info fields go to https://developer.linkedin.com/documents/profile-fields
   # - access permissions go to https://developer.linkedin.com/documents/authentication#granting
-  #
-  config.linkedin.key = "t9jgieskq090"
-  config.linkedin.secret = "UdgNOx90rJFLFq1r"
-  config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
+
+  if Rails.env.production?
+    config.linkedin.key = "uyy178z1olhz"
+    config.linkedin.secret = "vqyZufPr8jWOchK8"
+    config.linkedin.callback_url = "http://iseekigive.iconsbd.com/oauth/callback?provider=linkedin"
+  else
+    config.linkedin.key = "mqguba5cny5d"
+    config.linkedin.secret = "iUYJbx61BLB0dZDP"
+    config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
+  end
+  
   config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id']
   config.linkedin.user_info_mapping = {:email => "emailAddress", :first_name => "firstName", :last_name => "lastName"}
-  config.linkedin.access_permissions = ['r_fullprofile', 'r_emailaddress', 'r_network']
-  #
-  #
+  config.linkedin.access_permissions = ['r_fullprofile', 'r_emailaddress', 'r_network', 'r_contactinfo']
   
-  #
-  config.facebook.key = "401819199940793"
-  config.facebook.secret = "e1f58854acc1082f1ed4dd52ef384b1c"
-  config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
+
+  if Rails.env.production?
+    config.facebook.key = "538362259552396"
+    config.facebook.secret = "6287a814bf44536332ee9fdf9bcfdced"
+    config.facebook.callback_url = "http://iseekigive.iconsbd.com/oauth/callback?provider=facebook"
+  else
+    config.facebook.key = "401819199940793"
+    config.facebook.secret = "e1f58854acc1082f1ed4dd52ef384b1c"
+    config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
+  end
+  
   config.facebook.user_info_mapping = {:email => "email", :first_name => "first_name", :last_name => "last_name"}
   config.facebook.access_permissions = ["email", "read_friendlists", "user_likes", "user_interests", "user_birthday", "user_education_history", "user_hometown", "user_location", "user_about_me"]
 

@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
 
   def create
     respond_to do |format|
-      if @user = login(params[:username],params[:password])
-        @msg = @user.activated? ? "Login successful." : "Confirmation email sent to you. Please verify email"
+      if @user = login(params[:email], params[:password])
+        @msg = "Login successful."
         format.html { redirect_back_or_to(@user, :notice => @msg) }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else

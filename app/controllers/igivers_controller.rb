@@ -2,24 +2,20 @@ class IgiversController < ApplicationController
   before_filter :require_login, :except => [:new, :create]
 
   def new
-    @user = Igiver.new
+    @igiver = Igiver.new
   end
 
   def create
-    @user = Igiver.new(params[:igiver])
-    if @user.save
-      redirect_to root_path, :notice => "Successfully Signed Up!"
+    @igiver = Igiver.new(params[:igiver])
+    if @igiver.save
+      auto_login(@igiver)
+      redirect_to @igiver, :notice => "Successfully Signed Up!"
     else
       render :action  => "new"
     end
   end
 
   def show
-    @user = current_user
-  end
-
-  def resend_email
-    current_user.resend_activation_email!
-    redirect_to current_user, :notice => "Email sent, please check your inbox."
+    @igiver = Igiver.find(params[:id])
   end
 end

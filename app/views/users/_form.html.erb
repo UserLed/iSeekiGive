@@ -1,50 +1,66 @@
-<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :first_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :first_name, :class => 'text_field' %>
-    </div>
+<% if f.object.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h4>
+      Please correct following <%= pluralize(f.object.errors.count, "field") %>:
+    </h4>
+    <ul>
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
-
-  <div class="control-group">
-    <%= f.label :last_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last_name, :class => 'text_field' %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :country, :class => 'control-label' %>
-    <div class="controls">
-      <%= country_select("#{@user.class_name}", "country") %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :password, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :password, :class => 'text_field' %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :password_confirmation, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :password_confirmation, :class => 'text_field' %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-      users_path, :class => 'btn' %>
-  </div>
-
 <% end %>
+
+<div class="control-group">
+  <%= f.label :first_name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :first_name, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :last_name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :last_name, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :email, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :email, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :country, :class => 'control-label' %>
+  <div class="controls">
+    <%= country_select(@user.class.name.downcase, "country", [ "Hong Kong", "United States", "United Kingdom"]) %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :password, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.password_field :password, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :password_confirmation, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.password_field :password_confirmation, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :hear, "How did you hear about us?", :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :hear, User::HOW_HEAR, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', root_path, :class => 'btn' %>
+</div>
