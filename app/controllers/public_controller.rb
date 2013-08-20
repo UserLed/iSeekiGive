@@ -20,19 +20,9 @@ class PublicController < ApplicationController
   end
 
   def signin
+    reset_session
     respond_to do |format|
-      if params[:type]
-        if params[:type] == "iseeker"
-          session[:user_type] = "iseeker"
-        end
-        if params[:type] == "igiver"
-          session[:user_type] = "igiver"
-        end
-        @type = session[:user_type]
-        format.html { render 'signin_form', :layout => false}
-      else
-        format.html
-      end
+      format.html
     end
   end
 end

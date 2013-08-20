@@ -8,7 +8,7 @@ class OauthsController < ApplicationController
   end
 
   def callback
-    Config.user_class = session[:user_type].capitalize.constantize
+    Config.user_class = session[:user_type].capitalize.classify
     provider = params[:provider]
     begin
       if @user = login_from(provider)

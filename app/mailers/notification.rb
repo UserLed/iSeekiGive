@@ -1,14 +1,25 @@
 class Notification < ActionMailer::Base
-  default from: "from@example.com"
+  default :from => "\"iseekigive\" <info@iseekigive.com>"
+  
+  def reset_password_email(user)
+    @user = user
+    @url  = edit_password_reset_url(user.reset_password_token)
+    headers['X-SMTPAPI'] = "{\"category\" : \"Password Help\"}"
+    mail(:to => user.email,
+      :subject => "Your password reset instructions - iseekerigiver")
+  end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.notification.reset_password_email.subject
-  #
-  def reset_password_email
-    @greeting = "Hi"
+  def activation_needed_email(user)
+    @user = user
+    @url  = activate_user_url(user.activation_token)
+    mail(:to => user.email,
+      :subject => "Email activation required")
+  end
 
-    mail to: "to@example.org"
+  def  activation_success_email(user)
+    @user = user
+    @url  = login_url
+    mail(:to => user.email,
+      :subject => "Email activated.")
   end
 end
