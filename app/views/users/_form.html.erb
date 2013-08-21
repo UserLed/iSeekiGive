@@ -60,7 +60,17 @@
   </div>
 </div>
 
+<div class="control-group">
+  <div class="field-notice">
+    By clicking "Sign up" you confirm that you accept the 
+    <%= link_to "Terms of Service", terms_path, :target => "_blank" %>
+    and
+    <%= link_to "Privacy Policy", privacy_path, :target => "_blank" %>
+    .
+  </div>
+</div>
+
 <div class="form-actions">
-  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= f.submit "Sign up", :class => 'btn btn-primary' %>
   <%= link_to 'Cancel', root_path, :class => 'btn' %>
 </div>

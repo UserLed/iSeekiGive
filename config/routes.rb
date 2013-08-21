@@ -1,5 +1,8 @@
 ISeekiGive::Application.routes.draw do
 
+  match 'terms-of-service' => 'public#terms_of_service', :as => :terms
+  match 'privacy' => 'public#privacy', :as => :privacy
+
   resources :iseekers
   resources :igivers
   
