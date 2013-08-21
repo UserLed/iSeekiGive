@@ -1,33 +1,30 @@
 ISeekiGive::Application.routes.draw do
+
+  resources :iseekers
+  resources :igivers
   
-  get "password_resets/create"
+  resources :password_resets
+  
+  resources :sessions
 
-  get "password_resets/edit"
+  match 'login' => 'sessions#new', :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
 
-  get "password_resets/update"
+  match 'signup' => 'public#signup', :as => :signup
+  match 'signin' => 'public#signin', :as => :signin
+  
+  match "oauth/callback" => "oauths#callback"
+  match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   get "oauths/oauth"
-
   get "oauths/callback"
 
-  resources :sessions
   resources :users do
     member do
       get  :activate
       get :resend_confirmation
     end
   end
-  
-  resources :iseekers
-  resources :igivers
-  
-  resources :password_resets
-  match 'login' => 'sessions#new', :as => :login
-  match 'logout' => 'sessions#destroy', :as => :logout
-  match 'signup' => 'public#signup', :as => :signup
-  match 'signin' => 'public#signin', :as => :signin
-  match "oauth/callback" => "oauths#callback"
-  match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   root :to => 'public#index'
 

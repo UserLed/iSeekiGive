@@ -20,21 +20,27 @@
   </head>
   <body>
 
-    <%= render "shared/header" %>
+    <div id="wrap">
+      <%= render "shared/header" %>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= bootstrap_flash %>
-          <%= yield %>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span12">
+            <%= bootstrap_flash %>
+            <%= yield %>
+          </div>
         </div>
-      </div><!--/row-->
+      </div> <!-- /container -->
 
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
+    </div> <!-- /wrap -->
 
-    </div> <!-- /container -->
+    <div id="footer">
+      <div class="container-fluid">
+        <p class="muted">
+          &copy; iSeekiGive 2013
+        </p>
+      </div>
+    </div>
 
   </body>
 </html>

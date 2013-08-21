@@ -1,6 +1,19 @@
+<div class="page-header">
+  <h1>
+    Reset Password
+  </h1>
+</div>
+
+
 <%= form_tag password_resets_path, :method => :post do %>
-  <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email %> <%= submit_tag "Reset my password!" %>
+  <div class="control-group">
+    <%= label_tag :email, "Email", :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :email, params[:email], :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag "Reset my password!", :class => 'btn btn-primary' %>
   </div>
 <% end %>

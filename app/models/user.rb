@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :country, :hear, :password,
     :password_confirmation, :authentications_attributes, :type
   
-  attr_accessor :type_helper
+  attr_accessor :type_helper, :password_confirmation
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
