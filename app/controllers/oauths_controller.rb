@@ -14,23 +14,29 @@ class OauthsController < ApplicationController
         redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
       else
         begin
-          @user = create_and_validate_from(provider)
+          if session[:user_type].present?
+            @user = create_and_validate_from(provider)
 
-          if @user.present? and @user.type.blank?
-            @user.type = session[:user_type].capitalize.classify
-            @user.save
-          end
+            if @user.present? and @user.type.blank?
+              @user.type = session[:user_type].capitalize.classify
+              @user.save
+            end
 
-          reset_session # protect from session fixation attack
+            reset_session # protect from session fixation attack
 
-          if @user.iseeker?
-            @user = Iseeker.find(@user.id)
-          else
-            @user = Igiver.find(@user.id)
-          end
+            if @user.iseeker?
+              @user = Iseeker.find(@user.id)
+            else
+              @user = Igiver.find(@user.id)
+            end
           
-          auto_login(@user)
-          redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+            auto_login(@user)
+            redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+          else
+            reset_session
+            flash[:alert] = "Please Sign Up first!"
+            redirect_to root_path
+          end
         rescue
           redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
         end

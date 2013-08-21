@@ -91,7 +91,7 @@ Rails.application.config.sorcery.configure do |config|
   else
     config.linkedin.key = "mqguba5cny5d"
     config.linkedin.secret = "iUYJbx61BLB0dZDP"
-    config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
+    config.linkedin.callback_url = "http://localhost:3000/oauth/callback?provider=linkedin"
   end
   
   config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id']
