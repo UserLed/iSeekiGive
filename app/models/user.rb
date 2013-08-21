@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def provider
+    self.authentications.first.provider if self.external?
+  end
+
   def activated?
     self.activation_state == "pending" ? false : true
   end

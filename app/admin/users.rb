@@ -16,6 +16,7 @@ ActiveAdmin.register User do
     column :email
     column :country
     column :type
+    column :provider
     column :activation_state
     column :created_at
     column "Manage" do |user|

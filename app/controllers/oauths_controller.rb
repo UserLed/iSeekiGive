@@ -17,25 +17,27 @@ class OauthsController < ApplicationController
           if session[:user_type].present?
             @user = create_and_validate_from(provider)
 
-            update_authentication_with_token(provider)
-
-            update_user_with_type(session[:user_type])
-
-            reset_session # protect from session fixation attack
-          
-            auto_login(@user)
-            redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+            unless @user.new_record?
+              update_authentication_with_token(provider)
+              update_user_with_type(session[:user_type])
+              reset_session # protect from session fixation attack
+              auto_login(@user)
+              redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+            end
           else
             reset_session
-            flash[:alert] = "Please Sign Up first!"
-            redirect_to root_path
+            redirect_to root_path, :alert => "Something went wrong! Please try again."
           end
         rescue => e
           logger.info "!!! External login error : #{e.message}"
           redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
         end
       end
-    rescue OAuth2::Error
+      if @user.errors.present? and @user.errors.messages[:email].present?
+        redirect_to root_path, :alert => "This email address is already used!"
+      end
+    rescue OAuth2::Error => e
+      logger.info "!!! External login error : #{e.message}"
       redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
     end
   end

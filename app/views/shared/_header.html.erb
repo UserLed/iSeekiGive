@@ -10,10 +10,19 @@
       <div class="container-fluid nav-collapse">
         <ul class="nav">
           <% if current_user %>
-            <li><%= link_to "Logout", logout_path  %></li>
+            <li>
+              <%= link_to "Profile", current_user %>
+            </li>
+            <li>
+              <%= link_to "Logout", logout_path  %>
+            </li>
           <% else %>
-            <li><%= link_to "Sign Up", signup_path  %></li>
-            <li><%= link_to "Sign In", signin_path  %></li>
+            <li>
+              <%= link_to "Sign Up", signup_path  %>
+            </li>
+            <li>
+              <%= link_to "Sign In", signin_path  %>
+            </li>
           <% end %>
         </ul>
       </div><!--/.nav-collapse -->
