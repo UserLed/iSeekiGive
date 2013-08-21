@@ -84,6 +84,7 @@ Rails.application.config.sorcery.configure do |config|
   # - user info fields go to https://developer.linkedin.com/documents/profile-fields
   # - access permissions go to https://developer.linkedin.com/documents/authentication#granting
 
+  #Linkedin Config
   if Rails.env.production?
     config.linkedin.key = "uyy178z1olhz"
     config.linkedin.secret = "vqyZufPr8jWOchK8"
@@ -94,11 +95,11 @@ Rails.application.config.sorcery.configure do |config|
     config.linkedin.callback_url = "http://localhost:3000/oauth/callback?provider=linkedin"
   end
   
-  config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id']
-  config.linkedin.user_info_mapping = {:email => "emailAddress", :first_name => "firstName", :last_name => "lastName"}
+  config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id', 'location:(name)']
+  config.linkedin.user_info_mapping = {:email => "emailAddress", :first_name => "firstName", :last_name => "lastName", :country => "location/name"}
   config.linkedin.access_permissions = ['r_fullprofile', 'r_emailaddress', 'r_network', 'r_contactinfo']
-  
 
+  #Facebook Config
   if Rails.env.production?
     config.facebook.key = "538362259552396"
     config.facebook.secret = "6287a814bf44536332ee9fdf9bcfdced"
@@ -109,7 +110,7 @@ Rails.application.config.sorcery.configure do |config|
     config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
   end
   
-  config.facebook.user_info_mapping = {:email => "email", :first_name => "first_name", :last_name => "last_name"}
+  config.facebook.user_info_mapping = {:email => "email", :first_name => "first_name", :last_name => "last_name", :country => "location/name"}
   config.facebook.access_permissions = ["email", "read_friendlists", "user_likes", "user_interests", "user_birthday", "user_education_history", "user_hometown", "user_location", "user_about_me"]
 
 

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true
   validates :email, :presence => true
   validates_uniqueness_of :email
-  #  validates :country, :presence => true
+  validates :country, :presence => true
   validates_length_of :password, :minimum => 3, :if => :password
   validates_confirmation_of :password, :if => :password
   
