@@ -16,7 +16,6 @@ class OauthsController < ApplicationController
         begin
           if session[:user_type].present?
             @user = create_and_validate_from(provider)
-            puts access_token(provider).inspect
             unless @user.new_record?
               update_authentication_with_token(provider)
               update_user_with_type(session[:user_type])
@@ -70,6 +69,13 @@ class OauthsController < ApplicationController
 
   def update_user_with_type(user_type)
     @user.type = user_type.capitalize.classify
+
+    if @user.provider == "facebook"
+      location = @user.country.split(", ")
+      @user.city = location.first
+      @user.country = location.last
+    end
+
     @user.save
     if @user.iseeker?
       @user = Iseeker.find(@user.id)

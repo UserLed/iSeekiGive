@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130823155114) do
+ActiveRecord::Schema.define(:version => 20130823184144) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20130823155114) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.boolean  "promotional_news",                :default => false
+    t.string   "city"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

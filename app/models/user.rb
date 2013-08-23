@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   end
   
   attr_accessible :email, :first_name, :last_name, :country, :hear, :password,
-    :password_confirmation, :authentications_attributes, :type, :promotional_news
+    :password_confirmation, :authentications_attributes, :type, :promotional_news,
+    :city
   
   attr_accessor :type_helper, :password_confirmation
 
