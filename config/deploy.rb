@@ -40,7 +40,8 @@ after "deploy:setup", "deploy:create_shared_directories"
 
 after "deploy:create_symlink", "deploy:link_shared_directories"
 
-after "deploy:assets_precompile", "deploy:restart"
+after "deploy:p_assets", "deploy:restart"
+after "deploy:cp_assets", "deploy:restart"
 
 after "deploy", "deploy:cleanup"
 
@@ -53,8 +54,12 @@ namespace :deploy do
     run "sudo touch #{File.join(current_path, 'tmp', 'restart.txt')}"
   end
 
-  task :assets_precompile, :roles => :app do
-    run "rm -rf #{current_path}/public/assets/*; cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+  task :cp_assets, :roles => :app do
+    run "rm -rfv #{current_path}/public/assets/*; cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+  end
+
+  task :p_assets, :roles => :app do
+    run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
   end
 
   task :create_shared_directories, :role => :app do
@@ -63,11 +68,13 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/pids"
     run "mkdir -p #{shared_path}/log"
     run "mkdir -p #{shared_path}/bundle"
+    run "mkdir -p #{shared_path}/assets"
   end
 
   task :link_shared_directories, :roles => :app do
     run "rm -rf #{current_path}/tmp/sockets; ln -s #{shared_path}/sockets #{current_path}/tmp/sockets"
     run "rm -rf #{current_path}/public/uploads; ln -s #{shared_path}/uploads #{current_path}/public/uploads"
+    run "rm -rf #{current_path}/public/assets; ln -s #{shared_path}/assets #{current_path}/public/assets"
   end
 
   task :db_create, :roles => :app do
