@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       if @user = login(params[:email], params[:password], params[:remember])
         format.html { redirect_back_or_to @user }
       else
-        flash.now[:alert] = "Invalid email or password."
+        flash[:alert] = "Invalid email or password."
         format.html { render :action => "new" }
       end
     end

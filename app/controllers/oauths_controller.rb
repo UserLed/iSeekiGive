@@ -16,7 +16,7 @@ class OauthsController < ApplicationController
         begin
           if session[:user_type].present?
             @user = create_and_validate_from(provider)
-
+            puts access_token(provider).inspect
             unless @user.new_record?
               update_authentication_with_token(provider)
               update_user_with_type(session[:user_type])
@@ -63,7 +63,7 @@ class OauthsController < ApplicationController
       @auth.expires_at = Time.at(token.expires_at.to_i)
     elsif provider.eql?("linkedin")
       @auth.secret = token.secret
-      @auth.expires_at = Time.at(token.params[:oauth_expires_in].to_i)
+      @auth.expires_at = Time.at(Time.now.to_i + token.params[:oauth_expires_in].to_i)
     end
     @auth.save
   end

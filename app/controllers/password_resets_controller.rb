@@ -6,8 +6,14 @@ class PasswordResetsController < ApplicationController
 
   def create
     @user = User.find_by_email(params[:email])
-    @user.deliver_reset_password_instructions! if @user
-    redirect_to root_path, :notice => 'Instructions have been sent to your email.'
+    if @user
+      @user.deliver_reset_password_instructions!
+      flash[:notice] = 'Instructions have been sent to your email.'
+      redirect_to root_path
+    else
+      flash[:alert] = 'Invalid email.'
+      render :action => :new
+    end
   end
 
   def edit
@@ -22,7 +28,8 @@ class PasswordResetsController < ApplicationController
     not_authenticated and return unless @user
 
     if @user.update_attributes(params[@user.class.name.to_s.downcase])
-      redirect_to(login_path, :notice => 'Password was successfully updated.')
+      flash[:notice] = 'Password was successfully updated.'
+      redirect_to login_path
     else
       render :action => "edit"
     end

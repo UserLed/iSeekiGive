@@ -9,7 +9,7 @@
   <div class="control-group">
     <%= label_tag :email, "Email", :class => 'control-label' %>
     <div class="controls">
-      <%= text_field_tag :email, params[:email], :class => 'text_field' %>
+      <%= email_field_tag :email, params[:email], :class => 'text_field', :required => true %>
     </div>
   </div>
 

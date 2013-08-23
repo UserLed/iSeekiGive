@@ -1,12 +1,12 @@
 class Notification < ActionMailer::Base
-  default :from => "\"iseekigive\" <info@iseekigive.com>"
+  default :from => "\"iSeekiGive\" <info@iSeekiGive.com>"
   
   def reset_password_email(user)
     @user = user
     @url  = edit_password_reset_url(user.reset_password_token)
     headers['X-SMTPAPI'] = "{\"category\" : \"Password Help\"}"
     mail(:to => user.email,
-      :subject => "Your password reset instructions - iseekerigiver")
+      :subject => "Your password reset instructions")
   end
 
   def activation_needed_email(user)

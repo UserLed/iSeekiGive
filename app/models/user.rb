@@ -32,7 +32,9 @@ class User < ActiveRecord::Base
   end
 
   def provider
-    self.authentications.first.provider if self.external?
+    if self.external?
+      self.authentications.present? ? self.authentications.first.provider : "deleted"
+    end
   end
 
   def activated?

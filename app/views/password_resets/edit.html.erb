@@ -22,7 +22,7 @@
   <div class="control-group">
     <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
-      <%= f.password_field :password, :class => 'text_field' %>
+      <%= f.password_field :password, :class => 'text_field', :required => true %>
     </div>
   </div>
 
@@ -30,7 +30,7 @@
   <div class="control-group">
     <%= f.label :password_confirmation, :class => 'control-label' %>
     <div class="controls">
-      <%= f.password_field :password_confirmation, :class => 'text_field' %>
+      <%= f.password_field :password_confirmation, :class => 'text_field', :required => true, :oninput => "check(this)" %>
     </div>
   </div>
 
@@ -39,3 +39,15 @@
     <%= f.submit "Submit", :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+
+<script type='text/javascript'>
+  function check(input) {
+    if (input.value != document.getElementById('<%= @user.class.name.downcase %>_password').value) {
+      input.setCustomValidity('The two passwords must match.');
+    } else {
+      // input is valid -- reset the error message
+      input.setCustomValidity('');
+    }
+  }
+</script>
