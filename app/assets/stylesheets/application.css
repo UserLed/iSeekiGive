@@ -10,17 +10,5 @@
  *
  *= require bootstrap_and_overrides
  *= require fancybox
- *= require_self
+ *= require custom
 */
-
-
-#footer {
-    background-color: #F5F5F5;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    margin-top: 30px;
-}
-
-#footer p{
-    text-align: center;
-}

@@ -1,7 +1,41 @@
-<div class="page-header">
-  <h1>
-    Login
-  </h1>
+<div class="well-wrap well">
+  <div class="title">
+    Log in
+  </div>
+
+  <div class="panel-content">
+    <%= link_to auth_at_provider_path(:provider => :facebook), :class => "fb-blue btn icon-btn btn-block padded-btn-block large" do %>
+      <span class="icon-container">
+        <i class="icon icon-facebook"></i>
+      </span>
+      <span class="text-container"> Log in with Facebook </span>
+    <% end %>
+
+    <div class="signup-or-separator shift">
+      <span class="text">or</span>
+      <hr/>
+    </div>
+
+    <%= link_to auth_at_provider_path(:provider => :linkedin), :class => "in-blue btn icon-btn btn-block padded-btn-block large" do %>
+      <span class="icon-container">
+        <i class="icon icon-linkedin"></i>
+      </span>
+      <span class="text-container"> Log in with LinkedIn </span>
+    <% end %>
+
+    <div class="signup-or-separator shift">
+      <span class="text">or</span>
+      <hr/>
+    </div>
+
+    <%= render "form" %>
+
+  </div>
+
+  <div class="panel-footer">
+    Don't have an account?
+    <%= link_to "Sign up", signup_path %>
+  </div>
+
 </div>
 
-<%= render 'form' %>

@@ -1,17 +1,56 @@
-<%= link_to "Sign Up With Facebook", auth_at_provider_path(:provider => :facebook), :class => "btn btn-large btn-primary" %>
-<br/>
-<br/>
--------OR--------
-<br/>
-<br/>
-<%= link_to "Sign Up With LinkedIn", auth_at_provider_path(:provider => :linkedin), :class => "btn btn-large btn-primary" %>
-<br/>
-<br/>
--------OR--------
-<br/>
-<br/>
-<% if @type == "iseeker" %>
-<%= link_to "Sign Up With Email", new_iseeker_path, :class => "btn btn-large btn-primary" %>
-<% else %>
-<%= link_to "Sign Up With Email", new_igiver_path, :class => "btn btn-large btn-primary" %>
-<% end %>
+<div class="well-wrap well">
+  <div class="title">
+    <%= @type == "iseeker" ? "iSeeker" : "iGiver" %>
+    Sign up
+  </div>
+
+  <div class="panel-content">
+    <%= link_to auth_at_provider_path(:provider => :facebook), :class => "fb-blue btn icon-btn btn-block padded-btn-block large" do %>
+      <span class="icon-container">
+        <i class="icon icon-facebook"></i>
+      </span>
+      <span class="text-container"> Sign up with Facebook </span>
+    <% end %>
+
+    <div class="signup-or-separator shift">
+      <span class="text">or</span>
+      <hr/>
+    </div>
+
+    <%= link_to auth_at_provider_path(:provider => :linkedin), :class => "in-blue btn icon-btn btn-block padded-btn-block large" do %>
+      <span class="icon-container">
+        <i class="icon icon-linkedin"></i>
+      </span>
+      <span class="text-container"> Sign up with LinkedIn </span>
+    <% end %>
+
+    <div class="signup-or-separator shift">
+      <span class="text">or</span>
+      <hr/>
+    </div>
+
+    <div class="signup-email">
+      <% if @type == "iseeker" %>
+        <%= link_to "Sign up with Email", new_iseeker_path %>
+      <% else %>
+        <%= link_to "Sign up with Email", new_igiver_path %>
+      <% end %>
+    </div>
+
+    <div class="notice">
+      By clicking "Sign up with Facebook" or "Sign up with LinkedIn" you confirm
+      that you accept the
+      <%= link_to "Terms of Service", terms_path, :target => "_blank" %>
+      and
+      <%= link_to "Privacy Policy", privacy_path, :target => "_blank" %>
+      .
+    </div>
+
+  </div>
+
+  <div class="panel-footer">
+    Already an iSeekiGive member?
+    <%= link_to "Log in", login_path %>
+  </div>
+
+</div>

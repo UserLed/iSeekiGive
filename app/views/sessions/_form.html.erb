@@ -1,19 +1,24 @@
 <%= form_tag sessions_path, :method => :post do %>
-  <div class="control-group">
-    <%= label_tag :email, "Email", :class => 'control-label' %>
-    <div class="controls">
-      <%= text_field_tag :email, params[:email], :class => 'text_field' %>
+
+  <div class="text-input-container">
+    <%= email_field_tag :email, params[:email], :placeholder => "Email Address", :class => 'text_field', :required => true %>
+  </div>
+
+  <div class="text-input-container">
+    <%= password_field_tag :password, params[:password], :placeholder => "Password", :class => 'text_field', :required => true %>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span1">
+      <%= check_box_tag :remember, "1" %>
+    </div>
+    <div class="span5">
+      <%= label_tag :remember, "Remember me", :class => 'small' %>
+    </div>
+    <div class="span6 right">
+      <%= link_to 'Forgot password?', new_password_reset_path %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= label_tag :password, "Password", :class => 'control-label' %>
-    <div class="controls">
-      <%= password_field_tag :password, params[:password], :class => 'text_field' %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= submit_tag "Login", :class => 'btn btn-primary' %>
-  </div>
+  <%= submit_tag "Log in", :class => 'btn btn-info login-btn' %>
 <% end %>

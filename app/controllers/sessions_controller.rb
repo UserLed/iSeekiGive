@@ -1,17 +1,16 @@
 class SessionsController < ApplicationController
   def new
+    reset_session
     @user = User.new
   end
 
   def create
     respond_to do |format|
-      if @user = login(params[:email], params[:password])
-        @msg = "Login successful."
-        format.html { redirect_back_or_to(@user, :notice => @msg) }
-        format.xml { render :xml => @user, :status => :created, :location => @user }
+      if @user = login(params[:email], params[:password], params[:remember])
+        format.html { redirect_back_or_to @user }
       else
-        format.html { flash.now[:alert] = "Login failed."; render :action => "new" }
-        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
+        flash.now[:alert] = "Invalid email or password."
+        format.html { render :action => "new" }
       end
     end
   end

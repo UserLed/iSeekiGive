@@ -19,13 +19,6 @@ class PublicController < ApplicationController
     end
   end
 
-  def signin
-    reset_session
-    respond_to do |format|
-      format.html
-    end
-  end
-
   def terms_of_service
   end
 

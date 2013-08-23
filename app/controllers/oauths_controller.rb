@@ -26,14 +26,14 @@ class OauthsController < ApplicationController
             end
           else
             reset_session
-            redirect_to root_path, :alert => "Something went wrong! Please try again."
+            redirect_to root_path, :alert => "Please sign up first!"
           end
         rescue => e
           logger.info "!!! External login error : #{e.message}"
           redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
         end
       end
-      if @user.errors.present? and @user.errors.messages[:email].present?
+      if @user.present? and @user.errors.present? and @user.errors.messages[:email].present?
         redirect_to root_path, :alert => "This email address is already used!"
       end
     rescue OAuth2::Error => e
