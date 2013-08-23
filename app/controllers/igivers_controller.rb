@@ -11,6 +11,8 @@ class IgiversController < ApplicationController
       auto_login(@igiver)
       redirect_to @igiver, :notice => "Successfully Signed Up!"
     else
+      @password = params[:igiver][:password]
+      @password_confirmation = params[:igiver][:password_confirmation]
       render :action  => "new"
     end
   end

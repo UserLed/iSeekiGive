@@ -11,6 +11,8 @@ class IseekersController < ApplicationController
       auto_login(@iseeker)
       redirect_to @iseeker, :notice => "Successfully Signed Up!"
     else
+      @password = params[:iseeker][:password]
+      @password_confirmation = params[:iseeker][:password_confirmation]
       render :action  => "new"
     end
   end

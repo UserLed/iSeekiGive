@@ -260,3 +260,12 @@
     font-size: 12px;
     padding-top: 20px;
 }
+
+.signup-wrap{
+    width: 600px;
+    margin: auto;
+}
+
+.signup-wrap label.small{
+    padding-top: 3px;
+}

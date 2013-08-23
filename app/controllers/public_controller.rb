@@ -3,19 +3,12 @@ class PublicController < ApplicationController
   end
 
   def signup
-    respond_to do |format|
-      if params[:type]
-        if params[:type] == "iseeker"
-          session[:user_type] = "iseeker"
-        end
-        if params[:type] == "igiver"
-          session[:user_type] = "igiver"
-        end
-        @type = session[:user_type]
-        format.html { render 'signup_form', :layout => false}
-      else
-        format.html
-      end
+    if current_user.present?
+      redirect_to current_user
+    elsif params[:type]
+      session[:user_type] = params[:type]
+      @type = session[:user_type]
+      render 'signup_form', :layout => false
     end
   end
 
