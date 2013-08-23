@@ -111,7 +111,7 @@ Rails.application.config.sorcery.configure do |config|
   end
   
   config.facebook.user_info_mapping = {:email => "email", :first_name => "first_name", :last_name => "last_name", :country => "location/name"}
-  config.facebook.access_permissions = ["email", "read_friendlists", "user_likes", "user_interests", "user_birthday", "user_education_history", "user_hometown", "user_location", "user_about_me"]
+  config.facebook.access_permissions = ["offline_access", "email", "read_friendlists", "user_likes", "user_interests", "user_birthday", "user_education_history", "user_hometown", "user_location", "user_about_me"]
 
 
   # --- user config ---
