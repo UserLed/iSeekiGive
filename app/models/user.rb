@@ -19,8 +19,15 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password
   
   has_many :authentications, :dependent => :destroy
+  has_many :educations
+  has_many :skills
+  has_many :experiences
+  
   accepts_nested_attributes_for :authentications
-
+  accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :skills
+  accepts_nested_attributes_for :experiences
+  
   HOW_HEAR = [
     ["By Friend"],
     ["Internet Search"],

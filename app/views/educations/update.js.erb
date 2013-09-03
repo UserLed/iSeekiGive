@@ -1,0 +1,12 @@
+$('.update_<%= @edu.id %>').html("");
+
+$('.update_<%= @edu.id %>').html(
+<div class="education_text">
+  <h4><%= @edu.school_name %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary edit_education" %></h4>
+  <p><%= @edu.degree %>, <%= @edu.field_of_study %></p>
+  <p><%= @edu.start_date.strftime("%Y") %> - <%= @edu.end_date.present? ? @edu.end_date.strftime("%Y") : "current" %></p>
+</div>
+<div class="education_form" style="display:none">
+  <%= render 'common/education_form', :e => @edu %>
+</div>
+);

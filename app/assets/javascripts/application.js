@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require fancybox
 //= require fancybox-config
+//= require custom
 

@@ -5,6 +5,9 @@ ISeekiGive::Application.routes.draw do
 
   resources :iseekers
   resources :igivers
+  resources :educations
+  resources :skills
+  resources :experiences
   
   resources :password_resets
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130823184144) do
+ActiveRecord::Schema.define(:version => 20130903084138) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,6 +55,34 @@ ActiveRecord::Schema.define(:version => 20130823184144) do
     t.string   "token"
     t.string   "secret"
     t.datetime "expires_at"
+  end
+
+  create_table "educations", :force => true do |t|
+    t.string   "school_name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "degree"
+    t.string   "field_of_study"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "experiences", :force => true do |t|
+    t.string   "title"
+    t.string   "company_name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "skills", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

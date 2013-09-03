@@ -18,6 +18,7 @@ class OauthsController < ApplicationController
             @user = create_and_validate_from(provider)
             unless @user.new_record?
               update_authentication_with_token(provider)
+              @provider = Config.send(provider)
               update_user_with_type(session[:user_type])
               reset_session # protect from session fixation attack
               auto_login(@user)
@@ -63,6 +64,8 @@ class OauthsController < ApplicationController
     elsif provider.eql?("linkedin")
       @auth.secret = token.secret
       @auth.expires_at = Time.at(Time.now.to_i + token.params[:oauth_expires_in].to_i)
+      @provider = Config.send(provider)
+      UserDetails.update_user_profile(@provider.get_user_hash, @user)
     end
     @auth.save
   end

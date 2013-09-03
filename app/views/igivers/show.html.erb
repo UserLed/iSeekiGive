@@ -8,13 +8,60 @@
   </div>
 </div>
 
-<ul class="list-group">
-  <li class="list-group-item">
-    Email : <%= @igiver.email %>
-  </li>
-  <li class="list-group-item">
-    Country : <%= @igiver.country %>
-  </li>
-</ul>
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="#lA" data-toggle="tab">Account Details</a>
+    </li>
+    <li>
+      <a href="#lB" data-toggle="tab">Educations</a>
+    </li>
+    <li>
+      <a href="#lC" data-toggle="tab">Experiences</a>
+    </li>
+    <li>
+      <a href="#lD" data-toggle="tab">Skills</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" id="lA">
+      <ul class="list-group">
+        <li class="list-group-item">
+          Email : <%= @igiver.email %>
+        </li>
+        <li class="list-group-item">
+          Country : <%= @igiver.country %>
+        </li>
+      </ul>
+    </div>
 
-<%= render 'shared/dashboard_popup' %>
+    <div class="tab-pane" id="lB">
+      <legend>
+        <h3>Education Details</h3>
+      </legend>
+      <% @igiver.educations.each do |e| %>
+        <div class="update_<%= e.id %>">
+          <div class="education_text">
+            <h4><%= e.school_name %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary edit_education" %></h4>
+            <p><%= e.degree %>, <%= e.field_of_study %></p>
+            <p><%= e.start_date.strftime("%Y") %> - <%= e.end_date.present? ? e.end_date.strftime("%Y") : "current" %></p>
+          </div>
+          <div class="education_form" style="display:none">
+            <%= render 'common/education_form', :e => e %>
+          </div>
+        </div>
+        <legend></legend>
+      <% end %>
+      <%= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+    </div>
+
+    <div class="tab-pane" id="lC">
+      <p>I'm in Section C.</p>
+    </div>
+
+    <div class="tab-pane" id="lD">
+      <p>I'm in Section D.</p>
+    </div>
+  </div>
+</div>
+<%#= render 'shared/dashboard_popup' %>

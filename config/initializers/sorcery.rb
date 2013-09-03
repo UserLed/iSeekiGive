@@ -95,7 +95,7 @@ Rails.application.config.sorcery.configure do |config|
     config.linkedin.callback_url = "http://localhost:3000/oauth/callback?provider=linkedin"
   end
   
-  config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id', 'location:(name)']
+  config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id', 'location:(name)', 'positions', 'skills', 'educations']
   config.linkedin.user_info_mapping = {:email => "emailAddress", :first_name => "firstName", :last_name => "lastName", :country => "location/name"}
   config.linkedin.access_permissions = ['r_fullprofile', 'r_emailaddress', 'r_network', 'r_contactinfo']
 

@@ -1,0 +1,23 @@
+<%= form_for e, :method => :put,:html => {:class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field', :required => true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :company_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :company_name, :class => 'text_field', :required => true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_date, "Time Period", :class => 'control-label' %>
+    <div class="controls">
+      <%= select_year(e.start_date, :start_year => Time.now.year - 50, :end_year => Time.now.year, :field_name => 'start_date', :prefix => :experience) %> to
+      <%= select_year(e.end_date, :start_year => Time.now.year - 50, :end_year => Time.now.year + 50, :field_name => 'end_date', :prefix => :experience) %>
+    </div>
+  </div>
+  <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>
+  <%= link_to "Cancel", '#',:class => "btn btn-info cancel"  %>
+<% end %>

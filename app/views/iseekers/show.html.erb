@@ -8,12 +8,90 @@
   </div>
 </div>
 
-<ul class="list-group">
-  <li class="list-group-item">
-    Email : <%= @iseeker.email %>
-  </li>
-  <li class="list-group-item">
-    Country : <%= @iseeker.country %>
-  </li>
-</ul>
-<%= render 'shared/dashboard_popup' %>
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="#lA" data-toggle="tab">Account Details</a>
+    </li>
+    <li>
+      <a href="#lB" data-toggle="tab">Educations</a>
+    </li>
+    <li>
+      <a href="#lC" data-toggle="tab">Experiences</a>
+    </li>
+    <li>
+      <a href="#lD" data-toggle="tab">Skills</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" id="lA">
+      <ul class="list-group">
+        <li class="list-group-item">
+          Email : <%= @iseeker.email %>
+        </li>
+        <li class="list-group-item">
+          Country : <%= @iseeker.country %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-pane" id="lB">
+      <legend>
+        <h3>Education Details</h3>
+      </legend>
+      <% @iseeker.educations.each do |e| %>
+        <div class="update_<%= e.id %>">
+          <div class="field_text">
+            <h4><%= e.school_name %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary field_edit" %></h4>
+            <p><%= e.degree %>, <%= e.field_of_study %></p>
+            <p><%= e.start_date.strftime("%Y") %> - <%= e.end_date.present? ? e.end_date.strftime("%Y") : "current" %></p>
+          </div>
+          <div class="field_form" style="display:none">
+            <%= render 'common/education_form', :e => e %>
+          </div>
+        </div>
+        <legend></legend>
+      <% end %>
+      <%= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+    </div>
+
+    <div class="tab-pane" id="lC">
+      <legend>
+        <h3>Experience Details</h3>
+      </legend>
+      <% @iseeker.experiences.each do |e| %>
+        <div class="update_<%= e.id %>">
+          <div class="field_text">
+            <h4><%= e.title %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary field_edit" %></h4>
+            <p><%= e.company_name %></p>
+            <p><%= e.start_date.strftime("%Y") %> - <%= e.end_date.present? ? e.end_date.strftime("%Y") : "current" %></p>
+          </div>
+          <div class="field_form" style="display:none">
+            <%= render 'common/experience_form', :e => e %>
+          </div>
+        </div>
+        <legend></legend>
+      <% end %>
+      <%= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+    </div>
+
+    <div class="tab-pane" id="lD">
+      <legend>
+        <h3>Experience Details</h3>
+      </legend>
+      <% @iseeker.skills.each do |e| %>
+        <div class="update_<%= e.id %>">
+          <div class="field_text">
+            <h4><%= e.name %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary field_edit" %></h4>
+          </div>
+          <div class="field_form" style="display:none">
+            <%= render 'common/skill_form', :e => e %>
+          </div>
+        </div>
+        <legend></legend>
+      <% end %>
+      <%#= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+    </div>
+  </div>
+</div>
+<%#= render 'shared/dashboard_popup' %>
