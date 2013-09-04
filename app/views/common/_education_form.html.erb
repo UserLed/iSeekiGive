@@ -24,6 +24,10 @@
       <%= f.date_select :end_date, {:start_year => Time.now.year - 50, :end_year => Time.now.year + 50, :default => { :day => 01, :month => 01 },:discard_day => true, :discard_month => true}, {:class => 'date-select'} %>
     </div>
   </div>
-  <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>
-  <%= link_to "Cancel", 'javascript:void(0)',:class => "btn btn-info cancel"  %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>
+      <%= link_to "Cancel", 'javascript:void(0)',:class => "btn btn-info cancel"  %>
+    </div>
+  </div>
 <% end %>

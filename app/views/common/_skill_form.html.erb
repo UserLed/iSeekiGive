@@ -5,6 +5,10 @@
       <%= f.text_field :name, :class => 'text_field', :required => true %>
     </div>
   </div>
-  <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>
-  <%= link_to "Cancel", 'javascript:void(0)',:class => "btn btn-info cancel"  %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>
+      <%= link_to "Cancel", 'javascript:void(0)',:class => "btn btn-info cancel"  %>
+    </div>
+  </div>
 <% end %>
