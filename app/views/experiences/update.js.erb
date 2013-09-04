@@ -5,3 +5,5 @@ $('.update_exp_<%= @exp.id %>').html("<%= escape_javascript( render 'common/expe
 $('.field_edit').show();
 $('.field_text').show();
 $('.field_form').hide();
+$('li.total_experience').html("");
+$('li.total_experience').html("Total Experience : <%= total_experience(@exp.user) %>");
