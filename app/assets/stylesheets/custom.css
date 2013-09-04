@@ -269,3 +269,7 @@
 .signup-wrap label.small{
     padding-top: 3px;
 }
+
+select.date-select {
+    width :120px;
+}

@@ -14,8 +14,8 @@
   <div class="control-group">
     <%= f.label :start_date, "Time Period", :class => 'control-label' %>
     <div class="controls">
-      <%= select_year(e.start_date, :start_year => Time.now.year - 50, :end_year => Time.now.year, :field_name => 'start_date', :prefix => :experience) %> to
-      <%= select_year(e.end_date, :start_year => Time.now.year - 50, :end_year => Time.now.year + 50, :field_name => 'end_date', :prefix => :experience) %>
+      <%= f.date_select :start_date, {:start_year => Time.now.year - 50, :end_year => Time.now.year, :discard_day => true}, {:class => 'date-select'} %>  to
+      <%= f.date_select :end_date, {:start_year => Time.now.year - 50, :end_year => Time.now.year + 50, :discard_day => true}, {:class => 'date-select'} %>
     </div>
   </div>
   <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>

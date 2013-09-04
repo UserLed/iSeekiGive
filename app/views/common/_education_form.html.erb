@@ -20,8 +20,8 @@
   <div class="control-group">
     <%= f.label :start_date, "Dates Attended", :class => 'control-label' %>
     <div class="controls">
-      <%= select_year(e.start_date, :start_year => Time.now.year - 50, :end_year => Time.now.year, :field_name => 'start_date', :prefix => :education) %> to
-      <%= select_year(e.end_date, :start_year => Time.now.year - 50, :end_year => Time.now.year + 50, :field_name => 'end_date', :prefix => :education) %>
+      <%= f.date_select :start_date, {:start_year => Time.now.year - 50, :end_year => Time.now.year, :default => { :day => 01, :month => 01 },:discard_day => true, :discard_month => true}, {:class => 'date-select'} %> to
+      <%= f.date_select :end_date, {:start_year => Time.now.year - 50, :end_year => Time.now.year + 50, :default => { :day => 01, :month => 01 },:discard_day => true, :discard_month => true}, {:class => 'date-select'} %>
     </div>
   </div>
   <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>
