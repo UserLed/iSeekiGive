@@ -1,0 +1,7 @@
+$('.update_skill_<%= @skill.id %>').html("");
+
+$('.update_skill_<%= @skill.id %>').html("<%= escape_javascript( render 'common/skill_content', :e => @updated_skill).html_safe %>");
+
+$('.field_edit').show();
+$('.field_text').show();
+$('.field_form').hide();

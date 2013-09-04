@@ -32,6 +32,9 @@
         <li class="list-group-item">
           Country : <%= @igiver.country %>
         </li>
+        <li class="list-group-item">
+          Total Experience : <%= total_experience(@igiver) %>
+        </li>
       </ul>
     </div>
 
@@ -40,27 +43,44 @@
         <h3>Education Details</h3>
       </legend>
       <% @igiver.educations.each do |e| %>
-        <div class="update_<%= e.id %>">
-          <div class="education_text">
-            <h4><%= e.school_name %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary edit_education" %></h4>
-            <p><%= e.degree %>, <%= e.field_of_study %></p>
-            <p><%= e.start_date.strftime("%Y") %> - <%= e.end_date.present? ? e.end_date.strftime("%Y") : "current" %></p>
-          </div>
-          <div class="education_form" style="display:none">
-            <%= render 'common/education_form', :e => e %>
-          </div>
+        <div class="update_edu_<%= e.id %>">
+          <%= render 'common/education_content', :e => e %>
         </div>
         <legend></legend>
       <% end %>
-      <%= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+      <div class="update_new">
+        <%= render 'common/new_education' %>
+      </div>
     </div>
 
     <div class="tab-pane" id="lC">
-      <p>I'm in Section C.</p>
+      <legend>
+        <h3>Experience Details</h3>
+      </legend>
+      <% @igiver.experiences.each do |e| %>
+        <div class="update_exp_<%= e.id %>">
+          <%= render 'common/experience_content', :e => e %>
+        </div>
+        <legend></legend>
+      <% end %>
+      <div class="update_new">
+        <%= render 'common/new_experience' %>
+      </div>
     </div>
 
     <div class="tab-pane" id="lD">
-      <p>I'm in Section D.</p>
+      <legend>
+        <h3>Experience Details</h3>
+      </legend>
+      <% @igiver.skills.each do |e| %>
+        <div class="update_skill_<%= e.id %>">
+          <%= render 'common/skill_content', :e => e %>
+        </div>
+        <legend></legend>
+      <% end %>
+      <div class="update_new">
+        <%= render 'common/new_skill' %>
+      </div>
     </div>
   </div>
 </div>

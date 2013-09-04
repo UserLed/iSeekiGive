@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+#  include ActionView::Helpers::TextHelper
+  
   authenticates_with_sorcery!
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication

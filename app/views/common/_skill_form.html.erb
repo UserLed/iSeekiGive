@@ -1,4 +1,4 @@
-<%= form_for e, :method => :put,:html => {:class => 'form-horizontal' } do |f| %>
+<%= form_for e, :remote => true, :html => {:class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
@@ -6,5 +6,5 @@
     </div>
   </div>
   <%= f.submit "Done", :class => "btn btn-medium btn-primary" %>
-  <%= link_to "Cancel", '#',:class => "btn btn-info cancel"  %>
+  <%= link_to "Cancel", 'javascript:void(0)',:class => "btn btn-info cancel"  %>
 <% end %>

@@ -32,6 +32,9 @@
         <li class="list-group-item">
           Country : <%= @iseeker.country %>
         </li>
+        <li class="list-group-item">
+          Total Experience : <%= total_experience(@iseeker) %>
+        </li>
       </ul>
     </div>
 
@@ -40,19 +43,14 @@
         <h3>Education Details</h3>
       </legend>
       <% @iseeker.educations.each do |e| %>
-        <div class="update_<%= e.id %>">
-          <div class="field_text">
-            <h4><%= e.school_name %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary field_edit" %></h4>
-            <p><%= e.degree %>, <%= e.field_of_study %></p>
-            <p><%= e.start_date.strftime("%Y") %> - <%= e.end_date.present? ? e.end_date.strftime("%Y") : "current" %></p>
-          </div>
-          <div class="field_form" style="display:none">
-            <%= render 'common/education_form', :e => e %>
-          </div>
+        <div class="update_edu_<%= e.id %>">
+          <%= render 'common/education_content', :e => e %>
         </div>
         <legend></legend>
       <% end %>
-      <%= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+      <div class="new_edu">
+        <%= render 'common/new_education' %>
+      </div>
     </div>
 
     <div class="tab-pane" id="lC">
@@ -60,19 +58,14 @@
         <h3>Experience Details</h3>
       </legend>
       <% @iseeker.experiences.each do |e| %>
-        <div class="update_<%= e.id %>">
-          <div class="field_text">
-            <h4><%= e.title %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary field_edit" %></h4>
-            <p><%= e.company_name %></p>
-            <p><%= e.start_date.strftime("%Y") %> - <%= e.end_date.present? ? e.end_date.strftime("%Y") : "current" %></p>
-          </div>
-          <div class="field_form" style="display:none">
-            <%= render 'common/experience_form', :e => e %>
-          </div>
+        <div class="update_exp_<%= e.id %>">
+          <%= render 'common/experience_content', :e => e %>
         </div>
         <legend></legend>
       <% end %>
-      <%= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+      <div class="new_exp">
+        <%= render 'common/new_experience' %>
+      </div>
     </div>
 
     <div class="tab-pane" id="lD">
@@ -80,17 +73,14 @@
         <h3>Experience Details</h3>
       </legend>
       <% @iseeker.skills.each do |e| %>
-        <div class="update_<%= e.id %>">
-          <div class="field_text">
-            <h4><%= e.name %> <%= link_to 'edit', '#', :class => "btn btn-mini btn-primary field_edit" %></h4>
-          </div>
-          <div class="field_form" style="display:none">
-            <%= render 'common/skill_form', :e => e %>
-          </div>
+        <div class="update_skill_<%= e.id %>">
+          <%= render 'common/skill_content', :e => e %>
         </div>
         <legend></legend>
       <% end %>
-      <%#= link_to 'Add New', '#', :class => "btn btn-mini btn-primary" %>
+      <div class="new_skill">
+        <%= render 'common/new_skill' %>
+      </div>
     </div>
   </div>
 </div>

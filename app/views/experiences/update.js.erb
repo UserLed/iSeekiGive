@@ -1,0 +1,7 @@
+$('.update_exp_<%= @exp.id %>').html("");
+
+$('.update_exp_<%= @exp.id %>').html("<%= escape_javascript( render 'common/experience_content', :e => @updated_exp).html_safe %>");
+
+$('.field_edit').show();
+$('.field_text').show();
+$('.field_form').hide();

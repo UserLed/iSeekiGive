@@ -6,6 +6,7 @@ gem 'mysql2'
 gem 'thin'
 gem 'sorcery'
 gem 'country-select'
+gem 'vine'
 
 gem 'activeadmin'
 
