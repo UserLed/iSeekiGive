@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  popup_action: MyString
+  user_id: 1
+  status: false
+
+two:
+  popup_action: MyString
+  user_id: 1
+  status: false

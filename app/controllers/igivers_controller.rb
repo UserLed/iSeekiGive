@@ -20,4 +20,8 @@ class IgiversController < ApplicationController
   def show
     @igiver = Igiver.find(params[:id])
   end
+
+  def dashboard
+    @igiver = Igiver.find(params[:id])
+  end
 end

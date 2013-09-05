@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903084138) do
+ActiveRecord::Schema.define(:version => 20130905121244) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(:version => 20130903084138) do
     t.datetime "expires_at"
   end
 
+  create_table "connections", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "expires_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "educations", :force => true do |t|
     t.string   "school_name"
     t.date     "start_date"
@@ -76,6 +87,15 @@ ActiveRecord::Schema.define(:version => 20130903084138) do
     t.integer  "user_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "popups", :force => true do |t|
+    t.string   "controller"
+    t.string   "action"
+    t.integer  "user_id"
+    t.boolean  "status",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "skills", :force => true do |t|
@@ -106,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130903084138) do
     t.datetime "remember_me_token_expires_at"
     t.boolean  "promotional_news",                :default => false
     t.string   "city"
+    t.boolean  "linkedin_update",                 :default => false
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

@@ -273,3 +273,7 @@
 select.date-select {
     width :120px;
 }
+
+#data {
+    height: auto;
+}

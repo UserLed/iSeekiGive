@@ -21,4 +21,8 @@ class IseekersController < ApplicationController
     @iseeker = Iseeker.find(params[:id])
   end
 
+  def dashboard
+    @iseeker = Iseeker.find(params[:id])
+  end
+
 end

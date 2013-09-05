@@ -6,6 +6,15 @@ $(document).ready(function(){
     })
 
     $('a[href$="#lA"]').trigger('click');
+
+    $('#popup-choice').click(function(){
+        $.ajax({
+            url: $(this).attr("href"),
+            dataType: "script",
+            data: {}
+        });
+        return false;
+    });
 })
 
 $(document).on('click', '.field_edit', function(){

@@ -9,36 +9,47 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
-    begin
-      if @user = login_from(provider)
-        redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
-      else
-        begin
-          if session[:user_type].present?
-            @user = create_and_validate_from(provider)
-            unless @user.new_record?
-              update_authentication_with_token(provider)
-              @provider = Config.send(provider)
-              update_user_with_type(session[:user_type])
-              reset_session # protect from session fixation attack
-              auto_login(@user)
-              redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+    if current_user
+      if provider.eql?("linkedin")
+        create_connection(user_hash(provider),provider) unless current_user.linkedin_connection_present?
+        @provider = Config.send(provider)
+        UserDetails.update_user_profile(@provider.get_user_hash, current_user)
+        redirect_to current_user, :notice => "Profile is updated from #{provider.titleize}!"
+      elsif provider.eql?("facebook")
+        create_connection(user_hash(provider), provider) unless current_user.facebook_connection_present?
+        redirect_to current_user, :notice => "Connected to #{provider.titleize}!"
+      end
+    else
+      begin
+        if @user = login_from(provider)
+          redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+        else
+          begin
+            if session[:user_type].present?
+              @user = create_and_validate_from(provider)
+              unless @user.new_record?
+                update_authentication_with_token(provider)
+                update_user_with_type(session[:user_type])
+                reset_session # protect from session fixation attack
+                auto_login(@user)
+                redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+              end
+            else
+              reset_session
+              redirect_to root_path, :alert => "Please sign up first!"
             end
-          else
-            reset_session
-            redirect_to root_path, :alert => "Please sign up first!"
+          rescue => e
+            logger.info "!!! External login error : #{e.message}"
+            redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
           end
-        rescue => e
-          logger.info "!!! External login error : #{e.message}"
-          redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
         end
+        if @user.present? and @user.errors.present? and @user.errors.messages[:email].present?
+          redirect_to root_path, :alert => "This email address is already used!"
+        end
+      rescue OAuth2::Error => e
+        logger.info "!!! External login error : #{e.message}"
+        redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
       end
-      if @user.present? and @user.errors.present? and @user.errors.messages[:email].present?
-        redirect_to root_path, :alert => "This email address is already used!"
-      end
-    rescue OAuth2::Error => e
-      logger.info "!!! External login error : #{e.message}"
-      redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
     end
   end
 
@@ -85,5 +96,21 @@ class OauthsController < ApplicationController
     else
       @user = Igiver.find(@user.id)
     end
+  end
+
+  def create_connection(user_hash, provider)
+    token = access_token(provider)
+    @connection = current_user.connections.new
+    @connection.provider = provider
+    @connection.uid = user_hash[:uid]
+    @connection.token = token.token
+    if provider.eql?("facebook")
+      @connection.secret = token.client.secret
+      @connection.expires_at = Time.at(token.expires_at.to_i)
+    elsif provider.eql?("linkedin")
+      @connection.secret = token.secret
+      @connection.expires_at = Time.at(Time.now.to_i + token.params[:oauth_expires_in].to_i)
+    end
+    @connection.save
   end
 end

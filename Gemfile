@@ -7,6 +7,7 @@ gem 'thin'
 gem 'sorcery'
 gem 'country-select'
 gem 'vine'
+gem 'linkedin'
 
 gem 'activeadmin'
 

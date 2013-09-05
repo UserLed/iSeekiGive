@@ -83,6 +83,7 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    hashie (2.0.5)
     highline (1.6.19)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -106,6 +107,10 @@ GEM
       actionpack (>= 3.1)
       less (~> 2.3.1)
     libv8 (3.11.8.17)
+    linkedin (0.4.2)
+      hashie (>= 1.2, < 2.1)
+      multi_json (~> 1.0)
+      oauth (~> 0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -216,6 +221,7 @@ DEPENDENCIES
   fancybox-rails
   jquery-rails (= 2.3.0)
   less-rails
+  linkedin
   mysql2
   rails (= 3.2.14)
   rvm-capistrano (>= 1.1.0)

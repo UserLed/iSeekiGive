@@ -32,8 +32,31 @@
         <li class="list-group-item">
           Country : <%= @igiver.country %>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item total_experience">
           Total Experience : <%= total_experience(@igiver) %>
+        </li>
+        <% if !current_user.has_linkedin_auth? and current_user.linkedin_update == false %>
+          <li>
+            <%= image_tag "facebook_connect" do %>
+              <%= link_to "Complete Your Profile By using Linkedin", auth_at_provider_path(:provider => :linkedin) %>
+            <% end %>
+          </li>
+        <% end %>
+        <li>
+          Connect to facebook :
+          <% if current_user.no_facebook_connection? %>
+            <%= link_to "connect", auth_at_provider_path(:provider => :facebook) %>
+          <% else %>
+            connected
+          <% end %>
+        </li>
+        <li>
+          Connect to linkedin :
+          <% if current_user.no_linkedin_connection? %>
+            <%= link_to "connect", auth_at_provider_path(:provider => :linkedin) %>
+          <% else %>
+            connected
+          <% end %>
         </li>
       </ul>
     </div>
@@ -84,4 +107,7 @@
     </div>
   </div>
 </div>
-<%#= render 'shared/dashboard_popup' %>
+
+<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
+  <%= render "shared/profile_popup" %>
+<% end %>

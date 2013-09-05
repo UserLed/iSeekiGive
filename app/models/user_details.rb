@@ -1,10 +1,14 @@
 class UserDetails
   
   def self.update_user_profile(hash, user)
-    user_info = hash[:user_info]
-    set_user_skills(user_info["skills"], user)
-    set_user_educations(user_info["educations"], user)
-    set_user_experiences(user_info["positions"], user)
+    unless user.linkedin_update
+      user_info = hash[:user_info]
+      set_user_skills(user_info["skills"], user)
+      set_user_educations(user_info["educations"], user)
+      set_user_experiences(user_info["positions"], user)
+      user.linkedin_update = true
+      user.save
+    end
   end
 
   private

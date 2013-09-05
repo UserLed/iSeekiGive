@@ -1,0 +1,14 @@
+<%= render "shared/confirmation_notice" %>
+<div class="well">
+  <div class="container">
+    <h3>
+      Welcome <%= @igiver.name %>
+    </h3>
+  </div>
+</div>
+
+<p>Level 1</p>
+
+<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
+  <%= render 'shared/dashboard_popup' %>
+<% end %>

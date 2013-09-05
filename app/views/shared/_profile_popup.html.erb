@@ -1,0 +1,20 @@
+<a class="profile_popup" href="#data"></a>
+<div style="display:none">
+  <div id="data">
+    <p class="lead well">
+      Profiles help users identify relevant and credible perspectives.
+      <br/>
+
+      <%= link_to "Do not show this again.", popup_path(:con => controller.controller_name, :act => controller.action_name), :class => "btn btn-primary close_popup pull-right", :id => "popup-choice" %>
+      <a href='javascript:void(0)' class="btn btn-primary close_popup">Okay</a>
+    </p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.close_popup').click(function(){
+      parent.$.fancybox.close();
+    });
+  })
+</script>

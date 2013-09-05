@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
   attr_accessible :email, :first_name, :last_name, :country, :hear, :password,
     :password_confirmation, :authentications_attributes, :type, :promotional_news,
-    :city
+    :city, :linkedin_update
   
   attr_accessor :type_helper, :password_confirmation
 
@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :educations
   has_many :skills
   has_many :experiences
+  has_many :connections
+  has_many :popups
   
   accepts_nested_attributes_for :authentications
   accepts_nested_attributes_for :educations
@@ -62,5 +64,30 @@ class User < ActiveRecord::Base
 
   def igiver?
     self.type.eql?("Igiver")
+  end
+
+  def has_linkedin_auth?
+    return self.authentications.where(:provider => "linkedin").present? ? true : false
+  end
+
+  def linkedin_connection_present?
+    return self.connections.where(:provider => "linkedin").present? ? true : false
+  end
+
+  def facebook_connection_present?
+    return self.connections.where(:provider => "facebook").present? ? true : false
+  end
+
+  def no_linkedin_connection?
+    self.connections.where(:provider => "linkedin").blank? and self.authentications.where(:provider => "linkedin").blank?
+  end
+
+  def no_facebook_connection?
+    self.connections.where(:provider => "facebook").blank? and self.authentications.where(:provider => "facebook").blank?
+  end
+
+  def show_this_popup(controller, action)
+    popup = self.popups.where("controller = ? AND action = ?", controller, action)
+    popup.blank? or popup.first.status == true
   end
 end
