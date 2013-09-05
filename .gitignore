@@ -17,4 +17,6 @@
 /public/uploads
 .rvmrc
 /nbproject
-
+/.DS_Store
+/.ruby-gemset
+/.ruby-version
