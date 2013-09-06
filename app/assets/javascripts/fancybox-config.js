@@ -1,18 +1,9 @@
 $(document).ready(function(){
-    $("a.fancybox").fancybox({
-        });
+    $("a.fancybox").fancybox({});
 
-    $("a.dashboard_popup").fancybox({
-        autoDimensions: false,
-        height: 320,
-        width: 400
-    });
-    $('.dashboard_popup').click();
+    $("a.modal_popup").fancybox({
+        modal: true,
+        autoDimensions: false
+    }).trigger("click");
 
-    $("a.profile_popup").fancybox({
-        autoDimensions: false,
-        height: 220,
-        width: 400
-    });
-    $('.profile_popup').click();
 });

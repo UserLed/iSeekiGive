@@ -3,17 +3,10 @@ $(document).ready(function(){
         $('.field_edit').show();
         $('.field_text').show();
         $('.field_form').hide();
-    })
+    });
 
-    $('a[href$="#lA"]').trigger('click');
-
-    $('#popup-choice').click(function(){
-        $.ajax({
-            url: $(this).attr("href"),
-            dataType: "script",
-            data: {}
-        });
-        return false;
+    $('.close-popup').click(function(){
+        parent.$.fancybox.close();
     });
 })
 

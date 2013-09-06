@@ -1,22 +1,17 @@
-<a class="dashboard_popup" href="#data"></a>
+<a class="modal_popup" href="#modal_content"></a>
+
 <div style="display:none">
-  <div id="data">
+  <div id="modal_content">
     <p class="lead well">
       Welcome to iSeekiGive,
       We hope you’ll find inspiration, knowledge and rewards.
+      <br/><br/>
       iSeekiGive’s Dashboard provides a bird’s-eye view of your profile, access level, rewards and activity.     
-    <br/>
-    <a href='javascript:void(0)' class="btn btn-primary">Next Step >> </a>
+      <br/>
+      <br/>
+      <a href='javascript:void(0)' class="btn btn-primary">Next Step >> </a>
 
-    <a href='javascript:void(0)' class="btn btn-primary close_popup  pull-right">Go to Dashboard</a>
+      <%= link_to "Go to Dashboard", popup_path(:con => controller.controller_name, :act => controller.action_name), :class => "btn btn-primary close-popup pull-right", :remote => true %>
     </p>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.close_popup').click(function(){
-      parent.$.fancybox.close();
-    });
-  })
-</script>

@@ -2,11 +2,12 @@
 <div class="well">
   <div class="container">
     <h3>
-      Welcome <%= @seeker.name %>
+      Dashboard
     </h3>
   </div>
 </div>
 
+<p>Name : <%= @seeker.name %></p>
 <p>Level 1</p>
 
 <% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
