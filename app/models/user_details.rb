@@ -12,11 +12,6 @@ class UserDetails
   end
 
   private
-  
-  def self.user_hash(provider)
-    @provider = Config.send(provider)
-    @provider.get_user_hash
-  end
 
   def self.set_user_skills(hash, user)
     hash.vine("values").each do |v|

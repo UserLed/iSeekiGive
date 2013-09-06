@@ -1,3 +1,0 @@
-class Iseeker < User
-
-end

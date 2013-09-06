@@ -5,8 +5,8 @@
       Profiles help users identify relevant and credible perspectives.
       <br/>
 
-      <%= link_to "Do not show this again.", popup_path(:con => controller.controller_name, :act => controller.action_name), :class => "btn btn-primary close_popup pull-right", :id => "popup-choice" %>
       <a href='javascript:void(0)' class="btn btn-primary close_popup">Okay</a>
+      <%= link_to "Do not show again", popup_path(:con => controller.controller_name, :act => controller.action_name), :class => "btn btn-primary close_popup pull-right", :id => "popup-choice" %>
     </p>
   </div>
 </div>

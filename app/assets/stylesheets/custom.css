@@ -277,3 +277,30 @@ select.date-select {
 #data {
     height: auto;
 }
+
+.icon-phone,
+.icon-twitter,
+.icon-facebook,
+.icon-linkedin{
+    color: #FFF;
+}
+
+.icon-stack.linkedin .icon-circle.icon-stack-base{
+    color: #0085AE;
+}
+
+.icon-stack.facebook .icon-circle.icon-stack-base{
+    color: #3C599D;
+}
+
+.icon-stack.twitter .icon-circle.icon-stack-base{
+    color: #64CBEB;
+}
+
+.icon-stack.phone .icon-circle.icon-stack-base{
+    color: #68A742;
+}
+
+.phone-number-box{
+    width: 500px;
+}

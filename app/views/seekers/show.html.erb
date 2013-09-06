@@ -3,7 +3,7 @@
 <div class="well">
   <div class="container">
     <h3>
-      Welcome <%= @iseeker.name %>
+      Welcome <%= @seeker.name %>
     </h3>
   </div>
 </div>
@@ -27,13 +27,13 @@
     <div class="tab-pane" id="lA">
       <ul class="list-group">
         <li class="list-group-item">
-          Email : <%= @iseeker.email %>
+          Email : <%= @seeker.email %>
         </li>
         <li class="list-group-item">
-          Country : <%= @iseeker.country %>
+          Country : <%= @seeker.country %>
         </li>
         <li class="list-group-item total_experience">
-          Total Experience : <%= total_experience(@iseeker) %>
+          Total Experience : <%= total_experience(@seeker) %>
         </li>
         <% if !current_user.has_linkedin_auth? and current_user.linkedin_update == false %>
           <li>
@@ -63,7 +63,7 @@
       <legend>
         <h3>Education Details</h3>
       </legend>
-      <% @iseeker.educations.each do |e| %>
+      <% @seeker.educations.each do |e| %>
         <div class="update_edu_<%= e.id %>">
           <%= render 'common/education_content', :e => e %>
         </div>
@@ -78,7 +78,7 @@
       <legend>
         <h3>Experience Details</h3>
       </legend>
-      <% @iseeker.experiences.each do |e| %>
+      <% @seeker.experiences.each do |e| %>
         <div class="update_exp_<%= e.id %>">
           <%= render 'common/experience_content', :e => e %>
         </div>
@@ -93,7 +93,7 @@
       <legend>
         <h3>Skills</h3>
       </legend>
-      <% @iseeker.skills.each do |e| %>
+      <% @seeker.skills.each do |e| %>
         <div class="update_skill_<%= e.id %>">
           <%= render 'common/skill_content', :e => e %>
         </div>

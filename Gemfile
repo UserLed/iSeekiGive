@@ -4,7 +4,7 @@ gem 'rails', '3.2.14'
 
 gem 'mysql2'
 gem 'thin'
-gem 'sorcery'
+gem 'sorcery', '0.8.2'
 gem 'country-select'
 gem 'vine'
 gem 'linkedin'

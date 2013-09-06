@@ -70,7 +70,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid] .
   # Default: `[]`
   #
-  config.external_providers = [:facebook, :linkedin]
+  config.external_providers = [:facebook, :linkedin, :twitter]
 
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
@@ -88,11 +88,11 @@ Rails.application.config.sorcery.configure do |config|
   if Rails.env.production?
     config.linkedin.key = "uyy178z1olhz"
     config.linkedin.secret = "vqyZufPr8jWOchK8"
-    config.linkedin.callback_url = "http://iseekigive.iconsbd.com/oauth/callback?provider=linkedin"
+    config.linkedin.callback_url = "http://iseekigive.iconsbd.com/oauth/linkedin/callback"
   else
     config.linkedin.key = "mqguba5cny5d"
     config.linkedin.secret = "iUYJbx61BLB0dZDP"
-    config.linkedin.callback_url = "http://localhost:3000/oauth/callback?provider=linkedin"
+    config.linkedin.callback_url = "http://localhost:3000/oauth/linkedin/callback"
   end
   
   config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id', 'location:(name)', 'positions', 'skills', 'educations']
@@ -103,16 +103,28 @@ Rails.application.config.sorcery.configure do |config|
   if Rails.env.production?
     config.facebook.key = "538362259552396"
     config.facebook.secret = "6287a814bf44536332ee9fdf9bcfdced"
-    config.facebook.callback_url = "http://iseekigive.iconsbd.com/oauth/callback?provider=facebook"
+    config.facebook.callback_url = "http://iseekigive.iconsbd.com/oauth/facebook/callback"
   else
     config.facebook.key = "401819199940793"
     config.facebook.secret = "e1f58854acc1082f1ed4dd52ef384b1c"
-    config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
+    config.facebook.callback_url = "http://localhost:3000/oauth/facebook/callback"
   end
   
   config.facebook.user_info_mapping = {:email => "email", :first_name => "first_name", :last_name => "last_name", :country => "location/name"}
   config.facebook.access_permissions = ["offline_access", "email", "read_friendlists", "user_likes", "user_interests", "user_birthday", "user_education_history", "user_hometown", "user_location", "user_about_me"]
 
+  #Twitter Config
+  if Rails.env.production?
+    config.twitter.key = "BVjcNkQNnw5YVQczqprGDg"
+    config.twitter.secret = "uksLGbBqRlKgSkeya2SXYVNOkvBIQPpQJ8U83UlNrU"
+    config.twitter.callback_url = "http://iseekigive.iconsbd.com/oauth/twitter/callback"
+  else
+    config.twitter.key = "HYFiC4z7T7E6aTHBdLYw"
+    config.twitter.secret = "7T6zapb3FibcJ9UyMbqKlYQgiBEv5N95NXd9iWAaYw"
+    config.twitter.callback_url = "http://0.0.0.0:3000/oauth/twitter/callback"
+  end
+   
+  config.twitter.user_info_mapping = {:email => "screen_name"}
 
   # --- user config ---
   config.user_config do |user|

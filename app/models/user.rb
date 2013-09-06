@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-#  include ActionView::Helpers::TextHelper
+  #  include ActionView::Helpers::TextHelper
   
   authenticates_with_sorcery!
   authenticates_with_sorcery! do |config|
@@ -20,12 +20,13 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 3, :if => :password
   validates_confirmation_of :password, :if => :password
   
-  has_many :authentications, :dependent => :destroy
-  has_many :educations
-  has_many :skills
-  has_many :experiences
-  has_many :connections
-  has_many :popups
+  has_many :authentications,  :dependent => :destroy
+  has_many :educations,       :dependent => :destroy
+  has_many :skills,           :dependent => :destroy
+  has_many :experiences,      :dependent => :destroy
+  has_many :connections,      :dependent => :destroy
+  has_many :popups,           :dependent => :destroy
+  has_one  :phone_number,     :dependent => :destroy
   
   accepts_nested_attributes_for :authentications
   accepts_nested_attributes_for :educations
@@ -58,32 +59,31 @@ class User < ActiveRecord::Base
     send_activation_needed_email!
   end
 
-  def iseeker?
-    self.type.eql?("Iseeker")
+  def seeker?
+    self.type.eql?("Seeker")
   end
 
-  def igiver?
-    self.type.eql?("Igiver")
+  def giver?
+    self.type.eql?("Giver")
   end
 
-  def has_linkedin_auth?
-    return self.authentications.where(:provider => "linkedin").present? ? true : false
+  def linkedin_connected?
+    self.connections.where(:provider => "linkedin").present? or
+      self.authentications.where(:provider => "linkedin").present? ? true : false
   end
 
-  def linkedin_connection_present?
-    return self.connections.where(:provider => "linkedin").present? ? true : false
+  def facebook_connected?
+    self.connections.where(:provider => "facebook").present? or
+      self.authentications.where(:provider => "facebook").present? ? true : false
   end
 
-  def facebook_connection_present?
-    return self.connections.where(:provider => "facebook").present? ? true : false
+  def twitter_connected?
+    self.connections.where(:provider => "twitter").present? or
+      self.authentications.where(:provider => "twitter").present? ? true : false
   end
 
-  def no_linkedin_connection?
-    self.connections.where(:provider => "linkedin").blank? and self.authentications.where(:provider => "linkedin").blank?
-  end
-
-  def no_facebook_connection?
-    self.connections.where(:provider => "facebook").blank? and self.authentications.where(:provider => "facebook").blank?
+  def phone_verified?
+    self.phone_number.present? and self.phone_number.verified?
   end
 
   def show_this_popup(controller, action)

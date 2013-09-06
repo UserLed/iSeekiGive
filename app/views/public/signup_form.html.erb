@@ -1,6 +1,6 @@
 <div class="well-wrap well">
   <div class="title">
-    <%= @type == "iseeker" ? "Seeker" : "Giver" %>
+    <%= @type == "seeker" ? "Seeker" : "Giver" %>
     Sign up
   </div>
 
@@ -30,10 +30,10 @@
     </div>
 
     <div class="signup-email">
-      <% if @type == "iseeker" %>
-        <%= link_to "Sign up with Email", new_iseeker_path %>
+      <% if @type == "seeker" %>
+        <%= link_to "Sign up with Email", new_seeker_path %>
       <% else %>
-        <%= link_to "Sign up with Email", new_igiver_path %>
+        <%= link_to "Sign up with Email", new_giver_path %>
       <% end %>
     </div>
 

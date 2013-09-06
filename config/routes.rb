@@ -1,14 +1,16 @@
 ISeekiGive::Application.routes.draw do
 
+  resources :phone_numbers
+
   match 'terms-of-service' => 'public#terms_of_service', :as => :terms
   match 'privacy' => 'public#privacy', :as => :privacy
 
-  resources :iseekers do
+  resources :seekers do
     member do
       get :dashboard
     end
   end
-  resources :igivers do
+  resources :givers do
     member do
       get :dashboard
     end
@@ -27,7 +29,7 @@ ISeekiGive::Application.routes.draw do
 
   match 'signup' => 'public#signup', :as => :signup
   
-  match "oauth/callback" => "oauths#callback"
+  match "oauth/:provider/callback" => "oauths#callback"
   match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   get "oauths/oauth"

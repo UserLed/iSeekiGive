@@ -1,3 +1,0 @@
-class Igiver < User
-
-end
