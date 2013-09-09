@@ -88,4 +88,12 @@ namespace :deploy do
   task :db_migrate, :roles => :app do
     run "cd #{current_path};RAILS_ENV=#{rails_env} bundle exec rake db:migrate"
   end
+
+  task :db_drop, :roles => :app do
+    run "cd #{current_path};RAILS_ENV=#{rails_env} bundle exec rake db:drop"
+  end
+
+  task :server_log, :roles => :app do
+    run "tail -f #{current_path}/log/#{rails_env}.log"
+  end
 end

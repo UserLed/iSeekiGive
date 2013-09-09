@@ -1,0 +1,13 @@
+<%= render "header" %>
+
+<h2>Share your fresh Perspectives .</h2>
+
+<%= link_to "Game 1", game_1_giver_perspectives_path(current_user) %> |
+<%= link_to "Game 2" %> |
+<%= link_to "Game 3" %> |
+<%= link_to "Game 4" %> |
+<%= link_to "Game 5" %>
+
+<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
+  <%= render "shared/perspectives_popup" %>
+<% end %>

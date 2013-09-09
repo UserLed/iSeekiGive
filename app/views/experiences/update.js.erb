@@ -1,9 +1,7 @@
-$('.update_exp_<%= @exp.id %>').html("");
+$('#experience_<%= @experience.id %>').replaceWith("<%= escape_javascript( render @experience).html_safe %>");
 
-$('.update_exp_<%= @exp.id %>').html("<%= escape_javascript( render 'common/experience_content', :e => @updated_exp).html_safe %>");
+$('.btn-edit').show();
+$('.info-container').show();
+$('.form-container').hide();
 
-$('.field_edit').show();
-$('.field_text').show();
-$('.field_form').hide();
-$('li.total_experience').html("");
-$('li.total_experience').html("Total Experience : <%= total_experience(@exp.user) %>");
+$('li.total_experience').html("Total Experience : <%= total_experience(@experience.user) %>");

@@ -1,0 +1,10 @@
+<div class="new_skill">
+  <div class="info-container">
+    <h4>
+      <%= link_to 'Add New', 'javascript:void(0)', :class => "btn btn-mini btn-primary btn-edit" %>
+    </h4>
+  </div>
+  <div class="form-container" style="display:none">
+    <%= render 'skills/form', :skill => Skill.new %>
+  </div>
+</div>

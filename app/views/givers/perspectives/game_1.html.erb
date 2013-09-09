@@ -1,0 +1,44 @@
+<%= render "header" %>
+
+<h4>
+  Game 1: Changing Majors, Changing Cities
+</h4>
+
+<h5>
+  This Game is just to get you warmed up
+</h5>
+
+<div class="row-fluid">
+  <%= form_tag "" do %>
+    <div class="span12">
+      <legend>Educations</legend>
+      <% @giver.educations.each do |edu| %>
+        <%= render 'educations', :edu => edu %>
+        <hr/>
+      <% end %>
+
+      <div class="control-group">
+        <%= label_tag "change_majors", "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
+        <div class="controls">
+          <%= radio_button_tag "change_majors", "YES", nil, :class => "change-majors" %> YES
+          <%= radio_button_tag "change_majors", "NO", nil, :class => "change-majors" %> NO
+        </div>
+      </div>
+
+      <div class="control-group desc-changing-majors" style="display:none">
+        <%= label_tag "desc_changing_majors", "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
+        <div class="controls">
+          <%= text_area_tag "desc_changing_majors", "", :size => "50x4" %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="span12">
+      <legend>Locations</legend>
+      <h5><%= @giver.current_location %></h5>
+      <hr/>
+
+    </div>
+  <% end %>
+</div>

@@ -90,4 +90,11 @@ class User < ActiveRecord::Base
     popup = self.popups.where("controller = ? AND action = ?", controller, action)
     popup.blank? or popup.first.status == true
   end
+
+  def current_location
+    l = []
+    l << self.city if self.city.present?
+    l << self.country if self.country.present?
+    l.join(", ")
+  end
 end

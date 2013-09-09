@@ -1,7 +1,8 @@
-$('.new_exp').replaceWith("<%= escape_javascript( render 'new_content', :exp => @exp).html_safe %>");
-$('.field_edit').show();
-$('.field_text').show();
-$('.field_form').hide();
+$('.experience-container:last').after("<%= escape_javascript( render @experience).html_safe %>");
+$('form#new_experience').find("input[type=text], textarea").val("");
 
-$('li.total_experience').html("");
-$('li.total_experience').html("Total Experience : <%= total_experience(@exp.user) %>");
+$('.btn-edit').show();
+$('.info-container').show();
+$('.form-container').hide();
+
+$('li.total_experience').html("Total Experience : <%= total_experience(@experience.user) %>");

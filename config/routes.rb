@@ -10,11 +10,18 @@ ISeekiGive::Application.routes.draw do
       get :dashboard
     end
   end
+
   resources :givers do
     member do
       get :dashboard
     end
+    resources :perspectives, :only => :index, :controller => "givers/perspectives" do
+      collection do
+        match :game_1
+      end
+    end
   end
+
   resources :educations
   resources :skills
   resources :experiences

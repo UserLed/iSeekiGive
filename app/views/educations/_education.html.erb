@@ -1,0 +1,21 @@
+<div id="education_<%= education.id %>" class="education-container">
+  <div class="info-container">
+    <h4>
+      <%= education.school_name %>
+      <%= link_to 'edit', 'javascript:;', :class => "btn btn-mini btn-primary btn-edit" %>
+      <%= link_to 'delete', education, :method => :delete, :remote => true, :class => "btn btn-mini btn-primary" %>
+    </h4>
+    <p>
+      <%= education.degree %>,
+      <%= education.field_of_study %>
+    </p>
+    <p>
+      <%= education.start_date.strftime("%Y") %> -
+      <%= education.end_date.present? ? education.end_date.strftime("%Y") : "current" %>
+    </p>
+  </div>
+  <div class="form-container" style="display:none">
+    <%= render "educations/form", :education => education %>
+  </div>
+  <hr/>
+</div>

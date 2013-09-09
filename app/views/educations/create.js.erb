@@ -1,4 +1,6 @@
-$('.new_edu').replaceWith("<%= escape_javascript( render 'new_content', :edu => @edu).html_safe %>");
-$('.field_edit').show();
-$('.field_text').show();
-$('.field_form').hide();
+$('.education-container:last').after("<%= escape_javascript( render @education).html_safe %>");
+$('form#new_education').find("input[type=text], textarea").val("");
+
+$('.btn-edit').show();
+$('.info-container').show();
+$('.form-container').hide();

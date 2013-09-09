@@ -1,0 +1,3 @@
+$('#experience_<%= @experience.id %>').remove();
+
+$('li.total_experience').html("Total Experience : <%= total_experience(@experience.user) %>");

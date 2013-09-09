@@ -1,7 +1,5 @@
-$('.update_edu_<%= @edu.id %>').html("");
+$('#education_<%= @education.id %>').replaceWith("<%= escape_javascript( render @education).html_safe %>");
 
-$('.update_edu_<%= @edu.id %>').html("<%= escape_javascript( render 'common/education_content', :e => @updated_edu).html_safe %>");
-
-$('.field_edit').show();
-$('.field_text').show();
-$('.field_form').hide();
+$('.btn-edit').show();
+$('.info-container').show();
+$('.form-container').hide();
