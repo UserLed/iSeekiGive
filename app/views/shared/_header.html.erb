@@ -11,15 +11,15 @@
         <ul class="nav">
           <% if current_user %>
           <% if current_user.seeker? %>
-            <li>
+          <li class="<%= "active" if current_page?(dashboard_seeker_path(current_user)) %>">
               <%= link_to "Dashboard", dashboard_seeker_path(current_user) %>
             </li>
           <% else %>
-            <li>
+            <li class="<%= "active" if current_page?(dashboard_giver_path(current_user)) %>">
               <%= link_to "Dashboard", dashboard_giver_path(current_user) %>
             </li>
           <% end %>
-          <li>
+          <li class="<%= "active" if current_page?(current_user) %>">
             <%= link_to "Profile", current_user %>
           </li>
           <li>
@@ -38,10 +38,10 @@
             <%= link_to "Logout", logout_path  %>
           </li>
         <% else %>
-          <li>
+          <li class="<%= "active" if current_page?(signup_path) %>">
             <%= link_to "Sign Up", signup_path  %>
           </li>
-          <li>
+          <li class="<%= "active" if current_page?(login_path) %>">
             <%= link_to "Log In", login_path  %>
           </li>
         <% end %>

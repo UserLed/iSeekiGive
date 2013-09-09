@@ -8,7 +8,7 @@ gem 'sorcery', '0.8.2'
 gem 'country-select'
 gem 'vine'
 gem 'linkedin'
-
+gem 'carrierwave'
 gem 'activeadmin'
 
 

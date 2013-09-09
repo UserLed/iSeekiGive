@@ -19,6 +19,6 @@ module ApplicationHelper
         components << pluralize(delta, interval)
       end
     end
-    components.join(", ")
+    components.join(" ")
   end
 end

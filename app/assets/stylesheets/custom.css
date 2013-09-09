@@ -300,3 +300,8 @@ select.date-select {
 .phone-number-box{
     width: 500px;
 }
+
+.cover-photo,
+.profile-photo{
+    margin-bottom: 20px;
+}

@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
-  #  include ActionView::Helpers::TextHelper
-  
-  authenticates_with_sorcery!
+  mount_uploader :profile_photo, PhotoUploader
+  mount_uploader :cover_photo, PhotoUploader
+
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
   
   attr_accessible :email, :first_name, :last_name, :country, :hear, :password,
     :password_confirmation, :authentications_attributes, :type, :promotional_news,
-    :city, :linkedin_update
+    :city, :linkedin_update, :profile_photo, :cover_photo
   
-  attr_accessor :type_helper, :password_confirmation
+  attr_accessor :password_confirmation
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true

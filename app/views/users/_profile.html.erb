@@ -18,88 +18,171 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="lA">
-      <ul class="list-group">
-        <li class="list-group-item">
-          Email : <%= user.email %>
-        </li>
-        <li class="list-group-item">
-          Country : <%= user.country %>
-        </li>
-        <li class="list-group-item total_experience">
-          Total Experience : <%= total_experience(user) %>
-        </li>
-      </ul>
+      <div class="span6">
+        <ul class="list-group">
+          <li class="list-group-item">
+            Email : <%= user.email %>
+          </li>
+          <li class="list-group-item">
+            Country : <%= user.country %>
+          </li>
+          <li class="list-group-item total_experience">
+            Total Experience : <%= total_experience(user) %>
+          </li>
+        </ul>
 
-      <div class="social-connections">
-        <h5>Verified</h5>
-        <div class="row-fluid">
-          <span class="icon-stack phone">
-            <i class="icon-circle icon-stack-base"></i>
-            <i class="icon-phone"></i>
-          </span>
-          Phone Number :
-          <% if user.phone_verified? %>
-            <%= user.phone_number.nnumber %>
-          <% else %>
-            <% if user.phone_number.present? %>
-              <%= user.phone_number.number %>
-              <%= link_to "Verify", "Javascript:;" %>
-            <% else %>
-              <%= link_to "Create and Verify", new_phone_number_path, :class => "fancybox fancybox.ajax" %>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="row-fluid">
-          <% if user.linkedin_connected? %>
-            <span class="icon-stack linkedin">
+        <div class="social-connections">
+          <h5>Verified</h5>
+          <div class="row-fluid">
+            <span class="icon-stack phone">
               <i class="icon-circle icon-stack-base"></i>
-              <i class="icon-linkedin"></i>
+              <i class="icon-phone"></i>
             </span>
-            Linkedin: Connected
-          <% else %>
-            <%= link_to auth_at_provider_path(:provider => :linkedin) do %>
+            Phone Number :
+            <% if user.phone_verified? %>
+              <%= user.phone_number.nnumber %>
+            <% else %>
+              <% if user.phone_number.present? %>
+                <%= user.phone_number.number %>
+                <%= link_to "Verify", "Javascript:;" %>
+              <% else %>
+                <%= link_to "Create and Verify", new_phone_number_path, :class => "fancybox fancybox.ajax" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="row-fluid">
+            <% if user.linkedin_connected? %>
               <span class="icon-stack linkedin">
                 <i class="icon-circle icon-stack-base"></i>
                 <i class="icon-linkedin"></i>
               </span>
-              Complete your profile in seconds with LinkedIn.
-            <% end  %>
-          <% end %>
-        </div>
-        <div class="row-fluid">
-          <span class="icon-stack twitter">
-            <i class="icon-circle icon-stack-base"></i>
-            <i class="icon-twitter"></i>
-          </span>
-          Twitter:
-          <% if user.twitter_connected? %>
-            connected
-          <% else %>
-            <%= link_to "Connect", auth_at_provider_path(:provider => :twitter) %>
-          <% end %>
-        </div>
-        <div class="row-fluid">
-          <span class="icon-stack facebook">
-            <i class="icon-circle icon-stack-base"></i>
-            <i class="icon-facebook"></i>
-          </span>
-          Facebook:
-          <% if user.facebook_connected? %>
-            connected
-          <% else %>
-            <%= link_to "Connect", auth_at_provider_path(:provider => :facebook) %>
-          <% end %>
+              Linkedin: Connected
+            <% else %>
+              <%= link_to auth_at_provider_path(:provider => :linkedin) do %>
+                <span class="icon-stack linkedin">
+                  <i class="icon-circle icon-stack-base"></i>
+                  <i class="icon-linkedin"></i>
+                </span>
+                Complete your profile in seconds with LinkedIn.
+              <% end  %>
+            <% end %>
+          </div>
+          <div class="row-fluid">
+            <span class="icon-stack twitter">
+              <i class="icon-circle icon-stack-base"></i>
+              <i class="icon-twitter"></i>
+            </span>
+            Twitter:
+            <% if user.twitter_connected? %>
+              connected
+            <% else %>
+              <%= link_to "Connect", auth_at_provider_path(:provider => :twitter) %>
+            <% end %>
+          </div>
+          <div class="row-fluid">
+            <span class="icon-stack facebook">
+              <i class="icon-circle icon-stack-base"></i>
+              <i class="icon-facebook"></i>
+            </span>
+            Facebook:
+            <% if user.facebook_connected? %>
+              connected
+            <% else %>
+              <%= link_to "Connect", auth_at_provider_path(:provider => :facebook) %>
+            <% end %>
+          </div>
         </div>
       </div>
+      <div class="span6">
+        <h4>
+          Pictures
+        </h4>
+        <% if user.profile_photo.present? %>
+          <div class="profile-photo">
+            <%= image_tag(user.profile_photo.to_s, :width => "250") %>
+          </div>
+        <% end %>
 
+        <% if user.cover_photo.present? %>
+          <div class="cover-photo">
+            <%= image_tag(user.cover_photo.to_s, :width => "400") %>
+          </div>
+        <% end %>
+
+        <%= form_for user, :html => { :class => "form-horizontal" } do |f| %>
+
+          <div class="control-group">
+            <%= f.label :profile_photo, :class => "control-label" %>
+            <div class="controls">
+              <%= f.file_field :profile_photo %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :cover_photo, :class => "control-label" %>
+            <div class="controls">
+              <%= f.file_field :cover_photo %>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <%= f.submit "Upload", :class => "btn btn-info" %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="tab-pane" id="lB">
       <legend>
-        <h3>Education Settings</h3>
+        <h3>Account Settings</h3>
       </legend>
 
+      <%= form_for user, :html => { :class => "form-horizontal" } do |f| %>
+        <div class="control-group">
+          <%= f.label :first_name, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :first_name, :required => true %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :last_name, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :last_name, :required => true %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :country, :class => "control-label" %>
+          <div class="controls">
+            <%= country_select(f.object.class.name.downcase, "country", ["United States", "United Kingdom"]) %>
+          </div>
+        </div>
 
+        <% unless user.external? %>
+          <div class="control-group">
+            <%= f.label :email, :class => "control-label" %>
+            <div class="controls">
+              <%= f.email_field :email, :required => true %>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= f.label :password, :class => "control-label" %>
+            <div class="controls">
+              <%= f.password_field :password %>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= f.label :password_confirmation, :class => "control-label" %>
+            <div class="controls">
+              <%= f.password_field :password_confirmation %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="form-actions">
+          <%= f.submit "Update", :class => "btn btn-info" %>
+        </div>
+
+      <% end %>
     </div>
 
     <div class="tab-pane" id="lC">

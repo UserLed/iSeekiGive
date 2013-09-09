@@ -17,6 +17,16 @@ class GiversController < ApplicationController
     end
   end
 
+  def update
+    @giver = Giver.find(params[:id])
+
+    if @giver.update_attributes(params[:giver])
+      redirect_to @giver, :notice => "Sucessfully Updated!"
+    else
+      render :action  => "show"
+    end
+  end
+
   def show
     @giver = Giver.find(params[:id])
   end
