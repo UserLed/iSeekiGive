@@ -38,7 +38,20 @@
       <legend>Locations</legend>
       <h5><%= @giver.current_location %></h5>
       <hr/>
+      <div class="control-group">
+        <%= label_tag "another_location", "Have you lived or worked in another city during your professional or academic life?", :class => "control-label" %>
+        <div class="controls">
+          <%= radio_button_tag "another_location", "YES", nil, :class => "another-location" %> YES
+          <%= radio_button_tag "another_location", "NO", nil, :class => "another-location" %> NO
+        </div>
+      </div>
 
+      <div class="control-group desc-changing-majors" style="display:none">
+        <%= label_tag "desc_changing_majors", "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
+        <div class="controls">
+          <%= text_area_tag "desc_changing_majors", "", :size => "50x4" %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
