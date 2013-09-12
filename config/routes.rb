@@ -18,6 +18,8 @@ ISeekiGive::Application.routes.draw do
     resources :perspectives, :only => :index, :controller => "givers/perspectives" do
       collection do
         match :game_1
+        match :game_2
+        match :save_game_tag, :via => [:post]
       end
     end
   end
