@@ -19,7 +19,8 @@ ISeekiGive::Application.routes.draw do
       collection do
         match :game_1
         match :game_2
-        match :save_game_tag, :via => [:post]
+        post :save_game_tag
+        match ':experience_id/experience' =>  'givers/perspectives#open_single_experience', :as => "single_experience"
       end
     end
   end
