@@ -7,31 +7,51 @@ class Givers::PerspectivesController < ApplicationController
 
   def game_1
     @giver = Giver.find(params[:giver_id])
+    
+    @game = @giver.game.present? ? @giver.game : @giver.build_game
+
+    if request.post?
+      @game = @giver.build_game(params[:game])
+      @game.save
+    elsif request.put?
+      @game.update_attributes(params[:game])
+      @game.save
+    end
+
+    if params[:next].present?
+      redirect_to :action => :game_2
+    elsif params[:return].present?
+      redirect_to :action => :index
+    end
   end
   
   def game_2
-  	@giver_skills = current_user.skills
-  	@giver_experiences = current_user.experiences
-  	@giver_experiences_count = (1..@giver_experiences.count).to_a
+    @giver = Giver.find(params[:giver_id])
   end
 
-  def open_single_experience
-  	@giver_skills = current_user.skills
-  	@giver_experience = current_user.experiences.find(params[:experience_id])
+  def experience
+  	@giver = Giver.find(params[:giver_id])
+    @experience = Experience.find(params[:experience_id])
+
+    if request.post?
+      @skill = Skill.find(params[:skill_id])
+      @experience.skills << @skill
+    end
   end
 
-  def save_game_tag
-  	if params[:tag_name].present? && params[:experience_name].present? && params[:user_id].present?
-  		create_tag = SaveGameTag.create(:tag_name => params[:tag_name], :experience_name => params[:experience_name], :user_id => params[:user_id].to_i)
-  	end
-  	if create_tag && !create_tag.errors.any?
-  		render :text => :ok
-  		return
-  	
-  	else
-  		render :text => "something went wrong"
-  		return
-  	end
+  def education
+    @giver = Giver.find(params[:giver_id])
+    @education = Education.find(params[:education_id])
+
+    if request.post?
+      @skill = Skill.find(params[:skill_id])
+      @education.skills << @skill
+    end
+  end
+
+
+  def game_3
+    
   end
 
 end

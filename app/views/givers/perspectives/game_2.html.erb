@@ -1,20 +1,37 @@
-<h2 class="welcome">Welcome to game 2</h2>
+<div class="row-fluid">
+  <%= render "header" %>
+  <h4>
+    Game 2: Skills Match
+  </h4>
 
-<div class="skills" style="float:left">
-	<% @giver_skills.each_with_index do |skill, id| %>
-		<p id='skill_<%= id+1 %>'><%= skill.name %></p>
-	<% end %>
+  <h5>
+    This Game is to reflect on what you’ve learned and where
+  </h5>
 </div>
 
-<div class="experiences"  style = "float:left;width:500px">
-	<% @giver_experiences.each_with_index do |experience, id| %>
-		<div>
-			<p><%= experience.company_name %></p>
-			<p><%= experience.title %></p>
-			
-			<%= link_to "Add Skills", single_experience_giver_perspectives_path(current_user,experience.id) %>
-		</div>
-		<hr/>	
-	<% end %>
+<div class="row-fluid">
+  <div class="span6">
+    <legend>Experiences</legend>
+    <% @giver.experiences.each do |ex| %>
+      <%= render 'experience', :experience => ex %>
+      <%= link_to "Manage Skills", game_experience_giver_perspectives_path(@giver, ex) %>
+      <hr/>
+    <% end %>
+  </div>
+
+  <div class="span6">
+    <legend>Educations</legend>
+    <% @giver.educations.each do |edu| %>
+      <%= render 'education', :edu => edu %>
+      <%= link_to "Manage Skills", game_education_giver_perspectives_path(@giver, edu) %>
+      <hr/>
+    <% end %>
+  </div>
 </div>
 
+<div class="row-fluid">
+  <div class="span12 form-actions">
+    <%= link_to "Return to Perspectives", giver_perspectives_path(@giver), :class => "btn btn-info" %> |
+    <%= link_to "Next Game", game_3_giver_perspectives_path(@giver), :class => "btn btn-info" %>
+  </div>
+</div

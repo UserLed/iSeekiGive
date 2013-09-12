@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  study_majors: MyText
+  locations: MyString
+  good_story: MyText
+  bad_story: MyText
+  ugly_story: MyText
+
+two:
+  study_majors: MyText
+  locations: MyString
+  good_story: MyText
+  bad_story: MyText
+  ugly_story: MyText

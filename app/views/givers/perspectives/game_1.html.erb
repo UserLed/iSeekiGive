@@ -9,26 +9,28 @@
 </h5>
 
 <div class="row-fluid">
-  <%= form_tag "" do %>
+  <%= form_for(@game, :url => "") do |f| %>
     <div class="span12">
       <legend>Educations</legend>
       <% @giver.educations.each do |edu| %>
-        <%= render 'educations', :edu => edu %>
+        <%= render 'education', :edu => edu %>
         <hr/>
       <% end %>
 
       <div class="control-group">
-        <%= label_tag "change_majors", "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
+        <%= f.label :change_major, "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
         <div class="controls">
-          <%= radio_button_tag "change_majors", "YES", nil, :class => "change-majors" %> YES
-          <%= radio_button_tag "change_majors", "NO", nil, :class => "change-majors" %> NO
+          <%= f.radio_button :change_major, 1, :class => "change-majors", :checked => @game.change_major ? true:false %>
+          <%#= f.label :change_major, "Yes", :value => 1 %> Yes
+          <%= f.radio_button :change_major, 0, :class => "change-majors", :checked => @game.change_major ? false:true %>
+          <%#= f.label :change_major, "No", :value => 0  %> No
         </div>
       </div>
 
       <div class="control-group desc-changing-majors" style="display:none">
-        <%= label_tag "desc_changing_majors", "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
+        <%= f.label :study_majors, "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
         <div class="controls">
-          <%= text_area_tag "desc_changing_majors", "", :size => "50x4" %>
+          <%= f.text_area :study_majors, :size => "50x4" %>
         </div>
       </div>
 
@@ -39,18 +41,23 @@
       <h5><%= @giver.current_location %></h5>
       <hr/>
       <div class="control-group">
-        <%= label_tag "another_location", "Have you lived or worked in another city during your professional or academic life?", :class => "control-label" %>
+        <%= f.label "another_location", "Have you lived or worked in another city during your professional or academic life?", :class => "control-label" %>
         <div class="controls">
-          <%= radio_button_tag "another_location", "YES", nil, :class => "another-location" %> YES
-          <%= radio_button_tag "another_location", "NO", nil, :class => "another-location" %> NO
+          <%= f.radio_button :another_locations, 1, :class => "another-location", :checked => @game.another_locations ? true:false %> YES
+          <%= f.radio_button :another_locations, 0, :class => "another-location", :checked => @game.another_locations ? false:true %> NO
         </div>
       </div>
 
-      <div class="control-group desc-changing-majors" style="display:none">
-        <%= label_tag "desc_changing_majors", "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
+      <div class="control-group localtion-list-field" style="display:none">
+        <%= f.label :locations, "Please list all city, country or state, country combinations that apply", :class => "control-label" %>
         <div class="controls">
-          <%= text_area_tag "desc_changing_majors", "", :size => "50x4" %>
+          <%= f.text_area :locations, :size => "50x4" %>
         </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Return to Perspectives", :name => "return", :class => "btn btn-info" %> |
+        <%= f.submit "Next Game", :name => "next", :class => "btn btn-info" %>
       </div>
     </div>
   <% end %>

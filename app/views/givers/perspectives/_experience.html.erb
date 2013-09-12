@@ -1,0 +1,12 @@
+<div class="field_text">
+  <h4>
+    <%= experience.title %>
+  </h4>
+  <p>
+    <%= experience.company_name %>
+  </p>
+  <p>
+    <%= experience.start_date.strftime("%B %Y") %> -
+    <%= experience.end_date.present? ? experience.end_date.strftime("%B %Y") : "Present" %>
+  </p>
+</div>

@@ -10,15 +10,15 @@ $(document).ready(function(){
     });
 
     $(".change-majors").click(function(){
-        if($('#change_majors_YES').is(':checked')) {
-            $(".desc-changing-majors").show();
-        }
-        else
-        {
-            $("#desc_changing_majors").val("");
-            $(".desc-changing-majors").hide();
-        }
+        change_majors();
     });
+
+    $(".another-location").click(function(){
+        another_locations();
+    });
+
+    change_majors();
+    another_locations();
 });
 
 $(document).on('click', '.btn-edit', function(){
@@ -32,3 +32,25 @@ $(document).on('click', '.cancel', function(){
     $('.info-container').show();
     $('.form-container').hide();
 });
+
+function change_majors(){
+    if($('#game_change_major_1').is(':checked')) {
+        $(".desc-changing-majors").show();
+    }
+    else
+    {
+        $("#game_study_majors").val("");
+        $(".desc-changing-majors").hide();
+    }
+}
+
+function another_locations(){
+    if($('#game_another_locations_1').is(':checked')) {
+        $(".localtion-list-field").show();
+    }
+    else
+    {
+        $("#game_locations").val("");
+        $(".localtion-list-field").hide();
+    }
+}

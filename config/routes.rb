@@ -20,8 +20,8 @@ ISeekiGive::Application.routes.draw do
         match :game_1
         match :game_2
         match :game_3
-        post :save_game_tag
-        match ':experience_id/experience' =>  'givers/perspectives#open_single_experience', :as => "single_experience"
+        match ':experience_id/experience' =>  'givers/perspectives#experience', :as => "game_experience"
+        match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
       end
     end
   end

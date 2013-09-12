@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130912113144) do
+ActiveRecord::Schema.define(:version => 20130912223739) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -79,6 +79,11 @@ ActiveRecord::Schema.define(:version => 20130912113144) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "educations_skills", :id => false, :force => true do |t|
+    t.integer "education_id"
+    t.integer "skill_id"
+  end
+
   create_table "experiences", :force => true do |t|
     t.string   "title"
     t.string   "company_name"
@@ -87,6 +92,24 @@ ActiveRecord::Schema.define(:version => 20130912113144) do
     t.integer  "user_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "experiences_skills", :id => false, :force => true do |t|
+    t.integer "experience_id"
+    t.integer "skill_id"
+  end
+
+  create_table "games", :force => true do |t|
+    t.integer  "giver_id"
+    t.boolean  "change_major"
+    t.text     "study_majors"
+    t.boolean  "another_locations"
+    t.text     "locations"
+    t.text     "good_story"
+    t.text     "bad_story"
+    t.text     "ugly_story"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|
@@ -105,14 +128,6 @@ ActiveRecord::Schema.define(:version => 20130912113144) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
-  end
-
-  create_table "save_game_tags", :force => true do |t|
-    t.string   "tag_name"
-    t.string   "experience_name"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "skills", :force => true do |t|
