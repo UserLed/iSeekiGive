@@ -1,6 +1,4 @@
 ActiveAdmin.register User do
-  config.per_page = 50
-
   actions :all, :except => [:new, :edit]
 
   filter :first_name
