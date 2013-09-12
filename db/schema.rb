@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909005243) do
+ActiveRecord::Schema.define(:version => 20130912113144) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(:version => 20130909005243) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "save_game_tags", :force => true do |t|
+    t.string   "tag_name"
+    t.string   "experience_name"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "skills", :force => true do |t|

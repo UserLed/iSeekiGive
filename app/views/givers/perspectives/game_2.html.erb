@@ -1,0 +1,20 @@
+<h2 class="welcome">Welcome to game 2</h2>
+
+<div class="skills" style="float:left">
+	<% @giver_skills.each_with_index do |skill, id| %>
+		<p id='skill_<%= id+1 %>'><%= skill.name %></p>
+	<% end %>
+</div>
+
+<div class="experiences"  style = "float:left;width:500px">
+	<% @giver_experiences.each_with_index do |experience, id| %>
+		<div>
+			<p><%= experience.company_name %></p>
+			<p><%= experience.title %></p>
+			
+			<%= link_to "Add Skills", single_experience_giver_perspectives_path(current_user,experience.id) %>
+		</div>
+		<hr/>	
+	<% end %>
+</div>
+

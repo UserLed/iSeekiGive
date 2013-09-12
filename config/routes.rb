@@ -18,6 +18,10 @@ ISeekiGive::Application.routes.draw do
     resources :perspectives, :only => :index, :controller => "givers/perspectives" do
       collection do
         match :game_1
+        match :game_2
+        match :game_3
+        post :save_game_tag
+        match ':experience_id/experience' =>  'givers/perspectives#open_single_experience', :as => "single_experience"
       end
     end
   end
