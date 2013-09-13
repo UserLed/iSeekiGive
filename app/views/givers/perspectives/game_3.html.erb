@@ -24,3 +24,39 @@
     The Ugly: There are things to be careful of, risks or things to watch-out for in …
   </p>
 </div>
+<br/>
+<div>
+  <% @random_giver_experiences.each do |experience| %>
+    <div class="experience_<%= experience.id %>">
+      <%= experience.respond_to?(:company_name)? experience.company_name : experience.school_name  %>
+      <br/>
+      <%= experience.respond_to?(:title)? experience.title : experience.degree %> 
+      <br/>
+      <%= link_to "How was the experience", "javascript:void(0);", :class => "feeling" %>
+    </div>
+    <div class="activate_feeling" id="experience_<%= experience.id %>" style="display:none">
+
+      <%= radio_button "feeling", "feeling", "good" %> Good <br/>
+      <%= radio_button "feeling", "feeling", "bad"  %> Bad  <br/>
+      <%= radio_button "feeling", "feeling", "ugly" %> Ugly <br/>
+
+    </div>
+    <hr/>
+  <% end %>
+</div>
+<%= link_to "Next", share_story_giver_perspectives_path(current_user), :class => "btn btn-info" %>
+<%= link_to "Cancel", giver_perspectives_path(current_user), :class => "btn btn-info" %>
+
+
+
+
+
+<script type="text/javascript">
+  $(function(){
+
+    $(".feeling").on('click',function(){
+      var experience_id = $(this).parent().attr("class");
+      $("#"+ experience_id).toggle('slow');
+    });
+  });
+</script>

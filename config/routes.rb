@@ -29,6 +29,7 @@ ISeekiGive::Application.routes.draw do
         match :game_1
         match :game_2
         match :game_3
+        match :share_story
         match ':experience_id/experience' =>  'givers/perspectives#experience', :as => "game_experience"
         match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
       end

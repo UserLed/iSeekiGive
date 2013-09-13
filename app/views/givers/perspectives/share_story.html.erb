@@ -1,0 +1,26 @@
+<div id="share_story" >
+  <%= form_tag "share_story" do %>
+    <%= label_tag "share a good story" %>
+    <%= text_area_tag "good_story" %>
+    <br/>
+    <%= label_tag "keyword:" %>
+    <%= text_field_tag :keyword %>
+    <br/>
+    <%= label_tag "share a bad story" %>
+    <%= text_area_tag "bad_story" %>
+    <br/>
+    <%= label_tag "keyword:" %>
+    <%= text_field_tag :keyword %>
+    <br/>
+    <%= label_tag "share a ugly story" %>
+    <%= text_area_tag "ugly_story" %>
+    <br/>
+    <%= label_tag "keyword:" %>
+    <%= text_field_tag :keyword %>
+    <br/>
+    <%= check_box_tag "anonymous", true %>Anonymous
+    <br/>
+    <%= submit_tag "Submit", :class => 'btn btn-success' %>
+  
+  <% end %>
+</div>

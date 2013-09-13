@@ -51,7 +51,36 @@ class Givers::PerspectivesController < ApplicationController
 
 
   def game_3
-    
+
+  	giver = current_user 
+  	
+  	giver_experiences = giver.experiences
+  	giver_experiences = [] if giver_experiences.nil?
+  	giver_experiences_count = giver.experiences.count
+  	
+  	if giver_experiences_count < 3
+  		giver_educations = giver.educations
+  		unless giver_educations.blank?
+  			giver_experiences << giver_educations.sample(1)
+  		end
+  	end
+
+  	@random_giver_experiences = giver_experiences.sample(3)
+
+  end
+
+  def share_story
+
+  	if request.post?
+  		create_story = current_user.build_game(:good_story =>params[:good_story], :bad_story => params[:bad_story], :ugly_story => params[:ugly_story])
+  		create_story.anonymous = params[:anonymous] if params[:anonymous].present?
+  		
+  		if create_story.save
+  			redirect_to giver_perspectives_path(current_user) , :notice => "Game has been successfully created"
+  			return
+  		end
+  	end
+
   end
 
 end
