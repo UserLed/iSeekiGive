@@ -32,6 +32,9 @@
       <br/>
       <%= experience.respond_to?(:title)? experience.title : experience.degree %> 
       <br/>
+      <%= experience.start_date.strftime("%B %Y") %> -
+      <%= experience.end_date.present? ? experience.end_date.strftime("%B %Y") : "Present" %>
+      <br/>
       <%= link_to "How was the experience", "javascript:void(0);", :class => "feeling" %>
     </div>
     <div class="activate_feeling" id="experience_<%= experience.id %>" style="display:none">

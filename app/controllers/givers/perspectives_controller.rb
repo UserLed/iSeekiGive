@@ -76,6 +76,7 @@ class Givers::PerspectivesController < ApplicationController
   		create_story.anonymous = params[:anonymous] if params[:anonymous].present?
   		
   		if create_story.save
+  			Keyword.create(:story_keyword => params[:keyword], :game_id => create_story.id)
   			redirect_to giver_perspectives_path(current_user) , :notice => "Game has been successfully created"
   			return
   		end
