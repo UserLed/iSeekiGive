@@ -9,6 +9,15 @@ ISeekiGive::Application.routes.draw do
     member do
       get :dashboard
     end
+    resources :perspectives, :only => :index, :controller => "seekers/perspectives" do
+      collection do
+        match :schools
+        match :majors
+        match :cities
+        match :functions
+        match :skills
+      end
+    end
   end
 
   resources :givers do

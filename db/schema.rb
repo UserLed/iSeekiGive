@@ -101,15 +101,15 @@ ActiveRecord::Schema.define(:version => 20130912223739) do
 
   create_table "games", :force => true do |t|
     t.integer  "giver_id"
-    t.boolean  "change_major"
+    t.boolean  "change_major",      :default => false
     t.text     "study_majors"
-    t.boolean  "another_locations"
+    t.boolean  "another_locations", :default => false
     t.text     "locations"
     t.text     "good_story"
     t.text     "bad_story"
     t.text     "ugly_story"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|

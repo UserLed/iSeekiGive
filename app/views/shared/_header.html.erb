@@ -23,7 +23,7 @@
             <%= link_to "Profile", current_user %>
           </li>
           <li>
-            <%= link_to "Perspectives", current_user.giver? ? giver_perspectives_path(current_user) : "" %>
+            <%= link_to "Perspectives", current_user.giver? ? giver_perspectives_path(current_user) : seeker_perspectives_path(current_user) %>
           </li>
           <li>
             <%= link_to "Rewards", 'javascript:void(0)' %>

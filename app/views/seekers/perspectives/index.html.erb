@@ -1,0 +1,13 @@
+<%= render "header" %>
+
+<h2>Share your fresh Perspectives .</h2>
+
+<%= link_to "Schools", schools_seeker_perspectives_path(current_user) %> |
+<%= link_to "Majors", majors_seeker_perspectives_path(current_user) %> |
+<%= link_to "Cities", cities_seeker_perspectives_path(current_user) %> |
+<%= link_to "Functions", functions_seeker_perspectives_path(current_user) %> |
+<%= link_to "Skills", skills_seeker_perspectives_path(current_user) %>
+
+<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
+  <%= render "shared/perspectives_popup" %>
+<% end %>
