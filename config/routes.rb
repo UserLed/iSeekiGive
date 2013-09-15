@@ -23,6 +23,7 @@ ISeekiGive::Application.routes.draw do
   resources :givers do
     member do
       get :dashboard
+      get :public_profile
     end
     resources :perspectives, :only => :index, :controller => "givers/perspectives" do
       collection do
@@ -33,6 +34,7 @@ ISeekiGive::Application.routes.draw do
         match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
       end
     end
+    resources :sessions, :only => :index, :controller => "givers/sessions"
   end
 
   resources :educations

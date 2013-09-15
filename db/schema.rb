@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130915175717) do
+ActiveRecord::Schema.define(:version => 20130915193405) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20130915175717) do
     t.boolean  "linkedin_update",                 :default => false
     t.string   "profile_photo"
     t.string   "cover_photo"
+    t.integer  "level",                           :default => 1
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

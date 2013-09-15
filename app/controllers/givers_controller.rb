@@ -34,4 +34,8 @@ class GiversController < ApplicationController
   def dashboard
     @giver = Giver.find(params[:id])
   end
+
+  def public_profile
+    @giver = Giver.find(params[:id])
+  end
 end

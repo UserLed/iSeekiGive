@@ -91,6 +91,8 @@ class Givers::PerspectivesController < ApplicationController
       end
 
       if @giver.game.completed_3_games?
+        @giver.level = 2
+        @giver.save
         flash[:notice] = "Congratulations, you've reached Level 2 and unlocked access to Sessions!  See your Dashboard for more details."
       end
 

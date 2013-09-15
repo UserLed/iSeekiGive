@@ -3,6 +3,7 @@ class Seekers::PerspectivesController < ApplicationController
 
   def index
     @seeker = Seeker.find(params[:seeker_id])
+    @givers = Giver.order("created_at desc")
   end
 
   def schools

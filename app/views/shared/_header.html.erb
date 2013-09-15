@@ -19,21 +19,6 @@
               <%= link_to "Dashboard", dashboard_giver_path(current_user) %>
             </li>
           <% end %>
-          <li class="<%= "active" if current_page?(current_user) %>">
-            <%= link_to "Profile", current_user %>
-          </li>
-          <li>
-            <%= link_to "Perspectives", current_user.giver? ? giver_perspectives_path(current_user) : seeker_perspectives_path(current_user) %>
-          </li>
-          <li>
-            <%= link_to "Rewards", 'javascript:void(0)' %>
-          </li>
-          <li>
-            <%= link_to "Sessions", 'javascript:void(0)' %>
-          </li>
-          <li>
-            <%= link_to "Boosters", 'javascript:void(0)' %>
-          </li>
           <li>
             <%= link_to "Logout", logout_path  %>
           </li>
