@@ -24,42 +24,122 @@
     The Ugly: There are things to be careful of, risks or things to watch-out for in …
   </p>
 </div>
-<br/>
-<div>
-  <% @random_giver_experiences.each do |experience| %>
-    <div class="experience_<%= experience.id %>">
-      <%= experience.respond_to?(:company_name)? experience.company_name : experience.school_name  %>
-      <br/>
-      <%= experience.respond_to?(:title)? experience.title : experience.degree %> 
-      <br/>
-      <%= experience.start_date.strftime("%B %Y") %> -
-      <%= experience.end_date.present? ? experience.end_date.strftime("%B %Y") : "Present" %>
-      <br/>
-      <%= link_to "How was the experience", "javascript:void(0);", :class => "feeling" %>
+
+<%= form_tag "" do %>
+
+  <div class="row-fluid">
+
+    <% @experiences_or_educations.each do |e| %>
+      <div>
+        <% if e.class == Experience %>
+          <%= render 'experience', :experience => e %>
+        <% elsif e.class == Education %>
+          <%= render 'education', :education => e %>
+        <% end %>
+        <%= select_tag :"feelings[#{e.class.to_s}][#{e.id}]", options_for_select(["The Good", "The Bad", "The Ugly"])  %>
+        <hr/>
+      </div>
+    <% end %>
+
+    <%= link_to "Cancel", giver_perspectives_path(@giver), :class => "btn btn-info" %>
+    <%= link_to "Next", "#", :onclick => "$('#share_story').show(); return false;", :class => "btn btn-info" %>
+
+  </div>
+
+  <div class="row-fluid" id="share_story" style="display:none">
+    <legend>
+      <h3>Share a story about “The Good, The Bad and The Ugly”.</h3>
+    </legend>
+
+
+    <%= fields_for @giver.game do |g| %>
+    
+      <div class="row-fluid">
+        <legend>
+          The Ugly
+        </legend>
+        <div class="span11">
+          <div class="span6">
+            <%= g.label :ugly_story, "Share a story based on the above.  All responses will be kept strictly anonymous until you decide otherwise.", :class => "control-label"  %>
+            <%= g.text_area :ugly_story, :style => "width:100%;Height:80px;" %>
+            <br/>
+            <%= g.label :ugly_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
+            <%= g.text_field :ugly_keywords %>
+            <br/>
+            <%= g.check_box :ugly_anonymous %>
+            Anonymous
+          </div>
+          <div class="span6">
+            “Sample: "The Ugly"
+            <br/>
+            Working in Finance is not what one might think. It's glamorous on the surface, but it's also competitive and cut-throat. Some days I spend more time watching my back than getting things done. I would prefer a stronger team environment and emphasis on collaboration; rewards on team success rather than individual merits.
+          </div>
+        </div>
+      </div>
+
+      <div style="height:20px;"></div>
+
+      <div class="row-fluid">
+        <legend>
+          The Bad
+        </legend>
+        <div class="span11">
+          <div class="span6">
+            <%= label :bad_story, "Share a story based on the above.  All responses will be kept strictly anonymous until you decide otherwise.", :class => "control-label"  %>
+            <%= g.text_area :bad_story, :style => "width:100%;Height:80px;" %>
+            <br/>
+            <%= g.label :bad_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
+            <%= g.text_field :bad_keywords %>
+            <br/>
+            <%= g.check_box :bad_anonymous %>
+            Anonymous
+          </div>
+          <div class="span6">
+            “Sample: "The Bad"
+            <br/>
+
+          </div>
+        </div>
+      </div>
+
+      <div style="height:20px;"></div>
+
+      <div class="row-fluid">
+        <legend>
+          The Good
+        </legend>
+        <div class="span11">
+          <div class="span6">
+            <%= g.label :good_story, "Share a story based on the above.  All responses will be kept strictly anonymous until you decide otherwise.", :class => "control-label"  %>
+            <%= g.text_area :good_story, :style => "width:100%;Height:80px;" %>
+            <br/>
+            <%= g.label :good_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
+            <%= g.text_field :good_keywords %>
+            <br/>
+            <%= g.check_box :good_anonymous %>
+            Anonymous
+          </div>
+          <div class="span6">
+            “Sample: "The Good"
+            <br/>
+            Digital Marketing offers fast paced and fun environments that will keep you on your toes. We work with content providers and publishers and spend most of our days either online or working with people. On some days, it's almost like we get paid to read-up on FB, Twitter or Instagram. On other days I work with big brands such as Coke, Starubucks or McDonalds - I really can't complain about the variety and exposure!
+          </div>
+        </div>
+      </div>
+
+      <div style="height:20px;"></div>
+
+    <% end %>
+
+    <div class="form-actions">
+      <legend>
+        Pick a choice and save your results
+      </legend>
+      <%= submit_tag "Return to Perspectives", :name => "return", :class => "btn btn-info" %> |
+      <%= submit_tag "Next Game", :name => "next", :class => "btn btn-info" %>
     </div>
-    <div class="activate_feeling" id="experience_<%= experience.id %>" style="display:none">
-
-      <%= radio_button "feeling", "feeling", "good" %> Good <br/>
-      <%= radio_button "feeling", "feeling", "bad"  %> Bad  <br/>
-      <%= radio_button "feeling", "feeling", "ugly" %> Ugly <br/>
-
-    </div>
-    <hr/>
-  <% end %>
-</div>
-<%= link_to "Next", share_story_giver_perspectives_path(current_user), :class => "btn btn-info" %>
-<%= link_to "Cancel", giver_perspectives_path(current_user), :class => "btn btn-info" %>
 
 
+  </div>
 
-
-
-<script type="text/javascript">
-  $(function(){
-
-    $(".feeling").on('click',function(){
-      var experience_id = $(this).parent().attr("class");
-      $("#"+ experience_id).toggle('slow');
-    });
-  });
-</script>
+<% end %>

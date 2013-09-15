@@ -1,14 +1,14 @@
 <div class="field_text">
   <h4>
-    <%= edu.school_name %>
+    <%= education.school_name %>
   </h4>
   <p>
-    <%= edu.degree %>,
-    <%= edu.field_of_study %>
+    <%= education.degree %>,
+    <%= education.field_of_study %>
   </p>
   <p>
-    <%= edu.start_date.strftime("%Y") %>
+    <%= education.start_date.strftime("%Y") %>
     -
-    <%= edu.end_date.present? ? edu.end_date.strftime("%Y") : "current" %>
+    <%= education.end_date.present? ? education.end_date.strftime("%Y") : "current" %>
   </p>
 </div>

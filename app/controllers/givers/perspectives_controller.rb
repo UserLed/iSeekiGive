@@ -3,6 +3,9 @@ class Givers::PerspectivesController < ApplicationController
 
   def index
     @giver = Giver.find(params[:giver_id])
+    if @giver.game.blank?
+      @giver.build_game.save
+    end
   end
 
   def game_1
@@ -12,10 +15,14 @@ class Givers::PerspectivesController < ApplicationController
 
     if request.post?
       @game = @giver.build_game(params[:game])
-      @game.save
+      if @game.save
+        @game.complete_game(1)
+      end
     elsif request.put?
       @game.update_attributes(params[:game])
-      @game.save
+      if @game.save
+        @game.complete_game(1)
+      end
     end
 
     if params[:next].present?
@@ -36,6 +43,7 @@ class Givers::PerspectivesController < ApplicationController
     if request.post?
       @skill = Skill.find(params[:skill_id])
       @experience.skills << @skill
+      @giver.game.complete_game(2)
     end
   end
 
@@ -46,42 +54,48 @@ class Givers::PerspectivesController < ApplicationController
     if request.post?
       @skill = Skill.find(params[:skill_id])
       @education.skills << @skill
+      @giver.game.complete_game(2)
     end
   end
 
 
   def game_3
+  	@giver = Giver.find(params[:giver_id])
 
-  	giver = current_user 
+    @experiences_or_educations = []
+    @experiences_or_educations += @giver.experiences.not_rated.sample(3)
   	
-  	giver_experiences = giver.experiences
-  	giver_experiences = [] if giver_experiences.nil?
-  	giver_experiences_count = giver.experiences.count
-  	
-  	if giver_experiences_count < 3
-  		giver_educations = giver.educations
-  		unless giver_educations.blank?
-  			giver_experiences << giver_educations.sample(1)
-  		end
+  	if @experiences_or_educations.size < 3
+      @experiences_or_educations += @giver.educations.not_rated.sample(3 - @experiences_or_educations.size)
   	end
 
-  	@random_giver_experiences = giver_experiences.sample(3)
+    if request.post?
+      if params[:feelings].has_key?(:Experience)
+        params[:feelings][:Experience].each do |ex|
+          experience = Experience.find(ex.first)
+          experience.feelings = ex.last
+          experience.save
+        end
+      end
 
-  end
+      if params[:feelings].has_key?(:Education)
+        params[:feelings][:Education].each do |ed|
+          education = Education.find(ed.first)
+          education.feelings = ed.last
+          education.save
+        end
+      end
 
-  def share_story
+      if @giver.game.update_attributes(params[:game])
+        @giver.game.complete_game(3)
+      end
 
-  	if request.post?
-  		create_story = current_user.build_game(:good_story =>params[:good_story], :bad_story => params[:bad_story], :ugly_story => params[:ugly_story])
-  		create_story.anonymous = params[:anonymous] if params[:anonymous].present?
-  		
-  		if create_story.save
-  			Keyword.create(:story_keyword => params[:keyword], :game_id => create_story.id)
-  			redirect_to giver_perspectives_path(current_user) , :notice => "Game has been successfully created"
-  			return
-  		end
-  	end
+      if @giver.game.completed_3_games?
+        flash[:notice] = "Congratulations, you've reached Level 2 and unlocked access to Sessions!  See your Dashboard for more details."
+      end
 
+      redirect_to :action => :index
+    end
   end
 
 end

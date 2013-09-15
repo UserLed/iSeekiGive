@@ -1,4 +1,4 @@
 class Giver < User
-  has_one :game
+  has_one :game,     :dependent => :destroy
   
 end

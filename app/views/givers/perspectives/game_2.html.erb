@@ -22,7 +22,7 @@
   <div class="span6">
     <legend>Educations</legend>
     <% @giver.educations.each do |edu| %>
-      <%= render 'education', :edu => edu %>
+      <%= render 'education', :education => edu %>
       <%= link_to "Manage Skills", game_education_giver_perspectives_path(@giver, edu) %>
       <hr/>
     <% end %>
@@ -31,6 +31,9 @@
 
 <div class="row-fluid">
   <div class="span12 form-actions">
+    <legend>
+      Pick a choice and save your results
+    </legend>
     <%= link_to "Return to Perspectives", giver_perspectives_path(@giver), :class => "btn btn-info" %> |
     <%= link_to "Next Game", game_3_giver_perspectives_path(@giver), :class => "btn btn-info" %>
   </div>
