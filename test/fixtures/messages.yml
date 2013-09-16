@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  from: MyString
+  to: MyString
+  from_id: 1
+  to_id: 1
+  subject: MyString
+  content: MyString
+  uid: MyString
+
+two:
+  from: MyString
+  to: MyString
+  from_id: 1
+  to_id: 1
+  subject: MyString
+  content: MyString
+  uid: MyString
