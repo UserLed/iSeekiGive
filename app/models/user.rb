@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   
   attr_accessible :email, :first_name, :last_name, :country, :hear, :password,
     :password_confirmation, :authentications_attributes, :type, :promotional_news,
-    :city, :linkedin_update, :profile_photo, :cover_photo, :level
+    :city, :linkedin_update, :profile_photo, :cover_photo, :level, :session_method,
+    :skype_id, :contact_number, :other_contact_details
   
   attr_accessor :password_confirmation
 

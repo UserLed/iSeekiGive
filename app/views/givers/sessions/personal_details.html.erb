@@ -1,0 +1,29 @@
+<h4>
+  Personal Details:
+</h4>
+<div class="row-fluid">
+  <%= form_tag personal_details_giver_sessions_path(current_user) do %>
+  <div>
+    Sessions are generally conducted via Skype. If you prefer another method, please select from below
+  </div>
+  <%= select_tag(:session_method, options_for_select([['Skype', 1], ['Phone', 2], ['Other', 3]], 1), {:class => "session-method"}) %>
+  <ul class="session-conducting-method">
+    <li class="skype-id"><%= text_field_tag :skype_id %></li>
+    <li class="contact-number"><%= text_field_tag :contact_number %></li>
+    <li class="other-contact-details"><%= text_field_tag :other_contact_details %></li>
+  </ul>
+
+  <br/>
+  <%= submit_tag "Submit"  %>
+  <% end %>
+</div>
+
+
+
+<script>
+    $('select.session-method').change(function() {
+        //alert('Hi');
+        //$('div[id=^sub]:visible').hide();
+        //$('div#sub' + this.value).show();
+    });
+</script>

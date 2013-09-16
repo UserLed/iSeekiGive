@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130915193405) do
+ActiveRecord::Schema.define(:version => 20130916122548) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -173,6 +173,10 @@ ActiveRecord::Schema.define(:version => 20130915193405) do
     t.string   "profile_photo"
     t.string   "cover_photo"
     t.integer  "level",                           :default => 1
+    t.string   "session_method"
+    t.string   "skype_id"
+    t.string   "contact_number"
+    t.string   "other_contact_details"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

@@ -34,7 +34,13 @@ ISeekiGive::Application.routes.draw do
         match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
       end
     end
-    resources :sessions, :only => :index, :controller => "givers/sessions"
+    resources :sessions, :only => :index, :controller => "givers/sessions" do
+      collection do
+        match :personal_details
+        match :manage_requests
+        match :inbox
+      end
+    end
   end
 
   resources :educations
