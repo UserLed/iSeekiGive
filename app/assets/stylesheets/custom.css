@@ -319,3 +319,8 @@ select.date-select {
 .skill_tag{
     margin: 2px;
 }
+
+.session-methods{
+    list-style-type: none;
+    margin: 0;
+}

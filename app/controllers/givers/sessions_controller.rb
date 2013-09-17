@@ -12,7 +12,8 @@ class Givers::SessionsController < ApplicationController
       @giver.update_attributes(session_method: params[:session_method],
                                skype_id: params[:skype_id],
                                contact_number: params[:contact_number],
-                               other_contact_details: params[:other_contact_details])
+                               other_contact_details: params[:other_contact_details],
+                               user_time_zone: params[:user_time_zone])
       render :json => params.inspect + @giver.inspect
       return
 

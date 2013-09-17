@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20130916122548) do
     t.string   "skype_id"
     t.string   "contact_number"
     t.string   "other_contact_details"
+    t.string   "user_time_zone"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

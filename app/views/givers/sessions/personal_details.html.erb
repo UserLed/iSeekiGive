@@ -6,23 +6,47 @@
   <div>
     Sessions are generally conducted via Skype. If you prefer another method, please select from below
   </div>
-  <%= select_tag(:session_method, options_for_select([['Skype', 1], ['Phone', 2], ['Other', 3]], 1), {:class => "session-method"}) %>
-  <ul class="session-conducting-method">
-    <li class="skype-id"><%= text_field_tag :skype_id %></li>
-    <li class="contact-number"><%= text_field_tag :contact_number %></li>
-    <li class="other-contact-details"><%= text_field_tag :other_contact_details %></li>
+  <%= select_tag(:session_method, options_for_select([['Skype', 1], ['Phone', 2], ['Other', 3]], 1), {:class => 'session-method'}) %>
+  <ul class="session-methods">
+    <li class="session-method-1"><%= text_field_tag :skype_id %></li>
+    <li class="session-method-2"><%= text_field_tag :contact_number %></li>
+    <li class="session-method-3"><%= text_field_tag :other_contact_details %></li>
   </ul>
+  <div>
+    <%= label_tag "Select your time zone" %>
+  </div>
+  <%= time_zone_select(:user_time_zone, :time_zone) %>
 
   <br/>
-  <%= submit_tag "Submit"  %>
+  <%= submit_tag 'Update'  %>
   <% end %>
 </div>
 
 
 
 <script>
+    function hide_all_session_methods(){
+        $('ul.session-methods li').hide();
+    }
+
+    function reset_all_session_methods(){
+        $('.session-methods').find('input').val('');
+    }
+
+    function show_session_method(val){
+        $('.session-method-'+val).show();
+    }
+
+    var default_session_method = $('select.session-method').val();
+    hide_all_session_methods();
+    show_session_method(default_session_method);
+
+
     $('select.session-method').change(function() {
-        //alert('Hi');
+        var val = $(this).val();
+        hide_all_session_methods();
+        reset_all_session_methods();
+        show_session_method(val)
         //$('div[id=^sub]:visible').hide();
         //$('div#sub' + this.value).show();
     });
