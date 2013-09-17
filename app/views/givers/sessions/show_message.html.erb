@@ -1,3 +1,4 @@
+<b><%= @messages.first.subject %></b>
 <% @messages.each do |message| %>
 	<div>
 	<p><%= message.from %> says....(<%= distance_of_time_in_words(Time.now-message.created_at)%> ago)  </p>

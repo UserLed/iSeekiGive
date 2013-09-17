@@ -6,7 +6,9 @@ class Givers::SessionsController < ApplicationController
   end
 
   def inbox
-  	@messages = Message.where('from_id=? OR to_id=?',current_user.id,current_user.id).group("uid")
+  	@messages= Message.where("from_id=? OR to_id=?", current_user.id, current_user.id)
+  	@messages_count = @messages.count
+  	@messages = @messages.group("uid")
   end
 
   def new_message

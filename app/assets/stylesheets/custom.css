@@ -319,3 +319,7 @@ select.date-select {
 .skill_tag{
     margin: 2px;
 }
+
+.selected {
+    background-color: green;
+}
