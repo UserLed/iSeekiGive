@@ -13,8 +13,10 @@ class Givers::SessionsController < ApplicationController
                                skype_id: params[:skype_id],
                                contact_number: params[:contact_number],
                                other_contact_details: params[:other_contact_details],
-                               user_time_zone: params[:user_time_zone])
-      render :json => params.inspect + @giver.inspect
+                               user_time_zone: params[:user_time_zone][:time_zone])
+      redirect_to giver_sessions_path(current_user), :notice => "Personal details have been updated"
+
+      #render :json => params.inspect + @giver.inspect
       return
 
     end
