@@ -30,19 +30,29 @@
 		</tr>
     <% end %>
 </table>
+<%= submit_tag "Submit", :class=> 'btn btn-info', :id => "availability_submit"  %>
 
 <script type="text/javascript">
 	$(function(){
+		var availability = [];
 		$('td').on('click', function(){
 			var cell_id = this.id;
 			if ($("#"+cell_id).hasClass("selected")){
 				$("#"+cell_id).removeClass("selected");
+				availability =_.without(availability,cell_id);
+				console.log(availability);
 		}
 		else{
 			$("#"+cell_id).addClass("selected");
+			availability.push(cell_id);
+			console.log(availability);
 	
 		}
 				
-		})
+		});
+
+	$("#availability_submit").on('click',function(){
+		$.post('sessions/time_slot_save', {time_slots: availability},function(data){console.log(data);});
+	})	
 	})
 </script>

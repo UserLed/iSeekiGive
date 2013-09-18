@@ -39,6 +39,7 @@ ISeekiGive::Application.routes.draw do
         get :inbox
         match 'messages/new' => 'givers/sessions#new_message'
         match 'messages/:uid'  => 'givers/sessions#show_message', :as => "show_message"
+        post :time_slot_save
       end
     end
   end

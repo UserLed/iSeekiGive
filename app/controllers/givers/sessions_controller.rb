@@ -69,4 +69,23 @@ class Givers::SessionsController < ApplicationController
   	end
   end
 
+
+  def time_slot_save
+  	logger.debug "#{params.inspect}"
+  	time_slots = params[:time_slots]
+  	time_slots = time_slots.collect{|slot| slot.split("_")}
+  	
+  	time_slots.each do |slot|
+  		tmp_slot = TimeSlot.new
+  		tmp_slot.giver_id = current_user.id
+  		tmp_slot.day = slot[0]
+  		tmp_slot.time = slot[1]
+  		tmp_slot.time_format = slot[2]
+  		tmp_slot.save
+  	end
+
+  	logger.debug "====#{time_slots}" 
+  	render :nothing => true
+  end
+
 end

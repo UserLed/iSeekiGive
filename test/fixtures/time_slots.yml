@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  giver_id: 1
+  day: MyString
+  time: MyString
+  time_format: MyString
+
+two:
+  giver_id: 1
+  day: MyString
+  time: MyString
+  time_format: MyString
