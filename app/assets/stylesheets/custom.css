@@ -326,5 +326,9 @@ select.date-select {
 }
 
 .selected {
-    background-color: green;
+    background-color: #7CFC00;
 }
+
+.availability_table, .availability_table tr th, .availability_table tr td {
+    border-color: #68228B;
+} 
