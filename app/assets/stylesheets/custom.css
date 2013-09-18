@@ -324,3 +324,7 @@ select.date-select {
     list-style-type: none;
     margin: 0;
 }
+
+.selected {
+    background-color: green;
+}
