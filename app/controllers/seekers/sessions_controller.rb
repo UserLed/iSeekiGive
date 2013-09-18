@@ -14,8 +14,8 @@ class Seekers::SessionsController < ApplicationController
   def new_message
   	require 'securerandom'
 
-  	@to = User.find(params[:seeker_id])
-  	
+  	@to = Giver.find(params[:giver])
+
   	if request.post?
   		message = Message.new
 

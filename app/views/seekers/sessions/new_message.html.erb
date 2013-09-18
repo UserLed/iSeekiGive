@@ -1,5 +1,5 @@
 <div class="span6">
-	<%= form_tag messages_new_seeker_sessions_path(current_user) do %>
+	<%= form_tag messages_new_seeker_sessions_path(current_user, :giver => params[:giver]) do %>
 		<%= label_tag "From" %>
 		<%= text_field_tag :from, current_user.email, :readonly=> true %>
 		<br/>
