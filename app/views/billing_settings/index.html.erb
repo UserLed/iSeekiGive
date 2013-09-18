@@ -1,0 +1,21 @@
+<h1>Listing billing_settings</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @billing_settings.each do |billing_setting| %>
+  <tr>
+    <td><%= link_to 'Show', billing_setting %></td>
+    <td><%= link_to 'Edit', edit_billing_setting_path(billing_setting) %></td>
+    <td><%= link_to 'Destroy', billing_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Billing setting', new_billing_setting_path %>

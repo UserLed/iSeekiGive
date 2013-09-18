@@ -10,6 +10,7 @@ gem 'vine'
 gem 'linkedin'
 gem 'carrierwave'
 gem 'activeadmin'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 
 group :assets do
