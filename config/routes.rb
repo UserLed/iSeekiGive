@@ -18,6 +18,14 @@ ISeekiGive::Application.routes.draw do
         match :skills
       end
     end
+    resources :sessions, :only => :index, :controller => "seekers/sessions" do
+      collection do
+        match :inbox
+        get :inbox
+        match 'messages/new' => 'seekers/sessions#new_message'
+        match 'messages/:uid'  => 'seekers/sessions#show_message', :as => "show_message"
+      end
+    end
   end
 
   resources :givers do
