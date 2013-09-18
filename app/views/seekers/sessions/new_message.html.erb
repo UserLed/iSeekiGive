@@ -1,0 +1,16 @@
+<div class="span6">
+	<%= form_tag messages_new_seeker_sessions_path(current_user) do %>
+		<%= label_tag "From" %>
+		<%= text_field_tag :from, current_user.email, :readonly=> true %>
+		<br/>
+		<%= label_tag "To" %>
+		<%= text_field_tag :to, @to.email, :readonly => true %>
+		<br/>
+		<%= label_tag "Subject" %>
+		<%= text_field_tag :subject %>
+		<br/>
+		<%= text_area_tag :content %>
+		<br/>
+		<%= submit_tag "Send", :class => 'btn btn-success' %>
+	<% end %>
+</div>

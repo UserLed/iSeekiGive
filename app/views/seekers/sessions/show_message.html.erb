@@ -1,0 +1,16 @@
+<b><%= @messages.first.subject %></b>
+<% @messages.each do |message| %>
+	<div>
+	<p><%= message.from %> says....(<%= distance_of_time_in_words(Time.now-message.created_at)%> ago)  </p>
+	<p> <%= message.content %> </p>
+	<hr/>
+	</div>
+<% end %>
+<%= form_tag show_message_seeker_sessions_path(current_user, @messages.first.uid) do %>
+
+	<%= label_tag "Reply" %>
+	<br/>
+	<%= text_area_tag :content  %>
+	<br/>
+	<%= submit_tag "Reply", :class => 'btn btn-primary' %>
+<% end %>
