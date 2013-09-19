@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require twitter/bootstrap
 //= require fancybox
+//= require underscore-min
 //= require fancybox-config
 //= require custom
 

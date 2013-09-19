@@ -1,0 +1,5 @@
+<h2>INBOX(<%= @messages_count %>)</h2>
+<% @messages.each do |message| %>
+	<%= link_to message.subject, show_message_giver_sessions_path(params[:giver_id], message.uid) %>
+<% end %>
+

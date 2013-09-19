@@ -319,3 +319,16 @@ select.date-select {
 .skill_tag{
     margin: 2px;
 }
+
+.session-methods{
+    list-style-type: none;
+    margin: 0;
+}
+
+.selected {
+    background-color: #7CFC00;
+}
+
+.availability_table, .availability_table tr th, .availability_table tr td {
+    border-color: #68228B;
+} 

@@ -1,0 +1,127 @@
+<%= render "header" %>
+<h4>
+  Personal Details:
+</h4>
+<div class="row-fluid">
+  <%= form_tag personal_details_giver_sessions_path(current_user) do %>
+  <div>
+    Sessions are generally conducted via Skype. If you prefer another method, please select from below
+  </div>
+  <%= select_tag(:session_method, options_for_select([['Skype', 1], ['Phone', 2], ['Other', 3]], @giver.session_method), {:class => 'session-method'}) %>
+  <ul class="session-methods">
+    <li class="session-method-1"><%= text_field_tag :skype_id, @giver.skype_id%></li>
+    <li class="session-method-2"><%= text_field_tag :contact_number, @giver.contact_number %></li>
+    <li class="session-method-3"><%= text_field_tag :other_contact_details, @giver.other_contact_details %></li>
+  </ul>
+  <div>
+    <%= label_tag "Select your time zone" %>
+  </div>
+  <%= time_zone_select(:user_time_zone, :time_zone,nil, :default => (@giver.user_time_zone if @giver.user_time_zone.present?) ) %>
+
+
+  <br/>
+  <%= submit_tag 'Update'  %>
+  <% end %>
+</div>
+<table border=1 class="availability_table">
+  <tr>
+  <th>Time</th>
+  <% %w( mon tue wed thu fri sat sun ).each do |day| %>
+    <th><%= day %></th>
+  <% end %></tr>
+  
+  <% [6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9].each_with_index do |row, index| %>
+    
+    <tr>
+      <th>
+        <%= row %> 
+        <% time_format = (index > 5)? "pm" : "am"   %>
+        <%= time_format %>
+      </th>
+      
+      <% %w(mon tue wed thu fri sat sun ).each do |day| %>
+        <td style="padding:5px 25px" id = '<%="#{day}_#{row}_#{time_format}" %>'>&nbsp;</td>
+        <% end %>
+    </tr>
+    <% end %>
+</table>
+<br/>
+
+<%= link_to "select all","javascript:void(0)", :class => 'btn btn-primary', :id => "select_all" %>
+<%= link_to "unselect all", "javascript:void(0)", :class => 'btn btn-primary', :id => "unselect_all" %>
+<br/>
+<br/>
+<%= submit_tag "Submit", :class=> 'btn btn-info', :id => "availability_submit"  %>
+
+<script type="text/javascript">
+  $(function(){
+    var availability = [];
+    $('td').on('click', function(){
+      var cell_id = this.id;
+      if ($("#"+cell_id).hasClass("selected")){
+        $("#"+cell_id).removeClass("selected");
+        availability =_.without(availability,cell_id);
+        console.log(availability);
+    }
+    else{
+      $("#"+cell_id).addClass("selected");
+      availability.push(cell_id);
+      console.log(availability);
+  
+    }
+        
+    });
+
+  var availability_table_class = $(".availability_table tr td");
+  $("#select_all").on('click',function(){
+    availability =[];
+
+    $(availability_table_class).addClass("selected");
+    $.each($(availability_table_class),function(){
+      availability.push(this.id);
+    });
+  }); 
+
+  $("#unselect_all").on('click', function(){
+    $.each($(availability_table_class),function(){
+      $("#"+this.id).removeClass("selected");
+    });
+    availability =[];
+  });
+
+  $("#availability_submit").on('click',function(){
+    $.post('time_slot_save', {time_slots: availability},function(data){console.log(data);});
+  }); 
+  })
+</script>
+
+
+
+<script>
+    function hide_all_session_methods(){
+        $('ul.session-methods li').hide();
+    }
+
+    function reset_all_session_methods(){
+        $('.session-methods').find('input').val('');
+    }
+
+    function show_session_method(val){
+        $('.session-method-'+val).show();
+    }
+
+    var default_session_method = $('.session-method').val();
+    //alert(default_session_method);
+    hide_all_session_methods();
+    show_session_method(default_session_method);
+
+
+    $('select.session-method').change(function() {
+        var val = $(this).val();
+        hide_all_session_methods();
+        reset_all_session_methods();
+        show_session_method(val)
+        //$('div[id=^sub]:visible').hide();
+        //$('div#sub' + this.value).show();
+    });
+</script>

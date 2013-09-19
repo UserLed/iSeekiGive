@@ -18,6 +18,14 @@ ISeekiGive::Application.routes.draw do
         match :skills
       end
     end
+    resources :sessions, :only => :index, :controller => "seekers/sessions" do
+      collection do
+        match :inbox
+        get :inbox
+        match 'messages/new' => 'seekers/sessions#new_message'
+        match 'messages/:uid'  => 'seekers/sessions#show_message', :as => "show_message"
+      end
+    end
   end
 
   resources :givers do
@@ -34,7 +42,17 @@ ISeekiGive::Application.routes.draw do
         match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
       end
     end
-    resources :sessions, :only => :index, :controller => "givers/sessions"
+    resources :sessions, :only => :index, :controller => "givers/sessions" do
+      collection do
+        match :personal_details
+        match :manage_requests
+        match :inbox
+        get :inbox
+        match 'messages/new' => 'givers/sessions#new_message'
+        match 'messages/:uid'  => 'givers/sessions#show_message', :as => "show_message"
+        post :time_slot_save
+      end
+    end
   end
 
   resources :educations

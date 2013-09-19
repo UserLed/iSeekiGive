@@ -1,7 +1,14 @@
+<%= render "header" %>
 <div class="row-fluid">
   <div class="span12">
     <legend>
       Sessions
     </legend>
+    <%= link_to "Personal Details", personal_details_giver_sessions_path(current_user) %>
+    <%= link_to "send a message", messages_new_giver_sessions_path(current_user) %>
+    <%= link_to "inbox", inbox_giver_sessions_path(current_user) %>
   </div>
 </div>
+
+
+

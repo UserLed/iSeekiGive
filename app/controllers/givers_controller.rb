@@ -37,5 +37,7 @@ class GiversController < ApplicationController
 
   def public_profile
     @giver = Giver.find(params[:id])
+    @giver_time_slots = @giver.time_slots.collect{|time_slot| [time_slot.day, time_slot.time, time_slot.time_format]}
+
   end
 end
