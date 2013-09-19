@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  charge_id: 1
+  event_id: 1
+  charge_amount: 1
+  status: MyString
+
+two:
+  charge_id: 1
+  event_id: 1
+  charge_amount: 1
+  status: MyString

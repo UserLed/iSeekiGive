@@ -1,6 +1,7 @@
 class BillingSetting < ActiveRecord::Base
   attr_accessible :card_last_four_digits, :card_holder_name, :card_expiry_date,
                   :card_type, :stripe_id, :stripe_token, :user_id
+  attr_accessor :stripe_token
 
   belongs_to :user
   before_save :create_or_update_stripe_customer
@@ -15,25 +16,43 @@ class BillingSetting < ActiveRecord::Base
             :card => stripe_token
         )
 
-        update_information(customer)
+        update_information customer
 
       else
-        customer = Stripe::Customer.retrieve(stripe_id)
+        customer = Stripe::Customer.retrieve stripe_id
         customer.card = stripe_token
         customer.save
 
-        update_information(customer)
+        update_information customer
       end
     end
   end
 
-  def update_information(customer)
-    self.card_last_four_digits = customer.card.data.first.last4
+  def update_information customer
+    self.card_last_four_digits = customer.cards.data.first.last4
     self.card_holder_name = customer.cards.data.first.name
     self.card_type = customer.cards.data.first.type
     card_expiry_date_string = "#{customer.cards.data.first.exp_year}-#{customer.cards.data.first.exp_month}-01"
     self.card_expiry_date = Date.parse(card_expiry_date_string).end_of_month
     self.stripe_id
+  end
+
+  def charge amount
+    response = Stripe::Charge.create(
+        :amount => (amount.to_f * 100.0).to_i,
+        :currency => "usd",
+        :customer => customer,
+        :description => "...billing..."
+    )
+    return response
+  end
+
+  def customer
+    @customer ||= Stripe::Customer.retrieve self.stripe_id rescue nil
+  end
+
+  def delete_stripe_customer
+    customer.delete
   end
 
 end
