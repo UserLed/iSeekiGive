@@ -7,7 +7,9 @@
   <div class="public_profile">
   	<p>Name : <%= @giver.name %></p>
   </div>
-  <table border=1 class="availability_table">
+
+<%= link_to "weekly Availability", "javascript:void(0)", :id => "weekly_link" %>
+  <table border=1 class="availability_table", style="display:none">
   <tr>
   <th>Time</th>
   <% %w( mon tue wed thu fri sat sun ).each do |day| %>
@@ -31,3 +33,12 @@
 </table>
 </div>
 <%= link_to "Send a message", messages_new_seeker_sessions_path(current_user,:giver => @giver.id) %> 
+
+
+<script type="text/javascript">
+	$(function(){
+		$("#weekly_link").on('click',function(){
+			$(".availability_table").toggle();
+		});
+	});
+</script>
