@@ -48,14 +48,16 @@ class GiversController < ApplicationController
       time_slots = params[:time_slots]
       
       time_slots.each do |time_slot|
-        schedule = Schedule.new
-        schedule.giver_id = params[:id]
-        schedule.seeker_id = current_user.id
-        schedule.schedule_time = time_slot
-        schedule.save
+        unless Schedule.exists?(:schedule_time => time_slot)
+          schedule = Schedule.new
+          schedule.giver_id = params[:id]
+          schedule.seeker_id = current_user.id
+          schedule.schedule_time = time_slot
+          schedule.save
+          render :text => :ok
+          return
+        end
       end
-      render :text => :ok
-      return
     else
       render :text => "something went wrong"
       return
