@@ -37,8 +37,29 @@ class GiversController < ApplicationController
 
   def public_profile
     @giver = Giver.find(params[:id])
-    @giver_time_slots = TimeSlot.where("giver_id=?",@giver.id).select("day,time,time_format") 
-    @giver_time_slots = @giver_time_slots.collect{|time_slot| [time_slot.day, time_slot.time, time_slot.time_format]}
+    # @giver_time_slots = TimeSlot.where("giver_id=?",@giver.id).select("day,time,time_format") 
+    # @giver_time_slots = @giver_time_slots.collect{|time_slot| [time_slot.day, time_slot.time, time_slot.time_format]}
 
   end
+
+  def create_schedule
+    # logger.debug "==#{params.inspect}==#{current_user.id}"
+    unless params[:time_slots].blank?
+      time_slots = params[:time_slots]
+      
+      time_slots.each do |time_slot|
+        schedule = Schedule.new
+        schedule.giver_id = params[:id]
+        schedule.seeker_id = current_user.id
+        schedule.schedule_time = time_slot
+        schedule.save
+      end
+      render :text => :ok
+      return
+    else
+      render :text => "something went wrong"
+      return
+    end
+  end
+  
 end

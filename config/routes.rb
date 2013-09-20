@@ -32,6 +32,7 @@ ISeekiGive::Application.routes.draw do
     member do
       get :dashboard
       get :public_profile
+      post :create_schedule
     end
     resources :perspectives, :only => :index, :controller => "givers/perspectives" do
       collection do

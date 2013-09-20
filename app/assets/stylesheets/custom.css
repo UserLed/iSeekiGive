@@ -328,6 +328,15 @@ select.date-select {
 .selected {
     background-color: #7CFC00;
 }
+.tmp_selected_cell{
+    background-color: purple;
+}
+.schedule_form{
+    display: none;
+}
+.selected_already{
+    background-color: red;
+}
 
 .availability_table, .availability_table tr th, .availability_table tr td {
     border-color: #68228B;
