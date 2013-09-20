@@ -1,9 +1,9 @@
 class OauthsController < ApplicationController
   skip_before_filter :require_login
-
   # sends the user on a trip to the provider,
   # and after authorizing there back to the callback url.
   def oauth
+    session[:social_type] = params[:social_type]
     login_at(params[:provider])
   end
 
@@ -22,36 +22,36 @@ class OauthsController < ApplicationController
           create_connection(provider) unless current_user.twitter_connected?
           redirect_to current_user, :notice => "Connected to #{provider.titleize}!"
         end
-
-      elsif @user = login_from(provider)
-        redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
-      else
-        
-        begin
-          if session[:user_type].present?
-            @user = create_and_validate_from(provider)
-            unless @user.new_record?
-              update_authentication_with_token(provider)
-              update_user_with_type(session[:user_type])
-              reset_session # protect from session fixation attack
-              auto_login(@user)
-              redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+        elsif Authentication.already_sign_up?(provider_user_data(provider), session[:social_type])
+          reset_session
+          redirect_to root_path, :alert => "You already have an Account with #{provider.titleize}"
+        elsif  @user = login_from(provider)
+          redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+        else
+          begin
+            if session[:user_type].present?
+              @user = create_and_validate_from(provider)
+              unless @user.new_record?
+                update_authentication_with_token(provider)
+                update_user_with_type(session[:user_type])
+                reset_session # protect from session fixation attack
+                auto_login(@user)
+                redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+              end
+            else
+              reset_session
+              redirect_to root_path, :alert => "Please sign up first!"
             end
-          else
-            reset_session
-            redirect_to root_path, :alert => "Please sign up first!"
+          rescue => e
+            logger.info "!!! External login error : #{e.message}"
+            redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
           end
-        rescue => e
-          logger.info "!!! External login error : #{e.message}"
-          redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
-        end
-        
       end
-      
+
       if @user.present? and @user.errors.present? and @user.errors.messages[:email].present?
         redirect_to root_path, :alert => "This email address is already used!"
       end
-      
+
     rescue OAuth2::Error => e
       logger.info "!!! External login error : #{e.message}"
       redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
@@ -66,8 +66,12 @@ class OauthsController < ApplicationController
   end
 
   def user_hash(provider)
+    @user_hash ||= provider_user_data(provider)
+  end
+
+  def provider_user_data(provider)
     @provider = Config.send(provider)
-    @user_hash ||= @provider.get_user_hash(access_token(provider))
+    @provider.get_user_hash(access_token(provider))
   end
 
   def update_authentication_with_token(provider)
@@ -106,7 +110,7 @@ class OauthsController < ApplicationController
   def create_connection(provider)
     token = access_token(provider)
     user_info = user_hash(provider)
-        
+
     @connection = current_user.connections.new
     @connection.provider = provider
     @connection.uid = user_info[:uid]

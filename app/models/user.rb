@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :email, :presence => true
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :message =>" This %{value}  email is already registered"
   validates :country, :presence => true
   validates_length_of :password, :minimum => 3, :if => :password
   validates_confirmation_of :password, :if => :password
@@ -97,5 +97,9 @@ class User < ActiveRecord::Base
     l << self.city if self.city.present?
     l << self.country if self.country.present?
     l.join(", ")
+  end
+
+  def self.email_verified?(email)
+    User.where(:email => email).present? ? false : true
   end
 end

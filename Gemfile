@@ -11,6 +11,7 @@ gem 'linkedin'
 gem 'carrierwave'
 gem 'activeadmin'
 
+gem "letter_opener", :group => :development
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

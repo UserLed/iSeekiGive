@@ -31,4 +31,9 @@ class UsersController < ApplicationController
     end
     render :text => "ok"
   end
+
+  def email_checker
+    @verified = false
+    @verified = true if User.email_verified?(params[:email])
+  end
 end
