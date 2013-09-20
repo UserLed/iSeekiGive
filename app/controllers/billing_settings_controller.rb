@@ -22,7 +22,7 @@ class BillingSettingsController < ApplicationController
     end
 
     if @billing_setting.save
-      redirect_to user_path current_user, :notice => 'Billing Settings Saved.'
+      redirect_to new_billing_setting_path, :notice => 'Billing Settings Saved.'
     else
       render :action => :new, :alert => 'Sorry! Something is wrong!'
     end

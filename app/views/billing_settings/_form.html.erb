@@ -1,41 +1,33 @@
-<h3>Credit Card Information</h3>
+<h3>Billing Information</h3>
 <br/>
-<div class="alert-block" style="display:none">
+<div class='alert-block' style="display:none">
 </div>
-<%= form_tag billing_settings_path, :method =>  :post, :id => "billing_settings" do %>
+<%= form_tag billing_settings_path, :method =>  :post, :class => 'billing-settings' do %>
 
-    <%= hidden_field_tag :charge_card %>
-    <%= hidden_field_tag :stripe_token %>
+    <%= hidden_field_tag :charge_card, nil, :class => 'charge-card' %>
+    <%= hidden_field_tag :stripe_token, nil, :class => 'stripe-token' %>
 
-    <div class="control-group">
+    <div>
       <%= label_tag :card_holder_name, "Card Holder Name." %>
-      <div class="controls">
-        <%= text_field_tag :card_holder_name, nil, :name => nil %>
-      </div>
+      <%= text_field_tag :card_holder_name, nil, :name => nil, :class => 'card-holder-name' %>
     </div>
 
-    <div class="control-group">
+    <div>
       <%= label_tag :credit_card_number, "Card Number." %>
-      <div class="controls">
-        <%= text_field_tag :credit_card_number, nil, :name => nil %>
-      </div>
+      <%= text_field_tag :credit_card_number, nil, :name => nil, :class => 'card-number' %>
     </div>
 
-    <div class="control-group">
+    <div>
       <%= label_tag :cvc, "Card Security Code." %>
-      <div class="controls">
-        <%= text_field_tag :cvc, nil, :name => nil %>
-      </div>
+      <%= text_field_tag :cvc, nil, :name => nil, :class => 'card-cvc' %>
     </div>
 
-    <div class="control-group">
+    <div>
       <%= label_tag :expiry_date, "Expiration Date" %>
-      <div class="controls">
-        <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25} %>
-      </div>
+      <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25} %>
     </div>
 
-    <div class="form-actions">
+    <div>
       <%= submit_tag "Submit", :class => 'btn btn-primary' %>
     </div>
 <% end %>

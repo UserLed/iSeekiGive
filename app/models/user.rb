@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :connections,      :dependent => :destroy
   has_many :popups,           :dependent => :destroy
   has_one  :phone_number,     :dependent => :destroy
+  has_one :billing_setting
   
   accepts_nested_attributes_for :authentications
   accepts_nested_attributes_for :educations

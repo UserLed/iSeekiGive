@@ -34,7 +34,7 @@ class BillingSetting < ActiveRecord::Base
     self.card_type = customer.cards.data.first.type
     card_expiry_date_string = "#{customer.cards.data.first.exp_year}-#{customer.cards.data.first.exp_month}-01"
     self.card_expiry_date = Date.parse(card_expiry_date_string).end_of_month
-    self.stripe_id
+    self.stripe_id = customer.id
   end
 
   def charge amount
