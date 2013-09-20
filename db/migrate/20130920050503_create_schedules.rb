@@ -4,6 +4,7 @@ class CreateSchedules < ActiveRecord::Migration
       t.integer :giver_id
       t.integer :seeker_id
       t.string :schedule_time
+      t.string :description
       t.string :status, :default => "pending"
 
       t.timestamps

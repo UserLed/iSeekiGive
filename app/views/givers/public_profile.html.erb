@@ -9,7 +9,7 @@
   </div>
 
 <%= link_to "weekly Availability", "javascript:void(0)", :id => "weekly_link" %>
-  <table border=1 class="availability_table", style="display:none">
+  <table border=1 class="table table-bordered availability_table" style="display:none">
   <tr>
   <th>Time</th>
   <% %w( mon tue wed thu fri sat sun ).each do |day| %>
@@ -77,7 +77,7 @@
 
     $("#schedule_form_submit").on('click', function(e){
       e.preventDefault();
-      $.post("create_schedule",{time_slots: multiple_cell}
+      $.post("create_schedule",{time_slots: multiple_cell, description: $("#schedule").val()}
         ).done(function(data){
           $.each(multiple_cell, function(index, value){
             $("#"+ value).removeClass("tmp_selected_cell");

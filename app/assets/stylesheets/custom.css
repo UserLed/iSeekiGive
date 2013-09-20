@@ -339,7 +339,7 @@ select.date-select {
 }
 
 .availability_table, .availability_table tr th, .availability_table tr td {
-    border-color: #68228B;
+    /*border-color: #68228B;*/
 } 
 
 body{

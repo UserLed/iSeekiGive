@@ -43,21 +43,22 @@ class GiversController < ApplicationController
   end
 
   def create_schedule
-    # logger.debug "==#{params.inspect}==#{current_user.id}"
+    logger.debug "==#{params.inspect}==#{current_user.id}"
     unless params[:time_slots].blank?
       time_slots = params[:time_slots]
       
       time_slots.each do |time_slot|
-        unless Schedule.exists?(:schedule_time => time_slot)
+        unless Giver.find(params[:id]).schedules.exists?(:schedule_time => time_slot)
           schedule = Schedule.new
           schedule.giver_id = params[:id]
           schedule.seeker_id = current_user.id
           schedule.schedule_time = time_slot
+          schedule.description = params[:description]
           schedule.save
-          render :text => :ok
-          return
         end
       end
+      render :text => :ok
+      return
     else
       render :text => "something went wrong"
       return

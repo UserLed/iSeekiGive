@@ -52,6 +52,7 @@ ISeekiGive::Application.routes.draw do
         match 'messages/new' => 'givers/sessions#new_message'
         match 'messages/:uid'  => 'givers/sessions#show_message', :as => "show_message"
         post :time_slot_save
+        post :reject_schedule
       end
     end
   end

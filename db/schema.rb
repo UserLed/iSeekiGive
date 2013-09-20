@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20130920050503) do
     t.integer  "giver_id"
     t.integer  "seeker_id"
     t.string   "schedule_time"
+    t.string   "description"
     t.string   "status",        :default => "pending"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false

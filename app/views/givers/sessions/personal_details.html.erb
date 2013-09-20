@@ -25,8 +25,8 @@
 </div>
 
 
-<% if current_user.schedules.blank? %>
-  <table border=1 class="availability_table">
+<% if current_user.time_slots.blank? %>
+  <table border=1 class="table table-bordered availability_table">
     <tr>
     <th>Time</th>
     <% %w( mon tue wed thu fri sat sun ).each do |day| %>
@@ -55,8 +55,11 @@
   <br/>
   <br/>
   <%= submit_tag "Submit", :class=> 'btn btn-info', :id => "availability_submit"  %>
+
+
 <% else %>
-  <table border=1 class="schedule_table">
+
+  <table border=1 class="table table-bordered schedule_table">
     <tr>
     <th>Time</th>
     <% %w( mon tue wed thu fri sat sun ).each do |day| %>
@@ -79,10 +82,29 @@
   </table>
 <% end %>
 
+
+
+
+<div class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Please confirm this schedule status</h3>
+    <%= hidden_field_tag "schedule_id" %>
+  </div>
+  <div class="modal-body">
+    <p>You can accept or reject this session request </p>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:void(0)" class="btn btn-success" id="schedule_accept" >Accept</a>
+    <a href="javascript:void(0)" class="btn btn-danger" id="schedule_reject" >Reject</a>
+  </div>
+</div>
+
+
 <script type="text/javascript">
   $(function(){
     var availability = [];
-    $('.availability_table trtd').on('click', function(){
+    $('.availability_table tr td').on('click', function(){
       var cell_id = this.id;
       if ($("#"+cell_id).hasClass("selected")){
         $("#"+cell_id).removeClass("selected");
@@ -95,8 +117,9 @@
       console.log(availability);
   
     }
-        
-    });
+
+  });
+
 
   var availability_table_class = $(".availability_table tr td");
   $("#select_all").on('click',function(){
@@ -117,8 +140,44 @@
 
   $("#availability_submit").on('click',function(){
     $.post('time_slot_save', {time_slots: availability},function(data){console.log(data);});
-  }); 
-  })
+  });
+
+  var $modal = $('.modal').modal({
+    show: false
+  });
+  var modal_id = [];
+  $(document).on("click",".selected_already", function(){
+    $modal.modal('show');
+    $("#schedule_id").val(this.id);
+    
+    // var isFetching = false;
+    var schedule_id = this.id;
+    modal_id.push(schedule_id);
+  });
+
+      $("#schedule_reject").on("click", function(event){
+      // if(isFetching == false){
+        // isFetching = true;
+        $.ajax({
+          url :"reject_schedule", 
+          data:{schedule: $("#schedule_id").val()},
+          type:"POST",
+          success:function(){
+            console.log($("#schedule_id").val());
+            $modal.modal('hide');
+            $("#"+$("#schedule_id").val()).removeClass("selected_already");
+            $("#"+$("#schedule_id").val()).addClass("selected");
+            // isFetching = false;
+          }
+        });
+        event.stopPropagation();
+      // }
+    });
+
+
+
+  });
+
 </script>
 
 
