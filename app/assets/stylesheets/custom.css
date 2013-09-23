@@ -334,10 +334,10 @@ select.date-select {
 .schedule_form{
     display: none;
 }
-.selected_already{
+.schedule_pending{
     background-color: red;
 }
-.reserved_schedule{
+.schedule_reserved{
     background-color: skyblue;
 }
 

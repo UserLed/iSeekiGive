@@ -81,7 +81,7 @@
         ).done(function(data){
           $.each(multiple_cell, function(index, value){
             $("#"+ value).removeClass("tmp_selected_cell");
-            $("#"+value).addClass("selected_already");
+            $("#"+value).addClass("schedule_pending");
           });
           multiple_cell = [];
           $("#schedule").val("");
