@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923060649) do
+ActiveRecord::Schema.define(:version => 20130923075400) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -147,12 +147,12 @@ ActiveRecord::Schema.define(:version => 20130923060649) do
   end
 
   create_table "payments", :force => true do |t|
-    t.integer  "charge_id"
-    t.integer  "event_id"
-    t.integer  "charge_amount"
+    t.string   "transaction_id"
+    t.integer  "schedule_id"
+    t.integer  "amount"
     t.string   "status"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|
@@ -171,14 +171,6 @@ ActiveRecord::Schema.define(:version => 20130923060649) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
-  end
-
-  create_table "save_game_tags", :force => true do |t|
-    t.string   "tag_name"
-    t.string   "experience_name"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "schedules", :force => true do |t|

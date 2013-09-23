@@ -2,6 +2,7 @@ class BillingSettingsController < ApplicationController
   before_filter :require_login
 
   def new
+    session[:came_from] = request.referer
     respond_to do |format|
       if current_user.billing_setting.present?
         @billing_setting = current_user.billing_setting
@@ -22,7 +23,14 @@ class BillingSettingsController < ApplicationController
     end
 
     if @billing_setting.save
-      redirect_to new_billing_setting_path, :notice => 'Billing Settings Saved.'
+      if session[:came_from]
+        redirect_to session[:came_from], :notice => 'Billing Settings Saved.'
+        session[:came_from] = nil
+        return
+      else
+        redirect_to new_billing_setting_path, :notice => 'Billing Settings Saved.'
+      end
+
     else
       render :action => :new, :alert => 'Sorry! Something is wrong!'
     end
