@@ -48,10 +48,10 @@ class Seekers::SessionsController < ApplicationController
   		message = @messages.first
   		reply = Message.new
   		
-  		reply.from = current_user.email
+  		reply.from = current_user.name
   		reply.from_id = current_user.id
 
-  		reply.to =  (current_user.email.eql?(message.from)) ? message.to : message.from
+  		reply.to =  (current_user.name.eql?(message.from)) ? message.to : message.from
   		reply.to_id = (current_user.id.eql?(message.from_id)) ? message.to_id : message.from_id
 
   		reply.subject = message.subject

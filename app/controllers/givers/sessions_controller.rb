@@ -4,15 +4,16 @@ class Givers::SessionsController < ApplicationController
   def index
     @giver = Giver.find(params[:giver_id])
   end
+  
   def personal_details
     @giver = Giver.find(params[:giver_id])
 
     if request.post?
       @giver.update_attributes(session_method: params[:session_method],
-                               skype_id: params[:skype_id],
-                               contact_number: params[:contact_number],
-                               other_contact_details: params[:other_contact_details],
-                               user_time_zone: params[:user_time_zone][:time_zone])
+        skype_id: params[:skype_id],
+        contact_number: params[:contact_number],
+        other_contact_details: params[:other_contact_details],
+        user_time_zone: params[:user_time_zone][:time_zone])
       redirect_to giver_sessions_path(current_user), :notice => "Personal details have been updated"
 
       #render :json => params.inspect + @giver.inspect
@@ -61,7 +62,7 @@ class Givers::SessionsController < ApplicationController
 	  	else
 	  		render 'new_message'
 	  	end
-	end
+    end
 
   end
 
