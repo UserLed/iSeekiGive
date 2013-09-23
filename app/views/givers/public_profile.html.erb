@@ -87,6 +87,9 @@
           $("#schedule").val("");
           $(".schedule_form").hide();
           console.log(data);
+          if (data == "redirect"){
+              window.location.replace("/billing_settings/new");
+          }
         });
     });
 

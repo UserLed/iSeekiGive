@@ -1,5 +1,8 @@
 ISeekiGive::Application.routes.draw do
 
+  resources :billing_settings
+
+
   resources :phone_numbers
 
   match 'terms-of-service' => 'public#terms_of_service', :as => :terms

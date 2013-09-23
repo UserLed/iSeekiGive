@@ -18,4 +18,5 @@
 //= require underscore-min
 //= require fancybox-config
 //= require custom
+//= require stripe
 
