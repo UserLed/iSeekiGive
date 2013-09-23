@@ -35,6 +35,7 @@ ISeekiGive::Application.routes.draw do
     member do
       get :dashboard
       get :public_profile
+      post :create_schedule
     end
     resources :perspectives, :only => :index, :controller => "givers/perspectives" do
       collection do
@@ -54,6 +55,7 @@ ISeekiGive::Application.routes.draw do
         match 'messages/new' => 'givers/sessions#new_message'
         match 'messages/:uid'  => 'givers/sessions#show_message', :as => "show_message"
         post :time_slot_save
+        post :reject_schedule
       end
     end
   end
