@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130920050503) do
+ActiveRecord::Schema.define(:version => 20130918061630) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(:version => 20130920050503) do
     t.string   "token"
     t.string   "secret"
     t.datetime "expires_at"
+  end
+
+  create_table "billing_settings", :force => true do |t|
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "user_id"
+    t.string   "stripe_id"
+    t.string   "card_last_four_digits"
+    t.date     "card_expiry_date"
+    t.string   "card_type"
+    t.string   "card_holder_name"
   end
 
   create_table "connections", :force => true do |t|
@@ -133,6 +144,15 @@ ActiveRecord::Schema.define(:version => 20130920050503) do
     t.string   "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "charge_id"
+    t.integer  "event_id"
+    t.integer  "charge_amount"
+    t.string   "status"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|

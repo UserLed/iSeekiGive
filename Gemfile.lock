@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 06c860aeeac012f251807322e49eb5eeb0380a58
+  specs:
+    stripe (1.8.6)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -179,6 +187,8 @@ GEM
     ref (1.0.5)
     responders (1.0.0.rc)
       railties (>= 3.2, < 5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rvm-capistrano (1.5.0)
       capistrano (>= 2.15.4)
     sass (3.2.10)
@@ -241,6 +251,7 @@ DEPENDENCIES
   rvm-capistrano (>= 1.1.0)
   sass-rails (~> 3.2.3)
   sorcery (= 0.8.2)
+  stripe!
   therubyracer
   thin
   twitter-bootstrap-rails
