@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   def new
-    reset_session
+    #reset_session
+    session.delete(:user_type)
+    session.delete(:social_type)
+    
     @user = User.new
     if current_user.present?
       redirect_to current_user

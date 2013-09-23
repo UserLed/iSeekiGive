@@ -22,34 +22,44 @@ class OauthsController < ApplicationController
           create_connection(provider) unless current_user.twitter_connected?
           redirect_to current_user, :notice => "Connected to #{provider.titleize}!"
         end
-        elsif Authentication.already_sign_up?(provider_user_data(provider), session[:social_type])
-          reset_session
-          redirect_to root_path, :alert => "You already have an Account with #{provider.titleize}"
-        elsif  @user = login_from(provider)
-          redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
-        else
+        
+      elsif session[:social_type] == "sign_up"
+        if session[:user_type].present?
           begin
-            if session[:user_type].present?
-              @user = create_and_validate_from(provider)
-              unless @user.new_record?
-                update_authentication_with_token(provider)
-                update_user_with_type(session[:user_type])
-                reset_session # protect from session fixation attack
-                auto_login(@user)
-                redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
-              end
+            @user = create_and_validate_from(provider)
+            unless @user.new_record?
+              update_authentication_with_token(provider)
+              update_user_with_type(session[:user_type])
+              reset_session # protect from session fixation attack
+              auto_login(@user)
+              redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
             else
-              reset_session
-              redirect_to root_path, :alert => "Please sign up first!"
+              if @user.present? and @user.errors.present? and @user.errors.messages[:email].present?
+                flash[:alert] = "This email address is already registered!"
+              else
+                flash[:alert] = "Failed to sign up from #{provider.titleize}!"
+              end
+              redirect_to signup_path
             end
           rescue => e
-            logger.info "!!! External login error : #{e.message}"
-            redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
+            logger.info "!!! External sign up error : #{e.message}"
+            redirect_to signup_path, :alert => e.message
           end
-      end
+        else
+          reset_session
+          redirect_to signup_path, :alert => "Something went wrong! Please try again."
+        end
 
-      if @user.present? and @user.errors.present? and @user.errors.messages[:email].present?
-        redirect_to root_path, :alert => "This email address is already used!"
+      elsif session[:social_type] == "login"
+        
+        if @user = login_from(provider)
+          redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
+        else
+          redirect_to login_path, :alert => "You are not registered by this provider!"
+        end
+      else
+
+        redirect_to root_path, :alert => "Something went wrong! Please try again."
       end
 
     rescue OAuth2::Error => e
