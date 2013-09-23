@@ -18,6 +18,6 @@ class Game < ActiveRecord::Base
   end
 
   def completed_3_games?
-    self.completed_step_1 and self.completed_step_3 and self.completed_step_3
+    self.completed_step_1 and self.completed_step_2 and self.completed_step_3
   end
 end

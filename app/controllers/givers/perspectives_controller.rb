@@ -10,7 +10,7 @@ class Givers::PerspectivesController < ApplicationController
 
   def game_1
     @giver = Giver.find(params[:giver_id])
-    
+
     @game = @giver.game.present? ? @giver.game : @giver.build_game
 
     if request.post?
