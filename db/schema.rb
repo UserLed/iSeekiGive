@@ -173,14 +173,6 @@ ActiveRecord::Schema.define(:version => 20130923075400) do
     t.datetime "updated_at",                   :null => false
   end
 
-  create_table "save_game_tags", :force => true do |t|
-    t.string   "tag_name"
-    t.string   "experience_name"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "schedules", :force => true do |t|
     t.integer  "giver_id"
     t.integer  "seeker_id"
