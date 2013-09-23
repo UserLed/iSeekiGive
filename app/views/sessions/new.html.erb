@@ -4,7 +4,7 @@
   </div>
 
   <div class="panel-content">
-    <%= link_to auth_at_provider_path(:provider => :facebook), :class => "fb-blue btn icon-btn btn-block padded-btn-block large" do %>
+    <%= link_to auth_at_provider_path(:provider => :facebook,:social_type =>'login'), :class => "fb-blue btn icon-btn btn-block padded-btn-block large" do %>
       <span class="icon-container">
         <i class="icon icon-facebook"></i>
       </span>
@@ -16,7 +16,7 @@
       <hr/>
     </div>
 
-    <%= link_to auth_at_provider_path(:provider => :linkedin), :class => "in-blue btn icon-btn btn-block padded-btn-block large" do %>
+    <%= link_to auth_at_provider_path(:provider => :linkedin,:social_type =>'login'), :class => "in-blue btn icon-btn btn-block padded-btn-block large" do %>
       <span class="icon-container">
         <i class="icon icon-linkedin"></i>
       </span>

@@ -154,7 +154,7 @@ class Givers::SessionsController < ApplicationController
   def get_schedule_data
     logger.debug "=====#{params.inspect}"
     data = Schedule.where("schedule_time=?",params[:q]) if params[:q].present?
-    render :json => data.first.to_json
+    render :json => data.first
   end
 
 	

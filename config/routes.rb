@@ -76,6 +76,8 @@ ISeekiGive::Application.routes.draw do
   match "oauth/:provider/callback" => "oauths#callback"
   match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
+  post 'email_checker' => 'users#email_checker', :as => 'email_checker'
+
   get "oauths/oauth"
   get "oauths/callback"
 

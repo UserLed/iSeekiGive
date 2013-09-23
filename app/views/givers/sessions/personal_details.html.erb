@@ -89,14 +89,14 @@
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>Please confirm this schedule status</h3>
-    <p id="seeker_name"></p>
-    <p id ="schedule_description"></p>
+    <em><p id="seeker_name" class="text-info"></p></em>
     <%= hidden_field_tag "schedule_id" %>
   </div>
   <div class="modal-body">
-    <p>You can accept or reject this session request </p>
+    <strong><p id ="schedule_description" class="text-success"></p></strong>
   </div>
   <div class="modal-footer">
+    <p class="text-left text-warning">You can accept or reject this session request </p><br/>
     <a href="javascript:void(0)" class="btn btn-success" id="schedule_accept" >Accept</a>
     <a href="javascript:void(0)" class="btn btn-danger" id="schedule_reject" >Reject</a>
   </div>
@@ -161,6 +161,9 @@
           },
           error   : function(xhr,status){
             cosole.log(status);
+          },
+          complete :function(){
+
           } 
       });
 
