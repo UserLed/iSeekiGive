@@ -89,6 +89,8 @@
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>Please confirm this schedule status</h3>
+    <p id="seeker_name"></p>
+    <p id ="schedule_description"></p>
     <%= hidden_field_tag "schedule_id" %>
   </div>
   <div class="modal-body">
@@ -122,57 +124,95 @@
 
 
   var availability_table_class = $(".availability_table tr td");
-  $("#select_all").on('click',function(){
-    availability =[];
+    $("#select_all").on('click',function(){
+      availability =[];
 
-    $(availability_table_class).addClass("selected");
-    $.each($(availability_table_class),function(){
-      availability.push(this.id);
+      $(availability_table_class).addClass("selected");
+      $.each($(availability_table_class),function(){
+        availability.push(this.id);
+      });
+    }); 
+
+    $("#unselect_all").on('click', function(){
+      $.each($(availability_table_class),function(){
+        $("#"+this.id).removeClass("selected");
+      });
+      availability =[];
     });
-  }); 
 
-  $("#unselect_all").on('click', function(){
-    $.each($(availability_table_class),function(){
-      $("#"+this.id).removeClass("selected");
+    $("#availability_submit").on('click',function(){
+      $.post('time_slot_save', {time_slots: availability},function(data){console.log(data);});
     });
-    availability =[];
-  });
 
-  $("#availability_submit").on('click',function(){
-    $.post('time_slot_save', {time_slots: availability},function(data){console.log(data);});
-  });
+    var $modal = $('.modal').modal({
+      show: false
+    });
+    var modal_id = [];
+    $(document).on("click",".schedule_pending", function(){
+      
+      var schedule_id = this.id;
+      modal_id.push(schedule_id);
+      $.ajax({
+          url     : "get_schedule_data?q="+schedule_id,
+          type    : 'GET',
+          success : function(data){
+            $("#seeker_name").text("Session requested by : "+ data.seeker_name);
+            $("#schedule_description").text("Message: "+data.description);
+          },
+          error   : function(xhr,status){
+            cosole.log(status);
+          } 
+      });
 
-  var $modal = $('.modal').modal({
-    show: false
-  });
-  var modal_id = [];
-  $(document).on("click",".selected_already", function(){
-    $modal.modal('show');
-    $("#schedule_id").val(this.id);
-    
-    // var isFetching = false;
-    var schedule_id = this.id;
-    modal_id.push(schedule_id);
-  });
+      $("#schedule_id").val(this.id);
+      $modal.modal('show');
+      
+      
+    });
 
-      $("#schedule_reject").on("click", function(event){
-      // if(isFetching == false){
-        // isFetching = true;
+      $("#schedule_reject").on("click", function(){
+        var schedule_id = $("#schedule_id").val();
         $.ajax({
           url :"reject_schedule", 
-          data:{schedule: $("#schedule_id").val()},
           type:"POST",
+          data:{schedule: schedule_id},
+
           success:function(){
-            console.log($("#schedule_id").val());
+            $("#"+ schedule_id).removeClass("schedule_pending");
+            $("#"+schedule_id).addClass("selected");
+          },
+
+          error: function(status,xhr){
+              console.log(status);
+          },
+
+          complete: function(){
             $modal.modal('hide');
-            $("#"+$("#schedule_id").val()).removeClass("selected_already");
-            $("#"+$("#schedule_id").val()).addClass("selected");
-            // isFetching = false;
           }
         });
-        event.stopPropagation();
-      // }
     });
+
+      $("#schedule_accept").on('click',function(){
+        var schedule_id = $("#schedule_id").val();
+        $.ajax({
+            url    : "accept_schedule",
+            type   : "POST",
+            data   :{schedule: schedule_id},
+
+            success: function(){
+              $("#"+schedule_id).removeClass("schedule_pending");
+              $("#"+schedule_id).addClass("schedule_reserved");
+            },
+
+            error: function(status){
+              console.log(status);
+            },
+            
+            complete : function(){
+              $modal.modal("hide");
+            } 
+        });
+      });
 
 
 

@@ -1,3 +1,3 @@
 class Payment < ActiveRecord::Base
-  attr_accessible :charge_amount, :charge_id, :event_id, :status
+  attr_accessible :amount, :transaction_id, :schedule_id, :status
 end

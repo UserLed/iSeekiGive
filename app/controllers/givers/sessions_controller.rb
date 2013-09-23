@@ -126,7 +126,7 @@ class Givers::SessionsController < ApplicationController
       rejected_schedule = current_user.schedules.where(:schedule_time => params[:schedule])
       
       if rejected_schedule.first.destroy
-        render :text => "Schedue deleted"
+        render :text => "Schedule deleted"
         return
       else
         render :text => "Something went wrong"
@@ -137,6 +137,65 @@ class Givers::SessionsController < ApplicationController
       render :text => "Something went wrong"
     end
 
+  end
+
+  def accept_schedule
+    logger.debug "=====#{params.inspect}"
+    if current_user.schedules.exists?(:schedule_time => params[:schedule])
+      accept_schedule = current_user.schedules.where("schedule_time=?", params[:schedule])
+      schedule_id = accept_schedule.first.id
+
+      if is_schedule_time_paid(schedule_id)
+        # Schedule time already paid.
+      else
+        seeker_id = accept_schedule.first.seeker_id
+        deduct_amount_from(seeker_id, schedule_id)
+        logger.debug "===== Seeker ID: #{seeker_id} - Schedule ID: #{schedule_id} ====="
+        accept_schedule.first.update_column(:status,:accepted)
+      end
+
+      render :text => :ok
+      return
+    else
+      render :text => "Something went wrong"
+    end
+  end
+
+  def deduct_amount_from(user_id, schedule_id)
+    hourly_rate = 20
+    target_user = User.find(user_id)
+    if target_user.billing_setting
+      # Billing information is present
+      logger.debug "===== Seeker's(#{target_user}) Billing information is present ====="
+
+      # Deduct charge from client
+
+      transaction = target_user.billing_setting.transaction(hourly_rate, 'deduct')
+      Payment.create(:transaction_id => transaction.id, :schedule_id => schedule_id,
+                           :amount => hourly_rate, :status => transaction.paid)
+      logger.debug "===== Payment Status: #{transaction.id} - #{transaction.paid} ====="
+
+    else
+      # === Client's Billing Setting not present
+      logger.debug "===== Seeker's(#{target_user}) Billing information not present ====="
+    end
+  end
+
+  def is_schedule_time_paid(schedule_id)
+    schedule = Schedule.find(schedule_id)
+    if schedule && schedule.status == 'accepted'
+      logger.debug "===== Schedule - #{schedule_id} is already paid. ====="
+      return true
+    else
+      logger.debug "===== Schedule - #{schedule_id} is not paid. ====="
+      return false
+    end
+  end
+
+  def get_schedule_data
+    logger.debug "=====#{params.inspect}"
+    data = Schedule.where("schedule_time=?",params[:q]) if params[:q].present?
+    render :json => data.first.to_json
   end
 
 	
