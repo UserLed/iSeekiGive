@@ -52,6 +52,7 @@ class GiversController < ApplicationController
           schedule = Schedule.new
           schedule.giver_id = params[:id]
           schedule.seeker_id = current_user.id
+          schedule.seeker_name = (current_user.first_name unless current_user.first_name.nil?) +" "+ (current_user.last_name unless current_user.last_name.nil?)
           schedule.schedule_time = time_slot
           schedule.description = params[:description]
           schedule.save

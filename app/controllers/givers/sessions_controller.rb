@@ -126,7 +126,7 @@ class Givers::SessionsController < ApplicationController
       rejected_schedule = current_user.schedules.where(:schedule_time => params[:schedule])
       
       if rejected_schedule.first.destroy
-        render :text => "Schedue deleted"
+        render :text => "Schedule deleted"
         return
       else
         render :text => "Something went wrong"
@@ -137,6 +137,24 @@ class Givers::SessionsController < ApplicationController
       render :text => "Something went wrong"
     end
 
+  end
+
+  def accept_schedule
+    logger.debug "=====#{params.inspect}"
+    if current_user.schedules.exists?(:schedule_time => params[:schedule])
+      accept_schedule = current_user.schedules.where("schedule_time=?", params[:schedule])
+      accept_schedule.first.update_column(:status,:accepted)
+      render :text => :ok
+      return
+    else
+      render :text => "Something went wrong"
+    end
+  end
+
+  def get_schedule_data
+    logger.debug "=====#{params.inspect}"
+    data = Schedule.where("schedule_time=?",params[:q]) if params[:q].present?
+    render :json => data.first.to_json
   end
 
 	

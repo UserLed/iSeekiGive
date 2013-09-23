@@ -337,6 +337,9 @@ select.date-select {
 .selected_already{
     background-color: red;
 }
+.reserved_schedule{
+    background-color: skyblue;
+}
 
 .availability_table, .availability_table tr th, .availability_table tr td {
     /*border-color: #68228B;*/
