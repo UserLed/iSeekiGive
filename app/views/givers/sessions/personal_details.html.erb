@@ -148,7 +148,7 @@
       show: false
     });
     var modal_id = [];
-    $(document).on("click",".selected_already", function(){
+    $(document).on("click",".schedule_pending", function(){
       
       var schedule_id = this.id;
       modal_id.push(schedule_id);
@@ -178,7 +178,7 @@
           data:{schedule: schedule_id},
 
           success:function(){
-            $("#"+ schedule_id).removeClass("selected_already");
+            $("#"+ schedule_id).removeClass("schedule_pending");
             $("#"+schedule_id).addClass("selected");
           },
 
@@ -200,7 +200,7 @@
             data   :{schedule: schedule_id},
 
             success: function(){
-              $("#"+schedule_id).removeClass("selected_already");
+              $("#"+schedule_id).removeClass("schedule_pending");
               $("#"+schedule_id).addClass("reserved_schedule");
             },
 
