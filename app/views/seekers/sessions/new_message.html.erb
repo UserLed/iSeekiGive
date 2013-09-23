@@ -9,7 +9,7 @@
     <%= label_tag "Subject" %>
     <%= text_field_tag :subject %>
     <br/>
-    <%= text_area_tag :content %>
+    <%= text_area_tag :content,nil,:size => "25x10", :style => "width: 500px" %>
     <br/>
     <%= submit_tag "Send", :class => 'btn btn-success' %>
   <% end %>

@@ -120,5 +120,25 @@ class Givers::SessionsController < ApplicationController
 	  render :nothing => true
 	end
 
+
+  def reject_schedule
+    logger.debug "#{params.inspect}"
+    if current_user.schedules.exists?(:schedule_time => params[:schedule])
+      rejected_schedule = current_user.schedules.where(:schedule_time => params[:schedule])
+      
+      if rejected_schedule.first.destroy
+        render :text => "Schedue deleted"
+        return
+      else
+        render :text => "Something went wrong"
+        return
+      end
+    
+    else 
+      render :text => "Something went wrong"
+    end
+
+  end
+
 	
 end

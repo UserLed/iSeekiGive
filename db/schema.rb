@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(:version => 20130918061630) do
     t.datetime "expires_at"
   end
 
+  create_table "billing_settings", :force => true do |t|
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "user_id"
+    t.string   "stripe_id"
+    t.string   "card_last_four_digits"
+    t.date     "card_expiry_date"
+    t.string   "card_type"
+    t.string   "card_holder_name"
+  end
+
   create_table "connections", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -135,6 +146,15 @@ ActiveRecord::Schema.define(:version => 20130918061630) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "payments", :force => true do |t|
+    t.integer  "charge_id"
+    t.integer  "event_id"
+    t.integer  "charge_amount"
+    t.string   "status"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "phone_numbers", :force => true do |t|
     t.integer  "user_id"
     t.string   "number"
@@ -151,6 +171,24 @@ ActiveRecord::Schema.define(:version => 20130918061630) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "save_game_tags", :force => true do |t|
+    t.string   "tag_name"
+    t.string   "experience_name"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "schedules", :force => true do |t|
+    t.integer  "giver_id"
+    t.integer  "seeker_id"
+    t.string   "schedule_time"
+    t.string   "description"
+    t.string   "status",        :default => "pending"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "skills", :force => true do |t|

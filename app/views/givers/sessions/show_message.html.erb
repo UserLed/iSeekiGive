@@ -10,7 +10,7 @@
 
   <%= label_tag "Reply" %>
   <br/>
-  <%= text_area_tag :content  %>
+  <%= text_area_tag :content, nil, :size => "25x10", :style => "width: 500px" %>
   <br/>
   <%= submit_tag "Reply", :class => 'btn btn-primary' %>
 <% end %>

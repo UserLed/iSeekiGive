@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  giver_id: 1
+  seeker_id: 1
+  schedule_time: MyString
+  status: MyString
+
+two:
+  giver_id: 1
+  seeker_id: 1
+  schedule_time: MyString
+  status: MyString
