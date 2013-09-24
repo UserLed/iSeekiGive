@@ -23,7 +23,7 @@ class Givers::SessionsController < ApplicationController
 
   def manage_requests
     @giver = Giver.find(params[:giver_id])
-    @giver_schedules = @giver.schedules
+    @giver_schedules = @giver.schedules.where("created_at >? AND created_at < ?", Date.today.beginning_of_week, Date.today.end_of_week)
   end
 
   def session_request_reject
@@ -44,7 +44,7 @@ class Givers::SessionsController < ApplicationController
       if schedule then schedule.update_column(:status, "accepted") end
     end
     @giver_schedules = current_user.schedules
-      
+
     respond_to do |format|
       format.js
     end
