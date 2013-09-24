@@ -1,0 +1,5 @@
+<% unless @giver_schedules.blank? %>
+	<%= render :partial => "giver_requests", :locals => {:giver_schedules => @giver_schedules} %>
+<% else %>
+	<p class="info">You dont have any schedule request</p>
+<% end %>

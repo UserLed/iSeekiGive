@@ -23,6 +23,31 @@ class Givers::SessionsController < ApplicationController
 
   def manage_requests
     @giver = Giver.find(params[:giver_id])
+    @giver_schedules = @giver.schedules
+  end
+
+  def session_request_reject
+    unless params[:id].nil?
+      schedule = Schedule.find(params[:id])
+      if schedule then schedule.destroy end
+    end
+    @giver_schedules = current_user.schedules
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def session_request_accept
+    unless params[:id].nil?
+      schedule = Schedule.find(params[:id])
+      if schedule then schedule.update_column(:status, "accepted") end
+    end
+    @giver_schedules = current_user.schedules
+      
+    respond_to do |format|
+      format.js
+    end
   end
 
   def inbox
