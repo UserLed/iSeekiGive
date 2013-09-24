@@ -114,9 +114,9 @@ ActiveRecord::Schema.define(:version => 20130924091841) do
 
   create_table "games", :force => true do |t|
     t.integer  "giver_id"
-    t.boolean  "change_major",                   :default => false
+    t.boolean  "change_major",      :default => false
     t.text     "study_majors"
-    t.boolean  "another_locations",              :default => false
+    t.boolean  "another_locations", :default => false
     t.text     "locations"
     t.text     "good_story"
     t.text     "bad_story"
@@ -124,21 +124,14 @@ ActiveRecord::Schema.define(:version => 20130924091841) do
     t.text     "good_keywords"
     t.text     "bad_keywords"
     t.text     "ugly_keywords"
-    t.boolean  "good_anonymous",                 :default => false
-    t.boolean  "bad_anonymous",                  :default => false
-    t.boolean  "ugly_anonymous",                 :default => false
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
-    t.integer  "completed_step_1",  :limit => 1, :default => 0
-    t.integer  "completed_step_2",  :limit => 1, :default => 0
-    t.integer  "completed_step_3",  :limit => 1, :default => 0
-  end
-
-  create_table "keywords", :force => true do |t|
-    t.text     "story_keyword"
-    t.integer  "game_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.boolean  "good_anonymous",    :default => false
+    t.boolean  "bad_anonymous",     :default => false
+    t.boolean  "ugly_anonymous",    :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "completed_step_1",  :default => false
+    t.boolean  "completed_step_2",  :default => false
+    t.boolean  "completed_step_3",  :default => false
   end
 
   create_table "messages", :force => true do |t|
@@ -178,14 +171,6 @@ ActiveRecord::Schema.define(:version => 20130924091841) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
-  end
-
-  create_table "save_game_tags", :force => true do |t|
-    t.string   "tag_name"
-    t.string   "experience_name"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "schedules", :force => true do |t|

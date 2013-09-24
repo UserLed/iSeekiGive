@@ -3,14 +3,14 @@
       <tr>
         <th>Requested Session</th>
         <th>Message</th>
-        <th>Seeker Name</th>
+        <th>Giver Name</th>
         <th>status</th>
       </tr>
       <% seeker_schedules.each do |schedule| %>
           <tr class="<%= schedule.status.eql?("pending") ? "warning" : "success" %>">
             <td><%= extended_schedule_view(schedule.schedule_time) %></td>
             <td><%= schedule.description %></td>
-            <td><%= schedule.seeker_name %></td>
+            <td><%= schedule.giver_name %></td>
 
             <% if schedule.status.eql?("pending") %>
                 <td>
