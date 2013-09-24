@@ -6,8 +6,9 @@ class Seekers::SessionsController < ApplicationController
   end
 
   def inbox
-  	@messages= Message.where("from_id=? OR to_id=?", current_user.id, current_user.id)
-  	@messages_count = @messages.count
+  	#@messages= Message.where("sender_id=? OR recipient_id=?", current_user.id, current_user.id)
+    @messages= Message.receive_messages(current_user)
+    @messages_count = @messages.count
   	@messages = @messages.group("uid")
   end
 
@@ -20,10 +21,10 @@ class Seekers::SessionsController < ApplicationController
   		message = Message.new
 
   		message.from = params[:from] if params[:from].present?
-  		message.from_id = current_user.id
+  		message.sender_id = current_user.id
 
   		message.to = params[:to] if params[:to].present?
-  		message.to_id= @to.id
+  		message.recipient_id= @to.id
 
   		message.subject = params[:subject] if params[:subject].present?
   		message.content = params[:content] if params[:content].present?
@@ -49,10 +50,10 @@ class Seekers::SessionsController < ApplicationController
   		reply = Message.new
   		
   		reply.from = current_user.email
-  		reply.from_id = current_user.id
+  		reply.sender_id = current_user.id
 
   		reply.to =  (current_user.email.eql?(message.from)) ? message.to : message.from
-  		reply.to_id = (current_user.id.eql?(message.from_id)) ? message.to_id : message.from_id
+  		reply.recipient_id = (current_user.id.eql?(message.sender_id)) ? message.recipient_id : message.sender_id
 
   		reply.subject = message.subject
   		reply.content = params[:content] if params[:content].present?

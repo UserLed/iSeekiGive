@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923075400) do
+ActiveRecord::Schema.define(:version => 20130924103943) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -137,13 +137,16 @@ ActiveRecord::Schema.define(:version => 20130923075400) do
   create_table "messages", :force => true do |t|
     t.string   "from"
     t.string   "to"
-    t.integer  "from_id"
-    t.integer  "to_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
     t.string   "subject"
     t.text     "content"
     t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "is_read",      :default => false
+    t.boolean  "is_starred",   :default => false
+    t.boolean  "is_archived",  :default => false
   end
 
   create_table "payments", :force => true do |t|

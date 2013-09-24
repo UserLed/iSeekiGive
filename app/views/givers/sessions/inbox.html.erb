@@ -1,5 +1,21 @@
 <h2>INBOX(<%= @messages_count %>)</h2>
-<% @messages.each do |message| %>
-	<%= link_to message.subject, show_message_giver_sessions_path(params[:giver_id], message.uid) %>
-<% end %>
+<table>
+  <thead>
+    <th>Sender</th>
+    <th>Last Message</th>
+    <th>Updated</th>
+  </thead>
+  <tbody>
+  <% @messages.each do |msg| %>
+      <tr>
+        <td><%= msg.sender.name%>m</td>
+        <td><%= link_to msg.content, show_message_giver_sessions_path(current_user.id, msg.uid) %></td>
+        <td><%= msg.updated_at %></td>
+      </tr>
+
+  <% end %>
+
+
+  </tbody>
+</table>
 

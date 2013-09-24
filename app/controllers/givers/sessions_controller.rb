@@ -25,29 +25,25 @@ class Givers::SessionsController < ApplicationController
     @giver = Giver.find(params[:giver_id])
   end
 
-  def inbox
-    @giver = Giver.find(params[:giver_id])
-  end
 
   def inbox
-  	@messages= Message.where("from_id=? OR to_id=?", current_user.id, current_user.id)
+    @messages= Message.inbox(current_user)
+    logger.info "Message list :: #{@messages.inspect}"
   	@messages_count = @messages.count
-  	@messages = @messages.group("uid")
   end
 
   def new_message
   	require 'securerandom'
+  	@to = User.find 11  #might also be seeker_id   static set for temp
 
-  	@to = User.find(params[:giver_id])   #might also be seeker_id
-  	
   	if request.post?
   		message = Message.new
 
   		message.from = params[:from] if params[:from].present?
-  		message.from_id = current_user.id
+  		message.sender_id = current_user.id
 
   		message.to = params[:to] if params[:to].present?
-  		message.to_id= @to.id
+  		message.recipient_id= @to.id
 
   		message.subject = params[:subject] if params[:subject].present?
   		message.content = params[:content] if params[:content].present?
@@ -74,10 +70,10 @@ class Givers::SessionsController < ApplicationController
   		reply = Message.new
   		
   		reply.from = current_user.email
-  		reply.from_id = current_user.id
+  		reply.sender_id = current_user.id
 
   		reply.to =  (current_user.email.eql?(message.from)) ? message.to : message.from
-  		reply.to_id = (current_user.id.eql?(message.from_id)) ? message.to_id : message.from_id
+  		reply.recipient_id = (current_user.id.eql?(message.sender_id)) ? message.recipient_id : message.sender_id
 
   		reply.subject = message.subject
   		reply.content = params[:content] if params[:content].present?
