@@ -54,9 +54,9 @@ class GiversController < ApplicationController
           unless Giver.find(params[:id]).schedules.exists?(:schedule_time => time_slot)
             schedule = Schedule.new
             schedule.giver_id = params[:id]
-            schedule.giver_name = giver.name
+            schedule.giver_name = giver.full_name
             schedule.seeker_id = current_user.id
-            schedule.seeker_name = current_user.name
+            schedule.seeker_name = current_user.full_name
             schedule.schedule_time = time_slot
             schedule.description = params[:description]
             schedule.save
