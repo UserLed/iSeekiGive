@@ -8,7 +8,7 @@
 		</tr>
 	<% giver_schedules.each do |schedule| %>
 		<tr class="<%= schedule.status.eql?("pending") ? "warning" : "success" %>">
-			<td><%= schedule.schedule_time %></td>
+			<td><%= extended_schedule_view(schedule.schedule_time) %></td>
 			<td><%= schedule.description %></td>
 			<td><%= schedule.seeker_name %></td>
 
@@ -31,7 +31,7 @@
 
 	<% end %>
 	</table>
-	
+
 <% else %>
 	<p class="info">You dont have any schedule request</p>
 <% end %>
