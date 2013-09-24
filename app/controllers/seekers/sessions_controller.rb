@@ -5,6 +5,23 @@ class Seekers::SessionsController < ApplicationController
     @seeker = Seeker.find(params[:seeker_id])
   end
 
+  def manage_requests
+    @seeker_schedules = current_user.schedules
+
+  end
+
+  def session_request_reject
+    unless params[:id].nil?
+      schedule = Schedule.find(params[:id])
+      if schedule then schedule.destroy end
+    end
+    @seeker_schedules = current_user.schedules
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def inbox
   	@messages= Message.where("from_id=? OR to_id=?", current_user.id, current_user.id)
   	@messages_count = @messages.count
