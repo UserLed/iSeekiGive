@@ -15,3 +15,14 @@
 		<%= submit_tag "Send", :class => 'btn btn-success' %>
 	<% end %>
 </div>
+
+<div class="span6">
+  <%= form_for @message, :as => :message, :url => messages_new_seeker_sessions_path(current_user), :method => :post do |f| %>
+      <%= label_tag "To" %>
+      <%= f.hidden_field :recipient_id, :value => @to.id %>  <%= @to.name %>
+      <br/>
+      <%= f.text_area :content, :size => "25x10", :style => "width: 500px" %>
+      <br/>
+      <%= f.submit 'Save', :class => 'btn btn-success' %>
+  <% end %>
+</div>

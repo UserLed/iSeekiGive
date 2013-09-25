@@ -6,68 +6,55 @@ class Seekers::SessionsController < ApplicationController
   end
 
   def inbox
-  	#@messages= Message.where("sender_id=? OR recipient_id=?", current_user.id, current_user.id)
-    @messages= Message.receive_messages(current_user)
+    Message.update_messages(params) if request.post? && params[:message_ids].present?
+    @messages= Message.inbox(current_user, params)
     @messages_count = @messages.count
-  	@messages = @messages.group("uid")
+
   end
 
   def new_message
-  	require 'securerandom'
-
-  	@to = Giver.find(params[:giver])
-
-  	if request.post?
-  		message = Message.new
-
-  		message.from = params[:from] if params[:from].present?
-  		message.sender_id = current_user.id
-
-  		message.to = params[:to] if params[:to].present?
-  		message.recipient_id= @to.id
-
-  		message.subject = params[:subject] if params[:subject].present?
-  		message.content = params[:content] if params[:content].present?
-
-  		message.uid = SecureRandom.uuid
-
-	  	if message.save
-	  		redirect_to inbox_seeker_sessions_path(current_user), :notice => "message was sent successfully"
-	  		return
-	  	else
-	  		render 'new_message'
-	  	end
-	end
-
-  end
-
-
-  def show_message
-  	@messages = Message.where('uid=?',params[:uid])
-  	
-  	if request.post?
-  		message = @messages.first
-  		reply = Message.new
-  		
-  		reply.from = current_user.email
-  		reply.sender_id = current_user.id
-
-  		reply.to =  (current_user.email.eql?(message.from)) ? message.to : message.from
-  		reply.recipient_id = (current_user.id.eql?(message.sender_id)) ? message.recipient_id : message.sender_id
-
-  		reply.subject = message.subject
-  		reply.content = params[:content] if params[:content].present?
-
-  		reply.uid = message.uid
-
-  		if reply.save
-  			redirect_to inbox_seeker_sessions_path(current_user), :notice => "Reply was successful"
-  			return
-  		else
-  			render 'show_message'
+    require 'securerandom'
+    @to = User.find 10 #might also be giver_id  static set for temp
+    if request.post?
+      @message = Message.new(params[:message])
+      @message.sender_id = current_user.id
+      recipient = Message.receive_msg_by_user(@to.id)
+      if recipient.empty?
+        @message.uid = SecureRandom.uuid
+      else
+        @message.uid = recipient.first.uid
       end
+      if @message.save!
+        redirect_to inbox_seeker_sessions_path(current_user), :notice => "message was sent successfully"
+        return
+      else
+        @message = Message.new
+        render 'new_message'
+      end
+    end
 
-  	end
+end
+
+
+def show_message
+  @messages = Message.where('uid=? AND (recipient_id = ? OR sender_id = ?)', params[:uid], current_user.id, current_user.id)
+  @reply = Message.new
+  if request.post?
+    message = @messages.first
+    @reply = Message.new(params[:message])
+    @reply.sender_id = current_user.id
+    @reply.recipient_id = (current_user.id.eql?(message.sender_id)) ? message.recipient_id : message.sender_id
+    @reply.uid = message.uid
+
+    if @reply.save!
+      redirect_to inbox_seeker_sessions_path(current_user), :notice => "Reply was successful"
+      return
+    else
+      render 'show_message'
+    end
   end
+
+
+end
 
 end

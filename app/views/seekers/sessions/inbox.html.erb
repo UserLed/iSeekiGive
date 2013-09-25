@@ -1,5 +1,11 @@
-<h2>INBOX(<%= @messages_count %>)</h2>
-<% @messages.each do |message| %>
-	<%= link_to message.subject, show_message_seeker_sessions_path(params[:seeker_id], message.uid) %>
-<% end %>
+<h2>  <%= link_to "INBOX(#{@messages_count})", inbox_seeker_sessions_path(current_user) %> </h2>
+<%= render :partial => 'inbox_type_link' %>
+
+<%= render :partial => 'inbox_mark_as' %>
+
+<%= render :partial => 'seekers_inbox_body' %>
+
+
+
+
 

@@ -1,21 +1,10 @@
-<h2>INBOX(<%= @messages_count %>)</h2>
-<table>
-  <thead>
-    <th>Sender</th>
-    <th>Last Message</th>
-    <th>Updated</th>
-  </thead>
-  <tbody>
-  <% @messages.each do |msg| %>
-      <tr>
-        <td><%= msg.sender.name%>m</td>
-        <td><%= link_to msg.content, show_message_giver_sessions_path(current_user.id, msg.uid) %></td>
-        <td><%= msg.updated_at %></td>
-      </tr>
+<h2>  <%= link_to "INBOX(#{@messages_count})", inbox_giver_sessions_path(current_user) %> </h2>
+<%= render :partial => 'inbox_type_link' %>
 
-  <% end %>
+<%= render :partial => 'inbox_mark_as' %>
+
+<%= render :partial => 'givers_inbox_body' %>
 
 
-  </tbody>
-</table>
+
 

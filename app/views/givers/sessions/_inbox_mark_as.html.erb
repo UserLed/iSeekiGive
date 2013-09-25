@@ -1,0 +1,9 @@
+<div>
+  <h3>Mark As </h3>
+  <%= button_tag 'Archived',:id => 'msg_archived',:type => :button, :value=>'archived', :class => 'msg_mark' unless params[:type] == 'archived' %>
+  <%= button_tag 'Un Archived',:id => 'msg_read',:type => :button, :value=>'un_archived', :class => 'msg_mark' if params[:type] == 'archived' %>
+  <%= button_tag 'Read',:id => 'msg_read',:type => :button, :value=>'read', :class => 'msg_mark' unless params[:type] == 'read' %>
+  <%= button_tag 'Unread',:id => 'msg_read',:type => :button, :value=>'un_read', :class => 'msg_mark' if params[:type] == 'read' %>
+  <%= button_tag 'Starred',:id => 'msg_read',:type => :button, :value=>'starred', :class => 'msg_mark' unless params[:type] == 'starred'  %>
+  <%= button_tag 'Un Starred',:id => 'msg_read',:type => :button, :value=>'un_starred', :class => 'msg_mark' if params[:type] == 'starred' %>
+</div>

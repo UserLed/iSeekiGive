@@ -27,6 +27,7 @@ ISeekiGive::Application.routes.draw do
         get :inbox
         match 'messages/new' => 'seekers/sessions#new_message'
         match 'messages/:uid'  => 'seekers/sessions#show_message', :as => "show_message"
+        match 'inbox/:type'  => 'seekers/sessions#inbox', :as => "inbox_type"
       end
     end
   end
@@ -54,6 +55,7 @@ ISeekiGive::Application.routes.draw do
         get :inbox
         match 'messages/new' => 'givers/sessions#new_message'
         match 'messages/:uid'  => 'givers/sessions#show_message', :as => "show_message"
+        match 'inbox/:type'  => 'givers/sessions#inbox', :as => "inbox_type"
         post :time_slot_save
         post :reject_schedule
         get  :get_schedule_data

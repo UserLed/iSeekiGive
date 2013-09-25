@@ -1,0 +1,34 @@
+<%= form_tag '', :id =>'inbox_messages_form' do %>
+    <%= hidden_field_tag 'mark_as'%>
+    <table>
+      <thead>
+      <tr>
+        <th></th>
+        <th>Sender</th>
+        <th>Last Message</th>
+        <th>Updated</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @messages.each do |msg| %>
+          <tr>
+            <td><%= check_box_tag "message_ids[]", msg.uid, false, :id => "msg_#{msg.id}" %></td>
+            <td><%= msg.sender.name %>m</td>
+            <td><%= link_to msg.content, show_message_seeker_sessions_path(current_user.id, msg.uid) %></td>
+            <td><%= msg.updated_at %></td>
+          </tr>
+
+      <% end %>
+
+
+      </tbody>
+    </table>
+<% end %>
+
+<script type="text/javascript">
+    $('.msg_mark').click(function(){
+        $("#mark_as").attr("value",$(this).val());
+        $('form#inbox_messages_form').submit();
+    })
+
+</script>
