@@ -22,8 +22,22 @@ class Givers::SessionsController < ApplicationController
   end
 
   def manage_requests
-    @giver = Giver.find(params[:giver_id])
-    @giver_schedules = @giver.schedules.where("created_at >? AND created_at < ?", Date.today.beginning_of_week, Date.today.end_of_week)
+    @this_week = Date.today.strftime("%U").to_i
+    @prev_week = @this_week-1 
+    @next_week = @this_week+1
+    @giver = Giver.find(params[:giver_id]) 
+    
+    if (params[:week].present?) && (0< params[:week].to_i) && (53 > params[:week].to_i )
+      target_week = params[:week].to_i
+      @interval = (@this_week - target_week) * 7
+      @prev_week = target_week-1 
+      @next_week = target_week+1
+      @giver_schedules = @giver.schedules.where("created_at >? AND created_at < ?", @interval.days.ago.beginning_of_week, @interval.days.ago.end_of_week)
+
+    else
+      @giver_schedules = @giver.schedules.where("created_at >? AND created_at < ?", Date.today.beginning_of_week, Date.today.end_of_week)
+    end
+
   end
 
   def session_request_reject

@@ -1,2 +1,12 @@
+<h2 class="text-left"><%= link_to "prev", manage_requests_giver_sessions_path(current_user,:week => @prev_week) %></h2>
+<% if @interval.present? %>
+	<h3 class="text-center"><%= @interval.days.ago.beginning_of_week.strftime("%B %d") + " - " + @interval.days.ago.end_of_week.strftime("%B %d") %></h3>
+<% else %>
+	<h3 class="text-center"><%= Date.today.beginning_of_week.strftime("%B %d") + " - " + Date.today.end_of_week.strftime("%B %d") %></h3>
+<% end %>
+
+<h2 class="text-right"><%= link_to "next", manage_requests_giver_sessions_path(current_user,:week => @next_week) %></h2>
+<br/>
+<%= session[:week_no] %>
 <%= render :partial => "giver_requests", :locals => {:giver_schedules => @giver_schedules} %>
 
