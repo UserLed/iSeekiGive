@@ -29,7 +29,7 @@ class Givers::SessionsController < ApplicationController
     
     if (params[:week].present?) && (0< params[:week].to_i) && (53 > params[:week].to_i )
       target_week = params[:week].to_i
-      @interval = (@this_week - target_week).abs * 7
+      @interval = (@this_week - target_week) * 7
       @prev_week = target_week-1 
       @next_week = target_week+1
       @giver_schedules = @giver.schedules.where("created_at BETWEEN ? AND  ?", @interval.days.ago.beginning_of_week, @interval.days.ago.end_of_week)
@@ -41,7 +41,7 @@ class Givers::SessionsController < ApplicationController
   end
 
   def session_request_reject
-    interval = ((Date.today.strftime("%U").to_i - params[:week].to_i).abs) * 7
+    interval = ((Date.today.strftime("%U").to_i - params[:week].to_i)) * 7
     
     unless params[:id].nil?
       schedule = Schedule.find(params[:id])
@@ -56,7 +56,7 @@ class Givers::SessionsController < ApplicationController
   end
 
   def session_request_accept
-    interval = ((Date.today.strftime("%U").to_i - params[:week].to_i).abs) * 7
+    interval = ((Date.today.strftime("%U").to_i - params[:week].to_i)) * 7
     
     unless params[:id].nil?
       schedule = Schedule.find(params[:id])

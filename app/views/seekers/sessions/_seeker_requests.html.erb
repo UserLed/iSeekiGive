@@ -19,7 +19,7 @@
             <% if schedule.status.eql?("pending") %>
                 <td>
                   <%= link_to schedule.status, "javascript:void(0)", :class => "btn btn-warning disabled" %> |
-                  <%= link_to "Reject",session_request_reject_seeker_sessions_path(current_user,:id => schedule.id),:remote => true, :class => "btn btn-danger" %>
+                  <%= link_to "Reject",session_request_reject_seeker_sessions_path(current_user,:id => schedule.id, :week => params[:week]),:remote => true, :class => "btn btn-danger" %>
                 </td>
 
             <% else %>

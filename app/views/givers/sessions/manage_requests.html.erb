@@ -7,6 +7,6 @@
 
 <p class="text-right"><%= link_to "next", manage_requests_giver_sessions_path(current_user,:week => @next_week) %></p>
 <br/>
-<%= session[:week_no] %>
+
 <%= render :partial => "giver_requests", :locals => {:giver_schedules => @giver_schedules} %>
 

@@ -6,16 +6,33 @@ class Seekers::SessionsController < ApplicationController
   end
 
   def manage_requests
-    @seeker_schedules = current_user.schedules
+    @this_week = Date.today.strftime("%U").to_i
+    @prev_week = @this_week-1 
+    @next_week = @this_week+1
+    @seeker = Seeker.find(params[:seeker_id]) 
+
+    
+    if (params[:week].present?) && (0< params[:week].to_i) && (53 > params[:week].to_i )
+      target_week = params[:week].to_i
+      @interval = (@this_week - target_week) * 7
+      @prev_week = target_week-1 
+      @next_week = target_week+1
+      @seeker_schedules = @seeker.schedules.where("created_at BETWEEN ? AND  ?", @interval.days.ago.beginning_of_week, @interval.days.ago.end_of_week)
+
+    else
+      @seeker_schedules = @seeker.schedules.where("created_at BETWEEN ? AND ?", Date.today.beginning_of_week, Date.today.end_of_week)
+    end
 
   end
 
   def session_request_reject
+    interval = ((Date.today.strftime("%U").to_i - params[:week].to_i)) * 7
+
     unless params[:id].nil?
       schedule = Schedule.find(params[:id])
       if schedule then schedule.destroy end
     end
-    @seeker_schedules = current_user.schedules
+    @seeker_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", interval.days.ago.beginning_of_week, interval.days.ago.end_of_week)
 
     respond_to do |format|
       format.js
