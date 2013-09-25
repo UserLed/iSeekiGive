@@ -16,15 +16,15 @@
 			<% if schedule.status.eql?("accepted") %>
 				<td>
 				<%= link_to schedule.status, session_request_accept_giver_sessions_path(current_user,:id => schedule.id), :remote => true, :class => "btn btn-success disabled" %> |
-				<%= link_to "Reject",session_request_reject_giver_sessions_path(current_user,:id => schedule.id),:remote => true, :class => "btn btn-danger" %>
+				<%= link_to "Reject",session_request_reject_giver_sessions_path(current_user,:id => schedule.id, :week => (params[:week] if params[:week].present?)),:remote => true, :class => "btn btn-danger" %>
 				</td>
 			
 			<% else %>
 			
 			<td>
 			<%= link_to schedule.status, "javascript:void(0)",:remote => true, :class => "btn btn-danger pending disabled" %>|
-			<%= link_to "Accept",session_request_accept_giver_sessions_path(current_user,:id => schedule.id),:remote => true, :class => "btn btn-success" %> |
-			<%= link_to "Reject",session_request_reject_giver_sessions_path(current_user,:id => schedule.id),:remote => true, :class => "btn btn-danger" %>
+			<%= link_to "Accept",session_request_accept_giver_sessions_path(current_user,:id => schedule.id,:week => (params[:week] if params[:week].present?)),:remote => true, :class => "btn btn-success" %> |
+			<%= link_to "Reject",session_request_reject_giver_sessions_path(current_user,:id => schedule.id, :week => (params[:week] if params[:week].present?)),:remote => true, :class => "btn btn-danger" %>
 			</td>
 			
 			<% end %>	

@@ -29,23 +29,26 @@ class Givers::SessionsController < ApplicationController
     
     if (params[:week].present?) && (0< params[:week].to_i) && (53 > params[:week].to_i )
       target_week = params[:week].to_i
-      @interval = (@this_week - target_week) * 7
+      @interval = (@this_week - target_week).abs * 7
       @prev_week = target_week-1 
       @next_week = target_week+1
-      @giver_schedules = @giver.schedules.where("created_at >? AND created_at < ?", @interval.days.ago.beginning_of_week, @interval.days.ago.end_of_week)
+      @giver_schedules = @giver.schedules.where("created_at BETWEEN ? AND  ?", @interval.days.ago.beginning_of_week, @interval.days.ago.end_of_week)
 
     else
-      @giver_schedules = @giver.schedules.where("created_at >? AND created_at < ?", Date.today.beginning_of_week, Date.today.end_of_week)
+      @giver_schedules = @giver.schedules.where("created_at BETWEEN ? AND ?", Date.today.beginning_of_week, Date.today.end_of_week)
     end
 
   end
 
   def session_request_reject
+    interval = ((Date.today.strftime("%U").to_i - params[:week].to_i).abs) * 7
+    
     unless params[:id].nil?
       schedule = Schedule.find(params[:id])
       if schedule then schedule.destroy end
     end
-    @giver_schedules = current_user.schedules
+    
+    @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", interval.days.ago.beginning_of_week, interval.days.ago.end_of_week)
 
     respond_to do |format|
       format.js
@@ -53,11 +56,14 @@ class Givers::SessionsController < ApplicationController
   end
 
   def session_request_accept
+    interval = ((Date.today.strftime("%U").to_i - params[:week].to_i).abs) * 7
+    
     unless params[:id].nil?
       schedule = Schedule.find(params[:id])
       if schedule then schedule.update_column(:status, "accepted") end
     end
-    @giver_schedules = current_user.schedules
+    
+    @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", interval.days.ago.beginning_of_week, interval.days.ago.end_of_week)
 
     respond_to do |format|
       format.js
