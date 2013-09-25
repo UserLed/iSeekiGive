@@ -1,15 +1,15 @@
 <% if @messages.present? %>
-<% @messages.each do |message| %>
-	<div>
-	<p><%= message.sender.name %> says....(<%= distance_of_time_in_words(Time.now-message.created_at)%> ago)  </p>
-	<p> <%= message.content %> </p>
-	<hr/>
-	</div>
-<% end %>
+    <% @messages.each do |message| %>
+        <div>
+          <p><%= message.sender.name %> says....(<%= distance_of_time_in_words(Time.now-message.created_at) %> ago) </p>
+          <p> <%= message.content %> </p>
+          <hr/>
+        </div>
+    <% end %>
 
-<%= form_for @reply, :as => :message, :url => show_message_giver_sessions_path(current_user, @messages.first.uid), :method => :post do |f| %>
-    <%= f.text_area :content, :size => "25x10", :style => "width: 500px" %>
-    <br/>
-    <%= f.submit 'Reply', :class => 'btn btn-success' %>
-<% end %>
+    <%= form_for @reply, :as => :message, :url => show_message_giver_sessions_path(current_user, @messages.first.uid), :method => :post do |f| %>
+        <%= f.text_area :content, :size => "25x10", :style => "width: 500px" %>
+        <br/>
+        <%= f.submit 'Reply', :class => 'btn btn-success' %>
+    <% end %>
 <% end %>
