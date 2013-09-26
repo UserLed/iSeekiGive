@@ -4,7 +4,6 @@ class Givers::SessionsController < ApplicationController
   def index
     @giver = Giver.find(params[:giver_id])
   end
-
   def personal_details
     @giver = Giver.find(params[:giver_id])
 
@@ -15,6 +14,7 @@ class Givers::SessionsController < ApplicationController
                                other_contact_details: params[:other_contact_details],
                                user_time_zone: params[:user_time_zone][:time_zone])
       redirect_to giver_sessions_path(current_user), :notice => "Personal details have been updated"
+
       #render :json => params.inspect + @giver.inspect
       return
 
@@ -22,9 +22,25 @@ class Givers::SessionsController < ApplicationController
   end
 
   def manage_requests
-    @giver = Giver.find(params[:giver_id])
+    @this_week = Date.today.strftime("%U").to_i
+    @prev_week = @this_week-1 
+    @next_week = @this_week+1
+    @giver = Giver.find(params[:giver_id]) 
+    
+    if (params[:week].present?) && (0< params[:week].to_i) && (53 > params[:week].to_i )
+      target_week = params[:week].to_i
+      @interval = (@this_week - target_week) * 7
+      @prev_week = target_week-1 
+      @next_week = target_week+1
+      @giver_schedules = @giver.schedules.where("created_at BETWEEN ? AND  ?", @interval.days.ago.beginning_of_week, @interval.days.ago.end_of_week)
+
+    else
+      @giver_schedules = @giver.schedules.where("created_at BETWEEN ? AND ?", Date.today.beginning_of_week, Date.today.end_of_week)
+    end
+
   end
 
+ 
 
   def inbox
     Message.update_messages(params) if request.post? && params[:message_ids].present?
@@ -53,7 +69,33 @@ class Givers::SessionsController < ApplicationController
       end
     end
 
+  	@to = User.find(params[:giver_id])   #might also be seeker_id
+  	
+  	if request.post?
+  		message = Message.new
+
+  		message.from = params[:from] if params[:from].present?
+  		message.from_id = current_user.id
+
+  		message.to = params[:to] if params[:to].present?
+  		message.to_id= @to.id
+
+  		message.subject = params[:subject] if params[:subject].present?
+  		message.content = params[:content] if params[:content].present?
+
+  		message.uid = SecureRandom.uuid
+  	
+  	
+	  	if message.save
+	  		redirect_to inbox_giver_sessions_path(current_user), :notice => "message was sent successfully"
+	  		return
+	  	else
+	  		render 'new_message'
+	  	end
+	end
+
   end
+
 
   def show_message
     @messages = Message.where('uid=? AND (recipient_id = ? OR sender_id = ?)', params[:uid], current_user.id, current_user.id)
@@ -175,9 +217,9 @@ class Givers::SessionsController < ApplicationController
 
   def get_schedule_data
     logger.debug "=====#{params.inspect}"
-    data = Schedule.where("schedule_time=?", params[:q]) if params[:q].present?
-    render :json => data.first.to_json
+    data = Schedule.where("schedule_time=?",params[:q]) if params[:q].present?
+    render :json => data.first
   end
 
-
+	
 end

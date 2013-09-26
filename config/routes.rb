@@ -24,6 +24,8 @@ ISeekiGive::Application.routes.draw do
     end
     resources :sessions, :only => :index, :controller => "seekers/sessions" do
       collection do
+        match :manage_requests
+        match :session_request_reject
         match :inbox
         get :inbox
         match 'messages/new' => 'seekers/sessions#new_message'
@@ -58,6 +60,8 @@ ISeekiGive::Application.routes.draw do
         match 'messages/:uid'  => 'givers/sessions#show_message', :as => "show_message"
         match 'inbox/:type'  => 'givers/sessions#inbox', :as => "inbox_type"
         post :time_slot_save
+        match :session_request_accept
+        match :session_request_reject
         post :reject_schedule
         get  :get_schedule_data
         post :accept_schedule

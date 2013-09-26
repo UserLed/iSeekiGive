@@ -21,6 +21,13 @@ module GiversHelper
 			end
 		end
 	end
+
+
+	def extended_schedule_view(time_slot)
+		weekdays = {:sat => :Saturday, :sun => :Sunday, :mon => :Monday, :tue => :Tuesday, :wed => :Wednesday, :thu => :Thursday, :fri => :Friday }
+		day,time,time_format = time_slot.split("_")
+		"#{weekdays[day.to_sym]}, #{time} #{time_format}"
+	end
 end
 		  	  
 

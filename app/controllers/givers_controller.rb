@@ -43,18 +43,18 @@ class GiversController < ApplicationController
   end
 
   def create_schedule
-    logger.debug "==#{params.inspect}==#{current_user.id}"
-    if current_user.billing_setting.present?
-      logger.debug "===== User ID: #{current_user.id}, Billing Setting: Present ====="
-      unless params[:time_slots].blank?
+   
+      unless params[:time_slots].blank? && params[:id].blank?
         time_slots = params[:time_slots]
+        giver = Giver.find(params[:id])
 
         time_slots.each do |time_slot|
           unless Giver.find(params[:id]).schedules.exists?(:schedule_time => time_slot)
             schedule = Schedule.new
             schedule.giver_id = params[:id]
+            schedule.giver_name = giver.full_name
             schedule.seeker_id = current_user.id
-            schedule.seeker_name = (current_user.first_name unless current_user.first_name.nil?) +" "+ (current_user.last_name unless current_user.last_name.nil?)
+            schedule.seeker_name = current_user.full_name
             schedule.schedule_time = time_slot
             schedule.description = params[:description]
             schedule.save
@@ -66,12 +66,6 @@ class GiversController < ApplicationController
         render :text => "something went wrong"
         return
       end
-    else
-      logger.debug "===== User ID: #{current_user.id}, Billing Setting: Not Present ====="
-      #redirect_to :controller => :billing_settings, :action => :new
-
-      render :text=> "redirect"
-    end
 
   end
   
