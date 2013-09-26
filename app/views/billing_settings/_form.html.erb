@@ -2,7 +2,7 @@
 <br/>
 <div class='alert-block' style="display:none">
 </div>
-<%= form_tag billing_settings_path, :method =>  :post, :class => 'billing-settings' do %>
+<%= form_tag current_user.type == 'Giver' ? giver_billing_settings_path(current_user) : seeker_billing_settings_path(current_user), :method =>  :post, :class => 'billing-settings' do %>
 
     <%= hidden_field_tag :charge_card, nil, :class => 'charge-card' %>
     <%= hidden_field_tag :stripe_token, nil, :class => 'stripe-token' %>
