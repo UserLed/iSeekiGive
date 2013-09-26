@@ -6,6 +6,7 @@ ISeekiGive::Application.routes.draw do
   resources :phone_numbers
 
   match 'terms-of-service' => 'public#terms_of_service', :as => :terms
+  match 'terms-and-condition' => 'public#terms_and_condition', :as => :terms_n_condition
   match 'privacy' => 'public#privacy', :as => :privacy
 
   resources :seekers do

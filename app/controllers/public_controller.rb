@@ -15,6 +15,10 @@ class PublicController < ApplicationController
   def terms_of_service
   end
 
+  def terms_and_condition
+
+  end
+
   def privacy
   end
 end
