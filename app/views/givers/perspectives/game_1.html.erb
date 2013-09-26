@@ -9,58 +9,68 @@
 </h5>
 
 <div class="row-fluid">
-  <%= form_for(@game, :url => "") do |f| %>
+  <%= form_tag("") do %>
     <div class="span12">
       <legend>Educations</legend>
       <% @giver.educations.each do |edu| %>
-        <%= render 'education', :education => edu %>
+        <div class="field_text">
+          <h5>
+            <%= edu.degree %>,
+            <%= edu.field_of_study %>
+          </h5>
+        </div>
+        <div class="control-group">
+          <%= label_tag :changed_majors, "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
+          <div class="controls">
+            <%= radio_button_tag :"education[#{edu.id}][changed_majors]", 1, edu.changed_majors ? true:false, :class => "change-majors-yes" %>
+            Yes
+            <%= radio_button_tag :"education[#{edu.id}][changed_majors]", 0, edu.changed_majors ? false:true, :class => "change-majors-no" %>
+            No
+          </div>
+        </div>
+        <div class="control-group desc-changing-majors" style="display:none">
+          <%= label_tag :"education[#{edu.id}][fields_of_study]", "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
+          <div class="controls">
+            <%= text_area_tag :"education[#{edu.id}][fields_of_study]", edu.fields_of_study, :size => "50x4" %>
+          </div>
+        </div>
         <hr/>
       <% end %>
-
-      <div class="control-group">
-        <%= f.label :change_major, "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
-        <div class="controls">
-          <%= f.radio_button :change_major, 1, :class => "change-majors", :checked => @game.change_major ? true:false %>
-  <%#= f.label :change_major, "Yes", :value => 1 %> Yes
-          <%= f.radio_button :change_major, 0, :class => "change-majors", :checked => @game.change_major ? false:true %>
-  <%#= f.label :change_major, "No", :value => 0  %> No
-        </div>
-      </div>
-
-      <div class="control-group desc-changing-majors" style="display:none">
-        <%= f.label :study_majors, "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :study_majors, :size => "50x4" %>
-        </div>
-      </div>
-
     </div>
 
+    <%= fields_for @game do |g| %>
+      <div class="span12">
+        <legend>Locations</legend>
+        <h5>
+          <%= @giver.current_location %>
+        </h5>
+        <hr/>
+        <div class="control-group">
+          <%= g.label "another_location", "Have you lived or worked in another city during your professional or academic life?", :class => "control-label" %>
+          <div class="controls">
+            <%= g.radio_button :another_locations, 1, :class => "another-location", :checked => @game.another_locations ? true:false %>
+            YES
+            <%= g.radio_button :another_locations, 0, :class => "another-location", :checked => @game.another_locations ? false:true %>
+            NO
+          </div>
+        </div>
+
+        <div class="control-group localtion-list-field" style="display:none">
+          <%= g.label :locations, "Please list all city, country or state, country combinations that apply", :class => "control-label" %>
+          <div class="controls">
+            <%= g.text_area :locations, :size => "50x4" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <div class="span12">
-      <legend>Locations</legend>
-      <h5><%= @giver.current_location %></h5>
-      <hr/>
-      <div class="control-group">
-        <%= f.label "another_location", "Have you lived or worked in another city during your professional or academic life?", :class => "control-label" %>
-        <div class="controls">
-          <%= f.radio_button :another_locations, 1, :class => "another-location", :checked => @game.another_locations ? true:false %> YES
-          <%= f.radio_button :another_locations, 0, :class => "another-location", :checked => @game.another_locations ? false:true %> NO
-        </div>
-      </div>
-
-      <div class="control-group localtion-list-field" style="display:none">
-        <%= f.label :locations, "Please list all city, country or state, country combinations that apply", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :locations, :size => "50x4" %>
-        </div>
-      </div>
-
       <div class="form-actions">
         <legend>
           Pick a choice and save your results
         </legend>
-        <%= f.submit "Return to Perspectives", :name => "return", :class => "btn btn-info" %> |
-        <%= f.submit "Next Game", :name => "next", :class => "btn btn-info" %>
+        <%= submit_tag "Return to Perspectives", :name => "return", :class => "btn btn-info" %> |
+        <%= submit_tag "Next Game", :name => "next", :class => "btn btn-info" %>
       </div>
     </div>
   <% end %>

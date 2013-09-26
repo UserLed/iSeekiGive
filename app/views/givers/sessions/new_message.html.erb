@@ -1,16 +1,13 @@
 <div class="span6">
-  <%= form_tag messages_new_giver_sessions_path(current_user) do %>
-    <%= label_tag "From" %>
-    <%= text_field_tag :from, current_user.name, :readonly=> true %>
-    <br/>
+  <%= form_for @message, :as => :message, :url => messages_new_giver_sessions_path(current_user), :method => :post,:html => {:multipart => true} do |f| %>
     <%= label_tag "To" %>
-    <%= text_field_tag :to, @to.name, :readonly => true %>
+    <%= f.hidden_field :recipient_id, :value => @to.id %>  <%= @to.name %>
     <br/>
-    <%= label_tag "Subject" %>
-    <%= text_field_tag :subject %>
+    <%= f.text_area :content, :size => "25x10", :style => "width: 500px" %>
     <br/>
-    <%= text_area_tag :content,nil,:size => "25x10", :style => "width: 500px" %>
     <br/>
-    <%= submit_tag "Send", :class => 'btn btn-success' %>
+    <%= f.file_field :attach_file, :size => "25x10", :style => "width: 500px" %>
+    <br/>
+    <%= f.submit 'Save', :class => 'btn btn-success' %>
   <% end %>
 </div>

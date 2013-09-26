@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130918061630) do
+ActiveRecord::Schema.define(:version => 20130926170823) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,9 +86,11 @@ ActiveRecord::Schema.define(:version => 20130918061630) do
     t.string   "degree"
     t.string   "field_of_study"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "feelings"
+    t.boolean  "changed_majors"
+    t.text     "fields_of_study"
   end
 
   create_table "educations_skills", :id => false, :force => true do |t|
@@ -137,22 +139,26 @@ ActiveRecord::Schema.define(:version => 20130918061630) do
   create_table "messages", :force => true do |t|
     t.string   "from"
     t.string   "to"
-    t.integer  "from_id"
-    t.integer  "to_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
     t.string   "subject"
     t.text     "content"
     t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "is_read",      :default => false
+    t.boolean  "is_starred",   :default => false
+    t.boolean  "is_archived",  :default => false
+    t.string   "attach_file"
   end
 
   create_table "payments", :force => true do |t|
-    t.integer  "charge_id"
-    t.integer  "event_id"
-    t.integer  "charge_amount"
+    t.string   "transaction_id"
+    t.integer  "schedule_id"
+    t.integer  "amount"
     t.string   "status"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|
@@ -173,14 +179,6 @@ ActiveRecord::Schema.define(:version => 20130918061630) do
     t.datetime "updated_at",                   :null => false
   end
 
-  create_table "save_game_tags", :force => true do |t|
-    t.string   "tag_name"
-    t.string   "experience_name"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "schedules", :force => true do |t|
     t.integer  "giver_id"
     t.integer  "seeker_id"
@@ -189,6 +187,8 @@ ActiveRecord::Schema.define(:version => 20130918061630) do
     t.string   "status",        :default => "pending"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.string   "seeker_name"
+    t.string   "giver_name"
   end
 
   create_table "skills", :force => true do |t|

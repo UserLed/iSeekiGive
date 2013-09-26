@@ -37,13 +37,21 @@ class BillingSetting < ActiveRecord::Base
     self.stripe_id = customer.id
   end
 
-  def charge amount
-    response = Stripe::Charge.create(
-        :amount => (amount.to_f * 100.0).to_i,
-        :currency => "usd",
-        :customer => customer,
-        :description => "...billing..."
-    )
+  def transaction(amount, transaction_type)
+    response = nil
+    if transaction_type == 'deduct'
+      logger.debug "===== Transaction started > amount(#{amount}) > type(#{transaction_type}) ====="
+      response = Stripe::Charge.create(
+          :amount => (amount.to_f * 100.0).to_i,
+          :currency => "usd",
+          :customer => customer,
+          :description => "...billing..."
+      )
+    elsif transaction_type == 'add'
+      # Yet to implement
+      logger.debug "===== Transaction started > amount(#{amount}) > type(#{transaction_type}) ====="
+    end
+    logger.debug "===== Transaction finished. Response - #{response} ====="
     return response
   end
 

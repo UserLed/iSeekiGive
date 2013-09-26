@@ -23,6 +23,6 @@
       </p>
     </div>
 
-    <%= link_to "Edit", edit_billing_setting_path(@billing_setting) %>
+    <%= link_to "Edit", current_user.type == 'Giver' ? edit_giver_billing_setting_path(current_user, @billing_setting) : edit_seeker_billing_setting_path(current_user, @billing_setting) %>
 
 <% end %>

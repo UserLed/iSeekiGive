@@ -30,7 +30,7 @@
   <div class="controls">
 
     <%= f.email_field :email, :class => 'text_field', :id => 'user_email', :required => true %>
-    <%= button_tag :verify, :class => 'btn btn-primary', :id => 'verified_email' %>
+    <%= button_tag :verify, :type => :button, :class => 'btn btn-primary', :id => 'verified_email' %>
   </div>
   <div class="controls">
     <span id="email_error"></span>

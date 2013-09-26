@@ -10,19 +10,14 @@ class Givers::PerspectivesController < ApplicationController
 
   def game_1
     @giver = Giver.find(params[:giver_id])
+    @game = @giver.game
     
-    @game = @giver.game.present? ? @giver.game : @giver.build_game
-
     if request.post?
-      @game = @giver.build_game(params[:game])
-      if @game.save
-        @game.complete_game(1)
+      @giver.educations.each do |education|
+        education.update_attributes(params[:education][:"#{education.id}"])
       end
-    elsif request.put?
       @game.update_attributes(params[:game])
-      if @game.save
-        @game.complete_game(1)
-      end
+      @game.complete_game(1)
     end
 
     if params[:next].present?

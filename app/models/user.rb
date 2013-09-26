@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  alias_method :full_name, :name
+
   def provider
     if self.external?
       self.authentications.present? ? self.authentications.first.provider : "deleted"

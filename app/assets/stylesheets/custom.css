@@ -334,8 +334,11 @@ select.date-select {
 .schedule_form{
     display: none;
 }
-.selected_already{
+.schedule_pending{
     background-color: red;
+}
+.schedule_reserved{
+    background-color: skyblue;
 }
 
 .availability_table, .availability_table tr th, .availability_table tr td {

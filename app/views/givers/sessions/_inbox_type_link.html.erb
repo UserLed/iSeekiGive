@@ -1,0 +1,8 @@
+<div>
+  <%= link_to 'Archived |', inbox_type_giver_sessions_path(:type => 'archived') unless params[:type] == 'archived' %>
+  <%= link_to 'Unarchived |', inbox_type_giver_sessions_path(:type => 'un_archived') unless params[:type] == 'un_archived' %>
+  <%= link_to 'Read |', inbox_type_giver_sessions_path(:type => 'read')  unless params[:type] == 'read' %>
+  <%= link_to 'Unread |', inbox_type_giver_sessions_path(:type => 'un_read') unless params[:type] == 'un_read' %>
+  <%= link_to 'Starred |', inbox_type_giver_sessions_path(:type => 'starred') unless params[:type] == 'starred' %>
+  <%= link_to 'Un starred ', inbox_type_giver_sessions_path(:type => 'un_starred') unless params[:type] == 'un_starred' %>
+</div>
