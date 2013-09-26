@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924091841) do
+ActiveRecord::Schema.define(:version => 20130926071424) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20130924091841) do
     t.boolean  "is_read",      :default => false
     t.boolean  "is_starred",   :default => false
     t.boolean  "is_archived",  :default => false
+    t.string   "attach_file"
   end
 
   create_table "payments", :force => true do |t|

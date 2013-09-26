@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
-  attr_accessible :content, :from, :sender_id, :subject, :to, :recipient_id, :uid, :is_archived, :is_starred, :is_read
+  mount_uploader :attach_file, AttachFileUploader
+  attr_accessible :content, :from, :sender_id, :subject, :to, :recipient_id, :uid, :is_archived, :is_starred, :is_read, :attach_file
   validates :content, :presence => true
   validates :sender_id, :presence => true
   validates :recipient_id, :presence => true

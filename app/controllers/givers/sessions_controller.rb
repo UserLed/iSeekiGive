@@ -47,16 +47,11 @@ class Givers::SessionsController < ApplicationController
       schedule = Schedule.find(params[:id])
       if schedule then schedule.destroy end
     end
-<<<<<<< HEAD
-
-    @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", interval.days.ago.beginning_of_week, interval.days.ago.end_of_week)
-=======
     if params[:week].present?
       @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", interval.days.ago.beginning_of_week, interval.days.ago.end_of_week)
     else
       @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", Date.today.beginning_of_week, Date.today.end_of_week)
     end
->>>>>>> origin/update-farhan
 
     respond_to do |format|
       format.js
@@ -70,17 +65,11 @@ class Givers::SessionsController < ApplicationController
       schedule = Schedule.find(params[:id])
       if schedule then schedule.update_column(:status, "accepted") end
     end
-<<<<<<< HEAD
-
-    @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", interval.days.ago.beginning_of_week, interval.days.ago.end_of_week)
-=======
-    
     if params[:week].present?
       @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", interval.days.ago.beginning_of_week, interval.days.ago.end_of_week)
     else
       @giver_schedules = current_user.schedules.where("created_at BETWEEN ? AND ?", Date.today.beginning_of_week, Date.today.end_of_week)
     end
->>>>>>> origin/update-farhan
 
     respond_to do |format|
       format.js
@@ -267,5 +256,4 @@ class Givers::SessionsController < ApplicationController
     render :json => data.first
   end
 
-	
 end

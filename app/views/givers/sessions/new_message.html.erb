@@ -1,9 +1,12 @@
 <div class="span6">
-  <%= form_for @message, :as => :message, :url => messages_new_giver_sessions_path(current_user), :method => :post do |f| %>
+  <%= form_for @message, :as => :message, :url => messages_new_giver_sessions_path(current_user), :method => :post,:html => {:multipart => true} do |f| %>
       <%= label_tag "To" %>
       <%= f.hidden_field :recipient_id, :value => @to.id %>  <%= @to.name %>
       <br/>
       <%= f.text_area :content, :size => "25x10", :style => "width: 500px" %>
+      <br/>
+      <br/>
+      <%= f.file_field :attach_file, :size => "25x10", :style => "width: 500px" %>
       <br/>
       <%= f.submit 'Save', :class => 'btn btn-success' %>
   <% end %>
