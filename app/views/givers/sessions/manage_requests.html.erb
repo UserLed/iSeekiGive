@@ -1,13 +1,26 @@
+<%= render "header" %>
+
 <p class="text-left">
   <%= link_to "prev", manage_requests_giver_sessions_path(current_user,:week => @prev_week) %>
 </p>
+
 <% if @interval.present? %>
-  <p class="text-center"><b><%= @interval.days.ago.beginning_of_week.strftime("%B %d") + " - " + @interval.days.ago.end_of_week.strftime("%B %d") %></b></p>
+  <p class="text-center">
+    <b>
+      <%= @interval.days.ago.beginning_of_week.strftime("%B %d") + " - " + @interval.days.ago.end_of_week.strftime("%B %d") %>
+    </b>
+  </p>
 <% else %>
-  <p class="text-center"><b><%= Date.today.beginning_of_week.strftime("%B %d") + " - " + Date.today.end_of_week.strftime("%B %d") %></b></p>
+  <p class="text-center">
+    <b>
+      <%= Date.today.beginning_of_week.strftime("%B %d") + " - " + Date.today.end_of_week.strftime("%B %d") %>
+    </b>
+  </p>
 <% end %>
 
-<p class="text-right"><%= link_to "next", manage_requests_giver_sessions_path(current_user,:week => @next_week) %></p>
+<p class="text-right">
+  <%= link_to "next", manage_requests_giver_sessions_path(current_user,:week => @next_week) %>
+</p>
 <br/>
 
 <%= render :partial => "giver_requests", :locals => {:giver_schedules => @giver_schedules} %>

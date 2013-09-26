@@ -1,11 +1,17 @@
 <%= render "header" %>
+
 <div class="row-fluid">
   <div class="span12">
     <legend>
       Sessions
     </legend>
-    <p>Sessions allows Seekers to schedule a direct conversation with you. Here’s some Introduction…
-      Sessions are based on time spent, Giver rewards are calculated accordingly.<%= link_to "Learn More..", terms_n_condition_path, :target => "_blank" %> </p>
+    <p>
+      Sessions allows Seekers to schedule a direct conversation with you. Here’s some Introduction…
+      <br/>
+      Sessions are based on time spent, Giver rewards are calculated accordingly.
+      <br/>
+      <%= link_to "Learn More..", terms_n_condition_path, :target => "_blank" %>
+    </p>
 
     <%= link_to "Personal Details", personal_details_giver_sessions_path(current_user) %>
     <%= link_to "send a message", messages_new_giver_sessions_path(current_user) %>

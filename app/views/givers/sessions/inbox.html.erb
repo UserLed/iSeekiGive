@@ -1,4 +1,9 @@
-<h2>  <%= link_to "INBOX(#{@messages_count})", inbox_giver_sessions_path(current_user) %> </h2>
+<%= render "header" %>
+
+<h2>  
+  <%= link_to "INBOX(#{@messages_count})", inbox_giver_sessions_path(current_user) %>
+</h2>
+
 <%= render :partial => 'inbox_type_link' %>
 
 <%= render :partial => 'inbox_mark_as' %>
