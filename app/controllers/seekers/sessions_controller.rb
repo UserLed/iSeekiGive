@@ -96,4 +96,7 @@ class Seekers::SessionsController < ApplicationController
     end
   end
 
+  def download
+    send_file("#{Rails.root}/public#{params[:file_name]}")
+  end
 end

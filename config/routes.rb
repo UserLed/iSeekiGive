@@ -28,6 +28,7 @@ ISeekiGive::Application.routes.draw do
         match :session_request_reject
         match :inbox
         get :inbox
+        get  :download
         match 'messages/new' => 'seekers/sessions#new_message'
         match 'messages/:uid'  => 'seekers/sessions#show_message', :as => "show_message"
         match 'inbox/:type'  => 'seekers/sessions#inbox', :as => "inbox_type"
@@ -64,6 +65,7 @@ ISeekiGive::Application.routes.draw do
         match :session_request_reject
         post :reject_schedule
         get  :get_schedule_data
+        get  :download
         post :accept_schedule
       end
     end

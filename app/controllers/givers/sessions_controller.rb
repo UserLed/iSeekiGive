@@ -256,4 +256,8 @@ class Givers::SessionsController < ApplicationController
     render :json => data.first
   end
 
+  def download
+    send_file("#{Rails.root}/public#{params[:file_name]}")
+  end
+
 end
