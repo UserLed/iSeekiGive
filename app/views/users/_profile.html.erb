@@ -30,7 +30,7 @@
             Total Experience : <%= total_experience(user) %>
           </li>
           <li class="list-group-item total_experience">
-            <%= link_to "Update Billing Information", new_billing_setting_path %>
+            <%= link_to "Update Billing Information#{current_user.type}", current_user.type == 'Giver' ? new_giver_billing_setting_path(current_user) : new_seeker_billing_setting_path(current_user) %>
           </li>
         </ul>
 
