@@ -45,54 +45,70 @@
   <% end %>
 </div>
 
+<% if current_user.billing_setting.present? %>
 
-<script type="text/javascript">
-	$(function(){
+  <script type="text/javascript">
+  	$(function(){
 
-    var multiple_cell = [];
+      var multiple_cell = [];
 
-		$("#weekly_link").on('click',function(){
-			$(".availability_table").toggle();
-		});
+  		$("#weekly_link").on('click',function(){
+  			$(".availability_table").toggle();
+  		});
 
 
-    $(".availability_table tr td").on("click", function(){
-        var cell_id = this.id;
-        var self = $(this);
+      $(".availability_table tr td").on("click", function(){
+          var cell_id = this.id;
+          var self = $(this);
 
-        if (self.hasClass("selected")){
-          multiple_cell.push(cell_id);
-          self.removeClass("selected");
-          self.addClass("tmp_selected_cell");
-          $(".schedule_form").show();
-          console.log(multiple_cell);
-          } 
-        else if (self.hasClass("tmp_selected_cell")){
-          self.removeClass("tmp_selected_cell");
-          self.addClass("selected");
-          multiple_cell = _.without(multiple_cell,cell_id);
-          console.log(multiple_cell);
-          }
-    });
+          if (self.hasClass("selected")){
+            multiple_cell.push(cell_id);
+            self.removeClass("selected");
+            self.addClass("tmp_selected_cell");
+            $(".schedule_form").show();
+            console.log(multiple_cell);
+            } 
+          else if (self.hasClass("tmp_selected_cell")){
+            self.removeClass("tmp_selected_cell");
+            self.addClass("selected");
+            multiple_cell = _.without(multiple_cell,cell_id);
+            console.log(multiple_cell);
+            }
+      });
 
-    $("#schedule_form_submit").on('click', function(e){
-      e.preventDefault();
-      $.post("create_schedule",{time_slots: multiple_cell, description: $("#schedule").val()}
-        ).done(function(data){
-          $.each(multiple_cell, function(index, value){
-            $("#"+ value).removeClass("tmp_selected_cell");
-            $("#"+value).addClass("schedule_pending");
+      $("#schedule_form_submit").on('click', function(e){
+        e.preventDefault();
+        $.post("create_schedule",{time_slots: multiple_cell, description: $("#schedule").val()}
+          ).done(function(data){
+            $.each(multiple_cell, function(index, value){
+              $("#"+ value).removeClass("tmp_selected_cell");
+              $("#"+value).addClass("schedule_pending");
+            });
+            multiple_cell = [];
+            $("#schedule").val("");
+            $(".schedule_form").hide();
+            console.log(data);
+            if (data == "redirect"){
+                window.location.replace("/billing_settings/new");
+            }
           });
-          multiple_cell = [];
-          $("#schedule").val("");
-          $(".schedule_form").hide();
-          console.log(data);
-          if (data == "redirect"){
-              window.location.replace("/billing_settings/new");
-          }
-        });
+      });
+
+
+  	});
+  </script>
+
+<% else %>
+
+  <script type="text/javascript">
+
+    $("#weekly_link").on('click',function(){
+      $(".availability_table").toggle();
     });
 
+    $(".availability_table tr td").on('click', function(){
+      window.location.replace("/billing_settings/new");
+    })
+  </script>
 
-	});
-</script>
+  <% end %>
