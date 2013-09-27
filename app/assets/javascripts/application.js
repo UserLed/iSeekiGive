@@ -19,4 +19,5 @@
 //= require fancybox-config
 //= require custom
 //= require stripe
+//= require personal-details
 

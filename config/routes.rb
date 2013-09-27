@@ -20,6 +20,7 @@ ISeekiGive::Application.routes.draw do
     end
     resources :sessions, :only => :index, :controller => "seekers/sessions" do
       collection do
+        match :personal_details
         match :manage_requests
         match :session_request_reject
         match :inbox

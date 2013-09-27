@@ -5,6 +5,23 @@ class Seekers::SessionsController < ApplicationController
     @seeker = Seeker.find(params[:seeker_id])
   end
 
+  def personal_details
+    @seeker = Seeker.find(params[:seeker_id])
+
+    if request.post?
+      @seeker.update_attributes(session_method: params[:session_method],
+                               skype_id: params[:skype_id],
+                               contact_number: params[:contact_number],
+                               other_contact_details: params[:other_contact_details],
+                               user_time_zone: params[:user_time_zone][:time_zone])
+      redirect_to seeker_sessions_path(current_user), :notice => "Personal details have been updated"
+
+      #render :json => params.inspect + @seeker.inspect
+      return
+
+    end
+  end
+
   def manage_requests
     @seeker_schedules = current_user.schedules
 
