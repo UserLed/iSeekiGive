@@ -72,11 +72,11 @@ class Seekers::SessionsController < ApplicationController
 
   def new_message
     require 'securerandom'
-    @to = User.find(params[:giver]) #might also be giver_id  static set for temp
+    logger.info "params :: #{params.inspect}"
     if request.post?
       @message = Message.new(params[:message])
       @message.sender_id = current_user.id
-      recipient = Message.receive_msg_by_user(@to.id)
+      recipient = Message.receive_msg_by_user(params[:message][:recipient_id])
       if recipient.empty?
         @message.uid = SecureRandom.uuid
       else
@@ -90,6 +90,7 @@ class Seekers::SessionsController < ApplicationController
         render 'new_message'
       end
     end
+    @to = User.find(params[:giver]) #might also be giver_id  static set for temp
   end
 
 
