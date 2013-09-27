@@ -11,13 +11,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    respond_to do |format|
-      if @user = login(params[:email], params[:password], params[:remember])
-        format.html { redirect_back_or_to @user }
+    if @user = login(params[:email], params[:password], params[:remember])
+      if @user.seeker?
+        redirect_to seeker_perspectives_path(@user)
       else
-        flash[:alert] = "Invalid email or password."
-        format.html { render :action => "new" }
+        redirect_to @user
       end
+    else
+      flash[:alert] = "Invalid email or password."
+      render :action => "new"
     end
   end
 

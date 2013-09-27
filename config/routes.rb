@@ -3,6 +3,7 @@ ISeekiGive::Application.routes.draw do
   resources :phone_numbers
 
   match 'terms-of-service' => 'public#terms_of_service', :as => :terms
+  match 'terms-and-condition' => 'public#terms_and_condition', :as => :terms_n_condition
   match 'privacy' => 'public#privacy', :as => :privacy
 
   resources :seekers do
@@ -25,8 +26,10 @@ ISeekiGive::Application.routes.draw do
         match :session_request_reject
         match :inbox
         get :inbox
+        get  :download
         match 'messages/new' => 'seekers/sessions#new_message'
         match 'messages/:uid'  => 'seekers/sessions#show_message', :as => "show_message"
+        match 'inbox/:type'  => 'seekers/sessions#inbox', :as => "inbox_type"
         resources :billing_settings, :except => [:index, :destroy]
       end
     end
@@ -56,11 +59,13 @@ ISeekiGive::Application.routes.draw do
         get :inbox
         match 'messages/new' => 'givers/sessions#new_message'
         match 'messages/:uid'  => 'givers/sessions#show_message', :as => "show_message"
+        match 'inbox/:type'  => 'givers/sessions#inbox', :as => "inbox_type"
         post :time_slot_save
         match :session_request_accept
         match :session_request_reject
         post :reject_schedule
         get  :get_schedule_data
+        get  :download
         post :accept_schedule
         resources :billing_settings, :except => [:index, :destroy]
       end

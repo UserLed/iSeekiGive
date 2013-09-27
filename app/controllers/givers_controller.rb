@@ -43,9 +43,7 @@ class GiversController < ApplicationController
   end
 
   def create_schedule
-    logger.debug "==#{params.inspect}==#{current_user.id}"
-    if current_user.billing_setting.present?
-      logger.debug "===== User ID: #{current_user.id}, Billing Setting: Present ====="
+   
       unless params[:time_slots].blank? && params[:id].blank?
         time_slots = params[:time_slots]
         giver = Giver.find(params[:id])
@@ -68,12 +66,6 @@ class GiversController < ApplicationController
         render :text => "something went wrong"
         return
       end
-    else
-      logger.debug "===== User ID: #{current_user.id}, Billing Setting: Not Present ====="
-      #redirect_to :controller => :billing_settings, :action => :new
-
-      render :text=> "redirect"
-    end
 
   end
   

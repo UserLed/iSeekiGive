@@ -4,18 +4,22 @@
         <th>Requested Session</th>
         <th>Message</th>
         <th>Giver Name</th>
+        <th>Session Initiated At</th>
+        <th>Accepted At</th>
         <th>status</th>
       </tr>
       <% seeker_schedules.each do |schedule| %>
           <tr class="<%= schedule.status.eql?("pending") ? "warning" : "success" %>">
             <td><%= extended_schedule_view(schedule.schedule_time) %></td>
-            <td><%= schedule.description %></td>
+            <td style="width:100px"><%= schedule.description %></td>
             <td><%= schedule.giver_name %></td>
+            <td><%= schedule.created_at.strftime("%d %B, %Y") %></td>
+            <td><%= schedule.status.eql?("accepted") ? schedule.updated_at.strftime("%d %B, %Y") : "N/A"  %></td>
 
             <% if schedule.status.eql?("pending") %>
                 <td>
                   <%= link_to schedule.status, "javascript:void(0)", :class => "btn btn-warning disabled" %> |
-                  <%= link_to "Reject",session_request_reject_seeker_sessions_path(current_user,:id => schedule.id),:remote => true, :class => "btn btn-danger" %>
+                  <%= link_to "Reject",session_request_reject_seeker_sessions_path(current_user,:id => schedule.id, :week => params[:week]),:remote => true, :class => "btn btn-danger" %>
                 </td>
 
             <% else %>

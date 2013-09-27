@@ -12,7 +12,11 @@ gem 'carrierwave'
 gem 'activeadmin'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
-gem "letter_opener", :group => :development
+
+group :development  do
+  gem "letter_opener"
+  gem  "faker"
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

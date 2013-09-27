@@ -1,16 +1,18 @@
-<b><%= @messages.first.subject %></b>
-<% @messages.each do |message| %>
-	<div>
-	<p><%= message.from %> says....(<%= distance_of_time_in_words(Time.now-message.created_at)%> ago)  </p>
-	<p> <%= message.content %> </p>
-	<hr/>
-	</div>
-<% end %>
-<%= form_tag show_message_seeker_sessions_path(current_user, @messages.first.uid) do %>
+<% if @messages.present? %>
+    <% @messages.each do |message| %>
+        <div>
+          <p><%= message.sender.name %> says....(<%= distance_of_time_in_words(Time.now-message.created_at)%> ago)  </p>
+          <p> <%= message.content %> </p>
+          <p> <%= link_to File.basename(message.attach_file.url), download_giver_sessions_path(current_user.id,:file_name => "#{message.attach_file_url}"), :target => "_blank" if message.attach_file.present? %> </p>
+          <hr/>
+        </div>
+    <% end %>
 
-	<%= label_tag "Reply" %>
-	<br/>
-	<%= text_area_tag :content,nil,:size => "25x10", :style => "width: 500px"  %>
-	<br/>
-	<%= submit_tag "Reply", :class => 'btn btn-primary' %>
+    <%= form_for @reply, :as => :message, :url => show_message_seeker_sessions_path(current_user, @messages.first.uid), :method => :post do |f| %>
+        <%= f.text_area :content, :size => "25x10", :style => "width: 500px" %>
+        <br/>
+        <%= f.file_field :attach_file, :size => "25x10", :style => "width: 500px" %>
+        <br/>
+        <%= f.submit 'Reply', :class => 'btn btn-success' %>
+    <% end %>
 <% end %>

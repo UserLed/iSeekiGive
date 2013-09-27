@@ -9,16 +9,40 @@ $(document).ready(function(){
         parent.$.fancybox.close();
     });
 
-    $(".change-majors").click(function(){
-        change_majors();
+    $(".change-majors-yes").click(function(){
+        if($(this).is(':checked')) {
+            $(this).parent().parent(".control-group").next(".desc-changing-majors").show();
+        }
     });
+    
+    $(".change-majors-no").click(function(){
+        if($(this).is(':checked')) {
+            var div = $(this).parent().parent(".control-group").next(".desc-changing-majors");
+            div.children(".controls").children("textarea").val("");
+            div.hide();
+        }
+    });
+
+    $( ".change-majors-yes" ).each(function( index ) {
+        if($(this).is(':checked')) {
+            $(this).parent().parent(".control-group").next(".desc-changing-majors").show();
+        }
+    });
+
+    $( ".change-majors-no" ).each(function( index ) {
+        if($(this).is(':checked')) {
+            var div = $(this).parent().parent(".control-group").next(".desc-changing-majors");
+            div.children(".controls").children("textarea").val("");
+            div.hide();
+        }
+    });
+
 
     $(".another-location").click(function(){
         another_locations();
     });
-
-    change_majors();
     another_locations();
+
 });
 
 $(document).on('click', '.btn-edit', function(){
@@ -33,16 +57,6 @@ $(document).on('click', '.cancel', function(){
     $('.form-container').hide();
 });
 
-function change_majors(){
-    if($('#game_change_major_1').is(':checked')) {
-        $(".desc-changing-majors").show();
-    }
-    else
-    {
-        $("#game_study_majors").val("");
-        $(".desc-changing-majors").hide();
-    }
-}
 
 function another_locations(){
     if($('#game_another_locations_1').is(':checked')) {
