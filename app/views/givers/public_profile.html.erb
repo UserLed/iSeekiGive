@@ -49,7 +49,7 @@
   <% end %>
 </div>
 
-<% if !current_user.billing_setting.present? %>
+<% if current_user.billing_setting.present? %>
 
   <script type="text/javascript">
   	$(function(){
