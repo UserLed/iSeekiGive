@@ -13,7 +13,7 @@
       <% @messages.each do |msg| %>
           <tr>
             <td><%= check_box_tag "message_ids[]", msg.uid, false, :id => "msg_#{msg.id}" %></td>
-            <td><%= msg.sender.name %>m</td>
+            <td><%= msg.sender.name %></td>
             <td><%= link_to msg.content, show_message_seeker_sessions_path(current_user.id, msg.uid) %></td>
             <td><%= msg.updated_at %></td>
           </tr>
