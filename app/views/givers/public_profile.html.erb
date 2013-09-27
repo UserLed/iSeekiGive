@@ -1,3 +1,7 @@
+<div class="alert fade in alert-success" style="display:none">
+  <button class="close" data-dismiss="alert">×</button>
+  Your session request has been submitted.
+</div>
 <div class="row-fluid">
   <legend>
     <h3>
@@ -87,10 +91,9 @@
             multiple_cell = [];
             $("#schedule").val("");
             $(".schedule_form").hide();
+            $(".alert-success").show();
             console.log(data);
-            if (data == "redirect"){
-                window.location.replace("/billing_settings/new");
-            }
+
           });
       });
 
@@ -107,7 +110,7 @@
     });
 
     $(".availability_table tr td").on('click', function(){
-      window.location.replace("/billing_settings/new");
+      window.location.replace("<%= new_seeker_billing_setting_path(current_user) %>");
     })
   </script>
 
