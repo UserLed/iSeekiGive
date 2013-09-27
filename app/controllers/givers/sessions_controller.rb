@@ -86,7 +86,7 @@ class Givers::SessionsController < ApplicationController
 
   def new_message
     require 'securerandom'
-    @to = current_user #might also be seeker_id   when use this function then must set seekers id
+    @to = User.find(params[:seeker]) #might also be seeker_id   when use this function then must set seekers id
     if request.post?
       @message = Message.new(params[:message])
       @message.sender_id = current_user.id
