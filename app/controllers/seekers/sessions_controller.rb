@@ -72,7 +72,7 @@ class Seekers::SessionsController < ApplicationController
 
   def new_message
     require 'securerandom'
-    @to = User.find 10 #might also be giver_id  static set for temp
+    @to = User.find(params[:giver]) #might also be giver_id  static set for temp
     if request.post?
       @message = Message.new(params[:message])
       @message.sender_id = current_user.id
