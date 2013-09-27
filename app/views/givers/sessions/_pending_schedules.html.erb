@@ -1,0 +1,44 @@
+<% unless schedules.blank? %>
+	<table class="table">
+		<tr>
+		<th>Requested Session</th>
+		<th>Message</th>
+		<th>Seeker Name</th>
+		<th>Requested At</th>
+		<th>status</th>
+		</tr>
+	<% schedules.each do |schedule| %>
+		<tr class="<%= schedule.status.eql?("pending") ? "warning" : "success" %>">
+			<td><%= extended_schedule_view(schedule.schedule_time) %></td>
+			<td style="width:100px"><%= schedule.description %></td>
+			<td><%= schedule.seeker_name %></td>
+			<td><%= schedule.created_at.strftime("%d %B, %Y") %></td>
+			<% if schedule.status.eql?("pending") %>
+				<td>
+				<%= link_to "Accept", session_request_accept_giver_sessions_path(current_user,:id => schedule.id), :remote => true, :class => "btn btn-success" %> |
+				<%= link_to "Reject",session_request_reject_giver_sessions_path(current_user,:id => schedule.id),:remote => true, :class => "btn btn-danger" %>
+				</td>
+			
+			<% elsif schedule.status.eql?("rejected") %>
+			
+			<td><%= link_to "Rejected", "javascript:void(0)", :class => "btn btn-danger disabled" %></td>
+
+			<% elsif schedule.status.eql?("accepted") %>
+				<td>
+					<%= link_to "Cancel", "#", :class => "btn btn-warning" %>|
+					<%= link_to "Reschedule", "#", :class => "btn btn-primary" %>
+				</td>
+			<% elsif schedule.status.eql?("completed") %>
+			<td>
+				<%= link_to "+", "#", :class => "btn btn-success" %>
+				<%= link_to "-", "#", :class => "btn btn-info" %>	
+			</td>
+			<% end %>	
+		</tr>
+
+	<% end %>
+	</table>
+
+<% else %>
+	<p class="info">You dont have any schedule request</p>
+<% end %>
