@@ -1,28 +1,5 @@
 <%= render "header" %>
-<h4>
-  Personal Details:
-</h4>
-<div class="row-fluid">
-  <%= form_tag personal_details_giver_sessions_path(current_user) do %>
-  <div>
-    Sessions are generally conducted via Skype. If you prefer another method, please select from below
-  </div>
-  <%= select_tag(:session_method, options_for_select([['Skype', 1], ['Phone', 2], ['Other', 3]], @giver.session_method), {:class => 'session-method'}) %>
-  <ul class="session-methods">
-    <li class="session-method-1"><%= text_field_tag :skype_id, @giver.skype_id%></li>
-    <li class="session-method-2"><%= text_field_tag :contact_number, @giver.contact_number %></li>
-    <li class="session-method-3"><%= text_field_tag :other_contact_details, @giver.other_contact_details %></li>
-  </ul>
-  <div>
-    <%= label_tag "Select your time zone" %>
-  </div>
-  <%= time_zone_select(:user_time_zone, :time_zone,nil, :default => (@giver.user_time_zone if @giver.user_time_zone.present?) ) %>
-
-
-  <br/>
-  <%= submit_tag 'Update', :class => "btn btn-primary"  %>
-  <% end %>
-</div>
+<%= render :partial => "shared/personal_details", :locals => {:user => @giver, :url => personal_details_giver_sessions_path(current_user)} %>
 
 
 <% if current_user.time_slots.blank? %>
@@ -216,8 +193,5 @@
             } 
         });
       });
-
-
-
   });
 </script>
