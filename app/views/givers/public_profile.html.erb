@@ -49,7 +49,7 @@
   <% end %>
 </div>
 
-<% if current_user.billing_setting.present? %>
+<% if !current_user.billing_setting.present? %>
 
   <script type="text/javascript">
   	$(function(){
@@ -92,6 +92,7 @@
             $("#schedule").val("");
             $(".schedule_form").hide();
             $(".alert-success").show();
+            $('html,body').animate({scrollTop:0},'fast');
             console.log(data);
 
           });
