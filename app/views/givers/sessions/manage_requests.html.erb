@@ -1,6 +1,9 @@
 <%= render "header" %>
 <p class="text-center"><strong>Manage your session requests here</strong></p>
-<p class="text-left">
+
+<!-- Previous View. Keep this for future use -->
+
+<!-- <p class="text-left">
   <%= link_to "prev", manage_requests_giver_sessions_path(current_user,:week => @prev_week) %>
 </p>
 
@@ -24,3 +27,31 @@
 <br/>
 
 <%= render :partial => "giver_requests", :locals => {:giver_schedules => @giver_schedules} %>
+ -->
+
+ <!-- NEW Implementation -->
+<ul class="nav nav-tabs">
+  <li><a href="#pending" data-toggle="tab">Pending</a></li>
+  <li><a href="#accepted" data-toggle="tab">Accepted</a></li>
+  <li><a href="#completed" data-toggle="tab">Completed</a></li>
+  <li><a href="#rejected" data-toggle="tab">Rejected</a></li>
+</ul>
+
+<div class="tab-content">
+<div id="pending" class ="tab-pane fade">
+  <%= render :partial => "pending_schedules", :locals=> {:schedules => @pending_schedules} %>
+</div>
+
+<div id="accepted" class ="tab-pane fade">
+  <%= render :partial => "pending_schedules", :locals=> {:schedules => @accepted_schedules} %>
+</div>
+
+<div id="completed" class ="tab-pane fade">
+  <%= render :partial => "pending_schedules", :locals=> {:schedules => @completed_schedules} %>
+</div>
+
+<div id="rejected" class ="tab-pane fade">
+  <%= render :partial => "pending_schedules", :locals=> {:schedules => @rejected_schedules} %>
+</div>
+
+</div>
