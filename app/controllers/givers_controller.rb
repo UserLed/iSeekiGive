@@ -9,7 +9,7 @@ class GiversController < ApplicationController
     @giver = Giver.new(params[:giver])
     if @giver.save
       auto_login(@giver)
-      redirect_to @giver, :notice => "Successfully Signed Up!"
+      redirect_to dashboard_giver_path(@giver), :notice => "Successfully Signed Up!"
     else
       @password = params[:giver][:password]
       @password_confirmation = params[:giver][:password_confirmation]
