@@ -1,4 +1,4 @@
-$('.education-container:last').after("<%= escape_javascript( render @education).html_safe %>");
+$('#new_education_cont').before("<%= escape_javascript( render @education).html_safe %>");
 $('form#new_education').find("input[type=text], textarea").val("");
 
 $('.btn-edit').show();

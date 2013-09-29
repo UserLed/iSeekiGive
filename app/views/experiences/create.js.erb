@@ -1,4 +1,5 @@
-$('.experience-container:last').after("<%= escape_javascript( render @experience).html_safe %>");
+$('#new_experience_cont').before("<%= escape_javascript( render @experience).html_safe %>");
+
 $('form#new_experience').find("input[type=text], textarea").val("");
 
 $('.btn-edit').show();
