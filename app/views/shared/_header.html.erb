@@ -7,31 +7,81 @@
         <span class="icon-bar"></span>
       </a>
       <%= link_to "iSeekiGive", root_path, :class => "brand" %>
-      <div class="container-fluid nav-collapse">
+
+      <div class="nav-collapse">
         <ul class="nav">
-          <% if current_user %>
-          <% if current_user.seeker? %>
-          <li class="<%= "active" if current_page?(dashboard_seeker_path(current_user)) %>">
-              <%= link_to "Dashboard", dashboard_seeker_path(current_user) %>
+          <% unless current_user %>
+            <li class="<%= "active" if current_page?(signup_path) %>">
+              <%= link_to "Sign Up", signup_path  %>
             </li>
-          <% else %>
-            <li class="<%= "active" if current_page?(dashboard_giver_path(current_user)) %>">
-              <%= link_to "Dashboard", dashboard_giver_path(current_user) %>
+            <li class="<%= "active" if current_page?(login_path) %>">
+              <%= link_to "Log In", login_path  %>
             </li>
           <% end %>
-          <li>
-            <%= link_to "Logout", logout_path  %>
-          </li>
-        <% else %>
-          <li class="<%= "active" if current_page?(signup_path) %>">
-            <%= link_to "Sign Up", signup_path  %>
-          </li>
-          <li class="<%= "active" if current_page?(login_path) %>">
-            <%= link_to "Log In", login_path  %>
-          </li>
-        <% end %>
         </ul>
       </div><!--/.nav-collapse -->
+
+      <% if current_user %>
+        <div class="nav-collapse pull-right">
+          <ul class="nav">
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i>
+                  <%= image_tag(current_user.profile_photo.to_s, :style => "height:18px") if current_user.profile_photo.present? %>
+                </i>
+                <%= current_user.name %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+
+                <% if current_user.seeker? %>
+
+                  <li class="<%= "active" if current_page?(dashboard_seeker_path(current_user)) %>">
+                    <%= link_to "Dashboard", dashboard_seeker_path(current_user) %>
+                  </li>
+                  <li class="<%= "active" if current_page?(seeker_perspectives_path(current_user)) %>">
+                    <%= link_to "Perspectives", seeker_perspectives_path(current_user) %>
+                  </li>
+                  <li class="<%= "active" if current_page?(seeker_sessions_path(current_user)) %>">
+                    <%= link_to "Manage Sessions", seeker_sessions_path(current_user) %>
+                  </li>
+                  <li class="<%= "active" if current_page?(current_user) %>">
+                    <%= link_to "Edit Profile", current_user %>
+                  </li>
+                  <li>
+                    <%= link_to "Boosters", "Javascript:;" %>
+                  </li>
+
+                <% else %>
+
+                  <li class="<%= "active" if current_page?(dashboard_giver_path(current_user)) %>">
+                    <%= link_to "Dashboard", dashboard_giver_path(current_user) %>
+                  </li>
+                  <li class="<%= "active" if current_page?(giver_perspectives_path(current_user)) %>">
+                    <%= link_to "Perspectives", giver_perspectives_path(current_user) %>
+                  </li>
+                  <li class="<%= "active" if current_page?(giver_sessions_path(current_user)) %>">
+                    <%= link_to "Manage Sessions", current_user.level == 2 ? giver_sessions_path(current_user) : "Javascript:;" %>
+                  </li>
+                  <li class="<%= "active" if current_page?(current_user) %>">
+                    <%= link_to "Edit Profile", current_user %>
+                  </li>
+                  <li>
+                    <%= link_to "Boosters", "Javascript:;" %>
+                  </li>
+
+                <% end %>
+
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Logout", logout_path %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </div>
