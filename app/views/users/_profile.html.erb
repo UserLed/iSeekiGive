@@ -30,7 +30,7 @@
             Total Experience : <%= total_experience(user) %>
           </li>
           <li class="list-group-item total_experience">
-            <%= link_to "Update Billing Information#{current_user.type}", current_user.type == 'Giver' ? new_giver_billing_setting_path(current_user) : new_seeker_billing_setting_path(current_user) %>
+            <%= link_to "Update Billing Information", current_user.type == 'Giver' ? new_giver_billing_setting_path(current_user) : new_seeker_billing_setting_path(current_user) %>
           </li>
         </ul>
 
@@ -43,7 +43,7 @@
             </span>
             Phone Number :
             <% if user.phone_verified? %>
-              <%= user.phone_number.nnumber %>
+              <%= user.phone_number.number %>
             <% else %>
               <% if user.phone_number.present? %>
                 <%= user.phone_number.number %>
