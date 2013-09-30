@@ -27,7 +27,7 @@
             <li class="dropdown">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <i>
-                  <%= image_tag(current_user.profile_photo.to_s, :style => "height:18px") if current_user.profile_photo.present? %>
+                  <%= image_tag(current_user.profile_photo.public_profile.to_s, :style => "height:26px") if current_user.profile_photo.present? %>
                 </i>
                 <%= current_user.name %>
                 <b class="caret"></b>
