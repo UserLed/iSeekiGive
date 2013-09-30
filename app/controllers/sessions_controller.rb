@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       if @user.seeker?
         redirect_to seeker_perspectives_path(@user)
       else
-        redirect_to @user
+        redirect_to dashboard_giver_path(@user)
       end
     else
       flash[:alert] = "Invalid email or password."

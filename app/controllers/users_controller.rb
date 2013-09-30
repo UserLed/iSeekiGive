@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       if @user.seeker?
         redirect_to seeker_perspectives_path(@user), :notice => 'User was successfully activated.'
       else
-        redirect_to @user, :notice => 'User was successfully activated.'
+        redirect_to dashboard_giver_path(@user), :notice => 'User was successfully activated.'
       end
     else
       not_authenticated
