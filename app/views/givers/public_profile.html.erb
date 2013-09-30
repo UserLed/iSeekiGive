@@ -42,7 +42,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="span9">
+    <div class="span9" style="position:relative">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#experiences" data-toggle="tab">Experience</a></li>
 
@@ -51,13 +51,13 @@
         <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
       </ul>
 
-    <div id="experiences" class ="tab-pane fade in active">
+    <div id="experiences" class ="tab-pane fade in active" style="position:absolute">
       <%= render :partial => "experiences", :locals => {:giver_experiences => @giver_experiences } %>
     </div>
-    <div id="perspectives" class ="tab-pane fade">
+    <div id="perspectives" class ="tab-pane fade" style="position:absolute">
       <%= render :partial => "perspectives", :locals => {:game => @giver_game } %>
     </div>
-    <div id="reviews" class ="tab-pane fade">
+    <div id="reviews" class ="tab-pane fade" style="position:absolute">
       <%= render :partial => "reviews", :locals => {:giver => @giver } %>
     </div> 
     </div>
