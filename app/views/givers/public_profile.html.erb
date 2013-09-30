@@ -1,118 +1,68 @@
-<div class="alert fade in alert-success" style="display:none">
-  <button class="close" data-dismiss="alert">×</button>
-  Your session request has been submitted.
-</div>
 <div class="row-fluid">
   <legend>
     <h3>
       <%= @giver.name %>'s Public Profile
     </h3>
   </legend>
-  <div class="public_profile">
-  	<p>Name : <%= @giver.name %></p>
+  <div class="row-fluid">
+    <div class="span1"></div> 
+      <div class ="span10" style= 'background-image: url(<%= @giver.cover_photo.public_profile_header.url %>);background-repeat:no-repeat'>
+        <%= image_tag @giver.profile_photo.public_profile.url,:style => "border:solid" %>
+        <%= link_to("Schedule a Session", "display_calendar", :class => "btn btn-primary btn-large", :style => "margin-left:900px") unless @giver.time_slots.blank? %>
+    </div>
   </div>
-
-<%= link_to "Request Session", "javascript:void(0)", :id => "weekly_link" %>
-  <table border=1 class="table table-bordered availability_table" style="display:none">
-  <tr>
-  <th>Time</th>
-  <% %w( mon tue wed thu fri sat sun ).each do |day| %>
-    <th><%= day %></th>
-  <% end %></tr>
-  
-  <% [6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9].each_with_index do |row, index| %>
-    
-    <tr>
-      <th>
-        <%= row %> 
-        <% time_format = (index > 5)? "pm" : "am"   %>
-        <%= time_format %>
-      </th>
-      <% %w(mon tue wed thu fri sat sun ).each do |day| %>
-        <td style="padding:5px 25px" id = '<%="#{day}_#{row}_#{time_format}" %>' class = '<%= detect_class(@giver.id, "#{day}_#{row.to_s}_#{time_format}") %>'>&nbsp;</td>
+  <div class="row-fluid">
+    <div class="span3">
+      <strong>Lived in:</strong><br/>
+      <p><%= @giver.city if @giver.city.present? %></p>
+      <p><%= @giver_game.locations unless @giver_game.nil?  %>
+      </p>
+      <hr/>
+      <% unless @giver_studies.nil? %>
+        <strong>Studied at: </strong><br/>
+        <% @giver_studies.each do |study| %>
+          <%= study.school_name  %>
+          <br/>
+          <%= study.fields_of_study %>
+          <br/>
         <% end %>
-    </tr>
-    <% end %>
-</table>
+      <% end %>
+
+      <% unless @giver_phone_number.nil? %>
+        <strong>Phone no:</strong><br/>
+        <p><%= @giver_phone_number.number %></p>
+      <% end %>
+
+      <% unless @giver_connections.blank? %>
+        <% @giver_connections.each do |connection| %>
+          <strong><%= connection.provider %></strong>
+          <br/>
+          <p>status: connected</p>
+          <hr/>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="span9">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#experiences" data-toggle="tab">Experience</a></li>
+
+        <li><a href="#perspectives" data-toggle="tab">Perspectives</a></li>
+
+        <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
+      </ul>
+
+    <div id="experiences" class ="tab-pane fade in active">
+      <%= render :partial => "experiences", :locals => {:giver_experiences => @giver_experiences } %>
+    </div>
+    <div id="perspectives" class ="tab-pane fade">
+      <%= render :partial => "perspectives", :locals => {:game => @giver_game } %>
+    </div>
+    <div id="reviews" class ="tab-pane fade">
+      <%= render :partial => "reviews", :locals => {:giver => @giver } %>
+    </div> 
+    </div>
+  </div>
 </div>
-<%= link_to "Send a message", messages_new_seeker_sessions_path(current_user,:giver => @giver.id) %> 
 
 
-<div>
-  <%= form_tag nil, :class => "schedule_form"  do %>
-    <%= label_tag "Want to talk specifics?  Schedule a live to discuss your personal interests, pursuits and questions." %>
-    <%= label_tag "Tell us more, what do you seek perspective on?" %>
-    <br/>
-    <%= text_area_tag :schedule,nil, :style => "width:400px" %>
-    <br/>
-    <%= submit_tag "Submit", :class => "btn btn-warning",:id => "schedule_form_submit" %>
-  <% end %>
-</div>
-
-<% if current_user.billing_setting.present? %>
-
-  <script type="text/javascript">
-  	$(function(){
-
-      var multiple_cell = [];
-
-  		$("#weekly_link").on('click',function(){
-  			$(".availability_table").toggle();
-  		});
-
-
-      $(".availability_table tr td").on("click", function(){
-          var cell_id = this.id;
-          var self = $(this);
-
-          if (self.hasClass("selected")){
-            multiple_cell.push(cell_id);
-            self.removeClass("selected");
-            self.addClass("tmp_selected_cell");
-            $(".schedule_form").show();
-            console.log(multiple_cell);
-            } 
-          else if (self.hasClass("tmp_selected_cell")){
-            self.removeClass("tmp_selected_cell");
-            self.addClass("selected");
-            multiple_cell = _.without(multiple_cell,cell_id);
-            console.log(multiple_cell);
-            }
-      });
-
-      $("#schedule_form_submit").on('click', function(e){
-        e.preventDefault();
-        $.post("create_schedule",{time_slots: multiple_cell, description: $("#schedule").val()}
-          ).done(function(data){
-            $.each(multiple_cell, function(index, value){
-              $("#"+ value).removeClass("tmp_selected_cell");
-              $("#"+value).addClass("schedule_pending");
-            });
-            multiple_cell = [];
-            $("#schedule").val("");
-            $(".schedule_form").hide();
-            $(".alert-success").show();
-            $('html,body').animate({scrollTop:0},'fast');
-            console.log(data);
-
-          });
-      });
-
-
-  	});
-  </script>
-
-<% else %>
-
-  <script type="text/javascript">
-
-    $("#weekly_link").on('click',function(){
-      $(".availability_table").toggle();
-    });
-
-    $(".availability_table tr td").on('click', function(){
-      window.location.replace("<%= new_seeker_billing_setting_path(current_user) %>");
-    })
-  </script>
-
-  <% end %>
+  

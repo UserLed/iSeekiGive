@@ -37,9 +37,18 @@ class GiversController < ApplicationController
 
   def public_profile
     @giver = Giver.find(params[:id])
+    @giver_game = @giver.game
+    @giver_studies  = @giver.educations
+    @giver_experiences = @giver.experiences
+    @giver_phone_number = @giver.phone_number
+    @giver_connections = @giver.connections
     # @giver_time_slots = TimeSlot.where("giver_id=?",@giver.id).select("day,time,time_format") 
     # @giver_time_slots = @giver_time_slots.collect{|time_slot| [time_slot.day, time_slot.time, time_slot.time_format]}
 
+  end
+
+  def display_calendar
+    @giver = Giver.find(params[:id])
   end
 
   def create_schedule

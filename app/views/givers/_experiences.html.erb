@@ -1,0 +1,11 @@
+<% unless giver_experiences.blank? %>
+	<% giver_experiences.each do |experience| %>
+		Designation: <%= experience.title %>
+		<br/>
+		Company: <%= experience.company_name %>
+		<br/>
+		<%= experience.start_date.strftime("%B,%Y") %> -
+		<%= (experience.end_date.present?)? experience.start_date.strftime("%B,%Y") : "Present" %>
+		<hr/>
+	<% end %>
+<% end %>

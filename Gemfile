@@ -9,6 +9,7 @@ gem 'country-select'
 gem 'vine'
 gem 'linkedin'
 gem 'carrierwave'
+gem 'rmagick'
 gem 'activeadmin'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
