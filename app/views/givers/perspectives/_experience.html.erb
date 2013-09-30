@@ -5,8 +5,10 @@
   <p>
     <%= experience.company_name %>
   </p>
-  <p>
-    <%= experience.start_date.strftime("%B %Y") %> -
-    <%= experience.end_date.present? ? experience.end_date.strftime("%B %Y") : "Present" %>
-  </p>
+  <% if experience.start_date.present? %>
+    <p>
+      <%= experience.start_date.strftime("%B %Y") %> -
+      <%= experience.end_date.present? ? experience.end_date.strftime("%B %Y") : "Present" %>
+    </p>
+  <% end %>
 </div>
