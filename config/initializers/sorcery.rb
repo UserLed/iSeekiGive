@@ -86,9 +86,9 @@ Rails.application.config.sorcery.configure do |config|
 
   #Linkedin Config
   if Rails.env.production?
-    config.linkedin.key = "uyy178z1olhz"
-    config.linkedin.secret = "vqyZufPr8jWOchK8"
-    config.linkedin.callback_url = "http://iseekigive.iconsbd.com/oauth/linkedin/callback"
+    config.linkedin.key = "7juqvo2naeg5"
+    config.linkedin.secret = "V6ed5zLaVrkWJcwj"
+    config.linkedin.callback_url = "http://test.iseekigive.com/oauth/linkedin/callback"
   else
     config.linkedin.key = "mqguba5cny5d"
     config.linkedin.secret = "iUYJbx61BLB0dZDP"
@@ -101,9 +101,9 @@ Rails.application.config.sorcery.configure do |config|
 
   #Facebook Config
   if Rails.env.production?
-    config.facebook.key = "538362259552396"
-    config.facebook.secret = "6287a814bf44536332ee9fdf9bcfdced"
-    config.facebook.callback_url = "http://iseekigive.iconsbd.com/oauth/facebook/callback"
+    config.facebook.key = "424107214367949"
+    config.facebook.secret = "8928aa1f6838e03d9e1a5f7df6f8cd3c"
+    config.facebook.callback_url = "http://test.iseekigive.com/oauth/facebook/callback"
   else
     config.facebook.key = "401819199940793"
     config.facebook.secret = "e1f58854acc1082f1ed4dd52ef384b1c"
@@ -117,7 +117,7 @@ Rails.application.config.sorcery.configure do |config|
   if Rails.env.production?
     config.twitter.key = "BVjcNkQNnw5YVQczqprGDg"
     config.twitter.secret = "uksLGbBqRlKgSkeya2SXYVNOkvBIQPpQJ8U83UlNrU"
-    config.twitter.callback_url = "http://iseekigive.iconsbd.com/oauth/twitter/callback"
+    config.twitter.callback_url = "http://test.iseekigive.com/oauth/twitter/callback"
   else
     config.twitter.key = "HYFiC4z7T7E6aTHBdLYw"
     config.twitter.secret = "7T6zapb3FibcJ9UyMbqKlYQgiBEv5N95NXd9iWAaYw"
