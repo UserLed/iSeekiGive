@@ -9,10 +9,12 @@
       <%= education.degree %>,
       <%= education.field_of_study %>
     </p>
-    <p>
-      <%= education.start_date.strftime("%Y") %> -
-      <%= education.end_date.present? ? education.end_date.strftime("%Y") : "Present" %>
-    </p>
+    <% if education.start_date.present? %>
+      <p>
+        <%= education.start_date.strftime("%Y") %> -
+        <%= education.end_date.present? ? education.end_date.strftime("%Y") : "Present" %>
+      </p>
+    <% end %>
   </div>
   <div class="form-container" style="display:none">
     <%= render "educations/form", :education => education %>
