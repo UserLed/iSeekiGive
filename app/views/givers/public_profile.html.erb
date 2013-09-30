@@ -11,23 +11,35 @@
         <%= link_to("Schedule a Session", "display_calendar", :class => "btn btn-primary btn-large", :style => "margin-left:900px") unless @giver.time_slots.blank? %>
     </div>
   </div>
+  <br/>
   <div class="row-fluid">
     <div class="span3">
+    <% unless @giver.city.nil? %>
       <strong>Lived in:</strong><br/>
-      <p><%= @giver.city if @giver.city.present? %></p>
+      <p><%= @giver.city %></p>
       <p><%= @giver_game.locations unless @giver_game.nil?  %>
       </p>
+    <% end %>
       <hr/>
       <% unless @giver_studies.nil? %>
-        <strong>Studied at: </strong><br/>
+        <strong>Studied: </strong><br/>
         <% @giver_studies.each do |study| %>
-          <%= study.school_name  %>
+          <%= study.field_of_study  %>
           <br/>
           <%= study.fields_of_study %>
           <br/>
         <% end %>
-      <% end %>
+        <hr/>
+        <strong>School</strong><br/>
+        <% @giver_studies.each do |school| %>
+          <%= school.school_name %>
+          <br/>
+        <% end %>
 
+      <% end %>
+      <hr/>
+
+      <strong>Verifications</strong><br/>
       <% unless @giver_phone_number.nil? %>
         <strong>Phone no:</strong><br/>
         <p><%= @giver_phone_number.number %></p>
@@ -37,10 +49,11 @@
         <% @giver_connections.each do |connection| %>
           <strong><%= connection.provider %></strong>
           <br/>
-          <p>status: connected</p>
-          <hr/>
+          <p><em>status</em>: connected</p>
         <% end %>
       <% end %>
+      <hr/>
+
     </div>
     <div class="span9" style="position:relative">
       <ul class="nav nav-tabs">
