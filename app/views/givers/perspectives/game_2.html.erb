@@ -13,21 +13,37 @@
   <div class="span6">
     <legend>Experiences</legend>
     <% @giver.experiences.each do |ex| %>
-      <%= render 'experience', :experience => ex %>
-      <%= link_to "Manage Skills", game_experience_giver_perspectives_path(@giver, ex) %>
-      <hr/>
+        <%= render 'experience', :experience => ex %>
+        <%= link_to "Manage Skills", game_experience_giver_perspectives_path(@giver, ex), :class => 'fancybox' %>
+        <hr/>
     <% end %>
   </div>
-
+  <div id="experience_skill"></div>
   <div class="span6">
     <legend>Educations</legend>
     <% @giver.educations.each do |edu| %>
-      <%= render 'education', :education => edu %>
-      <%= link_to "Manage Skills", game_education_giver_perspectives_path(@giver, edu) %>
-      <hr/>
+        <%= render 'education', :education => edu %>
+        <%= link_to "Manage Skills", game_education_giver_perspectives_path(@giver, edu), :class => 'fancybox' %>
+        <hr/>
     <% end %>
   </div>
 </div>
+
+<a href="#divload_data" id="btnForm">Load Form</a>
+
+<div id="divload_data">
+  test fancybox
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("a.fancybox").fancybox();
+    });
+
+</script>
+
 
 <div class="row-fluid">
   <div class="span12 form-actions">

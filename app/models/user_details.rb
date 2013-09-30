@@ -3,9 +3,9 @@ class UserDetails
   def self.update_user_profile(hash, user)
     unless user.linkedin_update
       user_info = hash[:user_info]
-      set_user_skills(user_info["skills"], user)
-      set_user_educations(user_info["educations"], user)
-      set_user_experiences(user_info["positions"], user)
+      set_user_skills(user_info["skills"], user)              # handle nil class
+      set_user_educations(user_info["educations"], user)     # handle nil class
+      set_user_experiences(user_info["positions"], user)     # handle nil class
       user.linkedin_update = true
       user.save
     end
@@ -25,8 +25,8 @@ class UserDetails
     hash.vine("values").each do |v|
       e = user.educations.new
       e.school_name = v["schoolName"]
-      e.start_date = Date.strptime(v["startDate"]["year"].to_s, "%Y")
-      e.end_date = Date.strptime(v["endDate"]["year"].to_s, "%Y")
+      e.start_date = Date.strptime(v["startDate"]["year"].to_s, "%Y")   # handle nil class
+      e.end_date = Date.strptime(v["endDate"]["year"].to_s, "%Y")       # handle nil class
       e.degree = v["degree"]
       e.field_of_study = v["fieldOfStudy"]
       e.save

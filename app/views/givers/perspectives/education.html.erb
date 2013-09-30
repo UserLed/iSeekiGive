@@ -1,43 +1,13 @@
-<%= render "header" %>
-
-<%= link_to "Back to Game 2: Skills Match", game_2_giver_perspectives_path(@giver) %>
-
-<div class="row-fluid">
-  <div class="span12" style="text-align: right">
-    <h4>
-      <%= @education.school_name %>
-    </h4>
-    <h5>
-      <%= @education.degree %>,
-      <%= @education.field_of_study %>
-    </h5>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <div class="skills span6">
-    <% (@giver.skills - @education.skills).each do |skill| %>
-      <span class="skill_tag btn btn-info" id='skill_<%= skill.id %>'>
-        <%= skill.name %>
-      </span>
-    <% end %>
-  </div>
-
-
-  <div class="span6">
-    <legend>
-      Drop your matching skills below:
-    </legend>
-    <div id="matching-skills-container">
+<%= render :partial => 'educational_skill' %>
+<%= form_for(@education, :url => game_education_giver_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px;", },:remote =>true) do |f| %>
+    <div id ="edu_skill_container">
       <% @education.skills.each do |skill| %>
-        <span class="skill_tag btn btn-info" id='skill_<%= skill.id %>'>
-          <%= skill.name %>
-        </span>
+          <%= hidden_field_tag "skills[]", skill.id, :id =>"edu_skill_hidden_#{skill.id}" %>
       <% end %>
     </div>
-  </div>
-</div>
-
+    <%= f.submit "Submit", class: "btn" %>
+    <%= button_tag "Cancel", :type => :button, :id =>"cancel_edu_skill_add" %>
+<% end %>
 <script type="text/javascript">
   $(function(){
     $(".skills span").draggable({
@@ -57,21 +27,28 @@
         var skill_span_id = ui.draggable.attr('id');
         var skill_id = skill_span_id.replace("skill_", "");
 
-        droppable_div.append('<span class="btn btn-info skill_tag" id="' + skill_span_id + '">' + ui.draggable.text() + '</span>');
-        $("#"+skill_span_id).remove();
+        droppable_div.append('<span class="btn btn-info skill_tag" id="' + skill_span_id + '">' + ui.draggable.text() + '<a href="javascript:void(0)" class="close_skill">X</a></span>');
+          $("#edu_skill_container").append('<input type="hidden" name="skills[]" value="'+skill_id+'" id= "edu_skill_hidden_'+skill_id+'" />');
+          $("#"+skill_span_id).hide();
 
-        $.ajax({
-          type: "POST",
-          url: "<%= game_education_giver_perspectives_path(@giver, @education) %>",
-          data: { skill_id: skill_id },
-          dataType: "script",
-          success: function(data) {
-            console.log(data);
-          }
-        });
       }
+
 
     });
 
   });
+
+  $(document).on('click', '.close_skill', function(e) {
+      skill_span_id =  $(this).parent().attr("id");
+      skill_id = skill_span_id.replace("skill_", "");
+      $(this).parent().remove();
+      $("#"+skill_span_id).show();
+      $("#edu_skill_hidden_"+skill_id).remove();
+
+  });
+  $("#cancel_edu_skill_add").click(function(){
+      $.fancybox.close();
+  })
+
+
 </script>

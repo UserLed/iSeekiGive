@@ -34,22 +34,50 @@ class Givers::PerspectivesController < ApplicationController
   def experience
   	@giver = Giver.find(params[:giver_id])
     @experience = Experience.find(params[:experience_id])
-
     if request.post?
-      @skill = Skill.find(params[:skill_id])
-      @experience.skills << @skill
+       update_experience_with_skill(params)
       @giver.game.complete_game(2)
     end
+    respond_to do |format|
+      format.html {render :layout => false}
+      format.js
+    end
   end
+
+
+  def update_experience_with_skill(params)
+    if params[:skills].present?
+      @experience.skills.delete_all
+      params[:skills].each do |skill_id|
+        skill = Skill.find(skill_id)
+        @experience.skills << skill if skill.present?
+        logger.info "Skill info :: #{skill.inspect}"
+      end
+    end
+  end
+
 
   def education
     @giver = Giver.find(params[:giver_id])
     @education = Education.find(params[:education_id])
+      if request.post?
+        update_education_with_skill(params)
+        @giver.game.complete_game(2)
+    end
 
-    if request.post?
-      @skill = Skill.find(params[:skill_id])
-      @education.skills << @skill
-      @giver.game.complete_game(2)
+    respond_to do |format|
+      format.html {render :layout => false}
+      format.js
+    end
+  end
+
+  def update_education_with_skill(params)
+    if params[:skills].present?
+      @education.skills.delete_all
+      params[:skills].each do |skill_id|
+        skill = Skill.find(skill_id)
+        @education.skills << skill if skill.present?
+      end
     end
   end
 
