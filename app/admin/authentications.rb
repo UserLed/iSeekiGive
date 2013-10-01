@@ -1,4 +1,5 @@
 ActiveAdmin.register Authentication do
+  menu :parent => "External"
   actions :all, :except => [:new, :edit]
 
   index do
