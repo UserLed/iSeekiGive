@@ -34,9 +34,11 @@ class Givers::PerspectivesController < ApplicationController
   def experience
   	@giver = Giver.find(params[:giver_id])
     @experience = Experience.find(params[:experience_id])
+    @skill_update = false
     if request.post?
       update_experience_with_skill(params)
       @giver.game.complete_game(2)
+      @skill_update = true
     end
     respond_to do |format|
       format.html {render :layout => false}

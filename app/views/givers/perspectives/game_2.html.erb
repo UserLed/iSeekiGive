@@ -15,6 +15,9 @@
     <% @giver.experiences.each do |ex| %>
         <%= render 'experience', :experience => ex %>
         <%= link_to "Manage Skills", game_experience_giver_perspectives_path(@giver, ex), :class => 'fancybox' %>
+        <div id="exp_skill_show_<%= ex.id %>">
+          <%= render :partial => 'skill_body',:locals => {:skills => ex.skills} %>
+        </div>
         <hr/>
     <% end %>
   </div>
@@ -24,21 +27,18 @@
     <% @giver.educations.each do |edu| %>
         <%= render 'education', :education => edu %>
         <%= link_to "Manage Skills", game_education_giver_perspectives_path(@giver, edu), :class => 'fancybox' %>
+        <div id="edu_skill_show_<%= edu.id %>">
+          <%= render :partial => 'skill_body',:locals => {:skills => edu.skills} %>
+        </div>
         <hr/>
     <% end %>
   </div>
 </div>
 
-<a href="#divload_data" id="btnForm">Load Form</a>
-
-<div id="divload_data">
-  test fancybox
-</div>
-
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("a.fancybox").fancybox();
     });
 
