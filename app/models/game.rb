@@ -1,8 +1,6 @@
 class Game < ActiveRecord::Base
-  attr_accessible :giver_id, :change_major, :study_majors, :another_locations, 
-    :locations, :bad_story, :good_story, :ugly_story, :completed_step_1,
-    :completed_step_2, :completed_step_3, :good_keywords, :bad_keywords,
-    :ugly_keywords, :good_anonymous, :bad_anonymous, :ugly_anonymous
+  attr_accessible :giver_id,  :another_locations, :locations,  
+    :completed_step_1, :completed_step_2, :completed_step_3
 
   belongs_to :giver
 

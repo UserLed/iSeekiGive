@@ -33,7 +33,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :public_profile do
-    process :resize_to_fill => [80, 80]
+    process :resize_to_fill => [100, 100]
   end
     version :public_profile_header do
     process :resize_to_fill => [1302, 300]

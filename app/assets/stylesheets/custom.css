@@ -353,3 +353,18 @@ body{
     font-size: 12px;
     color: #cd0a0a;
 }
+
+.profile-cover{
+    background-repeat:no-repeat;
+    height:200px;
+}
+
+.profile-cover .profile-photo{
+    border: 5px solid white;
+    margin-top: 15px;
+    margin-left: 5px;
+    width: 100px;
+    height: 100px;
+}
+
+

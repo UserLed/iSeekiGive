@@ -1,10 +1,14 @@
-<% unless game.nil? %>
-	<strong>good story</strong><br/>
-	<%= game.good_story unless game.good_story.nil? %>
-	<hr/>
-	<strong>bad story</strong><br/>
-	<%= game.bad_story unless game.bad_story.nil? %>
-	<hr/>
-	<strong>ugly story</strong><br/>
-	<%= game.ugly_story unless game.ugly_story.nil? %>
+<% if @giver.perspectives.present? %>
+  <% @giver.perspectives.where(:anonymous => false).each do |perspective| %>
+    <strong>
+      <%= perspective.story_type %>
+    </strong>
+    <p>
+      <%= perspective.story %>
+    </p>
+    <p>
+      Tags
+    </p>
+    <hr/>
+  <% end %>
 <% end %>

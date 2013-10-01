@@ -46,14 +46,14 @@
 
   </div>
 
-  <div class="row-fluid" id="share_story" style="display:none">
+  <div class="row-fluid" id="share_story" style="display:block">
     <legend>
       <h3>Share a story about “The Good, The Bad and The Ugly”.</h3>
     </legend>
 
 
-    <%= fields_for @giver.game do |g| %>
-    
+    <%= fields_for :perspective do |g| %>
+
       <div class="row-fluid">
         <legend>
           The Ugly
@@ -61,12 +61,12 @@
         <div class="span11">
           <div class="span6">
             <%= g.label :ugly_story, "Share a story based on the above.  All responses will be kept strictly anonymous until you decide otherwise.", :class => "control-label"  %>
-            <%= g.text_area :ugly_story, :style => "width:100%;Height:80px;" %>
+            <%= g.text_area :ugly_story, :value => @giver.ugly_perspective.story, :style => "width:100%;Height:80px;" %>
             <br/>
             <%= g.label :ugly_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
             <%= g.text_field :ugly_keywords %>
             <br/>
-            <%= g.check_box :ugly_anonymous %>
+            <%= g.check_box :ugly_anonymous, :checked => @giver.ugly_perspective.anonymous %>
             Anonymous
           </div>
           <div class="span6">
@@ -86,12 +86,12 @@
         <div class="span11">
           <div class="span6">
             <%= label :bad_story, "Share a story based on the above.  All responses will be kept strictly anonymous until you decide otherwise.", :class => "control-label"  %>
-            <%= g.text_area :bad_story, :style => "width:100%;Height:80px;" %>
+            <%= g.text_area :bad_story, :value => @giver.bad_perspective.story, :style => "width:100%;Height:80px;" %>
             <br/>
             <%= g.label :bad_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
             <%= g.text_field :bad_keywords %>
             <br/>
-            <%= g.check_box :bad_anonymous %>
+            <%= g.check_box :bad_anonymous, :checked => @giver.bad_perspective.anonymous %>
             Anonymous
           </div>
           <div class="span6">
@@ -111,12 +111,12 @@
         <div class="span11">
           <div class="span6">
             <%= g.label :good_story, "Share a story based on the above.  All responses will be kept strictly anonymous until you decide otherwise.", :class => "control-label"  %>
-            <%= g.text_area :good_story, :style => "width:100%;Height:80px;" %>
+            <%= g.text_area :good_story, :value => @giver.good_perspective.story, :style => "width:100%;Height:80px;" %>
             <br/>
             <%= g.label :good_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
             <%= g.text_field :good_keywords %>
             <br/>
-            <%= g.check_box :good_anonymous %>
+            <%= g.check_box :good_anonymous, :checked => @giver.good_perspective.anonymous %>
             Anonymous
           </div>
           <div class="span6">

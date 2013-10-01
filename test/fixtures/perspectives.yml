@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  giver_id: 1
+  story_type: MyString
+  story: MyString
+  anonymous: false
+
+two:
+  giver_id: 1
+  story_type: MyString
+  story: MyString
+  anonymous: false
