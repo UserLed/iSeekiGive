@@ -17,6 +17,8 @@
 //= require fancybox
 //= require underscore-min
 //= require fancybox-config
+//= require tag-it
+//= require keypress
 //= require custom
 //= require stripe
 //= require personal-details

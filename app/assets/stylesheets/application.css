@@ -11,5 +11,7 @@
  *= require jquery-ui 
  *= require bootstrap_and_overrides
  *= require fancybox
+ *= require jquery.tagit
+ *= require tagit.ui-zendesk
  *= require custom
 */
