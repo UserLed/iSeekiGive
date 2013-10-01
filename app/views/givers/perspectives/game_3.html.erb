@@ -64,7 +64,7 @@
             <%= g.text_area :ugly_story, :value => @giver.ugly_perspective.story, :style => "width:100%;Height:80px;" %>
             <br/>
             <%= g.label :ugly_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
-            <%= g.text_field :ugly_keywords,:class => "keyword_tag" %>
+            <%= g.text_field :ugly_keywords,:class => "keyword_tag1" %>
             <br/>
             <%= g.check_box :ugly_anonymous, :checked => @giver.ugly_perspective.anonymous %>
             Anonymous
@@ -89,7 +89,7 @@
             <%= g.text_area :bad_story, :value => @giver.bad_perspective.story, :style => "width:100%;Height:80px;" %>
             <br/>
             <%= g.label :bad_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
-            <%= g.text_field :bad_keywords,:class => "keyword_tag" %>
+            <%= g.text_field :bad_keywords,:class => "keyword_tag2" %>
             <br/>
             <%= g.check_box :bad_anonymous, :checked => @giver.bad_perspective.anonymous %>
             Anonymous
@@ -114,7 +114,7 @@
             <%= g.text_area :good_story, :value => @giver.good_perspective.story, :style => "width:100%;Height:80px;" %>
             <br/>
             <%= g.label :good_keywords, "Enter Keywords to describe these experiences:", :class => "control-label" %>
-            <%= g.text_field :good_keywords, :class => "keyword_tag" %>
+            <%= g.text_field :good_keywords, :class => "keyword_tag3" %>
             <br/>
             <%= g.check_box :good_anonymous, :checked => @giver.good_perspective.anonymous %>
             Anonymous
@@ -148,34 +148,43 @@
 <script type="text/javascript">
   $(function(){
     $.getJSON("/tags",function(data){
-      $(".keyword_tag").tagit({
+      $(".keyword_tag1, .keyword_tag2, .keyword_tag3").tagit({
         availableTags : data
       });
-      $(".keyword_tag").bind('keypress',
-          keypress.combo("enter",function(event){
-            event.preventDefault();
-            var current_tags = $(".keyword_tag").val().split(",");
-            var last_elem = _.last(current_tags);
-            if (_.indexOf(data,last_elem) == (-1)){
-                $.ajax({
-                  url    : "/tags",
-                  method : "POST",
-                  data   : {tag : last_elem},
-                  success: function(){
-                    console.log(data);
-                    data.push(last_elem);
-                  },
-                  error : function(status){
-                    console.log(status);
-                  }
-                });
 
-            } 
-      })
+      update_tag("keyword_tag1",data);
+      update_tag("keyword_tag2",data);
+      update_tag("keyword_tag3",data);
 
-        );
 
-    });
+      });
     
-  })
+  });
+      function update_tag(class_name,data){
+        $("."+class_name).bind('keypress',
+            keypress.combo("enter",function(event){
+              event.preventDefault();
+              var current_tags = $("."+class_name).val().split(",");
+              var last_elem = _.last(current_tags);
+              if (_.indexOf(data,last_elem) == (-1)){
+                  $.ajax({
+                    url    : "/tags",
+                    method : "POST",
+                    data   : {tag : last_elem},
+                    success: function(){
+                      console.log(data);
+                      data.push(last_elem);
+                    },
+                    error : function(status){
+                      console.log(status);
+                    }
+                  });
+
+              } 
+        })
+
+          );
+    }
+
+
 </script>
