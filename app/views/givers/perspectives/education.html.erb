@@ -1,12 +1,12 @@
 <%= render :partial => 'educational_skill' %>
-<%= form_for(@education, :url => game_education_giver_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px;", },:remote =>true) do |f| %>
+<%= form_for(@education, :url => game_education_giver_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px; float:right", },:remote =>true) do |f| %>
     <div id ="edu_skill_container">
       <% @education.skills.each do |skill| %>
           <%= hidden_field_tag "skills[]", skill.id, :id =>"edu_skill_hidden_#{skill.id}" %>
       <% end %>
     </div>
-    <%= f.submit "Submit", class: "btn" %>
-    <%= button_tag "Cancel", :type => :button, :id =>"cancel_edu_skill_add" %>
+    <%= f.submit "Save", class: "btn btn-medium btn-primary" %>
+    <a class="btn btn-info cancel" href="javascript:void(0)" id ="cancel_edu_skill_add">Cancel</a>
 <% end %>
 <script type="text/javascript">
   $(function(){
