@@ -149,42 +149,27 @@
   $(function(){
     $.getJSON("/tags",function(data){
       $(".keyword_tag1, .keyword_tag2, .keyword_tag3").tagit({
-        availableTags : data
-      });
+        availableTags : data,
 
-      update_tag("keyword_tag1",data);
-      update_tag("keyword_tag2",data);
-      update_tag("keyword_tag3",data);
-
-
-      });
-    
+        afterTagAdded :function(event, ui){
+          if (_.indexOf(data, ui.tagLabel) == (-1)){
+          $.ajax({
+            url    : "/tags",
+            method : "POST",
+            data   : {tag : ui.tagLabel},
+            success: function(){
+              console.log(data);
+              data.push(ui.tagLabel);
+            },
+            error : function(status){
+              console.log(status);
+            }
+          });
+        }
+        }
+    });
   });
-      function update_tag(class_name,data){
-        $("."+class_name).bind('keypress',
-            keypress.combo("enter",function(event){
-              event.preventDefault();
-              var current_tags = $("."+class_name).val().split(",");
-              var last_elem = _.last(current_tags);
-              if (_.indexOf(data,last_elem) == (-1)){
-                  $.ajax({
-                    url    : "/tags",
-                    method : "POST",
-                    data   : {tag : last_elem},
-                    success: function(){
-                      console.log(data);
-                      data.push(last_elem);
-                    },
-                    error : function(status){
-                      console.log(status);
-                    }
-                  });
-
-              } 
-        })
-
-          );
-    }
+});
 
 
 </script>
