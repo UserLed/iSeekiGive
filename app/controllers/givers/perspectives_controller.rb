@@ -132,13 +132,13 @@ class Givers::PerspectivesController < ApplicationController
       end
 
       params[:perspective][:good_keywords].split(",").each do |keyword|
-        current_user.perspectives.first.perspective_tags.build(:name => keyword).save!
+        @giver.good_perspective.perspective_tags.create(:name => keyword)
       end
       params[:perspective][:bad_keywords].split(",").each do |keyword|
-        current_user.perspectives[1].perspective_tags.build(:name => keyword).save!
+        @giver.bad_perspective.perspective_tags.create(:name => keyword)
       end
       params[:perspective][:ugly_keywords].split(",").each do |keyword|
-        current_user.perspectives[2].perspective_tags.build(:name => keyword).save!
+        @giver.ugly_perspective.perspective_tags.create(:name => keyword)
       end      
 
 

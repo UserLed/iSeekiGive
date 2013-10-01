@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12 profile-cover" style= 'background-image: url(<%= @giver.cover_photo.public_profile_header.url %>);'>
-    <%= image_tag @giver.profile_photo.public_profile.url, :class => "profile-photo" %>
+    <%= image_tag @giver.profile_photo.public_profile.url, :class => "profile-photo" if @giver.profile_photo.present? %>
     <%= link_to("Schedule a Session", "display_calendar", :class => "btn btn-primary btn-large", :style => "margin-left:900px") unless @giver.time_slots.blank? %>
   </div>
 </div>

@@ -7,7 +7,7 @@
       <%= perspective.story %>
     </p>
     <p>
-      <%= perspective.perspective_tags.collect{|t| t.name}.join(", ") %>
+      Keywords: <%= perspective.perspective_tags.collect{|t| t.name}.join(", ") %>
     </p>
     <hr/>
   <% end %>

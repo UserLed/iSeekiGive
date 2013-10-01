@@ -16,9 +16,8 @@ class UserDetails
   def self.set_user_skills(hash, user)
     hash.vine("values").each do |v|
       if v["skill"].present? and v["skill"]["name"].present?
-        s = user.skills.new
-        s.name = v["skill"]["name"]
-        s.save
+        user.skills.create(:name => v["skill"]["name"])
+        user.tags.create(:name => v["skill"]["name"])
       end
     end
   end
