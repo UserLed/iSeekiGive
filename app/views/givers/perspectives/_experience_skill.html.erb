@@ -14,7 +14,8 @@
     <% @giver.skills.each do |skill| %>
         <%
            style_str = ''
-           style_str = 'style=display:none' if @experience.skills.include?(skill) %>
+           style_str = 'style=display:none' if @experience.skills.include?(skill)
+        %>
       <span class="skill_tag btn btn-info" id='skill_<%= skill.id %>' <%= style_str %>>
         <%= skill.name %>
       </span>
