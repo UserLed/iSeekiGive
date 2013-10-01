@@ -131,6 +131,16 @@ class Givers::PerspectivesController < ApplicationController
         @giver.ugly_perspective.save
       end
 
+      params[:perspective][:good_keywords].split(",").each do |keyword|
+        current_user.perspectives.first.perspective_tags.build(:name => keyword).save!
+      end
+      params[:perspective][:bad_keywords].split(",").each do |keyword|
+        current_user.perspectives[1].perspective_tags.build(:name => keyword).save!
+      end
+      params[:perspective][:ugly_keywords].split(",").each do |keyword|
+        current_user.perspectives[2].perspective_tags.build(:name => keyword).save!
+      end      
+
 
       @giver.game.complete_game(3)
 
