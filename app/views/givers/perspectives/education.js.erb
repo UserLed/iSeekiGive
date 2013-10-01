@@ -1,2 +1,5 @@
-alert('success');
 $.fancybox.close();
+
+<% if @skill_update %>
+$("#edu_skill_show_<%= @education.id%>").html('<%= escape_javascript(render :partial => 'skill_body',:locals => {:skills => @education.skills}) %>');
+<% end %>

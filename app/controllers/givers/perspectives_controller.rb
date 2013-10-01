@@ -48,8 +48,8 @@ class Givers::PerspectivesController < ApplicationController
 
 
   def update_experience_with_skill(params)
+    @experience.skills.delete_all
     if params[:skills].present?
-      @experience.skills.delete_all
       params[:skills].each do |skill_id|
         skill = Skill.find(skill_id)
         @experience.skills << skill if skill.present?
@@ -62,9 +62,11 @@ class Givers::PerspectivesController < ApplicationController
   def education
     @giver = Giver.find(params[:giver_id])
     @education = Education.find(params[:education_id])
+    @skill_update = false
     if request.post?
       update_education_with_skill(params)
       @giver.game.complete_game(2)
+      @skill_update = true
     end
 
     respond_to do |format|
@@ -74,8 +76,8 @@ class Givers::PerspectivesController < ApplicationController
   end
 
   def update_education_with_skill(params)
+    @education.skills.delete_all
     if params[:skills].present?
-      @education.skills.delete_all
       params[:skills].each do |skill_id|
         skill = Skill.find(skill_id)
         @education.skills << skill if skill.present?

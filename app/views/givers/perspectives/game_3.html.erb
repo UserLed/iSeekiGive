@@ -147,6 +147,7 @@
 
 <script type="text/javascript">
   $(function(){
+
     $.getJSON("/tags",function(data){
       $(".keyword_tag1, .keyword_tag2, .keyword_tag3").tagit({
         availableTags : data
@@ -158,7 +159,7 @@
 
 
       });
-    
+
   });
       function update_tag(class_name,data){
         $("."+class_name).bind('keypress',
