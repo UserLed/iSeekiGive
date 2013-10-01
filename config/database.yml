@@ -30,8 +30,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: iSeekiGive_production
+  database: iSeekiGive
   pool: 5
   username: root
-  password: root
+  password: isig@2013$
 

@@ -4,13 +4,13 @@ require "erb"
 
 default_run_options[:pty] = true
 
-role :web, "54.214.109.196"
-role :app, "54.214.109.196"
-role :db, "54.214.109.196", :primary => true
+role :web, "54.200.105.101"
+role :app, "54.200.105.101"
+role :db, "54.200.105.101", :primary => true
 
 set(:rvm_type)          { :system }
-set(:rvm_ruby_string)   { "1.9.3-p194" }
-set(:ruby_version)      { '1.9.3-p194' }
+set(:rvm_ruby_string)   { "1.9.3-p286" }
+set(:ruby_version)      { '1.9.3-p286' }
 set(:rvm_path)          { "/usr/local/rvm" }
 
 set :user, 'ubuntu'
@@ -34,7 +34,7 @@ ssh_options[:username] = 'ubuntu'
 ssh_options[:host_key] = 'ssh-dss'
 ssh_options[:paranoid] = false
 ssh_options[:forward_agent] = true
-ssh_options[:keys] = %w(~/ssh-keys/mhbweb/mhbweb.pem)
+ssh_options[:keys] = %w(~/ssh-keys/isig/iSiGdev.pem)
 
 after "deploy:setup", "deploy:create_shared_directories"
 

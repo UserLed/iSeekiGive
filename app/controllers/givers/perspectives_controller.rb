@@ -34,22 +34,50 @@ class Givers::PerspectivesController < ApplicationController
   def experience
   	@giver = Giver.find(params[:giver_id])
     @experience = Experience.find(params[:experience_id])
-
     if request.post?
-      @skill = Skill.find(params[:skill_id])
-      @experience.skills << @skill
+      update_experience_with_skill(params)
       @giver.game.complete_game(2)
     end
+    respond_to do |format|
+      format.html {render :layout => false}
+      format.js
+    end
   end
+
+
+  def update_experience_with_skill(params)
+    if params[:skills].present?
+      @experience.skills.delete_all
+      params[:skills].each do |skill_id|
+        skill = Skill.find(skill_id)
+        @experience.skills << skill if skill.present?
+        logger.info "Skill info :: #{skill.inspect}"
+      end
+    end
+  end
+
 
   def education
     @giver = Giver.find(params[:giver_id])
     @education = Education.find(params[:education_id])
-
     if request.post?
-      @skill = Skill.find(params[:skill_id])
-      @education.skills << @skill
+      update_education_with_skill(params)
       @giver.game.complete_game(2)
+    end
+
+    respond_to do |format|
+      format.html {render :layout => false}
+      format.js
+    end
+  end
+
+  def update_education_with_skill(params)
+    if params[:skills].present?
+      @education.skills.delete_all
+      params[:skills].each do |skill_id|
+        skill = Skill.find(skill_id)
+        @education.skills << skill if skill.present?
+      end
     end
   end
 
@@ -65,7 +93,7 @@ class Givers::PerspectivesController < ApplicationController
   	end
 
     if request.post?
-      if params[:feelings].has_key?(:Experience)
+      if params[:feelings].present? and params[:feelings].has_key?(:Experience)
         params[:feelings][:Experience].each do |ex|
           experience = Experience.find(ex.first)
           experience.feelings = ex.last
@@ -73,7 +101,7 @@ class Givers::PerspectivesController < ApplicationController
         end
       end
 
-      if params[:feelings].has_key?(:Education)
+      if params[:feelings].present? and params[:feelings].has_key?(:Education)
         params[:feelings][:Education].each do |ed|
           education = Education.find(ed.first)
           education.feelings = ed.last
@@ -81,9 +109,26 @@ class Givers::PerspectivesController < ApplicationController
         end
       end
 
-      if @giver.game.update_attributes(params[:game])
-        @giver.game.complete_game(3)
+      if params[:perspective][:good_story].present?
+        @giver.good_perspective.story = params[:perspective][:good_story]
+        @giver.good_perspective.anonymous = params[:perspective][:good_anonymous]
+        @giver.good_perspective.save
       end
+      
+      if params[:perspective][:bad_story].present?
+        @giver.bad_perspective.story = params[:perspective][:bad_story]
+        @giver.bad_perspective.anonymous = params[:perspective][:bad_anonymous]
+        @giver.bad_perspective.save
+      end
+
+      if params[:perspective][:ugly_story].present?
+        @giver.ugly_perspective.story = params[:perspective][:ugly_story]
+        @giver.ugly_perspective.anonymous = params[:perspective][:ugly_anonymous]
+        @giver.ugly_perspective.save
+      end
+
+
+      @giver.game.complete_game(3)
 
       if @giver.game.completed_3_games?
         @giver.level = 2

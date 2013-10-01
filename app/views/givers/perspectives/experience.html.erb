@@ -1,41 +1,15 @@
-<%= render "header" %>
 
-<%= link_to "Back to Game 2: Skills Match", game_2_giver_perspectives_path(@giver) %>
-
-<div class="row-fluid">
-  <div class="span12" style="text-align: right">
-    <h2>
-      <%= @experience.title %>
-    </h2>
-    <h4>
-      <%= @experience.company_name %>
-    </h4>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <div class="skills span6">
-    <% (@giver.skills - @experience.skills).each do |skill| %>
-      <span class="skill_tag btn btn-info" id='skill_<%= skill.id %>'>
-        <%= skill.name %>
-      </span>
-    <% end %>
-  </div>
-
-
-  <div class="span6">
-    <legend>
-      Drop your matching skills below:
-    </legend>
-    <div id="matching-skills-container">
+<%= render :partial => 'experience_skill' %>
+<%= form_for(@experience, :url => game_experience_giver_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px;", },:remote =>true) do |f| %>
+    <div id ="exp_skill_container">
       <% @experience.skills.each do |skill| %>
-        <span class="skill_tag btn btn-info" id='skill_<%= skill.id %>'>
-          <%= skill.name %>
-        </span>
+          <%= hidden_field_tag "skills[]", skill.id, :id =>"exp_skill_hidden_#{skill.id}" %>
       <% end %>
     </div>
-  </div>
-</div>
+    <%= f.submit "Submit", class: "btn" %>
+    <%= button_tag "Cancel", :type => :button, :id =>"cancel_exp_skill_add" %>
+<% end %>
+
 
 <script type="text/javascript">
   $(function(){
@@ -44,8 +18,7 @@
       helper : 'clone'
     });
 
-
-    droppable_div = $("#matching-skills-container");		
+    droppable_div = $("#matching-skills-container");
     giver_id = "<%= @giver.id %>";
 
     droppable_div.droppable({
@@ -56,21 +29,28 @@
         var skill_span_id = ui.draggable.attr('id');
         var skill_id = skill_span_id.replace("skill_", "");
 
-        droppable_div.append('<span class="btn btn-info skill_tag" id="' + skill_span_id + '">' + ui.draggable.text() + '</span>');
-        $("#"+skill_span_id).remove();
+        droppable_div.append('<span class="btn btn-info skill_tag" id="' + skill_span_id + '">' + ui.draggable.text() + '<a href="javascript:void(0)" class="close_skill">X</a></span>');
+          $("#exp_skill_container").append('<input type="hidden" name="skills[]" value="'+skill_id+'" id= "exp_skill_hidden_'+skill_id+'" />');
+          $("#skill_"+skill_id).hide();
 
-        $.ajax({
-          type: "POST",
-          url: "<%= game_experience_giver_perspectives_path(@giver, @experience) %>",
-          data: { skill_id: skill_id },
-          dataType: "script",
-          success: function(data) {
-            console.log(data); 
-          }
-        });
+
       }
 
     });
 
+
   });
+
+  $(document).on('click', '.close_skill', function(e) {
+      skill_span_id =  $(this).parent().attr("id");
+      skill_id = skill_span_id.replace("skill_", "");
+      $(this).parent().remove();
+      $("#"+skill_span_id).show();
+      $("#exp_skill_hidden_"+skill_id).remove();
+
+  });
+  $("#cancel_exp_skill_add").click(function(){
+      $.fancybox.close();
+  }) ;
+
 </script>

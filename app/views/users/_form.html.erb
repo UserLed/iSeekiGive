@@ -28,14 +28,9 @@
 <div class="control-group">
   <%= f.label :email, :class => 'control-label' %>
   <div class="controls">
-
     <%= f.email_field :email, :class => 'text_field', :id => 'user_email', :required => true %>
-    <%= button_tag :verify, :type => :button, :class => 'btn btn-primary', :id => 'verified_email' %>
+    <div class="field-notice"><span id="email_error"></span></div>
   </div>
-  <div class="controls">
-    <span id="email_error"></span>
-  </div>
-
 </div>
 
 <div class="control-group">
@@ -100,35 +95,36 @@
 
 
 <script type='text/javascript'>
-    function check(input) {
-        if (input.value != document.getElementById('<%= f.object.class.name.downcase %>_password').value) {
-            input.setCustomValidity('The two passwords must match.');
-        } else {
-            // input is valid -- reset the error message
-            input.setCustomValidity('');
-        }
+  function check(input) {
+    if (input.value != document.getElementById('<%= f.object.class.name.downcase %>_password').value) {
+      input.setCustomValidity('The two passwords must match.');
+    } else {
+      // input is valid -- reset the error message
+      input.setCustomValidity('');
     }
-    $("#verified_email").click(function () {
-        email = $("#user_email").val();
-        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if (filter.test(email)) {
-            $.ajax({
-                url: "<%=email_checker_path %>",
-                type: "POST",
-                data: { email: email},
-                dataType: "script",
-                beforeSend: function (jqXHR, settings) {
-                    jqXHR.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-                },
-                error: function () {
-                    // alert("An error ocurred");
-                },
-                success: function () {
+  }
+  
+  $("input#user_email").blur(function () {
+    email = $("#user_email").val();
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (filter.test(email)) {
+      $.ajax({
+        url: "<%=  email_checker_path %>",
+        type: "POST",
+        data: { email: email},
+        dataType: "script",
+        beforeSend: function (jqXHR, settings) {
+          jqXHR.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        },
+        error: function () {
+          // alert("An error ocurred");
+        },
+        success: function () {
 
-                }
-            });
-        } else {
-            $("#email_error").html("Email not valid");
         }
-    });
+      });
+    } else {
+      $("#email_error").html("Invalid Email.");
+    }
+  });
 </script>

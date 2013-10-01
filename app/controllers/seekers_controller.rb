@@ -17,6 +17,16 @@ class SeekersController < ApplicationController
     end
   end
 
+  def update
+    @seeker = Seeker.find(params[:id])
+
+    if @seeker.update_attributes(params[:seeker])
+      redirect_to @seeker, :notice => "Sucessfully Updated!"
+    else
+      render :action  => "show"
+    end
+  end
+
   def show
     @seeker = Seeker.find(params[:id])
   end

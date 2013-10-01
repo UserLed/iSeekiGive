@@ -115,31 +115,6 @@ class Givers::SessionsController < ApplicationController
       end
     end
 
-  	@to = User.find(params[:giver_id])   #might also be seeker_id
-  	
-  	if request.post?
-  		message = Message.new
-
-  		message.from = params[:from] if params[:from].present?
-  		message.from_id = current_user.id
-
-  		message.to = params[:to] if params[:to].present?
-  		message.to_id= @to.id
-
-  		message.subject = params[:subject] if params[:subject].present?
-  		message.content = params[:content] if params[:content].present?
-
-  		message.uid = SecureRandom.uuid
-  	
-  	
-	  	if message.save
-	  		redirect_to inbox_giver_sessions_path(current_user), :notice => "message was sent successfully"
-	  		return
-	  	else
-	  		render 'new_message'
-	  	end
-    end
-
   end
 
 

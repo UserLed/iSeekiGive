@@ -1,0 +1,14 @@
+<% unless @giver.experiences.blank? %>
+  <% @giver.experiences.each do |experience| %>
+    <%= experience.company_name %>
+    <% if experience.start_date.present? %>
+      (
+      <%= experience.start_date.strftime("%B, %Y") %> -
+      <%= (experience.end_date.present?)? experience.start_date.strftime("%B, %Y") : "Present" %>
+      )
+    <% end %>
+    <br/>
+    <%= experience.title %>
+    <hr/>
+  <% end %>
+<% end %>

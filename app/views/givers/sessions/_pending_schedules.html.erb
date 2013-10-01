@@ -25,7 +25,7 @@
 
 			<% elsif schedule.status.eql?("accepted") %>
 				<td>
-					<%= link_to "Cancel", "#", :class => "btn btn-warning" %>|
+					<%= link_to "Cancel",session_request_reject_giver_sessions_path(current_user,:id => schedule.id),:remote => true, :class => "btn btn-warning" %>|
 					<%= link_to "Reschedule", "#", :class => "btn btn-primary" %>
 				</td>
 			<% elsif schedule.status.eql?("completed") %>

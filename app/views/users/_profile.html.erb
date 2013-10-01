@@ -24,12 +24,12 @@
             Email : <%= user.email %>
           </li>
           <li class="list-group-item">
-            Country : <%= user.country %>
+            Country : <%= user.current_location %>
           </li>
           <li class="list-group-item total_experience">
             Total Experience : <%= total_experience(user) %>
           </li>
-          <li class="list-group-item total_experience">
+          <li class="list-group-item">
             <%= link_to "Update Billing Information", current_user.type == 'Giver' ? new_giver_billing_setting_path(current_user) : new_seeker_billing_setting_path(current_user) %>
           </li>
         </ul>
