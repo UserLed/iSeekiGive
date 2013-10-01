@@ -14,8 +14,13 @@
 <script type="text/javascript">
   $(function(){
     $(".skills span").draggable({
-      appendTo: "body",
-      helper : 'clone'
+        appendTo: "body",
+        helper: 'clone',
+        scrollSensitivity: 10,
+        zIndex: 10000,
+        scrollSpeed: 45,
+        opacity: 0.80,
+        cursor: 'move'
     });
 
     droppable_div = $("#matching-skills-container");
