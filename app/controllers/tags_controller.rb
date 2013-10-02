@@ -4,7 +4,7 @@ class TagsController < ApplicationController
 	
 	def get_user_tags
 		if request.post? and params[:tag].present? 
-			unless Tag.exists?(:name => params[:tag])
+			unless current_user.tags.exists?(:name => params[:tag])
 				current_user.tags.build(:name => params[:tag]).save!
 				render :nothing => true
 				return
