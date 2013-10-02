@@ -3,4 +3,8 @@ class Perspective < ActiveRecord::Base
 
   belongs_to :giver
   has_many   :perspective_tags, :dependent => :destroy
+
+  def name
+    story.truncate(30, :ommisson => "...") if story.present?
+  end
 end
