@@ -1,21 +1,26 @@
 
 <%= render :partial => 'experience_skill' %>
-<%= form_for(@experience, :url => game_experience_giver_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px;", },:remote =>true) do |f| %>
+<%= form_for(@experience, :url => game_experience_giver_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px; float:right", },:remote =>true) do |f| %>
     <div id ="exp_skill_container">
       <% @experience.skills.each do |skill| %>
           <%= hidden_field_tag "skills[]", skill.id, :id =>"exp_skill_hidden_#{skill.id}" %>
       <% end %>
     </div>
-    <%= f.submit "Submit", class: "btn" %>
-    <%= button_tag "Cancel", :type => :button, :id =>"cancel_exp_skill_add" %>
+    <%= f.submit "Save", class: "btn btn-medium btn-primary" %>
+    <a class="btn btn-info cancel" href="javascript:void(0)"  id ="cancel_exp_skill_add">Cancel</a>
 <% end %>
 
 
 <script type="text/javascript">
   $(function(){
     $(".skills span").draggable({
-      appendTo: "body",
-      helper : 'clone'
+        appendTo: "body",
+        helper: 'clone',
+        scrollSensitivity: 10,
+        zIndex: 10000,
+        scrollSpeed: 45,
+        opacity: 0.80,
+        cursor: 'move'
     });
 
     droppable_div = $("#matching-skills-container");

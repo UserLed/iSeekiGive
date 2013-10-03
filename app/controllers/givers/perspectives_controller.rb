@@ -34,35 +34,27 @@ class Givers::PerspectivesController < ApplicationController
   def experience
   	@giver = Giver.find(params[:giver_id])
     @experience = Experience.find(params[:experience_id])
+    @skill_update = false
     if request.post?
-      update_experience_with_skill(params)
+      @experience.update_experience_with_skill(params)
       @giver.game.complete_game(2)
+      @skill_update = true
     end
     respond_to do |format|
       format.html {render :layout => false}
       format.js
     end
   end
-
-
-  def update_experience_with_skill(params)
-    if params[:skills].present?
-      @experience.skills.delete_all
-      params[:skills].each do |skill_id|
-        skill = Skill.find(skill_id)
-        @experience.skills << skill if skill.present?
-        logger.info "Skill info :: #{skill.inspect}"
-      end
-    end
-  end
-
 
   def education
     @giver = Giver.find(params[:giver_id])
     @education = Education.find(params[:education_id])
+    @skill_update = false
+    
     if request.post?
-      update_education_with_skill(params)
+      @education.update_education_with_skill(params)
       @giver.game.complete_game(2)
+      @skill_update = true
     end
 
     respond_to do |format|
@@ -70,17 +62,6 @@ class Givers::PerspectivesController < ApplicationController
       format.js
     end
   end
-
-  def update_education_with_skill(params)
-    if params[:skills].present?
-      @education.skills.delete_all
-      params[:skills].each do |skill_id|
-        skill = Skill.find(skill_id)
-        @education.skills << skill if skill.present?
-      end
-    end
-  end
-
 
   def game_3
   	@giver = Giver.find(params[:giver_id])
@@ -126,6 +107,16 @@ class Givers::PerspectivesController < ApplicationController
         @giver.ugly_perspective.anonymous = params[:perspective][:ugly_anonymous]
         @giver.ugly_perspective.save
       end
+
+      params[:perspective][:good_keywords].split(",").each do |keyword|
+        @giver.good_perspective.perspective_tags.create(:name => keyword)
+      end
+      params[:perspective][:bad_keywords].split(",").each do |keyword|
+        @giver.bad_perspective.perspective_tags.create(:name => keyword)
+      end
+      params[:perspective][:ugly_keywords].split(",").each do |keyword|
+        @giver.ugly_perspective.perspective_tags.create(:name => keyword)
+      end      
 
 
       @giver.game.complete_game(3)
