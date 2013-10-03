@@ -37,7 +37,7 @@ module ApplicationHelper
         tmp_arr = []
       end
     end
-    exp_arr.flatten.uniq 
+    exp_arr.flatten.uniq.count 
   end
 
 end
