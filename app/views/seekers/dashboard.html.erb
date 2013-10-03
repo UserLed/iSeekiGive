@@ -12,6 +12,7 @@
 
 <p>Name : <%= @seeker.name %></p>
 <p>Level 1</p>
+<p><%= link_to "Buy More Points", :action => :buy_points %></p>
 
 <% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
   <%= render 'shared/dashboard_popup' %>

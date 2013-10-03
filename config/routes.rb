@@ -10,6 +10,8 @@ ISeekiGive::Application.routes.draw do
   resources :seekers do
     member do
       get :dashboard
+      get :buy_points
+      post :pay_for_points
     end
     resources :perspectives, :only => :index, :controller => "seekers/perspectives" do
       collection do

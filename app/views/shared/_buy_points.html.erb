@@ -1,0 +1,10 @@
+<h4>
+  Buy More Points
+</h4>
+<p>1 USD  = 100 Points</p>
+<%= form_tag pay_for_points_seeker_path(current_user) do %>
+    <%= label_tag "Amount (USD):" %>
+    <%= text_field_tag :amount %>
+    <br/>
+    <%= submit_tag 'Buy' %>
+<% end %>
