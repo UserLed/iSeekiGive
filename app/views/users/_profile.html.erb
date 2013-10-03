@@ -27,7 +27,7 @@
             City : <%= user.current_location %>
           </li>
           <li class="list-group-item total_experience">
-            Total Experience : <%= new_total_exp(user) %>
+            Total Experience : <%= total_experience(user) %>
           </li>
           <li class="list-group-item">
             <%= link_to "Update Billing Information", current_user.type == 'Giver' ? new_giver_billing_setting_path(current_user) : new_seeker_billing_setting_path(current_user) %>
