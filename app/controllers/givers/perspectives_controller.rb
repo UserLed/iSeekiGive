@@ -94,30 +94,40 @@ class Givers::PerspectivesController < ApplicationController
         @giver.good_perspective.story = params[:perspective][:good_story]
         @giver.good_perspective.anonymous = params[:perspective][:good_anonymous]
         @giver.good_perspective.save
+        params[:perspective][:good_keywords].split(",").each do |keyword|
+          @giver.good_perspective.perspective_tags.create(:name => keyword)
+        end
       end
       
       if params[:perspective][:bad_story].present?
         @giver.bad_perspective.story = params[:perspective][:bad_story]
         @giver.bad_perspective.anonymous = params[:perspective][:bad_anonymous]
         @giver.bad_perspective.save
+        params[:perspective][:bad_keywords].split(",").each do |keyword|
+          @giver.bad_perspective.perspective_tags.create(:name => keyword)
+        end
       end
 
       if params[:perspective][:ugly_story].present?
         @giver.ugly_perspective.story = params[:perspective][:ugly_story]
         @giver.ugly_perspective.anonymous = params[:perspective][:ugly_anonymous]
         @giver.ugly_perspective.save
-      end
+        params[:perspective][:ugly_keywords].split(",").each do |keyword|
+          @giver.ugly_perspective.perspective_tags.create(:name => keyword)
+        end 
+      end  
 
-      params[:perspective][:good_keywords].split(",").each do |keyword|
-        @giver.good_perspective.perspective_tags.create(:name => keyword)
-      end
-      params[:perspective][:bad_keywords].split(",").each do |keyword|
-        @giver.bad_perspective.perspective_tags.create(:name => keyword)
-      end
-      params[:perspective][:ugly_keywords].split(",").each do |keyword|
-        @giver.ugly_perspective.perspective_tags.create(:name => keyword)
-      end      
+      good_keywords = params[:perspective][:good_keywords].split(",")
+      bad_keywords  = params[:perspective][:bad_keywords].split(",")
+      ugly_keywords = params[:perspective][:ugly_keywords].split(",")
+      
+      all_tags  = (good_keywords.concat(bad_keywords).concat(ugly_keywords)).uniq
+      user_tags = current_user.tags
+      new_tags  = all_tags - user_tags 
 
+      new_tags.each do |tag|
+        current_user.tags.build(:name => tag).save
+      end    
 
       @giver.game.complete_game(3)
 
