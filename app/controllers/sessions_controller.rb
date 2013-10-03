@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         redirect_to dashboard_giver_path(@user)
       end
     else
-      flash[:alert] = "Invalid email or password."
+      flash.now[:alert] = "Invalid email or password."
       render :action => "new"
     end
   end

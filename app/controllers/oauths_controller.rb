@@ -11,18 +11,22 @@ class OauthsController < ApplicationController
     provider = params[:provider]
     begin
       if current_user
-        if provider.eql?("linkedin")
-          create_connection(provider) unless current_user.linkedin_connected?
-          UserDetails.update_user_profile(user_hash(provider), current_user)
-          redirect_to current_user, :notice => "Profile is updated from #{provider.titleize}!"
-        elsif provider.eql?("facebook")
-          create_connection(provider) unless current_user.facebook_connected?
-          redirect_to current_user, :notice => "Connected to #{provider.titleize}!"
-        elsif provider.eql?("twitter")
-          create_connection(provider) unless current_user.twitter_connected?
-          redirect_to current_user, :notice => "Connected to #{provider.titleize}!"
+        if provider_account_not_exists?(provider)
+          if provider.eql?("linkedin")
+            create_connection(provider) unless current_user.linkedin_connected?
+            UserDetails.update_user_profile(user_hash(provider), current_user)
+            redirect_to current_user, :notice => "Profile is updated from #{provider.titleize}!"
+          elsif provider.eql?("facebook")
+            create_connection(provider) unless current_user.facebook_connected?
+            redirect_to current_user, :notice => "Connected to #{provider.titleize}!"
+          elsif provider.eql?("twitter")
+            create_connection(provider) unless current_user.twitter_connected?
+            redirect_to current_user, :notice => "Connected to #{provider.titleize}!"
+          end
+        else
+          redirect_to current_user, :alert => "Already connected with this #{provider.titleize} account!"
         end
-        
+
       elsif session[:social_type] == "sign_up"
         if session[:user_type].present?
           begin
@@ -51,7 +55,7 @@ class OauthsController < ApplicationController
         end
 
       elsif session[:social_type] == "login"
-        
+
         if @user = login_from(provider)
           redirect_to @user, :notice => "Logged in from #{provider.titleize}!"
         else
@@ -136,4 +140,10 @@ class OauthsController < ApplicationController
     end
     @connection.save
   end
+
+  def provider_account_not_exists?(provider)
+    user_provider_info = user_hash(provider)
+    Connection.provider_account_not_exists?(user_provider_info, provider)
+  end
+
 end
