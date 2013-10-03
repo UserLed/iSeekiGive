@@ -116,8 +116,27 @@ class Givers::PerspectivesController < ApplicationController
       end
       params[:perspective][:ugly_keywords].split(",").each do |keyword|
         @giver.ugly_perspective.perspective_tags.create(:name => keyword)
-      end      
+      end    
 
+      good_keywords = params[:perspective][:good_keywords].split(",")
+      bad_keywords  = params[:perspective][:bad_keywords].split(",")
+      ugly_keywords = params[:perspective][:ugly_keywords].split(",")
+      
+      all_tags  = (good_keywords.concat(bad_keywords).concat(ugly_keywords)).uniq
+      user_tags = current_user.tags
+      new_tags  = all_tags - user_tags 
+
+      # athread = Thread.new {
+      #   new_tags.each do |tag|
+      #       Tag.create(:name => tag, :user_id => current_user.id )
+      #   end
+      # }
+
+      # if !athread.alive? then Thread.kill(athread) end
+
+      new_tags.each do |tag|
+        current_user.tags.build(:name => tag).save
+      end    
 
       @giver.game.complete_game(3)
 

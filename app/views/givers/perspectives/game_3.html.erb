@@ -148,24 +148,20 @@
 <script type="text/javascript">
   $(function(){
     $.getJSON("/tags",function(data){
+      var temp_tags = [];
       $(".keyword_tag1, .keyword_tag2, .keyword_tag3").tagit({
         availableTags : data,
 
         afterTagAdded :function(event, ui){
-          if (_.indexOf(data, ui.tagLabel) == (-1)){
-          $.ajax({
-            url    : "/tags",
-            method : "POST",
-            data   : {tag : ui.tagLabel},
-            success: function(){
-              console.log(data);
-              data.push(ui.tagLabel);
-            },
-            error : function(status){
-              console.log(status);
-            }
-          });
-        }
+          temp_tags.push(ui.tagLabel);
+          data.push(_.last(temp_tags));
+          console.log(data);
+        },
+        afterTagRemoved : function(event, ui){
+          if (_.indexOf(temp_tags,ui.tagLabel) != (-1) ){
+            data.splice(_.indexOf(data, ui.tagLabel),1);
+            console.log(data);
+          }
         }
     });
   });
