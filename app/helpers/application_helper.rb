@@ -23,4 +23,21 @@ module ApplicationHelper
     end
     components.join(" ")
   end
+
+  def new_total_exp(user)
+    exp_arr = []
+    user_exps = user.experiences.collect{|x| [x.start_date, (x.end_date || Date.today)]}.sort
+    tmp_arr = []
+    user_exps.each do |exp|
+      custom_range = Range.new(exp.first, exp.last)
+      custom_range.each do |r|
+        tmp_arr <<  r.strftime("%Y%m")
+        tmp_arr.uniq
+        exp_arr << tmp_arr
+        tmp_arr = []
+      end
+    end
+    exp_arr.flatten.uniq 
+  end
+
 end
