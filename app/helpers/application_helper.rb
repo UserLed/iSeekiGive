@@ -37,7 +37,10 @@ module ApplicationHelper
         tmp_arr = []
       end
     end
-    exp_arr.flatten.uniq.count 
+    months = exp_arr.flatten.uniq.count
+    year = months/12
+    month = months%12
+    "#{pluralize(year, "year")} #{pluralize(month, "month")}" 
   end
 
 end
