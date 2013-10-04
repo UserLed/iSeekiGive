@@ -21,4 +21,12 @@ class PublicController < ApplicationController
 
   def privacy
   end
+
+
+  def search_for_user
+    term   = params[:term]
+    result = PerspectiveTag.where("name=?", term )
+    perspectives  = result.collect(&:perspective_id).uniq unless result.blank?
+    @users = nil
+  end
 end

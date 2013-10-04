@@ -12,9 +12,8 @@ class SessionsController < ApplicationController
 
   def create
     if @user = login(params[:email], params[:password], params[:remember])
-      if @user.seeker?
-        redirect_to seeker_perspectives_path(@user)
-      else
+      if @user
+
         redirect_to dashboard_user_path(@user)
       end
     else

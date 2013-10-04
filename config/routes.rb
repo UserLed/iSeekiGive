@@ -6,12 +6,13 @@ ISeekiGive::Application.routes.draw do
   match 'terms-of-service' => 'public#terms_of_service', :as => :terms
   match 'terms-and-condition' => 'public#terms_and_condition', :as => :terms_n_condition
   match 'privacy' => 'public#privacy', :as => :privacy
+  match 'search' => 'public#search_for_user'
 
   resources :seekers do
     member do
-      get :dashboard
-      get :buy_points
-      post :pay_for_points
+      # get :dashboard
+      # get :buy_points
+      # post :pay_for_points
     end
     resources :perspectives, :only => :index, :controller => "seekers/perspectives" do
       collection do
