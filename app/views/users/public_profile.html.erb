@@ -1,7 +1,7 @@
 <div class="row-fluid">
-  <div class="span12 profile-cover" style= 'background-image: url(<%= @giver.cover_photo.public_profile_header.url %>);'>
-    <%= image_tag @giver.profile_photo.public_profile.url, :class => "profile-photo" if @giver.profile_photo.present? %>
-    <%= link_to("Schedule a Session", "display_calendar", :class => "btn btn-primary btn-large", :style => "margin-left:900px") unless @giver.time_slots.blank? %>
+  <div class="span12 profile-cover" style= 'background-image: url(<%= @user.cover_photo.public_profile_header.url %>);'>
+    <%= image_tag @user.profile_photo.public_profile.url, :class => "profile-photo" if @user.profile_photo.present? %>
+    <%= link_to("Schedule a Session", "display_calendar", :class => "btn btn-primary btn-large", :style => "margin-left:900px") unless @user.time_slots.blank? %>
   </div>
 </div>
 
@@ -9,19 +9,19 @@
   <div class="span4">
     <strong>Lived In</strong><br/>
     <p>
-      <%= @giver.current_location %>
+      <%= @user.current_location %>
     </p>
-    <% if @giver.game.present? and @giver.game.locations.present? %>
+    <% if @user.game.present? and @user.game.locations.present? %>
       <p>
-        <%= @giver.game.locations %>
+        <%= @user.game.locations %>
       </p>
     <% end %>
     <hr/>
 
-    <% if @giver.educations.present? %>
+    <% if @user.educations.present? %>
       <strong>Studied</strong><br/>
       <ul>
-        <% @giver.educations.each do |education| %>
+        <% @user.educations.each do |education| %>
           <li>
             <%= education.field_of_study %>
           </li>
@@ -29,7 +29,7 @@
       </ul>
       <p>Considered Studying:</p>
       <ul>
-        <% @giver.educations.each do |education| %>
+        <% @user.educations.each do |education| %>
           <% if education.fields_of_study.present? %>
             <li>
               <%= education.fields_of_study %>
@@ -46,12 +46,12 @@
     <hr/>
     <strong>Verifications</strong><br/>
     <ul>
-      <% if @giver.phone_number.present? %>
+      <% if @user.phone_number.present? %>
         <li>Phone Number Verified</li>
       <% end %>
 
-      <% if @giver.connections.present? %>
-        <% @giver.connections.each do |connection| %>
+      <% if @user.connections.present? %>
+        <% @user.connections.each do |connection| %>
           <li>
             <%= connection.provider.capitalize %>
             Verified

@@ -14,7 +14,7 @@
         <%= time_format %>
       </th>
       <% %w(mon tue wed thu fri sat sun ).each do |day| %>
-        <td style="padding:5px 25px" id = '<%="#{day}_#{row}_#{time_format}" %>' class = '<%= detect_class(@giver.id, "#{day}_#{row.to_s}_#{time_format}") %>'>&nbsp;</td>
+        <td style="padding:5px 25px" id = '<%="#{day}_#{row}_#{time_format}" %>' class = '<%= detect_class(@user.id, "#{day}_#{row.to_s}_#{time_format}") %>'>&nbsp;</td>
         <% end %>
     </tr>
     <% end %>

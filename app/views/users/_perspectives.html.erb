@@ -1,5 +1,5 @@
-<% if @giver.perspectives.present? %>
-  <% @giver.perspectives.where(:anonymous => false).each do |perspective| %>
+<% if @user.perspectives.present? %>
+  <% @user.perspectives.where(:anonymous => false).each do |perspective| %>
     <strong>
       <%= perspective.story_type %>
     </strong>

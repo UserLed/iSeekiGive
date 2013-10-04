@@ -1,5 +1,5 @@
-<% unless @giver.experiences.blank? %>
-  <% @giver.experiences.each do |experience| %>
+<% unless @user.experiences.blank? %>
+  <% @user.experiences.each do |experience| %>
     <%= experience.company_name %>
     <% if experience.start_date.present? %>
       (
