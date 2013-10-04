@@ -7,6 +7,8 @@ ISeekiGive::Application.routes.draw do
   match 'terms-and-condition' => 'public#terms_and_condition', :as => :terms_n_condition
   match 'privacy' => 'public#privacy', :as => :privacy
 
+  post 'stripe-webhook' => 'stripe_webhook#create'
+
   resources :seekers do
     member do
       get :dashboard
