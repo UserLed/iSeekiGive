@@ -1,4 +1,4 @@
 class Seeker < User
-  has_many :schedules, :dependent => :destroy
+  # has_many :schedules, :dependent => :destroy
 
 end

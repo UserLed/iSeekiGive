@@ -42,8 +42,8 @@
                   <li class="<%= "active" if current_page?(seeker_perspectives_path(current_user)) %>">
                     <%= link_to "Perspectives", seeker_perspectives_path(current_user) %>
                   </li>
-                  <li class="<%= "active" if current_page?(seeker_sessions_path(current_user)) %>">
-                    <%= link_to "Manage Sessions", seeker_sessions_path(current_user) %>
+                  <li class="<%= "active" if current_page?(seeker_perspectives_path(current_user)) %>">
+                    <%= link_to "Manage Sessions", seeker_perspectives_path(current_user) %>
                   </li>
                   <li class="<%= "active" if current_page?(current_user) %>">
                     <%= link_to "Edit Profile", current_user %>
@@ -54,17 +54,17 @@
 
                 <% else %>
 
-                  <li class="<%= "active" if current_page?(dashboard_giver_path(current_user)) %>">
-                    <%= link_to "Dashboard", dashboard_giver_path(current_user) %>
+                  <li class="<%= "active" if current_page?(dashboard_user_path(current_user)) %>">
+                    <%= link_to "Dashboard", dashboard_user_path(current_user) %>
                   </li>
-                  <li class="<%= "active" if current_page?(giver_perspectives_path(current_user)) %>">
-                    <%= link_to "Perspectives", giver_perspectives_path(current_user) %>
+                  <li class="<%= "active" if current_page?(user_perspectives_path(current_user)) %>">
+                    <%= link_to "Perspectives", user_perspectives_path(current_user) %>
                   </li>
-                  <li class="<%= "active" if current_page?(giver_sessions_path(current_user)) %>">
-                    <%= link_to "Manage Sessions", current_user.level == 2 ? giver_sessions_path(current_user) : "Javascript:;" %>
+                  <li class="<%= "active" if !current_page?(user_perspectives_path(current_user)) %>">
+                    <%= link_to "Manage Sessions", current_user.level == 2 ? user_perspectives_path(current_user) : "Javascript:;" %>
                   </li>
                   <li class="<%= "active" if current_page?(current_user) %>">
-                    <%= link_to "Edit Profile", current_user %>
+                    <%= link_to "Edit Profile", user_path(current_user) %>
                   </li>
                   <li>
                     <%= link_to "Boosters", "Javascript:;" %>

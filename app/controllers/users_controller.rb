@@ -40,4 +40,12 @@ class UsersController < ApplicationController
     @verified = false
     @verified = true if User.email_verified?(params[:email])
   end
+
+  def dashboard
+    @user = User.find(params[:id])
+  end
+
+  def show
+    @user = User.find(params[:id]) 
+  end
 end

@@ -39,21 +39,21 @@ ISeekiGive::Application.routes.draw do
   end
 
   resources :givers do
-    member do
-      get :dashboard
-      get :public_profile
-      get :display_calendar
-      post :create_schedule
-    end
-    resources :perspectives, :only => :index, :controller => "givers/perspectives" do
-      collection do
-        match :game_1
-        match :game_2
-        match :game_3
-        match ':experience_id/experience' =>  'givers/perspectives#experience', :as => "game_experience"
-        match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
-      end
-    end
+    # member do
+    #   get :dashboard
+    #   get :public_profile
+    #   get :display_calendar
+    #   post :create_schedule
+    # end
+    # resources :perspectives, :only => :index, :controller => "givers/perspectives" do
+    #   collection do
+    #     match :game_1
+    #     match :game_2
+    #     match :game_3
+    #     match ':experience_id/experience' =>  'givers/perspectives#experience', :as => "game_experience"
+    #     match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
+    #   end
+    # end
     resources :sessions, :only => :index, :controller => "givers/sessions" do
       collection do
 
@@ -108,6 +108,19 @@ ISeekiGive::Application.routes.draw do
     member do
       get  :activate
       get :resend_confirmation
+      get :dashboard
+      get :public_profile
+      get :display_calendar
+      post :create_schedule
+    end
+    resources :perspectives, :only => :index, :controller => "users/perspectives" do
+      collection do
+        match :game_1
+        match :game_2
+        match :game_3
+        match ':experience_id/experience' =>  'givers/perspectives#experience', :as => "game_experience"
+        match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
+      end
     end
   end
 

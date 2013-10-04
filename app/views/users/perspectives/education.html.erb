@@ -1,0 +1,59 @@
+<%= render :partial => 'educational_skill' %>
+<%= form_for(@education, :url => game_education_giver_perspectives_path, :method => 'post', :html => {:class => "icon-btn span3 popovers", :style => "padding-top:1px; float:right", }, :remote => true) do |f| %>
+    <div id="edu_skill_container">
+      <% @education.skills.each do |skill| %>
+          <%= hidden_field_tag "skills[]", skill.id, :id => "edu_skill_hidden_#{skill.id}" %>
+      <% end %>
+    </div>
+    <%= f.submit "Save", class: "btn btn-medium btn-primary" %>
+    <a class="btn btn-info cancel" href="javascript:void(0)" id="cancel_edu_skill_add">Cancel</a>
+<% end %>
+<script type="text/javascript">
+    $(function () {
+        $(".skills span").draggable({
+            appendTo: "body",
+            helper: 'clone',
+            scrollSensitivity: 10,
+            zIndex: 10000,
+            scrollSpeed: 45,
+            opacity: 0.80,
+            cursor: 'move'
+        });
+
+
+        droppable_div = $("#matching-skills-container");
+        giver_id = "<%= @user.id %>";
+
+        droppable_div.droppable({
+            activeClass: "ui-state-default",
+            hoverClass: "ui-state-hover",
+            accept: ":not(.ui-sortable-helper)",
+            drop: function (event, ui) {
+                var skill_span_id = ui.draggable.attr('id');
+                var skill_id = skill_span_id.replace("skill_", "");
+
+                droppable_div.append('<span class="btn btn-info skill_tag" id="' + skill_span_id + '">' + ui.draggable.text() + '<a href="javascript:void(0)" class="close_skill">X</a></span>');
+                $("#edu_skill_container").append('<input type="hidden" name="skills[]" value="' + skill_id + '" id= "edu_skill_hidden_' + skill_id + '" />');
+                $("#" + skill_span_id).hide();
+
+            }
+
+
+        });
+
+    });
+
+    $(document).on('click', '.close_skill', function (e) {
+        skill_span_id = $(this).parent().attr("id");
+        skill_id = skill_span_id.replace("skill_", "");
+        $(this).parent().remove();
+        $("#" + skill_span_id).show();
+        $("#edu_skill_hidden_" + skill_id).remove();
+
+    });
+    $("#cancel_edu_skill_add").click(function () {
+        $.fancybox.close();
+    })
+
+
+</script>

@@ -1,0 +1,18 @@
+<%= render "shared/confirmation_notice" %>
+<div class="well">
+  <div class="container">
+    <h3>
+      Dashboard
+    </h3>
+  </div>
+</div>
+
+<%= render "dashboard_menu" %>
+<hr/>
+
+<p>Name : <%= @user.name %></p>
+<p>Level <%= @user.level %></p>
+
+<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
+  <%= render 'shared/dashboard_popup' %>
+<% end %>
