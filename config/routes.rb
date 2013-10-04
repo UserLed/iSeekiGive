@@ -118,8 +118,8 @@ ISeekiGive::Application.routes.draw do
         match :game_1
         match :game_2
         match :game_3
-        match ':experience_id/experience' =>  'givers/perspectives#experience', :as => "game_experience"
-        match ':education_id/education' =>  'givers/perspectives#education', :as => "game_education"
+        match ':experience_id/experience' =>  'users/perspectives#experience', :as => "game_experience"
+        match ':education_id/education' =>  'users/perspectives#education', :as => "game_education"
       end
     end
   end

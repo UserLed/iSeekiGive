@@ -1,6 +1,6 @@
 
 <%= render :partial => 'experience_skill' %>
-<%= form_for(@experience, :url => game_experience_giver_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px; float:right", },:remote =>true) do |f| %>
+<%= form_for(@experience, :url => game_experience_user_perspectives_path, :method => 'post', :html => { :class => "icon-btn span3 popovers", :style =>"padding-top:1px; float:right", },:remote =>true) do |f| %>
     <div id ="exp_skill_container">
       <% @experience.skills.each do |skill| %>
           <%= hidden_field_tag "skills[]", skill.id, :id =>"exp_skill_hidden_#{skill.id}" %>
@@ -24,7 +24,7 @@
     });
 
     droppable_div = $("#matching-skills-container");
-    giver_id = "<%= @user.id %>";
+    user_id = "<%= @user.id %>";
 
     droppable_div.droppable({
       activeClass: "ui-state-default",
