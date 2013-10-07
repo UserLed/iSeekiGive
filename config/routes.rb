@@ -8,6 +8,8 @@ ISeekiGive::Application.routes.draw do
   match 'privacy' => 'public#privacy', :as => :privacy
   match 'search' => 'public#search_for_user'
   match 'all_tags' => 'public#get_all_tags'
+  match 'how-it-works' => 'public#how_it_works', :as => :how_it_works
+  match 'about-us' => 'public#about_us', :as => :about_us
 
   resources :seekers do
     member do

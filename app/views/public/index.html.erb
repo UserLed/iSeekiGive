@@ -1,23 +1,65 @@
-<h2>Step outside your network and gain fresh perspective to redefine your future</h2>
-<h3>Get real perspectives for life transitions</h3>
+<div class="top-area shadow-inner show-onload">
+  <div class="top-bg-area bg-mask" data-bg-img="/assets/img/bg/homebackground.png">
+    <div class="bg-mask-front bg-mask-darken full">
+      <div class="vertical-center mask-front white">
+        <div class="container">
+          <div class="row">
+            <div class="span8 offset2 center">
+              <p class="big-text">Empowering young professionals to get </p>
+              <p class="big-text">to where they want to be </p>
+              <p class="big-text">Step outside your network and gain fresh perspectives to redefine your future: </p>
+              <p class="big-text"> Career Change or Exploration </p>
+              <p class="big-text"> Academic Programs & Certfications </p>
+              <p class="big-text"> Living Abroad & Relocation </p>
+              <div class="gap gap-small"></div><a class="btn btn-primary btn-mega" style="background-color: #4285F4">REQUEST ACCESS FOR BETA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END TOP AREA  -->
 
-<%= form_tag "/search", :method => "get" do %>
-	<%= label_tag "Search" %>
-	<%= text_field_tag "tag" %>
-	<%= submit_tag "Submit" %>
-<% end %>
+<div class="gap"></div>
+<div class="top-title-area bg-img">
+  <div class="container">
+    <h1 class="title-page">Learn about topics that interest you from Givers who've been there before</h1>
+  </div>
+</div>
+<div class="gap"></div>
 
-	
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <h5>The Good</h5>
+      <a class="hover-img" href="#">
+        <%= image_tag 'img/good_job_800x600.jpg', :alt => "Image Alternative text", :title =>"Business Group" %>
+        <div class="hover-inner">
+          <p>The good things Givers like and things you might like about…(a city, a job function, a company, a school, etc)</p>
+        </div>
+      </a>
+    </div>
 
+    <div class="span3">
+      <h5>The Bad</h5>
+      <a class="hover-img" href="#">
+        <%= image_tag 'img/business_group_800x600.jpg', :alt => "Image Alternative text", :title =>"Business Group" %>
+        <div class="hover-inner">
+          <p>The not-so-good things Givers didn’t like and things you might not like about …(a city, a job function, a company, a school, etc)</p>
+        </div>
+      </a>
+    </div>
 
-
-<script type="text/javascript">
-	$(function(){
-
-		$("#tag").autocomplete({
-			source: "/all_tags",
-			widget: "widget"
-		});
-	});
-</script>
-
+    <div class="span3">
+      <h5>The Ugly</h5>
+      <a class="hover-img" href="#">
+        <%= image_tag 'img/working_in_the_nature_800x600.jpg', :alt => "Image Alternative text", :title =>"Business Group" %>
+        <div class="hover-inner">
+          <p>Red flags and warnings.  Risks and things to be careful of, be aware of or watch out for in…(a city, a job function, a company, a school, etc)</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="gap"></div>

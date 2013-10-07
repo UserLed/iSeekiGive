@@ -38,4 +38,12 @@ class PublicController < ApplicationController
     tags = Tag.where("name LIKE ?", "#{params[:term]}%")
     render :json => tags.collect(&:name)
   end
+
+  def how_it_works
+
+  end
+
+  def about_us
+    #render :layout => 'demo_layout'
+  end
 end
