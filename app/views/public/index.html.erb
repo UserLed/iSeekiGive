@@ -7,61 +7,7 @@
 	<%= submit_tag "Submit" %>
 <% end %>
 
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#good_story" data-toggle="tab">Good Story</a></li>
-  <li><a href="#bad_story" data-toggle="tab">Bad Story</a></li>
-  <li><a href="#ugly_story" data-toggle="tab">Ugly Story</a></li>
-</ul>
-
-<div class="tab-content">
-	<div id="good_story" class ="tab-pane fade in active">
-		<% unless @good_stories.nil? %>
-			<% @good_stories.each do |story| %>
-				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s),public_profile_user_path(user) %>
-				<br/>
-				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
-				<br/>
-				<%= user.full_name %>
-				<br/>
-				<%= story.story  %>
-			<hr/>
-			<% end %>
-		<% end %>
-	</div>
-
-	<div id="bad_story" class ="tab-pane fade">
-		<% unless @bad_stories.nil? %>
-			<% @bad_stories.each do |story| %>
-				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s),public_profile_user_path(user) %>
-				<br/>
-				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
-				<br/>
-				<%= user.full_name %>
-				<br/>
-				<%= story.story  %>
-			<hr/>
-			<% end %>
-		<% end %>
-	</div>
-
-	<div id="ugly_story" class ="tab-pane fade">
-		<% unless @ugly_stories.nil? %>
-			<% @ugly_stories.each do |story| %>
-				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s),public_profile_user_path(user) %>
-				<br/>
-				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
-				<br/>
-				<%= user.full_name %>
-				<br/>
-				<%= story.story  %>
-			<hr/>
-			<% end %>
-		<% end %>
-	</div>
-</div>	
+	
 
 
 
@@ -74,3 +20,4 @@
 		});
 	});
 </script>
+
