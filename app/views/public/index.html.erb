@@ -1,2 +1,18 @@
 <h2>Step outside your network and gain fresh perspective to redefine your future</h2>
 <h3>Get real perspectives for life transitions</h3>
+
+<%= form_tag "/search", :method => "get" do %>
+	<%= label_tag "Search" %>
+	<%= text_field_tag "tag" %>
+	<%= submit_tag "Submit" %>
+<% end %>
+
+<script type="text/javascript">
+	$(function(){
+
+		$("#tag").autocomplete({
+			source: "/all_tags",
+			widget: "widget"
+		});
+	});
+</script>

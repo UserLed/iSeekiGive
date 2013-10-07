@@ -7,6 +7,7 @@ ISeekiGive::Application.routes.draw do
   match 'terms-and-condition' => 'public#terms_and_condition', :as => :terms_n_condition
   match 'privacy' => 'public#privacy', :as => :privacy
   match 'search' => 'public#search_for_user'
+  match 'all_tags' => 'public#get_all_tags'
 
   resources :seekers do
     member do

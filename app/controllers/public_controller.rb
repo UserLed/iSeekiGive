@@ -24,10 +24,17 @@ class PublicController < ApplicationController
 
 
   def search_for_user
-    term   = params[:term]
+    term   = params[:tag]
     result = PerspectiveTag.where("name=?", term )
     perspectives  = result.collect(&:perspective_id).uniq unless result.blank?
     user_ids = Perspective.find(perspectives).uniq.collect(&:user_id) unless perspectives.blank? 
     @users = User.find(user_ids) unless user_ids.blank? 
+  end
+
+
+
+  def get_all_tags
+    tags = Tag.where("name LIKE ?", "#{params[:term]}%")
+    render :json => tags.collect(&:name)
   end
 end

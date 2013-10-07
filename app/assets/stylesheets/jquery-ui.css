@@ -457,6 +457,8 @@ button.ui-button::-moz-focus-inner {
 	margin: 0;
 	display: block;
 	outline: none;
+	height:auto; 
+	overflow:scroll; 
 }
 .ui-menu .ui-menu {
 	margin-top: -3px;
