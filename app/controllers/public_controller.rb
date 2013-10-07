@@ -27,6 +27,7 @@ class PublicController < ApplicationController
     term   = params[:term]
     result = PerspectiveTag.where("name=?", term )
     perspectives  = result.collect(&:perspective_id).uniq unless result.blank?
-    @users = nil
+    user_ids = Perspective.find(perspectives).uniq.collect(&:user_id) unless perspectives.blank? 
+    @users = User.find(user_ids) unless user_ids.blank? 
   end
 end

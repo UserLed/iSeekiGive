@@ -1,8 +1,8 @@
 class Giver < User
-  has_one  :game,         :dependent => :destroy
-  has_many :time_slots,   :dependent => :destroy
-  has_many :schedules,    :dependent => :destroy
-  has_many :perspectives, :dependent => :destroy
+  # has_one  :game,         :dependent => :destroy
+  # has_many :time_slots,   :dependent => :destroy
+  # has_many :schedules,    :dependent => :destroy
+  # has_many :perspectives, :dependent => :destroy
 
   # def good_perspective
   #   if @good_perspective.blank?
