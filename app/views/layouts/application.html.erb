@@ -17,6 +17,11 @@
   <!-- Google fonts -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  <%#= javascript_include_tag "application" %>
+
+  <%= javascript_include_tag "js/modernizr.custom.26633" %>
+  <%= javascript_include_tag "https://js.stripe.com/v2/" %>
+
   <%= stylesheet_link_tag "css/boostrap", :media => "all" %>
   <%= stylesheet_link_tag "css/boostrap_responsive", :media => "all" %>
   <%= stylesheet_link_tag "css/font_awesome", :media => "all" %>
@@ -28,9 +33,7 @@
   <![endif]-->
 
   <!-- Modernizr script -->
-  <%= javascript_include_tag "js/modernizr.custom.26633" %>
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "https://js.stripe.com/v2/" %>
+
   <%= stylesheet_link_tag "css/switcher", :media => "all" %>
   <!-- Demo Examples -->
   <%= stylesheet_link_tag "css/schemes/persimmon", :media => "all" %>
@@ -64,31 +67,8 @@
 
   <%= render "shared/demo_footer" %>
 </div>
+<%= javascript_include_tag "bottom" %>
 
-<%= javascript_include_tag "js/easing.min.js" %>
-<%= javascript_include_tag "js/touch-swipe.js" %>
-<%= javascript_include_tag "js/boostrap.min.js" %>
-<%= javascript_include_tag "js/flexnav.min.js" %>
-<%= javascript_include_tag "js/countdown.min.js" %>
-<%= javascript_include_tag "js/magnific.min.js" %>
-<%= javascript_include_tag "js/mediaelement.min.js" %>
-<%= javascript_include_tag "js/fitvids.min.js" %>
-<%= javascript_include_tag "js/gridrotator.min.js" %>
-<%= javascript_include_tag "js/fredsel.min.js" %>
-<%= javascript_include_tag "js/backgroundsize.min.js" %>
-<%= javascript_include_tag "js/superslides.min.js" %>
-<%= javascript_include_tag "js/one-page-nav.min.js" %>
-<%= javascript_include_tag "js/scroll-to.js" %>
-<!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
-<!--<%#= javascript_include_tag "js/gmap3.min.js" %>-->
-<%= javascript_include_tag "js/tweet.min.js" %>
-<%= javascript_include_tag "js/mixitup.min.js" %>
-<%= javascript_include_tag "js/mail.min.js" %>
-<%= javascript_include_tag "js/transit-modified.js" %>
-<%= javascript_include_tag "js/layerslider-transitions.min.js" %>
-<%= javascript_include_tag "js/layerslider.js" %>
-<%= javascript_include_tag "js/custom.js" %>
-<%= javascript_include_tag "js/switcher.js" %>
 
 <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
 
