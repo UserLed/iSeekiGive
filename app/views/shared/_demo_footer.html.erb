@@ -47,3 +47,22 @@
     <div class="gap gap-small"></div>	<small>&copy; Copyright 2013 by <a href="index.html">New Wave</a>. All Rights Reserved.</small>
   </div>
 </footer>
+
+<script type="text/javascript">
+  $(function(){
+    $("#tag").autocomplete({
+      source: "/all_tags",
+      select : function(event, ui){
+        event.preventDefault();
+        window.location.href = "/users/"+ ui.item.value + "/public_profile"
+      }
+    })
+    .data("ui-autocomplete")._renderItem = function(ul, item){
+       return 
+          $( "<li>" )
+          .append( "<a href= /users/"+item.value+"/public_profile >"+"<img style='width:50px;height:50px' src = "+item.icon +"/></a>" +item.value + " " + item.label + "<br/>" + item.country )
+          .appendTo( ul );
+      }
+  });
+  
+</script>

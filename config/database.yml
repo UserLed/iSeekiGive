@@ -10,7 +10,7 @@ development:
   database: iSeekiGive_development
   pool: 5
   username: root
-#  password: root
+  password: root
 
 
 # Warning: The database defined as "test" will be erased and
@@ -23,7 +23,7 @@ test:
   database: iSeekiGive_test
   pool: 5
   username: root
-#  password: root
+  password: root
 
 
 production:
@@ -33,5 +33,5 @@ production:
   database: iSeekiGive
   pool: 5
   username: root
-#  password: isig@2013$
+  password: isig@2013$
 
