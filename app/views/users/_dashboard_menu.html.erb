@@ -1,15 +1,106 @@
-<div class="row-fluid">
-  <%= link_to "Profile", user_path(current_user) %> |
+<style type="text/css">
+        /* Primary navbar */
+    .navbar-primary.navbar{
+        border-radius:0;
+        border:none;
+    }
+    .navbar-primary.navbar{
+        margin-bottom:0;
+    }
+    .navbar-primary.navbar-default .navbar-collapse, .navbar-primary.navbar-default .navbar-form{
+        border:none;
+    }
+    .navbar-primary.navbar-default{
+        background: #E6E5E4;
+        border-bottom:1px solid #e0dbce;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.06),0 1px 0 rgba(255,255,255,0.3);
+    }
+    .navbar-primary .navbar-nav > li {
+        margin-right:20px;
+    }
+    .navbar-primary .navbar-nav > li > a{
+        margin-top:10px;
+        font-family: 'Hammersmith One', sans-serif;
+        font-size:16px;
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+        padding:10px 20px 13px;
+    }
+    .navbar-primary.navbar-default .navbar-nav > li > a {
+        color:#686254;
+    }
+    .navbar-primary.navbar-default .navbar-nav > li > a:hover{
+        color:#454137;
+    }
+    .navbar-primary.navbar-default .navbar-nav > .active > a, .navbar-primary.navbar-default .navbar-nav > .active > a:hover, .navbar-primary.navbar-default .navbar-nav > .active > a:focus{
+        background:#FFF;
+        border-radius:5px 5px 0 0;
+        color:#454137;
+        margin-top:10px;
 
-  <%= link_to "Perspectives", user_perspectives_path(current_user) %> |
+    }
 
-  <%= link_to "Rewards", 'javascript:void(0)' %> |
 
-  <% if current_user.level == 2 %>
-    <%= link_to "Sessions", "javascript:void(0)" %> |
-  <% else %>
-    <%= link_to "Sessions", 'javascript:void(0)' %> |
-  <% end %>
+        /* Second level navigation */
+    .navbar-secondary.navbar{
+        background: #fff;
+        border-radius:0;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.075);
+        min-height:40px;
+        line-height: 40px;
+        margin-bottom:0;
+        position:relative;
+        top:-1px;
+    }
+    .navbar-secondary.navbar ul.nav{
+        margin-left:25px;
+    }
+    .navbar-secondary .navbar-nav > li > a{
+        font-size:13px;
+        color:#555;
+        padding:10px;
+        margin-right:25px;
+    }
+    .navbar-secondary .navbar-nav > li.active > a{
+        font-weight:bold;
+    }
+    .navbar-secondary .navbar-nav > li.active > a:after{
+        content:url("/assets/bootstrap3/active-submenu.png");
+        position:absolute;
+        bottom:-17px;
+        left:35%;
+    }
+    .navbar-secondary .navbar-nav > li > a:hover{
+        color:#333;
+        background:none;
+    }
+</style>
+<nav class="navbar navbar-default navbar-primary" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
 
-  <%= link_to "Boosters", 'javascript:void(0)' %>
-</div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class=" navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to "Dashboard", dashboard_user_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to "Profile", user_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to "Perspectives", user_perspectives_path(current_user) %>
+        </li>
+       <li>
+         <%= link_to "Sessions", 'javascript:void(0)' %>
+       </li>
+        <li>
+          <%= link_to "Boosters", 'javascript:void(0)' %>
+        </li>
+        <li class="<%= current_page?(account_user_path(current_user)) ? "active" : ""  %>">
+          <%= link_to "Account", account_user_path(current_user) %>
+        </li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div>
+</nav>

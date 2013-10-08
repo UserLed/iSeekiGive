@@ -1,17 +1,56 @@
+<style type="text/css">
+    .how_it_box {
+        background: none repeat scroll 0 0 rgba(255, 255, 255, 0);
+        border-color: #040404;
+        border-style: double;
+        border-width: 5px;
+        height: 290px;
+        left: 179px;
+        width: 290px;
+        z-index: 65;
+        float: left;
+        margin: 10px;
+        padding-top: 25px;
+    }
+
+    .lp-pom-box{
+        background: none repeat scroll 0 0 #080707;
+        border-radius: 121px 121px 121px 121px;
+        border-style: none;
+        height: 65px;
+        margin: 0 auto;
+        left: 112px;
+        width: 65px;
+        z-index: 67;
+    }
+
+</style>
 <div class="top-area shadow-inner show-onload">
   <div class="top-bg-area bg-mask" data-bg-img="/assets/img/bg/homebackground.png">
+    <div class="earth-top to-bottom mask-front">
+      <div class="earth-rotate flare">
+        <%= image_tag 'img/earth-models/render/earth-america.png', :alt => "Image Alternative text", :title => "Image Title" %>
+      </div>
+    </div>
     <div class="bg-mask-front bg-mask-darken full">
       <div class="vertical-center mask-front white">
         <div class="container">
           <div class="row">
             <div class="span8 offset2 center">
               <p class="big-text">Empowering young professionals to get </p>
+
               <p class="big-text">to where they want to be </p>
+
               <p class="big-text">Step outside your network and gain fresh perspectives to redefine your future: </p>
+
               <p class="big-text"> Career Change or Exploration </p>
+
               <p class="big-text"> Academic Programs & Certfications </p>
+
               <p class="big-text"> Living Abroad & Relocation </p>
-              <div class="gap gap-small"></div><a class="btn btn-primary btn-mega" style="background-color: #4285F4">REQUEST ACCESS FOR BETA</a>
+
+              <div class="gap gap-small"></div>
+              <a class="btn btn-primary btn-mega" >REQUEST ACCESS FOR BETA</a>
             </div>
           </div>
         </div>
@@ -29,38 +68,230 @@
 </div>
 <div class="gap"></div>
 
-<div class="container">
-  <div class="row">
+<div class="container" style="text-align: center;">
+  <div class="row" style=" margin: 0 auto; display: inline-block">
     <div class="span3">
       <h5>The Good</h5>
-      <a class="hover-img" href="#">
-        <%= image_tag 'img/good_job_800x600.jpg', :alt => "Image Alternative text", :title =>"Business Group" %>
-        <div class="hover-inner">
-          <p>The good things Givers like and things you might like about…(a city, a job function, a company, a school, etc)</p>
-        </div>
-      </a>
+      <%= link_to stories_path(:story_type => 'good'), :class => "hover-img" do %>
+          <%= image_tag 'img/good_job_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
+          <div class="hover-inner">
+            <p>The good things Givers like and things you might like about…(a city, a job function, a company, a school,
+              etc)</p>
+          </div>
+      <% end %>
     </div>
 
     <div class="span3">
       <h5>The Bad</h5>
-      <a class="hover-img" href="#">
-        <%= image_tag 'img/business_group_800x600.jpg', :alt => "Image Alternative text", :title =>"Business Group" %>
-        <div class="hover-inner">
-          <p>The not-so-good things Givers didn’t like and things you might not like about …(a city, a job function, a company, a school, etc)</p>
-        </div>
-      </a>
+
+      <%= link_to stories_path(:story_type => 'bad'), :class => "hover-img" do %>
+          <%= image_tag 'img/business_group_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
+          <div class="hover-inner">
+            <p>The not-so-good things Givers didn’t like and things you might not like about …(a city, a job function, a
+              company, a school, etc)</p>
+          </div>
+      <% end %>
     </div>
 
     <div class="span3">
       <h5>The Ugly</h5>
-      <a class="hover-img" href="#">
-        <%= image_tag 'img/working_in_the_nature_800x600.jpg', :alt => "Image Alternative text", :title =>"Business Group" %>
-        <div class="hover-inner">
-          <p>Red flags and warnings.  Risks and things to be careful of, be aware of or watch out for in…(a city, a job function, a company, a school, etc)</p>
-        </div>
-      </a>
+      <%= link_to stories_path(:story_type => 'ugly'), :class => "hover-img" do %>
+          <%= image_tag 'img/working_in_the_nature_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
+          <div class="hover-inner">
+            <p>Red flags and warnings. Risks and things to be careful of, be aware of or watch out for in…(a city, a job
+              function, a company, a school, etc)</p>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>
+<div class="gap"></div>
+
+<div class="gap"></div>
+<div class="top-title-area bg-img">
+  <div class="container">
+    <h1 class="title-page">Why people love <em> iSeekiGive</em></h1>
+  </div>
+</div>
+<div class="gap"></div>
+
+<div class="container" style="margin: 0 auto;width:650px;">
+  <div id="how_it_1" class="how_it_box">
+    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
+      <strong>
+        <span style="font-size: 21px;">Credible</span>
+      </strong>
+    </p>
+
+    <div id="lp-pom-box-344" class="lp-element lp-pom-box">
+      <%= image_tag("credible.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
+    </div>
+    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
+      <span>Our commuity is based on real perspectives from users who've "been there, done that".</span>
+    </p>
+  </div>
+
+  <div id="how_it_2" class="how_it_box">
+    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
+      <strong>
+        <span style="font-size: 21px;">Relevant</span>
+      </strong>
+    </p>
+
+    <div  class="lp-element lp-pom-box">
+      <%= image_tag("relevant.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
+    </div>
+    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
+      <span> Perspectives help users easily identify relevant feedback to support their life transitions.  Sessions are backed by our no risk relevance policy.</span>
+    </p>
+
+  </div>
+
+</div>
+<div class="container" style="margin: 0 auto;width:650px;">
+
+  <div id="how_it_3" class="how_it_box">
+    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
+      <strong>
+        <span style="font-size: 21px;">Effective</span>
+      </strong>
+    </p>
+
+    <div  class="lp-element lp-pom-box">
+      <%= image_tag("effective.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
+    </div>
+    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
+      <span>We reduce the time and energy needed to gain fresh perspectives and relevant advice.</span>
+    </p>
+
+
+    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
+      <span>Explore interests and share feedback, we'll facilitate the logistics.</span>
+    </p>
+  </div>
+
+  <div id="how_it_4" class="how_it_box">
+    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
+      <strong>
+        <span style="font-size: 21px;">Rewarding</span>
+      </strong>
+    </p>
+
+    <div  class="lp-element lp-pom-box">
+      <%= image_tag("reward.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
+    </div>
+    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
+      <span>Giving back never felt so good. </span>
+    </p>
+
+
+    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
+      <span>Help others progress and earn rewards.</span>
+    </p>
+
+    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
+      <span>Why wouldn't you Give?</span>
+    </p>
+  </div>
+</div>
+
+
+
+<div class="gap"></div>
+<div class="top-title-area bg-img">
+  <div class="container">
+    <h1 class="title-page">What people are saying.</h1>
+  </div>
+</div>
+<div class="gap"></div>
+<div class="container">
+  <div class="gap">
+    <div class="row row-wrap">
+      <div class="span4">
+        <!-- START TESTIMONIAL -->
+        <div class="testimonial">
+          <div class="testimonial-inner">
+            <blockquote>
+              <p>Amazing service that made my life much easier. It would've taken me months to learn this on my own!</p>
+            </blockquote>
+          </div>
+          <div class="testimonial-author">
+            <%= image_tag "default_user.png", :alt =>"Image Alternative text", :title => "ppl talk" %>
+            <p class="testimonial-author-name">Khalil A.</p>
+            <p class="testimonial-author-name">Software Project Manager</p>
+            <p class="testimonial-author-name">Boston, MA</p>
+          </div>
+        </div>
+        <!-- END TESTIMONIAL -->
+      </div>
+      <div class="span4">
+        <!-- START TESTIMONIAL -->
+        <div class="testimonial">
+          <div class="testimonial-inner">
+            <blockquote>
+              <p>Solid advice and refreshing perspectives, I'll keep coming back for more.</p>
+            </blockquote>
+          </div>
+          <div class="testimonial-author">
+            <%= image_tag "default_user.png", :alt =>"Image Alternative text", :title => "ppl talk" %>
+            <p class="testimonial-author-name">Andrew L.</p>
+            <p class="testimonial-author-name">Graduate Student, International Relations</p>
+            <p class="testimonial-author-name">New York, NY</p>
+          </div>
+        </div>
+        <!-- END TESTIMONIAL -->
+      </div>
+      <div class="span4">
+        <!-- START TESTIMONIAL -->
+        <div class="testimonial">
+          <div class="testimonial-inner">
+            <blockquote>
+              <p>
+                I could not get this kind of feedback anywhere else.  It was straight to the point, no BS.
+              </p>
+            </blockquote>
+          </div>
+          <div class="testimonial-author">
+            <%= image_tag "default_user.png", :alt =>"Image Alternative text", :title => "ppl talk" %>
+            <p class="testimonial-author-name">Cindy Y.</p>
+            <p class="testimonial-author-name"> Relocating Abroad</p>
+            <p class="testimonial-author-name">San Francisco, CA</p>
+          </div>
+        </div>
+        <!-- END TESTIMONIAL -->
+      </div>
+      </div>
+      <div class="row row-wrap">
+      <div class="span4">
+        <!-- START TESTIMONIAL -->
+        <div class="testimonial">
+          <div class="testimonial-inner">
+            <blockquote>
+              <p>
+                ...Made it easy to talk openly and figure out a game plan that's right for me.
+              </p>
+            </blockquote>
+          </div>
+          <div class="testimonial-author">
+            <%= image_tag "default_user.png", :alt =>"Image Alternative text", :title => "ppl talk" %>
+            <p class="testimonial-author-name">Tim D.</p>
+            <p class="testimonial-author-name"> Financial Services</p>
+            <p class="testimonial-author-name">Charlotte, NC</p>
+          </div>
+        </div>
+        <!-- END TESTIMONIAL -->
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gap gap-small"></div>
+
+  <div class="container" style="text-align: center;">
+    <a class="btn btn-primary btn-mega" >GET STARTED NOW</a>
+  </div>
+
+</div>
+
 <div class="gap"></div>
 

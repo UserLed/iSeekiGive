@@ -21,7 +21,7 @@ class GiversController < ApplicationController
     @giver = Giver.find(params[:id])
 
     if @giver.update_attributes(params[:giver])
-      redirect_to @giver, :notice => "Sucessfully Updated!"
+      redirect_to user_path(current_user), :notice => "Sucessfully Updated!"
     else
       render :action  => "show"
     end

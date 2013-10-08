@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     redirect_to request.referrer, :notice => "Please check your email to activate your account!"
   end
 
+  def account
+
+  end
+
+
   def popup
     @popup = current_user.popups.where("controller = ? AND action = ?", params[:con], params[:act])
     if @popup.blank?
@@ -46,10 +51,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id]) 
+    #@user = User.find(params[:id])
+    @user = current_user
   end
 
   def public_profile
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
   end
 end

@@ -1,18 +1,15 @@
-<header class="main shrink">
+<header class="main shrink" style="padding: 0">
 <div class="container">
 <div class="row">
 <div class="span4" style="margin: 0; padding: 0">
   <div class="span2" style="margin: 0 ; padding: 0">  <%= link_to image_tag('logo.png', :style => "width:147px; height:92px"), root_path,:class => "brand"   %>
   </div>
-  <div class="span2" style="margin: 30px 0 0 -10px; font-weight: bold; padding: 0;font-family: trebuchet ms,helvetica,sans-serif; color: #251F20">  <span>Real Perspectives</span></br><span> for Life Transitions</span>
-  </div>
+
 </div>
 
-<div class="span3" style="margin: 25px 0 0 0;">
-  <%= form_tag "/search", :method => "get" do %>
-      <%= label_tag "Search" %>
+<div class="span3" style="margin: 30px 0 0 0;">
+  <%= form_tag '#', :method => "get" do %>
       <%= text_field_tag "tag" %>
-      <%= submit_tag "Submit" %>
   <% end %>
 </div>
 <div class="span5" style="margin: 25px 0 0 0;">
@@ -29,7 +26,7 @@
               </a>
               <ul class="dropdown-menu">
 
-                <% if current_user.seeker? %>
+                <% if current_user %>
 
                     <li class="<%= "active" if current_page?(dashboard_user_path(current_user)) %>">
                       <%= link_to "Dashboard", dashboard_user_path(current_user) %>
@@ -40,25 +37,7 @@
                     <li class="<%= "active" if current_page?(user_perspectives_path(current_user)) %>">
                       <%= link_to "Manage Sessions", user_perspectives_path(current_user) %>
                     </li>
-                    <li class="<%= "active" if current_page?(current_user) %>">
-                      <%= link_to "Edit Profile", current_user %>
-                    </li>
-                    <li>
-                      <%= link_to "Boosters", "Javascript:;" %>
-                    </li>
-
-                <% else %>
-
-                    <li class="<%= "active" if current_page?(dashboard_user_path(current_user)) %>">
-                      <%= link_to "Dashboard", dashboard_user_path(current_user) %>
-                    </li>
-                    <li class="<%= "active" if current_page?(user_perspectives_path(current_user)) %>">
-                      <%= link_to "Perspectives", user_perspectives_path(current_user) %>
-                    </li>
-                    <li class="<%= "active" if !current_page?(user_perspectives_path(current_user)) %>">
-                      <%= link_to "Manage Sessions", current_user.level == 2 ? user_perspectives_path(current_user) : "Javascript:;" %>
-                    </li>
-                    <li class="<%= "active" if current_page?(current_user) %>">
+                    <li class="<%= "active" if current_page?(user_path(current_user)) %>">
                       <%= link_to "Edit Profile", user_path(current_user) %>
                     </li>
                     <li>
@@ -66,6 +45,7 @@
                     </li>
 
                 <% end %>
+
 
                 <li class="divider"></li>
                 <li>
