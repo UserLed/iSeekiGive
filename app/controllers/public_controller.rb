@@ -40,7 +40,7 @@ class PublicController < ApplicationController
     perspectives  = result.collect(&:perspective_id).uniq unless result.blank?
     user_ids = Perspective.find(perspectives).uniq.collect(&:user_id) unless perspectives.blank? 
     users = (User.find(user_ids) unless user_ids.blank?) || [] 
-    render :json => users.collect{|user| {:label => user.full_name, :value => user.id, :icon => user.profile_photo.public_profile.url.to_s, :country => user.country}}
+    render :json => users.collect{|user| {:label => user.full_name, :value => user.id, :icon => user.profile_photo.public_profile.url || "/assets/rails.png", :country => user.country}}
   end
 
   def how_it_works
