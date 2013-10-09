@@ -150,7 +150,6 @@ class Users::PerspectivesController < ApplicationController
 
 
   def add_story
-    logger.debug "===========#{params.inspect}"
     if params[:user_id].present?
       user = User.find(params[:user_id])
       perspective = user.perspectives.build(:story_type => params[:story_type], 
@@ -164,6 +163,6 @@ class Users::PerspectivesController < ApplicationController
         end
       end
     end
-    render :nothing => true
+    redirect_to user_perspectives_path(current_user), :notice => "Your story has been added"
   end
 end
