@@ -46,7 +46,7 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '.btn-edit', function(){
-    $('.btn-edit').hide();
+    $(this).hide();
     $(this).parent().parent(".info-container").hide();
     $(this).parent().parent().next('.form-container').show();
 });
