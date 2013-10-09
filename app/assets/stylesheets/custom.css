@@ -1,3 +1,29 @@
+.how_it_box {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0);
+    border-color: #040404;
+    border-style: double;
+    border-width: 5px;
+    height: 290px;
+    left: 179px;
+    width: 290px;
+    z-index: 65;
+    float: left;
+    margin: 10px;
+    padding-top: 25px;
+}
+
+.lp-pom-box{
+    background: none repeat scroll 0 0 #080707;
+    border-radius: 121px 121px 121px 121px;
+    border-style: none;
+    height: 65px;
+    margin: 0 auto;
+    left: 112px;
+    width: 65px;
+    z-index: 67;
+}
+
+
 #footer {
     background-color: #F5F5F5;
     padding-bottom: 15px;
