@@ -1,0 +1,9 @@
+<%= form_tag "perspectives/add_story", :class => :add_story, :style => "display:none",:remote => true do %>
+	<%= text_area_tag :story, nil, :placeholder => "Add your story here" %>
+	<br/>
+	<%= hidden_field_tag :story_type, type %>
+	<%= text_field_tag :keyword,nil, :class => "keyword_tag",:style => "width:300px" %>
+	<%= check_box_tag :anonymous %> Anonymous 
+	<br/>
+	<%= submit_tag "Submit" %>
+<% end %>

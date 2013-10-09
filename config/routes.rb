@@ -90,6 +90,7 @@ ISeekiGive::Application.routes.draw do
     end
     resources :perspectives, :only => :index, :controller => "users/perspectives" do
       collection do
+        post  :add_story
         match :game_1
         match :game_2
         match :game_3

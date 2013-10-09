@@ -147,4 +147,23 @@ class Users::PerspectivesController < ApplicationController
       redirect_to :action => :index
     end
   end
+
+
+  def add_story
+    logger.debug "===========#{params.inspect}"
+    if params[:user_id].present?
+      user = User.find(params[:user_id])
+      perspective = user.perspectives.build(:story_type => params[:story_type], 
+                                           :story => params[:story],
+                                           :anonymous => params[:anonymous] || false)
+      perspective.save
+      if params[:keyword].present?
+        keywords = params[:keyword].split(",")
+        keywords.each do |keyword|
+          PerspectiveTag.create(:perspective_id => perspective.id,:name => keyword).save
+        end
+      end
+    end
+    render :nothing => true
+  end
 end

@@ -1,12 +1,13 @@
+<div class="container">
 <%= render "users/dashboard_menu" %>
 
 <h2>Share your fresh Perspectives .</h2>
 
-<%= link_to "Game 1", game_1_user_perspectives_path(current_user) %> |
-<%= link_to "Game 2", game_2_user_perspectives_path(current_user) %> |
-<%= link_to "Game 3", game_3_user_perspectives_path(current_user) %> |
-<%= link_to "Game 4" %> |
-<%= link_to "Game 5" %>
+<%# link_to "Game 1", game_1_user_perspectives_path(current_user) %> 
+<%# link_to "Game 2", game_2_user_perspectives_path(current_user) %> 
+<%# link_to "Game 3", game_3_user_perspectives_path(current_user) %> 
+<%# link_to "Game 4" %> 
+<%# link_to "Game 5" %>
 
 <% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
   <%= render "shared/perspectives_popup" %>
@@ -20,10 +21,13 @@
 
 <div class="tab-content">
 	<div id="good_story" class ="tab-pane fade in active">
+		<%= link_to "+ add a story", "javascript:void(0)",:id => "good_story_link" %>
+		<%= render :partial => "add_story", :locals => {:type => "The Good" } %>
+		<br/>
 		<% unless @good_stories.nil? %>
 			<% @good_stories.each do |story| %>
 				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s),public_profile_user_path(user) %>
+				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s, :style => 'max-width:8%'),public_profile_user_path(user) %>
 				<br/>
 				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
 				<br/>
@@ -37,10 +41,13 @@
 	</div>
 
 	<div id="bad_story" class ="tab-pane fade">
+		<%= link_to "+ add a story", "javascript:void(0)",:id => "bad_story_link" %>
+		<%= render :partial => "add_story", :locals => {:type => "The Bad" } %>
+		<br/>
 		<% unless @bad_stories.nil? %>
 			<% @bad_stories.each do |story| %>
 				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s),public_profile_user_path(user) %>
+				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s, :style => 'max-width:8%'),public_profile_user_path(user) %>
 				<br/>
 				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
 				<br/>
@@ -53,10 +60,13 @@
 	</div>
 
 	<div id="ugly_story" class ="tab-pane fade">
+		<%= link_to "+ add a story", "javascript:void(0)",:id => "ugly_story_link" %>
+		<%= render :partial => "add_story", :locals => {:type => "The Ugly" } %>
+		<br/>
 		<% unless @ugly_stories.nil? %>
 			<% @ugly_stories.each do |story| %>
 				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s),public_profile_user_path(user) %>
+				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s, :style => 'max-width:8%'),public_profile_user_path(user) %>
 				<br/>
 				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
 				<br/>
@@ -68,3 +78,36 @@
 		<% end %>
 	</div>
 </div>
+</div>
+
+<script type="text/javascript">
+	$("#good_story_link, #bad_story_link, #ugly_story_link").on("click", function(){
+		$(".add_story").toggle();
+	});
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    $.getJSON("/tags",function(data){
+      var temp_tags = [];
+      $(".keyword_tag").tagit({
+        availableTags : data,
+
+        afterTagAdded :function(event, ui){
+          temp_tags.push(ui.tagLabel);
+          data.push(_.last(temp_tags));
+          console.log(data);
+        },
+        afterTagRemoved : function(event, ui){
+          if (_.indexOf(temp_tags,ui.tagLabel) != (-1) ){
+            data.splice(_.indexOf(data, ui.tagLabel),1);
+            console.log(data);
+          }
+        },
+        allowSpaces : true
+    });
+  });
+});
+
+
+</script>
