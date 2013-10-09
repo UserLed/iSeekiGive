@@ -42,11 +42,12 @@
 		<br/>
 		<%= [user.city , user.country].compact.join(",") %>
 		<br/>
+		<%= story.perspective_tags.collect(&:name).join(",") %>
+		<br/>
 		<%= story.story_type %>
 		<br/>
 		<p class="story"><%= story.story %></p>
-		<br/>
-		<%= story.perspective_tags.collect(&:name).join(",") %>
+		<%= distance_of_time_in_words(Time.now, story.created_at) %>
 		<hr/>
 	<% end %>
 </div>
