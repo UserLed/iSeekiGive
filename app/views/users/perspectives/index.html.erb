@@ -1,88 +1,104 @@
 <%= render "users/dashboard_menu" %>
 
-<h2>Share your fresh Perspectives .</h2>
-
-<%# link_to "Game 1", game_1_user_perspectives_path(current_user) %> 
-<%# link_to "Game 2", game_2_user_perspectives_path(current_user) %> 
-<%# link_to "Game 3", game_3_user_perspectives_path(current_user) %> 
-<%# link_to "Game 4" %> 
+<%# link_to "Game 1", game_1_user_perspectives_path(current_user) %>
+<%# link_to "Game 2", game_2_user_perspectives_path(current_user) %>
+<%# link_to "Game 3", game_3_user_perspectives_path(current_user) %>
+<%# link_to "Game 4" %>
 <%# link_to "Game 5" %>
 
 <% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
-  <%= render "shared/perspectives_popup" %>
+    <%= render "shared/perspectives_popup" %>
 <% end %>
 
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#good_story" data-toggle="tab">Good Story</a></li>
-  <li><a href="#bad_story" data-toggle="tab">Bad Story</a></li>
-  <li><a href="#ugly_story" data-toggle="tab">Ugly Story</a></li>
-</ul>
+<div class="container">
+  <h2>Share your fresh Perspectives .</h2>
+  <p>
+    Share your personal experiences: The Good, The Bad and The Ugly
+  </p>
 
-<div class="tab-content">
-	<div id="good_story" class ="tab-pane fade in active">
+  <p>Step 1. Choose 1 of 3 stroy types</p>
 
-		<%= render :partial => "add_story", :locals => {:type => "The Good" } %>
-	</div>
+  <p>Step 2. Share your perspectives</p>
 
-	<div id="bad_story" class ="tab-pane fade">
+  <p>Step 3. Add your keyword tags and select Post.</p>
 
-		<%= render :partial => "add_story", :locals => {:type => "The Bad" } %>
-	</div>
-
-	<div id="ugly_story" class ="tab-pane fade">
-
-		<%= render :partial => "add_story", :locals => {:type => "The Ugly" } %>
-	</div>
+  <p>Sharing your Perspectives will help Seekers and help them to find you</p>
 </div>
-<hr/>
-<div>
-	<% @perspectives.each do |story| %>
-		<% user = @users.detect{|user|  user.id.eql?(story.user_id)} %>
-		<%= user.full_name %>
-		<br/>
-		<%= [user.city , user.country].compact.join(",") %>
-		<br/>
-		<%= story.perspective_tags.collect(&:name).join(",") %>
-		<br/>
-		<%= story.story_type %>
-		<br/>
-		<p class="story"><%= story.story %></p>
-		<%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
-		<hr/>
-	<% end %>
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#good_story" data-toggle="tab">Good Story</a></li>
+    <li><a href="#bad_story" data-toggle="tab">Bad Story</a></li>
+    <li><a href="#ugly_story" data-toggle="tab">Ugly Story</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="good_story" class="tab-pane fade in active">
+
+      <%= render :partial => "add_story", :locals => {:type => "The Good", :title_text => "The good things I like or things someone might like about…(my current of former city, job function, company, school, industry, etc)"} %>
+    </div>
+
+    <div id="bad_story" class="tab-pane fade">
+
+      <%= render :partial => "add_story", :locals => {:type => "The Bad", :title_text => "The things I didn't like or things someone might not like about …(my current of former city, job function, company, school, industry,"} %>
+    </div>
+
+    <div id="ugly_story" class="tab-pane fade">
+
+      <%= render :partial => "add_story", :locals => {:type => "The Ugly", :title_text => "Red flags and warnings. Risks and things to be careful of, be aware of or watch out for in…(my current of former city, job function, company, school, industry, etc)"} %>
+    </div>
+  </div>
+  <hr/>
+  <div>
+    <% @perspectives.each do |story| %>
+        <% user = @users.detect { |user| user.id.eql?(story.user_id) } %>
+        <%= user.full_name %>
+        <br/>
+        <%= [user.city, user.country].compact.join(",") %>
+        <br/>
+        <%= story.perspective_tags.collect(&:name).join(",") %>
+        <br/>
+        <%= story.story_type %>
+        <br/>
+
+        <p class="story"><%= story.story %></p>
+        <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
+        <hr/>
+    <% end %>
+  </div>
 </div>
 
 <script type="text/javascript">
-	$(function(){
+    $(function () {
 
-		$(".story").readmore({
-			maxHeight: 80
-		});
-	});
+        $(".story").readmore({
+            maxHeight: 80
+        });
+    });
 </script>
 
 <script type="text/javascript">
-  $(function(){
-    $.getJSON("/tags",function(data){
-      var temp_tags = [];
-      $(".keyword_tag").tagit({
-        availableTags : data,
+    $(function () {
+        $.getJSON("/tags", function (data) {
+            var temp_tags = [];
+            $(".keyword_tag").tagit({
+                availableTags: data,
 
-        afterTagAdded :function(event, ui){
-          temp_tags.push(ui.tagLabel);
-          data.push(_.last(temp_tags));
-          console.log(data);
-        },
-        afterTagRemoved : function(event, ui){
-          if (_.indexOf(temp_tags,ui.tagLabel) != (-1) ){
-            data.splice(_.indexOf(data, ui.tagLabel),1);
-            console.log(data);
-          }
-        },
-        allowSpaces : true
+                afterTagAdded: function (event, ui) {
+                    temp_tags.push(ui.tagLabel);
+                    data.push(_.last(temp_tags));
+                    console.log(data);
+                },
+                afterTagRemoved: function (event, ui) {
+                    if (_.indexOf(temp_tags, ui.tagLabel) != (-1)) {
+                        data.splice(_.indexOf(data, ui.tagLabel), 1);
+                        console.log(data);
+                    }
+                },
+                allowSpaces: true
+            });
+        });
     });
-  });
-});
 
 
 </script>

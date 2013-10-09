@@ -1,9 +1,11 @@
 <%= form_tag "perspectives/add_story", :class => :add_story do %>
-	<%= text_area_tag :story, nil, :placeholder => "Add your story here", :class =>"form_text_area" %>
+    <span> <%= title_text  %></span>
+    <div class="gap-small"></div>
+	<%= text_area_tag :story, nil, :placeholder => "What is your perspective...", :class =>"form_text_area" %>
 	<br/>
 	<%= hidden_field_tag :story_type, type %>
-	<%= text_field_tag :keyword,nil, :class => "keyword_tag" %>
-	<%= check_box_tag :anonymous %> Anonymous 
-	<br/>
-	<%= submit_tag "Submit" %>
+	<%= text_field_tag :keyword,nil,:placeholder => "Type your keyword", :class => "keyword_tag" %>
+	<%= check_box_tag :anonymous %> Anonymous
+    <div class="gap-small"></div>
+	<%= submit_tag "Submit", class: 'btn btn-primary' %>
 <% end %>
