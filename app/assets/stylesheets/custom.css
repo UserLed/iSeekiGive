@@ -138,6 +138,16 @@ ul.tagit {
 /* Dashboard Menu End*/
 
 
+.profile-overview{
+    margin-bottom: 10px;
+}
+.profile-tab{
+    border: none !important;
+}
+.form-actions {
+    background-color: #FFFFFF;
+}
+
 
 #footer {
     background-color: #F5F5F5;
