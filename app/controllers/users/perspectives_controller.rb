@@ -6,7 +6,7 @@ class Users::PerspectivesController < ApplicationController
     if @user.game.blank?
       @user.build_game.save
     end
-    @perspectives = Perspective.all
+    @perspectives = Perspective.select{|perspective| perspective.anonymous == false}
     @good_stories = @perspectives.select{|story| story.story_type.eql?("The Good")}
     @bad_stories = @perspectives.select{|story| story.story_type.eql?("The Bad")}
     @ugly_stories = @perspectives.select{|story| story.story_type.eql?("The Ugly")}
