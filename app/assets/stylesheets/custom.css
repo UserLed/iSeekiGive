@@ -12,6 +12,11 @@
     padding-top: 25px;
 }
 
+.form_text_area{
+    width: 600px;
+    height: 125px;
+}
+
 .lp-pom-box{
     background: none repeat scroll 0 0 #080707;
     border-radius: 121px 121px 121px 121px;
@@ -21,6 +26,24 @@
     left: 112px;
     width: 65px;
     z-index: 67;
+}
+
+.dashboard_img{
+    background-color: #000000 !important;
+    color: #FFFFFF;
+}
+
+.dashboard-container {
+    margin: 0 auto;text-align: center;
+    margin-top: 10px;
+}
+.hint_msg{
+    color: #E6E5E4;
+    font-weight: bold;
+}
+
+.dashboard-container .row-wrap{
+    margin: 0 auto; display: inline-block
 }
 
 

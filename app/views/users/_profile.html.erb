@@ -1,222 +1,227 @@
-
 <div class="tabbable tabs-left">
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#lA" data-toggle="tab">Account Details</a>
-    </li>
-    <li>
-      <a href="#lB" data-toggle="tab">Account Settings</a>
-    </li>
-    <li>
-      <a href="#lC" data-toggle="tab">Educations</a>
-    </li>
-    <li>
-      <a href="#lD" data-toggle="tab">Experiences</a>
-    </li>
-    <li>
-      <a href="#lE" data-toggle="tab">Skills</a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="lA">
-      <div class="span6">
-        <ul class="list-group">
-          <li class="list-group-item">
-            Email : <%= user.email %>
-          </li>
-          <li class="list-group-item">
-            City : <%= user.current_location %>
-          </li>
-          <li class="list-group-item total_experience">
-            Total Experience : <%= total_experience(user) %>
-          </li>
-          <li class="list-group-item">
-            <%# link_to "Update Billing Information", current_user.type == 'Giver' ? new_user_billing_setting_path(current_user) : new_user_billing_setting_path(current_user) %>
-          </li>
-        </ul>
+<ul class="nav nav-tabs">
 
-        <div class="social-connections">
-          <h5>Verified</h5>
-          <div class="row-fluid">
-            <span class="icon-stack phone">
-              <i class="icon-circle icon-stack-base"></i>
-              <i class="icon-phone"></i>
-            </span>
-            Phone Number :
-            <% if user.phone_verified? %>
-              <%= user.phone_number.number %>
-            <% else %>
-              <% if user.phone_number.present? %>
-                <%= user.phone_number.number %>
-                <%= link_to "Verify", "Javascript:;" %>
-              <% else %>
-                <%= link_to "Create and Verify", new_phone_number_path, :class => "fancybox fancybox.ajax" %>
-              <% end %>
-            <% end %>
+  <li class="active">
+    <a href="#lB" data-toggle="tab">Edit Profile</a>
+  </li>
+  <li>
+    <a href="#lA" data-toggle="tab">Photos</a>
+  </li>
+  <li>
+    <a href="#lC" data-toggle="tab">Experiences & Educations</a>
+  </li>
+  <li>
+    <a href="#lD" data-toggle="tab">Experiences</a>
+  </li>
+  <li>
+    <a href="#lE" data-toggle="tab">Your Keyword Tag--Skills</a>
+  </li>
+
+  <li>
+    <a href="#lF" data-toggle="tab">Trust and Verification</a>
+  </li>
+
+  <li>
+    <a href="#lG" data-toggle="tab">Reviews</a>
+  </li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane" id="lA">
+
+  <div class="span6">
+    <h4>
+      Pictures
+    </h4>
+    <% if user.profile_photo.present? %>
+        <div class="profile-photo">
+          <%= image_tag(user.profile_photo.to_s, :width => "250") %>
+        </div>
+    <% end %>
+
+    <% if user.cover_photo.present? %>
+        <div class="cover-photo">
+          <%= image_tag(user.cover_photo.to_s, :width => "400") %>
+        </div>
+    <% end %>
+
+    <%= form_for user, :html => {:class => "form-horizontal"} do |f| %>
+
+        <div class="control-group">
+          <%= f.label :profile_photo, :class => "control-label" %>
+          <div class="controls">
+            <%= f.file_field :profile_photo %>
           </div>
-          <div class="row-fluid">
-            <% if user.linkedin_connected? %>
-              <span class="icon-stack linkedin">
-                <i class="icon-circle icon-stack-base"></i>
-                <i class="icon-linkedin"></i>
-              </span>
-              Linkedin: Connected
-            <% else %>
-              <%= link_to auth_at_provider_path(:provider => :linkedin) do %>
-                <span class="icon-stack linkedin">
-                  <i class="icon-circle icon-stack-base"></i>
-                  <i class="icon-linkedin"></i>
-                </span>
-                Complete your profile in seconds with LinkedIn.
-              <% end  %>
-            <% end %>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :cover_photo, :class => "control-label" %>
+          <div class="controls">
+            <%= f.file_field :cover_photo %>
           </div>
-          <div class="row-fluid">
-            <span class="icon-stack twitter">
-              <i class="icon-circle icon-stack-base"></i>
-              <i class="icon-twitter"></i>
-            </span>
-            Twitter:
-            <% if user.twitter_connected? %>
-              connected
-            <% else %>
-              <%= link_to "Connect", auth_at_provider_path(:provider => :twitter) %>
-            <% end %>
-          </div>
-          <div class="row-fluid">
-            <span class="icon-stack facebook">
-              <i class="icon-circle icon-stack-base"></i>
-              <i class="icon-facebook"></i>
-            </span>
-            Facebook:
-            <% if user.facebook_connected? %>
-              connected
-            <% else %>
-              <%= link_to "Connect", auth_at_provider_path(:provider => :facebook) %>
-            <% end %>
-          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit "Upload", :class => "btn btn-info" %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="tab-pane active" id="lB">
+  <legend>
+    <h3 class="span10">Account Settings</h3>
+    <%= link_to 'Overview', public_profile_user_path(@user), :class => 'btn btn-primary btn-mega' %>
+  </legend>
+
+  <%= form_for user, :html => {:class => "form-horizontal"} do |f| %>
+      <div class="control-group">
+        <%= f.label :first_name, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :first_name, :required => true %>
+        </div>
+        <div class="controls">
+          <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
         </div>
       </div>
-      <div class="span6">
-        <h4>
-          Pictures
-        </h4>
-        <% if user.profile_photo.present? %>
-          <div class="profile-photo">
-            <%= image_tag(user.profile_photo.to_s, :width => "250") %>
-          </div>
-        <% end %>
-
-        <% if user.cover_photo.present? %>
-          <div class="cover-photo">
-            <%= image_tag(user.cover_photo.to_s, :width => "400") %>
-          </div>
-        <% end %>
-
-        <%= form_for user, :html => { :class => "form-horizontal" } do |f| %>
-
-          <div class="control-group">
-            <%= f.label :profile_photo, :class => "control-label" %>
-            <div class="controls">
-              <%= f.file_field :profile_photo %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= f.label :cover_photo, :class => "control-label" %>
-            <div class="controls">
-              <%= f.file_field :cover_photo %>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <%= f.submit "Upload", :class => "btn btn-info" %>
-          </div>
-        <% end %>
+      <div class="control-group">
+        <%= f.label :last_name, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :last_name, :required => true %>
+        </div>
+        <div class="controls">
+          <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
+        </div>
       </div>
-    </div>
 
-    <div class="tab-pane" id="lB">
-      <legend>
-        <h3>Account Settings</h3>
-      </legend>
+      <div class="control-group">
+        <%= f.label 'I am', :class => "control-label" %>
+        <div class="controls">
+          <%= f.select(:gender,%w[male female]) %>
+          <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+              <span>Private</span>
+              <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+          <% end %>
+        </div>
+        <div class="controls">
+          <span class="hint_msg">We use this data for analysis and never share it with other users</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label 'Date of Birth', :class => "control-label" %>
+        <div class="controls">
+          <%= date_select(f.object.class.name.downcase, "date_of_birth", :ampm => true, :order => [:month, :day, :year], :use_short_month  => true) %>
+          <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+              <span>Private</span>
+              <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+          <% end %>
+        </div>
+        <div class="controls">
+          <span class="hint_msg">We use this data for analysis and never share it with other users</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :country, :class => "control-label" %>
+        <div class="controls">
+          <%= country_select(f.object.class.name.downcase, "country", ["United States", "United Kingdom"]) %>
+          <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+              <span>Private</span>
+              <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+          <% end %>
+        </div>
+        <div class="controls">
+          <span class="hint_msg">Many Seekers are considering relocations, new cities and countries</span>
+        </div>
+      </div>
 
-      <%= form_for user, :html => { :class => "form-horizontal" } do |f| %>
-        <div class="control-group">
-          <%= f.label :first_name, :class => "control-label" %>
-          <div class="controls">
-            <%= f.text_field :first_name, :required => true %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :last_name, :class => "control-label" %>
-          <div class="controls">
-            <%= f.text_field :last_name, :required => true %>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :country, :class => "control-label" %>
-          <div class="controls">
-            <%= country_select(f.object.class.name.downcase, "country", ["United States", "United Kingdom"]) %>
-          </div>
-        </div>
-
-        <% unless user.external? %>
+      <% unless user.external? %>
           <div class="control-group">
             <%= f.label :email, :class => "control-label" %>
             <div class="controls">
               <%= f.email_field :email, :required => true %>
+              <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+                  <span>Private</span>
+                  <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+              <% end %>
             </div>
-          </div>
-          <div class="control-group">
-            <%= f.label :password, :class => "control-label" %>
             <div class="controls">
-              <%= f.password_field :password %>
+              <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
             </div>
           </div>
-          <div class="control-group">
-            <%= f.label :password_confirmation, :class => "control-label" %>
-            <div class="controls">
-              <%= f.password_field :password_confirmation %>
-            </div>
-          </div>
-        <% end %>
 
-        <div class="form-actions">
-          <%= f.submit "Update", :class => "btn btn-info" %>
+      <% end %>
+
+      <div class="control-group">
+        <%= f.label "Describe Yourself", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_area :descriptions, :row =>20, :column =>40, :class =>'form_text_area' %>
         </div>
+        <div class="controls">
+          <span class="hint_msg">iSeekiGive is built on real perspectives for life transitions. Help other people get to know you better.</span>
+          <span class="hint_msg">What brings you to iSeekiGive?</span>
+          <span class="hint_msg">Tell them about yourself and any life transitions you may have had</span>
+          <span class="hint_msg">Do you have life motto or tip(s) for your own life?</span>
+        </div>
+      </div>
 
-      <% end %>
-    </div>
 
-    <div class="tab-pane" id="lC">
-      <legend>
-        <h3>Education Details</h3>
-      </legend>
-      <% user.educations.each do |education| %>
+      <div class="form-actions">
+        <%= f.submit "Update", :class => "btn btn-info" %>
+      </div>
+
+  <% end %>
+</div>
+
+<div class="tab-pane" id="lC">
+  <div class="container span5">
+    <legend>
+      <h3>Education Details</h3>
+    </legend>
+    <% user.educations.each do |education| %>
         <%= render education %>
-      <% end %>
-      <%= render "educations/new" %>
-    </div>
-
-    <div class="tab-pane" id="lD">
-      <legend>
-        <h3>Experience Details</h3>
-      </legend>
-      <% user.experiences.each do |experience| %>
-        <%= render experience %>
-      <% end %>
-      <%= render 'experiences/new' %>
-    </div>
-
-    <div class="tab-pane" id="lE">
-      <legend>
-        <h3>Skills</h3>
-      </legend>
-      <% user.skills.each do |skill| %>
-        <%= render skill %>
-      <% end %>
-      <%= render 'skills/new' %>
-    </div>
+    <% end %>
+    <%= render "educations/new" %>
   </div>
+  <div class="container span5">
+    <legend>
+      <h3>Experience Details</h3>
+    </legend>
+    <% user.experiences.each do |experience| %>
+        <%= render experience %>
+    <% end %>
+    <%= render 'experiences/new' %>
+  </div>
+</div>
+
+<div class="tab-pane" id="lD">
+  <legend>
+    <h3>Experience Details</h3>
+  </legend>
+  <% user.experiences.each do |experience| %>
+      <%= render experience %>
+  <% end %>
+  <%= render 'experiences/new' %>
+</div>
+
+<div class="tab-pane" id="lE">
+  <legend>
+    <h3>Skills</h3>
+  </legend>
+  <% user.skills.each do |skill| %>
+      <%= render skill %>
+  <% end %>
+  <%= render 'skills/new' %>
+</div>
+
+<div class="tab-pane" id="lF">
+  <legend>
+    <h3>Trust And Verification</h3>
+  </legend>
+</div>
+
+<div class="tab-pane" id="lG">
+  <legend>
+    <h3>Reviews</h3>
+  </legend>
+</div>
+</div>
 </div>

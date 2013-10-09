@@ -1,94 +1,53 @@
 <%= render "dashboard_menu" %>
 <%= render "shared/confirmation_notice" %>
-<div class="container">
-  <h3>Dashboard</h3>
-</div>
 
-<div class="gap"></div>
+<%# if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
+    <%#= render 'shared/dashboard_popup' %>
+<%# end %>
 
-<div class="container">
-  <p>Name : <%= @user.name %></p>
-
-  <p>Level <%= @user.level %></p>
-</div>
-<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
-    <%= render 'shared/dashboard_popup' %>
-<% end %>
-
-<div class="container">
-  <div class="row">
-    <div class="span9">
-
-      <h3>Holded Title</h3>
-
+<div class="container dashboard-container" >
       <div class="row row-wrap">
         <div class="span3">
-          <h5>Bottom</h5>
           <a class="hover-img" href="#">
-            <img src="img/machine_businessman_800x600.jpg" alt="Image Alternative text" title="Machine Businessman"/>
-            <h5 class="hover-title hover-hold">Viverra tellus</h5>
+            <%= image_tag "img/going_out_tonight_800x600.jpg", :alt =>"Image Alternative text", :title => "a dreamy jump" %>
+            <h5 class="hover-title-bottom-left hover-hold dashboard_img">PROFILE</h5>
+            <div class="hover-inner">
+              <p>Tell us about yourself.  Completed profiles help us match the relevance of Seeker - Giver experiences and interests</p>
+            </div>
           </a>
         </div>
         <div class="span3">
-          <h5>Top</h5>
           <a class="hover-img" href="#">
-            <img src="img/good_job_800x600.jpg" alt="Image Alternative text" title="Good job"/>
-            <h5 class="hover-title-top hover-hold">Mi elementum</h5>
+            <%= image_tag "img/in_the_bokeh_forest_800x600.jpg", :alt =>"Image Alternative text", :title => "a dreamy jump" %>
+            <h5 class="hover-title-bottom-left hover-hold dashboard_img">PERSPECTIVE</h5>
+            <div class="hover-inner">
+              <p>Read or Share stories of "The Good, The Bad and The Ugly".  Keep track of your stats and Perspectives from others you've saved</p>
+            </div>
+          </a>
+        </div>
+        </div>
+        <div class="row row-wrap" >
+        <div class="span3">
+          <a class="hover-img" href="#">
+            <%= image_tag "img/a_dreamy_jump_800x600.jpg", :alt =>"Image Alternative text", :title => "a dreamy jump" %>
+            <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+            <h5 class="hover-title-bottom-left hover-hold dashboard_img">SESSION</h5>
+            <div class="hover-inner">
+              <p>Exchange your free time for rewards and make yourself available to chat with a relevant Seeker.  Manage schedules, sessions and rewards here</p>
+            </div>
           </a>
         </div>
         <div class="span3">
-          <h5>Top Left</h5>
           <a class="hover-img" href="#">
-            <img src="img/working_in_the_nature_800x600.jpg" alt="Image Alternative text" title="Working in the Nature"/>
-            <h5 class="hover-title-top-left hover-hold">Aliquam fringilla</h5>
-          </a>
-        </div>
-        <div class="span3">
-          <h5>Top Right</h5>
-          <a class="hover-img" href="#">
-            <img src="img/business_group_800x600.jpg" alt="Image Alternative text" title="Business Group"/>
-            <h5 class="hover-title-top-right hover-hold">Urna ipsum</h5>
-          </a>
-        </div>
-        <div class="span3">
-          <h5>Bottom Left</h5>
-          <a class="hover-img" href="#">
-            <img src="img/a_dreamy_jump_800x600.jpg" alt="Image Alternative text" title="a dreamy jump"/>
-            <h5 class="hover-title-bottom-left hover-hold">Purus vestibulum</h5>
-          </a>
-        </div>
-        <div class="span3">
-          <h5>Bottom Right</h5>
-          <a class="hover-img" href="#">
-            <img src="img/in_the_bokeh_forest_800x600.jpg" alt="Image Alternative text" title="In the bokeh forest"/>
-            <h5 class="hover-title-bottom-right hover-hold">Sollicitudin laoreet</h5>
-          </a>
-        </div>
-        <div class="span3">
-          <h5>Center</h5>
-          <a class="hover-img" href="#">
-            <img src="img/gamer_chick_800x600.jpg" alt="Image Alternative text" title="Gamer Chick"/>
-            <h5 class="hover-title-center hover-hold">Donec viverra</h5>
-          </a>
-        </div>
-        <div class="span3">
-          <h5>Center Top</h5>
-          <a class="hover-img" href="#">
-            <img src="img/andrea_800x600.jpg" alt="Image Alternative text" title="Andrea"/>
-            <h5 class="hover-title-center-top hover-hold">Convallis eros</h5>
-          </a>
-        </div>
-        <div class="span3">
-          <h5>Center Bottom</h5>
-          <a class="hover-img" href="#">
-            <img src="img/luca_800x600.jpg" alt="Image Alternative text" title="Luca"/>
-            <h5 class="hover-title-center-bottom hover-hold">Adipiscing consectetur</h5>
+            <%= image_tag "img/the_hidden_power_of_the_heart_800x600.jpg", :alt =>"Image Alternative text", :title => "a dreamy jump" %>
+            <h5 class="hover-title-bottom-left hover-hold dashboard_img">BOOSTER</h5>
+            <div class="hover-inner">
+              <p>Start a campaign and raise proceeds for a cause you care about.  Easily invite others to share their time and give back to support your campaign.</p>
+            </div>
           </a>
         </div>
       </div>
 
       <div class="gap gap-small"></div>
     </div>
-  </div>
-</div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131007051618) do
+ActiveRecord::Schema.define(:version => 20131009084352) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -125,13 +125,6 @@ ActiveRecord::Schema.define(:version => 20131007051618) do
     t.datetime "updated_at",                           :null => false
   end
 
-  create_table "keywords", :force => true do |t|
-    t.text     "story_keyword"
-    t.integer  "game_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "messages", :force => true do |t|
     t.string   "from"
     t.string   "to"
@@ -191,14 +184,6 @@ ActiveRecord::Schema.define(:version => 20131007051618) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
-  end
-
-  create_table "save_game_tags", :force => true do |t|
-    t.string   "tag_name"
-    t.string   "experience_name"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "schedules", :force => true do |t|
@@ -266,6 +251,9 @@ ActiveRecord::Schema.define(:version => 20131007051618) do
     t.string   "contact_number"
     t.string   "other_contact_details"
     t.string   "user_time_zone"
+    t.string   "gender"
+    t.string   "descriptions"
+    t.datetime "date_of_birth"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
