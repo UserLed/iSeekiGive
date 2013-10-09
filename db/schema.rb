@@ -125,6 +125,13 @@ ActiveRecord::Schema.define(:version => 20131009084352) do
     t.datetime "updated_at",                           :null => false
   end
 
+  create_table "keywords", :force => true do |t|
+    t.text     "story_keyword"
+    t.integer  "game_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "messages", :force => true do |t|
     t.string   "from"
     t.string   "to"
@@ -184,6 +191,14 @@ ActiveRecord::Schema.define(:version => 20131009084352) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "save_game_tags", :force => true do |t|
+    t.string   "tag_name"
+    t.string   "experience_name"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "schedules", :force => true do |t|
