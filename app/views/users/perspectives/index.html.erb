@@ -33,7 +33,7 @@
 				<br/>
 				<%= user.full_name %>
 				<br/>
-				<p id ="<%= story.id%>"><%= story.story %></p>
+				<p class = "story" id ="<%= story.id%>"><%= story.story %></p>
 			<hr/>
 
 			<% end %>
@@ -81,8 +81,14 @@
 </div>
 
 <script type="text/javascript">
-	$("#good_story_link, #bad_story_link, #ugly_story_link").on("click", function(){
-		$(".add_story").toggle();
+	$(function(){
+		$("#good_story_link, #bad_story_link, #ugly_story_link").on("click", function(){
+			$(".add_story").toggle();
+		});
+
+		$(".story").readmore({
+			maxHeight: 80
+		});
 	});
 </script>
 
