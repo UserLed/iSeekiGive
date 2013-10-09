@@ -1,4 +1,4 @@
-<%= form_tag "perspectives/add_story", :class => :add_story, :style => "display:none" do %>
+<%= form_tag "perspectives/add_story", :class => :add_story do %>
 	<%= text_area_tag :story, nil, :placeholder => "Add your story here", :class =>"form_text_area" %>
 	<br/>
 	<%= hidden_field_tag :story_type, type %>

@@ -6,11 +6,11 @@ class Users::PerspectivesController < ApplicationController
     if @user.game.blank?
       @user.build_game.save
     end
-    perspectives = Perspective.all
-    @good_stories = perspectives.select{|story| story.story_type.eql?("The Good")}
-    @bad_stories = perspectives.select{|story| story.story_type.eql?("The Bad")}
-    @ugly_stories = perspectives.select{|story| story.story_type.eql?("The Ugly")}
-    @users = User.find(perspectives.collect(&:user_id).uniq)
+    @perspectives = Perspective.all
+    @good_stories = @perspectives.select{|story| story.story_type.eql?("The Good")}
+    @bad_stories = @perspectives.select{|story| story.story_type.eql?("The Bad")}
+    @ugly_stories = @perspectives.select{|story| story.story_type.eql?("The Ugly")}
+    @users = User.find(@perspectives.collect(&:user_id).uniq)
   end
 
   def game_1

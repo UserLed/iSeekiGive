@@ -20,69 +20,39 @@
 
 <div class="tab-content">
 	<div id="good_story" class ="tab-pane fade in active">
-		<%= link_to "+ add a story", "javascript:void(0)",:id => "good_story_link" %>
-		<%= render :partial => "add_story", :locals => {:type => "The Good" } %>
-		<br/>
-		<% unless @good_stories.nil? %>
-			<% @good_stories.each do |story| %>
-				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s, :style => 'max-width:8%'),public_profile_user_path(user) %>
-				<br/>
-				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
-				<br/>
-				<%= user.full_name %>
-				<br/>
-				<p class = "story" id ="<%= story.id%>"><%= story.story %></p>
-			<hr/>
 
-			<% end %>
-		<% end %>
+		<%= render :partial => "add_story", :locals => {:type => "The Good" } %>
 	</div>
 
 	<div id="bad_story" class ="tab-pane fade">
-		<%= link_to "+ add a story", "javascript:void(0)",:id => "bad_story_link" %>
+
 		<%= render :partial => "add_story", :locals => {:type => "The Bad" } %>
-		<br/>
-		<% unless @bad_stories.nil? %>
-			<% @bad_stories.each do |story| %>
-				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s, :style => 'max-width:8%'),public_profile_user_path(user) %>
-				<br/>
-				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
-				<br/>
-				<%= user.full_name %>
-				<br/>
-				<%= story.story  %>
-			<hr/>
-			<% end %>
-		<% end %>
 	</div>
 
 	<div id="ugly_story" class ="tab-pane fade">
-		<%= link_to "+ add a story", "javascript:void(0)",:id => "ugly_story_link" %>
+
 		<%= render :partial => "add_story", :locals => {:type => "The Ugly" } %>
-		<br/>
-		<% unless @ugly_stories.nil? %>
-			<% @ugly_stories.each do |story| %>
-				<% user = @users.find(story.user_id).first %>
-				<%= link_to (image_tag user.profile_photo.public_profile.url.to_s, :style => 'max-width:8%'),public_profile_user_path(user) %>
-				<br/>
-				Tags: <%= story.perspective_tags.collect(&:name).join(",") if story.perspective_tags %>
-				<br/>
-				<%= user.full_name %>
-				<br/>
-				<%= story.story  %>
-			<hr/>
-			<% end %>
-		<% end %>
 	</div>
+</div>
+<hr/>
+<div>
+	<% @perspectives.each do |story| %>
+		<% user = @users.detect{|user|  user.id.eql?(story.user_id)} %>
+		<%= user.full_name %>
+		<br/>
+		<%= [user.city , user.country].compact.join(",") %>
+		<br/>
+		<%= story.story_type %>
+		<br/>
+		<p class="story"><%= story.story %></p>
+		<br/>
+		<%= story.perspective_tags.collect(&:name).join(",") %>
+		<hr/>
+	<% end %>
 </div>
 
 <script type="text/javascript">
 	$(function(){
-		$("#good_story_link, #bad_story_link, #ugly_story_link").on("click", function(){
-			$(".add_story").toggle();
-		});
 
 		$(".story").readmore({
 			maxHeight: 80
