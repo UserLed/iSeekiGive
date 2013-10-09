@@ -13,8 +13,17 @@
 }
 
 .form_text_area{
-    width: 600px;
+    width: 45%;
     height: 125px;
+}
+.social-exp{
+    margin-left: 0 !important;
+}
+.lg-key-tag {
+    line-height: 20px !important;
+}
+.key_tag_txt {
+    font-size: 13px;
 }
 
 .lp-pom-box{
@@ -57,7 +66,7 @@
 }
 
 ul.tagit {
-    width:47% !important;
+    width:45% !important;
 }
 /* Dashboard Menu start */
 
