@@ -47,7 +47,7 @@
 		<%= story.story_type %>
 		<br/>
 		<p class="story"><%= story.story %></p>
-		<%= distance_of_time_in_words(Time.now, story.created_at) %>
+		<%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
 		<hr/>
 	<% end %>
 </div>
