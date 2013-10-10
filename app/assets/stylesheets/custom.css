@@ -161,6 +161,10 @@
 .form-actions {
     background-color: #FFFFFF;
 }
+.story-table{
+    text-align: center;
+    width:100%
+}
 
 ul.tagit {
     width:95% !important;
