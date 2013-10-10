@@ -224,7 +224,7 @@
           </div>
         </div>
         <hr/>
-        <%= submit_tag :submit if edu.id.eql?(@user.educations.last.id) %>
+        <%= (submit_tag :submit,:class => "btn btn-primary", :id =>"submit") if edu.id.eql?(@user.educations.last.id) %>
     <% end %>
     <% end %>
     <%= render "educations/new" %>
@@ -274,3 +274,14 @@
 </div>
 </div>
 </div>
+
+
+
+<script type="text/javascript">
+  $(".change-majors-no").on('click', function(){
+      $("#submit").hide();
+  });
+    $(".change-majors-yes").on('click', function(){
+      $("#submit").show();
+  });
+</script>
