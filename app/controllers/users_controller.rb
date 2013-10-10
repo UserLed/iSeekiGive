@@ -57,6 +57,10 @@ class UsersController < ApplicationController
 
   def public_profile
     @user = User.find(params[:id])
+    @user_perspectives = @user.perspectives.where(:anonymous => false).sample(4)
+    @user_perspectives.each do |p|
+      p.update_column(:viewed, p.viewed+1)
+    end
   end
 
   def save_perspective

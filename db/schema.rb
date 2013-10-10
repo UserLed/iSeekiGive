@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010073242) do
+ActiveRecord::Schema.define(:version => 20131010125247) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -125,6 +125,13 @@ ActiveRecord::Schema.define(:version => 20131010073242) do
     t.datetime "updated_at",                           :null => false
   end
 
+  create_table "keywords", :force => true do |t|
+    t.text     "story_keyword"
+    t.integer  "game_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "messages", :force => true do |t|
     t.string   "from"
     t.string   "to"
@@ -166,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20131010073242) do
     t.boolean  "anonymous",  :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.integer  "viewed",     :default => 0
   end
 
   create_table "phone_numbers", :force => true do |t|
@@ -184,6 +192,14 @@ ActiveRecord::Schema.define(:version => 20131010073242) do
     t.boolean  "status",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "save_game_tags", :force => true do |t|
+    t.string   "tag_name"
+    t.string   "experience_name"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "saved_perspectives", :force => true do |t|
