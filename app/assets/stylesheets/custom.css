@@ -168,6 +168,12 @@
 .profile-left{
     padding-left: 15px;
 }
+.title-page{
+    text-align: center;
+}
+.fb-login{
+    color: #FFFFFF;
+}
 
 ul.tagit {
     width:95% !important;
