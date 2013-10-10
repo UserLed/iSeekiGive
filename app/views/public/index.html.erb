@@ -23,7 +23,7 @@
               <p class="big-text"> Living Abroad & Relocation </p>
 
               <div class="gap gap-small"></div>
-              <a class="btn btn-primary btn-mega" >REQUEST ACCESS FOR BETA</a>
+              <%= link_to "REQUEST ACCESS FOR BETA", (logged_in?)?  "javascript:void(0)" : signup_path, :class =>"btn btn-primary btn-mega"   %>
             </div>
           </div>
         </div>
@@ -261,7 +261,7 @@
   <div class="gap gap-small"></div>
 
   <div class="container" style="text-align: center;">
-    <a class="btn btn-primary btn-mega" >GET STARTED NOW</a>
+    <%= link_to "GET STARTED NOW", (logged_in?)? "javascript:void(0)" : login_path, :class=> "btn btn-primary btn-mega" %>
   </div>
 
 </div>

@@ -1,4 +1,4 @@
-<div class="well-wrap well">
+<div class="well-wrap well container">
   <div class="title">
     <%= @type == "seeker" ? "Seeker" : "Giver" %>
     Sign up
@@ -11,18 +11,6 @@
       </span>
       <span class="text-container"> Sign up with Facebook </span>
     <% end %>
-
-<%#*<div class="signup-or-separator shift">%>
-<%#*<span class="text">or</span>%>
-<%#*<hr/>%>
-<%#*</div>%>
-
-<%#= link_to auth_at_provider_path(:provider => :linkedin,:social_type =>'sign_up'), :class => "in-blue btn icon-btn btn-block padded-btn-block large" do %>
-<%#*<span class="icon-container">%>
-<%#*<i class="icon icon-linkedin"></i>%>
-<%#*</span>%>
-<%#*<span class="text-container"> Sign up with LinkedIn </span>%>
-<%# end %>
 
     <div class="signup-or-separator shift">
       <span class="text">or</span>
