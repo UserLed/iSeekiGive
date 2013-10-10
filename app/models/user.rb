@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   has_one  :phone_number,       :dependent => :destroy
   has_many :tags,               :dependent => :destroy
   has_one  :billing_setting,    :dependent => :destroy
-  has_many :schedules,          :dependent => :destroy
+  #has_many :schedules,          :dependent => :destroy
   has_one  :game,               :dependent => :destroy
   has_many :time_slots,         :dependent => :destroy
   has_many :perspectives,       :dependent => :destroy
