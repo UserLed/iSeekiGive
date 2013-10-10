@@ -168,4 +168,5 @@ class Users::PerspectivesController < ApplicationController
     end
     redirect_to user_perspectives_path(current_user), :notice => "Your story has been added"
   end
+
 end

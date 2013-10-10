@@ -58,4 +58,19 @@ class UsersController < ApplicationController
   def public_profile
     @user = User.find(params[:id])
   end
+
+  def save_perspective
+    unless current_user.saved_perspectives.exists?(:perspective_id =>params[:p])
+      perspective = current_user.saved_perspectives.build(:perspective_id => params[:p])
+      if perspective.save
+        @user = current_user
+        respond_to do |format|
+          format.js
+        end
+      else
+        render :nothing => true
+      end
+    end
+  end
+
 end

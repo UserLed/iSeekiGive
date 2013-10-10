@@ -87,6 +87,7 @@ ISeekiGive::Application.routes.draw do
       get :public_profile
       get :display_calendar
       post :create_schedule
+      match  :save_perspective
     end
     resources :perspectives, :only => :index, :controller => "users/perspectives" do
       collection do

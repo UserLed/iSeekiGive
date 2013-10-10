@@ -21,19 +21,20 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 3, :if => :password
   validates_confirmation_of :password, :if => :password
   
-  has_many :authentications,  :dependent => :destroy
-  has_many :educations,       :dependent => :destroy
-  has_many :skills,           :dependent => :destroy
-  has_many :experiences,      :dependent => :destroy
-  has_many :connections,      :dependent => :destroy
-  has_many :popups,           :dependent => :destroy
-  has_one  :phone_number,     :dependent => :destroy
-  has_many :tags,             :dependent => :destroy
-  has_one  :billing_setting,  :dependent => :destroy
-  has_many :schedules,        :dependent => :destroy
-  has_one  :game,             :dependent => :destroy
-  has_many :time_slots,       :dependent => :destroy
-  has_many :perspectives,     :dependent => :destroy
+  has_many :authentications,    :dependent => :destroy
+  has_many :educations,         :dependent => :destroy
+  has_many :skills,             :dependent => :destroy
+  has_many :experiences,        :dependent => :destroy
+  has_many :connections,        :dependent => :destroy
+  has_many :popups,             :dependent => :destroy
+  has_one  :phone_number,       :dependent => :destroy
+  has_many :tags,               :dependent => :destroy
+  has_one  :billing_setting,    :dependent => :destroy
+  has_many :schedules,          :dependent => :destroy
+  has_one  :game,               :dependent => :destroy
+  has_many :time_slots,         :dependent => :destroy
+  has_many :perspectives,       :dependent => :destroy
+  has_many :saved_perspectives, :dependent => :destroy 
 
   
   accepts_nested_attributes_for :authentications

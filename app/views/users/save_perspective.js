@@ -1,0 +1,1 @@
+$("#perspectives").html('<%= j render :partial => "perspectives", :locals => {:@user => @user} %>')
