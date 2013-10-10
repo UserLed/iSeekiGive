@@ -4231,7 +4231,7 @@ footer.main .uneditable-input:focus {
   font-weight: normal;
 }
 .comments-list .comment .comment-reply {
-  [class^="icon-"]: 12px;
+/*  [class^="icon-"]: 12px;*/
 }
 .comments-list .comment:hover .comment-like {
   opacity: 1;
