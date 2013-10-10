@@ -52,19 +52,41 @@
   <hr/>
   <div>
     <% @perspectives.each do |story| %>
-        <% user = @d_user.call(story) %>
-        <%= user.full_name %>
-        <br/>
-        <%= [user.city, user.country].compact.join(",") %>
-        <br/>
-        <%= story.perspective_tags.collect(&:name).join(",") %>
-        <br/>
-        <%= story.story_type %>
-        <br/>
+        <% user = story.user %>
+        <div class="col-lg-6 col-sm-6">
+          <section class="panel">
+            <div class="panel-body">
+              <div class="clearfix m-b">
+                <small class="text-muted pull-right">
 
-        <p class="story"><%= story.story %></p>
-        <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
-        <hr/>
+                  <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
+
+                </small>
+                <a href="#" class="thumb-sm pull-left m-r"> <img src="images/avatar.jpg" class="img-circle"> </a>
+
+                <div class="clear"><a href="#"><strong>
+
+                  <%= user.full_name %>
+
+                </strong></a>
+
+                  <small class="block text-muted">
+
+                    <%= [user.city, user.country].compact.join(",") %>
+
+                  </small>
+                  <small class="block text-muted">
+
+                    <%= story.story %>
+
+                  </small>
+                </div>
+              </div>
+              <p class="story"> <%= story.story %></p>
+            </div>
+          </section>
+        </div>
+
     <% end %>
   </div>
   <div>

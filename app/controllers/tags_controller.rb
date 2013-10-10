@@ -11,7 +11,6 @@ class TagsController < ApplicationController
 			end
     end
 
-
 		tags =  current_user.tags.collect{|tag| tag.name}
 		render :json => tags
 	end

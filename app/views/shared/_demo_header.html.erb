@@ -7,19 +7,32 @@
 
 </div>
 
-<div class="span5" style="margin: 30px 0 0 0;">
+<div class="span4" style="margin: 30px 0 0 0;">
   <%= form_tag '#', :method => "get" do %>
       <%= text_field_tag "tag",'', :class => 'tag-search' %>
   <% end %>
 </div>
-<div class="span5" style="margin: 25px 0 0 0;">
-  <div class="nav-collapse pull-right" style="float:right;margin: 5px 0 0 0;">
+<div class="span6" style="margin: 25px 0 0 0;">
+  <div class="span3 top-menu" >
+    <nav>
+      <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
+        <li >
+          <%= link_to "How it works", how_it_works_path  %>
+        </li>
+        <li >
+          <%= link_to "About Us", "http://blog.iseekigive.com/ourstory", :target => "_blank"  %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="nav-collapse pull-right" style="margin: 5px 0 0 0;">
     <% if current_user %>
           <ul class="nav">
             <li class="dropdown">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <i>
-                  <%= image_tag(current_user.profile_photo.public_profile, :class=>'img-circle', :width => 50, :height => 50) if current_user.profile_photo.present? %>
+                  <%= image_tag(current_user.profile_photo.public_profile, :class=>'img-circle profile-image') if current_user.profile_photo.present? %>
                 </i>
                 <%= current_user.name %>
                 <b class="caret"></b>
@@ -64,18 +77,7 @@
 
 
   </div>
-  <div class="span3" style="float: right;">
-    <nav>
-    <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-      <li >
-        <%= link_to "How it works", how_it_works_path  %>
-      </li>
-      <li >
-        <%= link_to "About Us", "http://blog.iseekigive.com/ourstory", :target => "_blank"  %>
-      </li>
-    </ul>
-  </nav>
-  </div>
+
 
 
 </div>
