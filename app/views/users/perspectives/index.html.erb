@@ -12,6 +12,7 @@
 
 <div class="container">
   <h2>Share your fresh Perspectives .</h2>
+
   <p>
     Share your personal experiences: The Good, The Bad and The Ugly
   </p>
@@ -51,7 +52,7 @@
   <hr/>
   <div>
     <% @perspectives.each do |story| %>
-        <% user = @users.detect { |user| user.id.eql?(story.user_id) } %>
+        <% user = @d_user.call(story) %>
         <%= user.full_name %>
         <br/>
         <%= [user.city, user.country].compact.join(",") %>
