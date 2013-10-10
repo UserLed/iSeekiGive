@@ -11,6 +11,9 @@ class Users::PerspectivesController < ApplicationController
     @bad_stories = @perspectives.select{|story| story.story_type.eql?("The Bad")}
     @ugly_stories = @perspectives.select{|story| story.story_type.eql?("The Ugly")}
     @users = User.find(@perspectives.collect(&:user_id).uniq)
+    @d_user = Proc.new do |story|
+      @users.detect{|user| user.id.eql?(story.user_id)}
+    end
   end
 
   def game_1

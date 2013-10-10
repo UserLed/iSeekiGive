@@ -37,7 +37,7 @@
 <hr/>
 <div>
 	<% @perspectives.each do |story| %>
-		<% user = @users.detect{|user|  user.id.eql?(story.user_id)} %>
+		<% user = @d_user.call(story) %>
 		<%= user.full_name %>
 		<br/>
 		<%= [user.city , user.country].compact.join(",") %>
