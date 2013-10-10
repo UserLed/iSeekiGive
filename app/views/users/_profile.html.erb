@@ -170,6 +170,7 @@
 
 <div class="tab-pane" id="lC">
   <div class="container social-exp">
+
     <legend>
            <% if user.linkedin_connected? %>
               <span class="icon-stack linkedin">
@@ -199,6 +200,33 @@
     <% user.educations.each do |education| %>
         <%= render education %>
     <% end %>
+    <%= form_tag game_1_user_perspectives_path(current_user) do  %>
+          <% @user.educations.each do |edu| %>
+        <div class="field_text">
+          <h5>
+            <%= edu.degree %>,
+            <%= edu.field_of_study %>
+          </h5>
+        </div>
+        <div class="control-group">
+          <%= label_tag :changed_majors, "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
+          <div class="controls">
+            <%= radio_button_tag :"education[#{edu.id}][changed_majors]", 1, edu.changed_majors ? true:false, :class => "change-majors-yes" %>
+            Yes
+            <%= radio_button_tag :"education[#{edu.id}][changed_majors]", 0, edu.changed_majors ? false:true, :class => "change-majors-no" %>
+            No
+          </div>
+        </div>
+        <div class="control-group desc-changing-majors" style="display:none">
+          <%= label_tag :"education[#{edu.id}][fields_of_study]", "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
+          <div class="controls">
+            <%= text_area_tag :"education[#{edu.id}][fields_of_study]", edu.fields_of_study, :size => "50x4" %>
+          </div>
+        </div>
+        <hr/>
+        <%= submit_tag :submit if edu.id.eql?(@user.educations.last.id) %>
+    <% end %>
+    <% end %>
     <%= render "educations/new" %>
   </div>
   <div class="container span6">
@@ -209,6 +237,7 @@
         <%= render experience %>
     <% end %>
     <%= render 'experiences/new' %>
+
   </div>
 </div>
 

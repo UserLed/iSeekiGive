@@ -13,10 +13,9 @@ class Users::PerspectivesController < ApplicationController
     @users = User.find(@perspectives.collect(&:user_id).uniq)
 
     @saved_stories = Perspective.find(@user.saved_perspectives.collect(&:perspective_id))
-    @s_user = Proc.new do |perspective|
-      user_id = perspective.user_id
-      user = User.find(user_id)
-    end
+    @saved_good_stories = @saved_stories.select{|story|  story.story_type== "The Good"}.count
+    @saved_bad_stories  = @saved_stories.select{|story|  story.story_type== "The Bad"}.count
+    @saved_ugly_stories = @saved_stories.select{|story|  story.story_type== "The Ugly"}.count
       
   end
 
@@ -36,6 +35,7 @@ class Users::PerspectivesController < ApplicationController
       redirect_to :action => :game_2
     elsif params[:return].present?
       redirect_to :action => :index
+    else redirect_to user_path(current_user)
     end
   end
   
