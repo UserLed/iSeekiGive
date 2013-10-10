@@ -1,12 +1,12 @@
 <div class="row-fluid">
   <div class="span12 profile-cover" style= 'background-image: url(<%= @user.cover_photo.public_profile_header.url %>);'>
-    <%= image_tag @user.profile_photo.public_profile.url, :class => "profile-photo" if @user.profile_photo.present? %>
+    <%= image_tag @user.profile_photo.public_profile.url, :class => "img-circle profile-photo" if @user.profile_photo.present? %>
     <%= link_to("Schedule a Session", "javascript:void(0)", :class => "btn btn-primary btn-large", :style => "margin-left:900px") unless @user.time_slots.blank? %>
   </div>
 </div>
 
 <div class="row-fluid" style="margin-top:20px;">
-  <div class="span4">
+  <div class="span3 profile-left">
     <strong>Lived In</strong><br/>
     <p>
       <%= @user.current_location %>

@@ -165,6 +165,9 @@
     text-align: center;
     width:100%
 }
+.profile-left{
+    padding-left: 15px;
+}
 
 ul.tagit {
     width:95% !important;
