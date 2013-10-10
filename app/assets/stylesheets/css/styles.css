@@ -8087,7 +8087,7 @@ body * .ls-container .ls-webkit-hack,
   body.width1200 .uneditable-input[class*="span"] {
     margin-left: 0;
   }
-  body.width1200 .controls-row [class*="span"] + [class=*"span"] {
+  body.width1200 .controls-row [class*="span"] {
     margin-left: 30px;
   }
   body.width1200 input.span12,
