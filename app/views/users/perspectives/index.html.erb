@@ -52,7 +52,6 @@
   <hr/>
   <div>
     <% @perspectives.each do |story| %>
-        <% user = story.user %>
         <div class="col-lg-6 col-sm-6">
           <section class="panel">
             <div class="panel-body">
@@ -66,24 +65,21 @@
 
                 <div class="clear"><a href="#"><strong>
 
-                  <%= user.full_name %>
+                  <%= story.user.full_name %>
 
                 </strong></a>
 
                   <small class="block text-muted">
 
-                    <%= [user.city, user.country].compact.join(",") %>
+                    <%= [story.user.city, story.user.country].compact.join(",") %>
 
                   </small>
-                  <small class="block text-muted">
+                  <small class="block text-muted story">
 
                     <%= story.story %>
 
                   </small>
                 </div>
-              </div>
-              <p class="story"> <%= story.story %></p>
-            </div>
           </section>
         </div>
 
@@ -94,10 +90,9 @@
   		<p>User's saved stories : <%= @saved_stories.count %></p>
   		<% @saved_stories.each do |story| %>
 
-  			<% user = @s_user.call(story) %>
-  			<%= user.full_name %>
+  			<%= story.user.full_name %>
   			<div class="gap-small"></div>
-  			<%= [user.city, user.country].compact.join(",") %>
+  			<%= [story.user.city, story.user.country].compact.join(",") %>
   			<div class="gap-small"></div>
   			<%= story.perspective_tags.collect(&:name).join(",") %>
   			<div class="gap-small"></div>
