@@ -12,6 +12,24 @@
     padding-top: 25px;
 }
 
+.ui-autocomplete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: default;
+    max-height: 500px !important;
+    overflow-y: auto !important;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden !important;
+    text-decoration: none !important;
+}
+.tag-search{
+    width: 400px;
+}
+.item-image{
+    width:100px;
+}
+
 .form_text_area{
     width: 45%;
     height: 125px;
