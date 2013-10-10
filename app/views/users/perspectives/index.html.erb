@@ -1,4 +1,8 @@
 <%= render "users/dashboard_menu" %>
+<%#= stylesheet_link_tag "css/app.v2", :media => "all" %>
+<style type="text/css">
+
+</style>
 
 <%# link_to "Game 1", game_1_user_perspectives_path(current_user) %>
 <%# link_to "Game 2", game_2_user_perspectives_path(current_user) %>
@@ -33,7 +37,7 @@
     <li><a href="#ugly_story" data-toggle="tab">Ugly Story</a></li>
   </ul>
 
-  <div class="tab-content">
+  <div class="tab-content story-tab">
     <div id="good_story" class="tab-pane fade in active">
 
       <%= render :partial => "add_story", :locals => {:type => "The Good", :title_text => "The good things I like or things someone might like about…(my current of former city, job function, company, school, industry, etc)"} %>
@@ -49,7 +53,37 @@
       <%= render :partial => "add_story", :locals => {:type => "The Ugly", :title_text => "Red flags and warnings. Risks and things to be careful of, be aware of or watch out for in…(my current of former city, job function, company, school, industry, etc)"} %>
     </div>
   </div>
+  <div class="container story-count">
+     <div class="gap"></div>
+     <div class="gap"></div>
+      <table border="1">
+        <thead>
+        <tr>
+          <td></td>
+          <td>The Good</td>
+          <td>The Bad</td>
+          <td>The Ugly</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Saved</td>
+          <td>
+            <%= @saved_good_stories %>
+          </td>
+          <td>
+            <%= @saved_bad_stories %>
+          </td>
+          <td>
+            <%= @saved_ugly_stories %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
   <hr/>
+  <div class="gap"></div>
+
   <div>
     <% @perspectives.each do |story| %>
         <div class="col-lg-6 col-sm-6">
@@ -61,7 +95,9 @@
                   <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
 
                 </small>
-                <a href="#" class="thumb-sm pull-left m-r"> <img src="images/avatar.jpg" class="img-circle"> </a>
+                  <%= link_to  public_profile_user_path(story.user.id), :class => "thumb-sm pull-left m-r"  do %>
+                    <%= image_tag((story.user.profile_photo.public_profile.present?) ? story.user.profile_photo.public_profile : 'default_user.png', :class => 'img-circle profile-image') %>
+                  <% end %>
 
                 <div class="clear"><a href="#"><strong>
 
@@ -76,31 +112,67 @@
                   </small>
                   <small class="block text-muted story">
 
-                    <%= story.story %>
+                    <%= story.perspective_tags.collect(&:name).join(",") %>
 
                   </small>
                 </div>
+              </div>
+              <p > <span class="story">
+
+                <%= story.story %>
+
+              </span></p>
+            </div>
           </section>
+          <hr>
         </div>
 
     <% end %>
   </div>
   <div>
   	<% unless @saved_stories.blank? %>
-  		<p>User's saved stories : <%= @saved_stories.count %></p>
   		<% @saved_stories.each do |story| %>
+            <div class="col-lg-6 col-sm-6">
+              <section class="panel">
+                <div class="panel-body">
+                  <div class="clearfix m-b">
+                    <small class="text-muted pull-right">
 
-  			<%= story.user.full_name %>
-  			<div class="gap-small"></div>
-  			<%= [story.user.city, story.user.country].compact.join(",") %>
-  			<div class="gap-small"></div>
-  			<%= story.perspective_tags.collect(&:name).join(",") %>
-  			<div class="gap-small"></div>
-  			<%= story.story_type %>
-  			<div class="gap-small"></div>
-  			<p class="story"><%= story.story  %></p>
-  			<div class="gap-small"></div>
-  			<hr/>
+                      <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
+
+                    </small>
+                    <%= link_to  public_profile_user_path(story.user.id), :class => "thumb-sm pull-left m-r"  do %>
+                        <%= image_tag((story.user.profile_photo.public_profile.present?) ? story.user.profile_photo.public_profile : 'default_user.png', :class => 'img-circle profile-image') %>
+                    <% end %>
+
+                    <div class="clear"><a href="#"><strong>
+
+                      <%= story.user.full_name %>
+
+                    </strong></a>
+
+                      <small class="block text-muted">
+
+                        <%= [story.user.city, story.user.country].compact.join(",") %>
+
+                      </small>
+                      <small class="block text-muted story">
+
+                        <%= story.perspective_tags.collect(&:name).join(",") %>
+
+                      </small>
+                    </div>
+                  </div>
+                  <p > <span class="story">
+
+                <%= story.story %>
+
+              </span></p>
+                </div>
+              </section>
+              <hr>
+            </div>
+
   		<% end %>
   	<% end %>
   </div>
@@ -110,7 +182,7 @@
     $(function () {
 
         $(".story").readmore({
-            maxHeight: 80
+            maxHeight: 40
         });
     });
 </script>
