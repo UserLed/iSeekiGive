@@ -14,6 +14,13 @@ class Users::PerspectivesController < ApplicationController
     @d_user = Proc.new do |story|
       @users.detect{|user| user.id.eql?(story.user_id)}
     end
+
+    @saved_stories = Perspective.find(@user.saved_perspectives.collect(&:perspective_id))
+    @s_user = Proc.new do |perspective|
+      user_id = perspective.user_id
+      user = User.find(user_id)
+    end
+      
   end
 
   def game_1

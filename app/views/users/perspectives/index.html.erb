@@ -67,6 +67,26 @@
         <hr/>
     <% end %>
   </div>
+  <div>
+  	<% unless @saved_stories.blank? %>
+  		<p>User's saved stories : <%= @saved_stories.count %></p>
+  		<% @saved_stories.each do |story| %>
+
+  			<% user = @s_user.call(story) %>
+  			<%= user.full_name %>
+  			<div class="gap-small"></div>
+  			<%= [user.city, user.country].compact.join(",") %>
+  			<div class="gap-small"></div>
+  			<%= story.perspective_tags.collect(&:name).join(",") %>
+  			<div class="gap-small"></div>
+  			<%= story.story_type %>
+  			<div class="gap-small"></div>
+  			<p class="story"><%= story.story  %></p>
+  			<div class="gap-small"></div>
+  			<hr/>
+  		<% end %>
+  	<% end %>
+  </div>
 </div>
 
 <script type="text/javascript">
