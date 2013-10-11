@@ -144,8 +144,7 @@
     margin-top: 10px;
 }
 .hint_msg{
-    color: #E6E5E4;
-    font-weight: bold;
+    color: #A5A29F;
 }
 
 .dashboard-container .row-wrap{
@@ -172,7 +171,20 @@
 .title-page{
     text-align: center;
 }
+.title-page-small{
+    text-align: center;
+    font-size: 26px;
+    color: #FFFFFF;
+    line-height: 1em;
+    margin: 0;
+    position: relative;
+    z-index: 10;
+}
 .fb-login{
+    color: #FFFFFF;
+
+}
+.fb-text{
     color: #FFFFFF;
 }
 

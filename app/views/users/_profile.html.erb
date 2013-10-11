@@ -67,10 +67,8 @@
 <div class="tab-pane active" id="lB">
   <legend>
     <div class="container">
-
-      <div class="span3"><h3 class="span10">Account Settings</h3></div>
       <div class="span3">
-        <%= link_to 'Overview', public_profile_user_path(@user), :class => 'btn btn-primary btn-mega profile-overview' %>
+        <%= link_to 'View Profile', public_profile_user_path(@user), :class => 'btn btn-primary btn-mega profile-overview' %>
       </div>
     </div>
   </legend>
@@ -100,7 +98,7 @@
           <%= f.label 'I am', :class => "control-label" %>
           <div class="controls">
             <%= f.select(:gender, %w[male female]) %>
-            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
                 <span>Private</span>
                 <i class="icon-lock  hover-icon-top-right hover-hold"></i>
             <% end %>
@@ -113,7 +111,7 @@
           <%= f.label 'Date of Birth', :class => "control-label" %>
           <div class="controls">
             <%= date_select(f.object.class.name.downcase, "date_of_birth", :ampm => true, :order => [:month, :day, :year], :use_short_month => true) %>
-            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
                 <span>Private</span>
                 <i class="icon-lock  hover-icon-top-right hover-hold"></i>
             <% end %>
@@ -123,10 +121,10 @@
           </div>
         </div>
         <div class="control-group">
-          <%= f.label :country, :class => "control-label" %>
+          <%= f.label 'Where you Live', :class => "control-label" %>
           <div class="controls">
             <%= country_select(f.object.class.name.downcase, "country", ["United States", "United Kingdom"]) %>
-            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
                 <span>Private</span>
                 <i class="icon-lock  hover-icon-top-right hover-hold"></i>
             <% end %>
@@ -141,7 +139,7 @@
               <%= f.label :email, :class => "control-label" %>
               <div class="controls">
                 <%= f.email_field :email, :required => true %>
-                <%= link_to 'javascript:void(0)', :class => 'btn btn-primary' do %>
+                <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
                     <span>Private</span>
                     <i class="icon-lock  hover-icon-top-right hover-hold"></i>
                 <% end %>
