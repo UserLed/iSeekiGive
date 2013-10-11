@@ -8,7 +8,7 @@
     <a href="#lA" data-toggle="tab">Photos</a>
   </li>
   <li>
-    <a href="#lC" data-toggle="tab">Experiences & Educations</a>
+    <a href="#lC" data-toggle="tab">Education & Experience</a>
   </li>
   <li>
     <a href="#lE" data-toggle="tab">Your Keyword Tag</a>
@@ -67,7 +67,7 @@
 <div class="tab-pane active" id="lB">
   <legend>
     <h3 class="span10">Account Settings</h3>
-    <%= link_to 'Overview', public_profile_user_path(@user), :class => 'btn btn-primary btn-mega profile-overview' %>
+    <%= link_to 'View Profile', public_profile_user_path(@user), :class => 'btn btn-primary btn-mega profile-overview' %>
   </legend>
 
   <%= form_for user, :html => {:class => "form-horizontal"} do |f| %>
@@ -195,7 +195,7 @@
   </div>
   <div class="container span6">
     <legend>
-      <h3>Education Details</h3>
+      <h3>Education </h3>
     </legend>
     <% user.educations.each do |education| %>
         <%= render education %>
@@ -231,7 +231,7 @@
   </div>
   <div class="container span6">
     <legend>
-      <h3>Experience Details</h3>
+      <h3>Experience</h3>
     </legend>
     <% user.experiences.each do |experience| %>
         <%= render experience %>
@@ -251,10 +251,10 @@
       </span>
     </p>
   </legend>
-  <%= render 'skills/new' %>
   <% user.skills.each do |skill| %>
       <%= render skill %>
   <% end %>
+  <%= render 'skills/new' %>
 
 </div>
 
