@@ -21,4 +21,6 @@
 //= require custom
 //= require stripe
 //= require personal-details
+//= require readmore
+//= require js/modernizr.custom.26633
 

@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
   def create
     if @user = login(params[:email], params[:password], params[:remember])
       if @user
-
         redirect_to dashboard_user_path(@user)
       end
     else

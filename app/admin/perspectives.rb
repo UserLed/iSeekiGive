@@ -2,7 +2,7 @@ ActiveAdmin.register Perspective do
   index do
     selectable_column
     column :id
-    column :giver
+    column :user
     column :story_type
     column :story
     column "Tags", :sortable => false do |p|
