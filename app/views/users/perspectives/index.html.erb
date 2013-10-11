@@ -1,6 +1,3 @@
-<%= render "users/dashboard_menu" %>
-
-
 
 <%# link_to "Game 1", game_1_user_perspectives_path(current_user) %>
 <%# link_to "Game 2", game_2_user_perspectives_path(current_user) %>
@@ -8,11 +5,13 @@
 <%# link_to "Game 4" %>
 <%# link_to "Game 5" %>
 
-<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
-    <%= render "shared/perspectives_popup" %>
-<% end %>
+<!--<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>-->
+    <!--<%#= render "shared/perspectives_popup" %>-->
+<!--<% end %>-->
 
 <div class="container">
+  <%= render "users/dashboard_menu" %>
+  <div class="gap-small"></div>
   <p>
     Share your personal experiences: The Good, The Bad and The Ugly
   </p>
@@ -25,7 +24,7 @@
 
   <p>Sharing your Perspectives will help Seekers and help them to find you</p>
 </div>
-
+<div class="gap-small"></div>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#good_story" data-toggle="tab">Good</a></li>
@@ -33,7 +32,7 @@
     <li><a href="#ugly_story" data-toggle="tab">Ugly</a></li>
   </ul>
 
-  <div class="tab-content story-tab">
+  <div class="tab-content span7">
     <div id="good_story" class="tab-pane fade in active">
 
       <%= render :partial => "add_story", :locals => {:type => "The Good", :title_text => "The good things I like or things someone might like about…(my current of former city, job function, company, school, industry, etc)"} %>
@@ -49,7 +48,7 @@
       <%= render :partial => "add_story", :locals => {:type => "The Ugly", :title_text => "Red flags and warnings. Risks and things to be careful of, be aware of or watch out for in…(my current of former city, job function, company, school, industry, etc)"} %>
     </div>
   </div>
-  <div class="container story-count">
+  <div class="container span3 ">
      <div class="gap"></div>
       <table border="1" class='item-result story-table'>
         <thead>
@@ -86,11 +85,11 @@
         </tbody>
       </table>
   </div>
-  <hr/>
-  <div class="gap"></div>
 
-  <div>
-    <% unless @user_perspectives.blank? && @saved_stories.blank? %>
+  <div class="gap"></div>
+  <hr>
+  <div class="container">
+    <% unless @perspectives.blank? && @saved_stories.blank? %>
     <% @perspectives.each do |story| %>
         <div class="col-lg-6 col-sm-6">
           <section class="panel">

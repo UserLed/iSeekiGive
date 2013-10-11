@@ -110,7 +110,7 @@
 
 .caret {margin-top: 23px !important;}
 .form_text_area{
-    width: 95%;
+    width: 75%;
     height: 125px;
 }
 .social-exp{
@@ -157,6 +157,7 @@
 }
 .profile-tab{
     border: none !important;
+    overflow-x: hidden !important;
 }
 .form-actions {
     background-color: #FFFFFF;
@@ -176,7 +177,7 @@
 }
 
 ul.tagit {
-    width:95% !important;
+    width:75% !important;
 }
 /* Dashboard Menu start */
 

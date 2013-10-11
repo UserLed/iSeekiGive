@@ -1,12 +1,14 @@
 <%= form_tag "perspectives/add_story", :class => :add_story do %>
     <span> <%= title_text  %></span>
     <div class="gap-small"></div>
-	<%= text_area_tag :story, nil, :placeholder => "What is your perspective...", :class =>"form_text_area" %>
-	<br/>
-	<%= label_tag :story_type, "Story Type" %>
-	<%= text_field_tag :story_type, type, :readonly => true %>
-	<%= label_tag :username, "Username" %>
-	<%= text_field_tag :username, current_user.full_name, :readonly => true %>
+    <%= label_tag :story_type, "Story Type" %>
+    <%= text_field_tag :story_type, type, :readonly => true %>
+    <%= label_tag :username, "Username" %>
+    <%= text_field_tag :username, current_user.full_name, :readonly => true %>
+    <div class="gap-small"></div>
+    <%= text_area_tag :story, nil, :placeholder => "What is your perspective...", :class =>"form_text_area" %>
+    <div class="gap-small"></div>
+
     <%= label_tag :keyword, "Keyword Tags" %>
     <%= text_field_tag :keyword,nil,:placeholder => "Type your keyword", :class => "keyword_tag" %>
 	<%= check_box_tag :anonymous %> Anonymous

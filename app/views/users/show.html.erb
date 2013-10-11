@@ -1,8 +1,7 @@
-<%= render "dashboard_menu" %>
-<%= render "shared/confirmation_notice" %>
+<div class="container">
+  <%= render "dashboard_menu" %>
+  <%= render "shared/confirmation_notice" %>
 
-<%= render "users/profile", :user => @user %>
+  <%= render "users/profile", :user => @user %>
 
-<% if current_user.show_this_popup(controller.controller_name, controller.action_name) %>
-  <%= render "shared/profile_popup" %>
-<% end %>
+</div>
