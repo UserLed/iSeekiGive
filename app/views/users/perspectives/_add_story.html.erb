@@ -3,10 +3,13 @@
     <div class="gap-small"></div>
 	<%= text_area_tag :story, nil, :placeholder => "What is your perspective...", :class =>"form_text_area" %>
 	<br/>
-	<%= hidden_field_tag :story_type, type %>
-    <%= label_tag 'Key Word' %>
+	<%= label_tag :story_type, "Story Type" %>
+	<%= text_field_tag :story_type, type, :readonly => true %>
+	<%= label_tag :username, "Username" %>
+	<%= text_field_tag :username, current_user.full_name, :readonly => true %>
+    <%= label_tag :keyword, "Keyword Tags" %>
     <%= text_field_tag :keyword,nil,:placeholder => "Type your keyword", :class => "keyword_tag" %>
 	<%= check_box_tag :anonymous %> Anonymous
     <div class="gap-small"></div>
-	<%= submit_tag "Submit", class: 'btn btn-primary' %>
+	<%= submit_tag "Post", class: 'btn btn-primary' %>
 <% end %>

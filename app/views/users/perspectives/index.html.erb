@@ -1,8 +1,6 @@
 <%= render "users/dashboard_menu" %>
-<%#= stylesheet_link_tag "css/app.v2", :media => "all" %>
-<style type="text/css">
 
-</style>
+
 
 <%# link_to "Game 1", game_1_user_perspectives_path(current_user) %>
 <%# link_to "Game 2", game_2_user_perspectives_path(current_user) %>
@@ -15,8 +13,6 @@
 <% end %>
 
 <div class="container">
-  <h2>Share your fresh Perspectives .</h2>
-
   <p>
     Share your personal experiences: The Good, The Bad and The Ugly
   </p>
@@ -32,9 +28,9 @@
 
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#good_story" data-toggle="tab">Good Story</a></li>
-    <li><a href="#bad_story" data-toggle="tab">Bad Story</a></li>
-    <li><a href="#ugly_story" data-toggle="tab">Ugly Story</a></li>
+    <li class="active"><a href="#good_story" data-toggle="tab">Good</a></li>
+    <li><a href="#bad_story" data-toggle="tab">Bad</a></li>
+    <li><a href="#ugly_story" data-toggle="tab">Ugly</a></li>
   </ul>
 
   <div class="tab-content story-tab">
@@ -94,6 +90,7 @@
   <div class="gap"></div>
 
   <div>
+    <% unless @user_perspectives.blank? && @saved_stories.blank? %>
     <% @perspectives.each do |story| %>
         <div class="col-lg-6 col-sm-6">
           <section class="panel">
@@ -185,6 +182,9 @@
   		<% end %>
   	<% end %>
   </div>
+  <% else %>
+    <p> You have no shared posts and no saved posts</p>
+  <% end %>
 </div>
 
 <script type="text/javascript">
