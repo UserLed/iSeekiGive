@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     unless current_user.saved_perspectives.exists?(:perspective_id =>params[:p])
       perspective = current_user.saved_perspectives.build(:perspective_id => params[:p])
       if perspective.save
-        @user = current_user
+        @user_perspectives = current_user.perspectives.where(:anonymous => false).sample(4)
         respond_to do |format|
           format.js
         end

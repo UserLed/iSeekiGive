@@ -6,19 +6,19 @@ class Users::PerspectivesController < ApplicationController
     if @user.game.blank?
       @user.build_game.save
     end
-    @perspectives = Perspective.select{|perspective| perspective.anonymous == false}
+    @perspectives = Perspective.all
     @good_stories = @perspectives.select{|story| story.story_type.eql?("The Good")}
-    @bad_stories = @perspectives.select{|story| story.story_type.eql?("The Bad")}
+    @bad_stories  = @perspectives.select{|story| story.story_type.eql?("The Bad")}
     @ugly_stories = @perspectives.select{|story| story.story_type.eql?("The Ugly")}
-    @users = User.find(@perspectives.collect(&:user_id).uniq)
+    @users        = User.find(@perspectives.collect(&:user_id).uniq)
 
-    @saved_stories = Perspective.find(@user.saved_perspectives.collect(&:perspective_id))
+    @saved_stories      = Perspective.find(@user.saved_perspectives.collect(&:perspective_id))
     @saved_good_stories = @saved_stories.select{|story|  story.story_type== "The Good"}.count
     @saved_bad_stories  = @saved_stories.select{|story|  story.story_type== "The Bad"}.count
     @saved_ugly_stories = @saved_stories.select{|story|  story.story_type== "The Ugly"}.count
-    @good_stories_view = @good_stories.collect(&:viewed).reduce(:+)
-    @bad_stories_view = @bad_stories.collect(&:viewed).reduce(:+)
-    @ugly_stories_view = @ugly_stories.collect(&:viewed).reduce(:+)
+    @good_stories_view  = @good_stories.collect(&:viewed).reduce(:+)
+    @bad_stories_view   = @bad_stories.collect(&:viewed).reduce(:+)
+    @ugly_stories_view  = @ugly_stories.collect(&:viewed).reduce(:+)
       
   end
 

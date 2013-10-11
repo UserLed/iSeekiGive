@@ -104,19 +104,19 @@
                   <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
 
                 </small>
-                  <%= link_to  public_profile_user_path(story.user.id), :class => "thumb-sm pull-left m-r"  do %>
-                    <%= image_tag((story.user.profile_photo.public_profile.present?) ? story.user.profile_photo.public_profile : 'default_user.png', :class => 'img-circle profile-image') %>
+                  <%= link_to ((!story.anonymous)? public_profile_user_path(story.user.id) : "javascript:void(0)"), :class => "thumb-sm pull-left m-r"  do %>
+                    <%= image_tag((story.user.profile_photo.public_profile.present? && !story.anonymous) ? story.user.profile_photo.public_profile.url : 'default_user.png', :class => 'img-circle profile-image') %>
                   <% end %>
 
                 <div class="clear"><a href="#"><strong>
 
-                  <%= story.user.full_name %>
+                  <%= !story.anonymous ? story.user.full_name : "Anonymous" %>
 
                 </strong></a>
 
                   <small class="block text-muted">
 
-                    <%= [story.user.city, story.user.country].compact.join(",") %>
+                    <%= !story.anonymous ? [story.user.city, story.user.country].compact.join(",") : "" %>
 
                   </small>
                   <small class="block text-muted story">
