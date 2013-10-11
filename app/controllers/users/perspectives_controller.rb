@@ -16,6 +16,7 @@ class Users::PerspectivesController < ApplicationController
     @saved_good_stories = @saved_stories.select{|story|  story.story_type== "The Good"}.count
     @saved_bad_stories  = @saved_stories.select{|story|  story.story_type== "The Bad"}.count
     @saved_ugly_stories = @saved_stories.select{|story|  story.story_type== "The Ugly"}.count
+    
     @good_stories_view  = @good_stories.collect(&:viewed).reduce(:+)
     @bad_stories_view   = @bad_stories.collect(&:viewed).reduce(:+)
     @ugly_stories_view  = @ugly_stories.collect(&:viewed).reduce(:+)
