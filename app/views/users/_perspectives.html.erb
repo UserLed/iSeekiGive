@@ -42,7 +42,10 @@
           <% unless logged_in? %>
               <%= link_to "Save", "javascript:void",:class => "btn btn-success disabled" %>
           <% else %>
-              <% if current_user.saved_perspectives.collect(&:perspective_id).include?(story.id) %>
+              <% if story.user_id.eql?(current_user.id) %>
+                <%= link_to "Save", "javascript:void(0)",:class => "btn btn-success disabled" %>
+                
+              <% elsif current_user.saved_perspectives.collect(&:perspective_id).include?(story.id) %>
                   <%= link_to "Saved", "javascript:void(0)", :class => "btn btn-success disabled" %>
               <% else %>
                   <%= link_to "Save", save_perspective_user_path(current_user, :p => story.id), :remote => true, :class => "btn btn-success" %>
