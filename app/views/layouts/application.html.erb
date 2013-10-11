@@ -24,6 +24,9 @@
   <%= javascript_include_tag "underscore-min" %>
   <%= javascript_include_tag "readmore" %>
   <%= javascript_include_tag "twitter/bootstrap" %>
+  <%= javascript_include_tag "fancybox" %>
+  <%= javascript_include_tag "underscore-min" %>
+  <%= javascript_include_tag "fancybox-config" %>
   <%= javascript_include_tag "custom" %>
   <%= javascript_include_tag "js/modernizr.custom.26633" %>
   <%= javascript_include_tag "https://js.stripe.com/v2/" %>
@@ -32,10 +35,9 @@
   <%= stylesheet_link_tag "css/font_awesome", :media => "all" %>
   <%= stylesheet_link_tag "css/styles", :media => "all" %>
   <%= stylesheet_link_tag "css/mystyles", :media => "all" %>
-  <%#= stylesheet_link_tag "css/font", :media => "all" %>
   <!-- IE 8 Fallback -->
   <!--[if lt IE 9]>
-  <link rel="stylesheet" type="text/css" href="css/ie8.css" />
+    <%= stylesheet_link_tag "css/ie8", :media => "all" %>
   <![endif]-->
   <!-- Modernizr script -->
   <%= stylesheet_link_tag "css/switcher", :media => "all" %>
@@ -44,7 +46,7 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <!-- END Demo Examples -->
 </head>
-<body>
+<body class="width1200">
 <div class="container-global">
   <%= render "shared/demo_header" %>
 

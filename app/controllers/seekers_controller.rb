@@ -9,7 +9,7 @@ class SeekersController < ApplicationController
     @seeker = Seeker.new(params[:seeker])
     if @seeker.save
       auto_login(@seeker)
-      redirect_to seeker_perspectives_path(@seeker), :notice => "Successfully Signed Up!"
+      redirect_to dashboard_user_path(@seeker), :notice => "Successfully Signed Up!"
     else
       @password = params[:seeker][:password]
       @password_confirmation = params[:seeker][:password_confirmation]

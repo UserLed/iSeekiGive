@@ -1,4 +1,5 @@
-<div class="well-wrap well container">
+<div class="container">
+<div class="well-wrap well">
   <div class="title">
     Log in
   </div>
@@ -8,10 +9,20 @@
       <span class="icon-container">
         <i class="icon icon-facebook"></i>
       </span>
-      <span class="text-container fb-login"> Log in with Facebook </span>
+      <span class="text-container fb-text"> Log in with Facebook </span>
     <% end %>
 
+    <div class="signup-or-separator shift">
+      <span class="text">or</span>
+      <hr/>
+    </div>
 
+    <%= link_to auth_at_provider_path(:provider => :linkedin,:social_type =>'login'), :class => "in-blue btn icon-btn btn-block padded-btn-block large" do %>
+      <span class="icon-container">
+        <i class="icon icon-linkedin"></i>
+      </span>
+      <span class="text-container fb-text"> Log in with LinkedIn </span>
+    <% end %>
 
     <div class="signup-or-separator shift">
       <span class="text">or</span>
@@ -27,5 +38,6 @@
     <%= link_to "Sign up", signup_path %>
   </div>
 
+</div>
 </div>
 

@@ -171,7 +171,16 @@
 .title-page{
     text-align: center;
 }
-.fb-login{
+.title-page-small{
+    text-align: center;
+    font-size: 26px;
+    color: #FFFFFF;
+    line-height: 1em;
+    margin: 0;
+    position: relative;
+    z-index: 10;
+}
+.fb-text{
     color: #FFFFFF;
 }
 
