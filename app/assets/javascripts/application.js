@@ -26,5 +26,6 @@
 //= require stripe
 //= require personal-details
 //= require readmore
+//= require jquery.blockUI
 //= require js/modernizr.custom.26633
 
