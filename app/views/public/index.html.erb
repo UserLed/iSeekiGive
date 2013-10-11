@@ -46,7 +46,7 @@
     <div class="span3">
       <div class="thumb-header">
         <h5>The Good</h5>
-        <%= link_to stories_path(:story_type => 'good'), :class => "hover-img" do %>
+        <%= link_to good_stories_stories_path, :class => "hover-img" do %>
             <%= image_tag 'img/good_job_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
             <div class="hover-inner">
               <p>The good things Givers like and things you might like about…(a city, a job function, a company, a
@@ -60,7 +60,7 @@
       <div class=" thumb-header">
         <h5>The Bad</h5>
 
-        <%= link_to stories_path(:story_type => 'bad'), :class => "hover-img" do %>
+        <%= link_to bad_stories_stories_path, :class => "hover-img" do %>
             <%= image_tag 'img/business_group_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
             <div class="hover-inner">
               <p>The not-so-good things Givers didn’t like and things you might not like about …(a city, a job function,
@@ -73,7 +73,7 @@
     <div class="span3">
       <div class=" thumb-header">
         <h5>The Ugly</h5>
-        <%= link_to stories_path(:story_type => 'ugly'), :class => "hover-img" do %>
+        <%= link_to ugly_stories_stories_path, :class => "hover-img" do %>
             <%= image_tag 'img/working_in_the_nature_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
             <div class="hover-inner">
               <p>Red flags and warnings. Risks and things to be careful of, be aware of or watch out for in…(a city, a
