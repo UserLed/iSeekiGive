@@ -1,0 +1,16 @@
+<div class="breadcrumb">
+  <li>
+    <span></span>
+    <%= link_to "DASHBOARD", '#' %>
+  </li>
+
+  <li class="current">
+    <span></span>
+    <%= link_to "Profile", '#' %>
+  </li>
+
+  <%= link_to public_profile_user_path(@user), :class => 'btn pull-right eye-button' do %>
+    <span class="icon-eye-open"></span> VIEW PROFILE
+  <% end %>
+
+</div>

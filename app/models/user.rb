@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
     ["Others"]
   ]
 
+  def step
+    %w[personal_details photos educations_experiences_social skills trust_and_verifications review]
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

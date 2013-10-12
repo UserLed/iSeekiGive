@@ -1,0 +1,35 @@
+<h4>
+  Pictures
+</h4>
+<% if @user.profile_photo.present? %>
+  <div class="profile-photo">
+    <%= image_tag(user.profile_photo.to_s, :width => "250") %>
+  </div>
+<% end %>
+
+<% if @user.cover_photo.present? %>
+  <div class="cover-photo">
+    <%= image_tag(user.cover_photo.to_s, :width => "400") %>
+  </div>
+<% end %>
+
+<%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
+
+  <div class="control-group">
+    <%= f.label :profile_photo, :class => "control-label" %>
+    <div class="controls">
+      <%= f.file_field :profile_photo %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :cover_photo, :class => "control-label" %>
+    <div class="controls">
+      <%= f.file_field :cover_photo %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Upload", :class => "btn btn-info" %>
+  </div>
+<% end %>

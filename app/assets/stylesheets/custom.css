@@ -651,4 +651,79 @@ body{
     height: 100px;
 }
 
+.breadcrumb{
+    background: none repeat scroll 0 0 #EFEFEF;
+    padding: 0px;
+    margin-bottom: 7px;
+}
 
+.breadcrumb li:before {
+    border-bottom: 24px inset rgba(0, 0, 0, 0);
+    border-left: 20px solid #FFFFFF;
+    border-top: 22px inset rgba(0, 0, 0, 0);
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+
+.breadcrumb li:after {
+    border-bottom: 23px inset rgba(0, 0, 0, 0);
+    border-left: 19px solid #EFEFEF;
+    border-top: 22px inset rgba(0, 0, 0, 0);
+    content: "";
+    height: 0;
+    position: absolute;
+    right: -21px;
+    top: 0;
+    width: 0;
+    z-index: 2;
+}
+
+.breadcrumb li {
+    background: none repeat scroll 0 0 #EFEFEF;
+    display: inline-block;
+    margin-right: 0px;
+    padding: 10px 12px;
+    position: relative;
+}
+
+.breadcrumb li:first-child:before, .breadcrumb li:last-child:after {
+    border: medium none;
+}
+
+.breadcrumb li span {
+    margin: 0 5px 0 18px;
+    position: relative;
+    top: -1px;
+}
+
+.breadcrumb li a{
+    color:gray;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.breadcrumb .current a{
+    color: black;
+}
+
+.arrow-right {
+	width: 0;
+	height: 0;
+	border-top: 30px solid transparent;
+	border-bottom: 30px solid transparent;
+
+	border-left: 30px solid green;
+}
+
+.eye-button{
+    background: none;
+    margin: 8px;
+}
+
+.gap{
+    margin: 15px 0;
+}
