@@ -642,12 +642,14 @@ body{
     height:70px
 }
 
-#textfield {
+#search-text {
     display: inline-block;
     margin: 20px 0 0 0;
     height: 31px;
-    position: relative;
+    margin-left: 55px;
+    width: 24%;
 }
+
 
 
 

@@ -2,15 +2,16 @@
 <div class="container">
 <div class="row">
 <div class="span2" style="margin: 0; padding: 0">
-  <div class="span2" style="margin: 0 ; padding: 0">  <%= link_to image_tag('logo.png', :class => "img-rounded", :style => "width:147px; height:92px"), root_path,:class => "brand"   %>
+  <div class="span2" style="margin: 0 ; padding: 0">  <%= link_to image_tag('logo.png', :class => "img-rounded", :style => "width:142px; height:70px"), root_path,:class => "brand"   %>
   </div>
 
 </div>
-
-<div class="span4" style="margin: 30px 0 0 0;">
-  <%= form_tag '#', :method => "get" do %>
-      <%= text_field_tag "tag",'',:class => "input-xlarge" %>
-  <% end %>
+<div class="control-group">
+    <div class="span4" id="search-text" >
+      <%= form_tag '#', :method => "get" do %>
+          <%= text_field_tag "tag",'',:class => "input-xlarge", :placeholder => "Where are you going" %>
+      <% end %>
+    </div>
 </div>
 <div class="span6" style="margin: 25px 0 0 0;">
   <div class="span3 top-menu " >
