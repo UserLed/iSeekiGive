@@ -259,11 +259,14 @@
       you've been with a specific job, industry, job function, skills or titles you've had- anything you might share Good, Bad or Ugly
       </span>
     </p>
+
+  </legend>
+  <legend>
+    <%= render 'tags/new' %>
   </legend>
   <% user.tags.each do |tag| %>
       <%= render tag %>
   <% end %>
-  <%= render 'tags/new' %>
 
 </div>
 
