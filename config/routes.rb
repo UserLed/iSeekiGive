@@ -10,6 +10,13 @@ ISeekiGive::Application.routes.draw do
   match 'how-it-works' => 'public#how_it_works', :as => :how_it_works
   match 'about-us' => 'public#about_us', :as => :about_us
 
+  resources :accounts do
+    collection do
+      match :settings
+    end
+
+  end
+
   resources :seekers do
     resources :sessions, :only => :index, :controller => "seekers/sessions" do
       collection do

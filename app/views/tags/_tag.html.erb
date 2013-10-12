@@ -1,0 +1,13 @@
+<div id="skill_<%= tag.id %>" class="skill-container">
+  <div class="info-container">
+    <p>
+      <%= tag.name %>
+      <%= link_to 'edit', 'javascript:void(0)', :class => "btn btn-mini btn-primary btn-edit" %>
+      <%= link_to 'delete', tag, :method => :delete, :remote => true, :class => "btn btn-mini btn-primary" %>
+    </p>
+  </div>
+  <div class="form-container" style="display:none">
+    <%= render 'tags/form', :tag => tag %>
+  </div>
+  <hr/>
+</div>
