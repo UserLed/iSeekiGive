@@ -68,13 +68,13 @@
         }
     });
     function itemFormatResult(item) {
-        var markup = "<table class='item-result'><tr>";
-        markup += "<td class='item-image'><a href='/users/" + item.value + "/public_profile'><img class='img-circle' src = " + item.icon + "></a></td>";
+        var markup = "<a href='/users/" + item.value + "/public_profile'><table class='item-result'><tr>";
+        markup += "<td class='item-image'><img class='img-circle' src = " + item.icon + "></td>";
         markup += "<td class='item-info'><div class='movie-title'>" + item.label + "</div>";
         markup += "<div class='item-addr'>" + item.country + "</div>";
         markup += "<div class='item-addrspan3 user-info'>" + item.educations+"</div>";
         markup += "<div class='item-addr span3 user-info'>" + item.companies+"</div>";
-        markup += "</td></tr></table>"
+        markup += "</td></tr></table></a>"
         return markup;
     }
 
