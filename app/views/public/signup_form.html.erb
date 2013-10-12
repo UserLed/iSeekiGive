@@ -1,44 +1,59 @@
-<div class="well-wrap well container">
-  <div class="title">
-    <%= @type == "seeker" ? "Seeker" : "Giver" %>
-    Sign up
-  </div>
+<div class="container">
+  <div class="well-wrap well">
+    <div class="title">
+      <%= @type == "seeker" ? "Seeker" : "Giver" %>
+      Sign up
+    </div>
 
-  <div class="panel-content">
-    <%= link_to auth_at_provider_path(:provider => :facebook, :social_type =>'sign_up'), :class => "fb-blue btn icon-btn btn-block padded-btn-block large" do %>
+    <div class="panel-content">
+      <%= link_to auth_at_provider_path(:provider => :facebook, :social_type => 'sign_up'), :class => "fb-blue btn icon-btn btn-block padded-btn-block large" do %>
       <span class="icon-container">
         <i class="icon icon-facebook"></i>
       </span>
-      <span class="text-container"> Sign up with Facebook </span>
-    <% end %>
-
-    <div class="signup-or-separator shift">
-      <span class="text">or</span>
-      <hr/>
-    </div>
-
-    <div class="signup-email">
-      <% if @type == "seeker" %>
-        <%= link_to "Sign up with Email", new_seeker_path %>
-      <% else %>
-        <%= link_to "Sign up with Email", new_giver_path %>
+          <span class="text-container fb-text"> Sign up with Facebook </span>
       <% end %>
+
+      <div class="signup-or-separator shift">
+        <span class="text">or</span>
+        <hr/>
+      </div>
+
+      <%= link_to auth_at_provider_path(:provider => :linkedin, :social_type => 'sign_up'), :class => "in-blue btn icon-btn btn-block padded-btn-block large" do %>
+      <span class="icon-container">
+        <i class="icon icon-linkedin"></i>
+      </span>
+          <span class="text-container fb-text"> Sign up with LinkedIn </span>
+      <% end %>
+
+      <div class="signup-or-separator shift">
+        <span class="text">or</span>
+        <hr/>
+      </div>
+
+      <div class="signup-email">
+        <% if @type == "seeker" %>
+            <%= link_to "Sign up with Email", new_seeker_path %>
+        <% else %>
+            <%= link_to "Sign up with Email", new_giver_path %>
+        <% end %>
+      </div>
+
+      <div class="notice">
+        By clicking "Sign up with Facebook" you confirm
+        that you accept the
+        <%= link_to "Terms of Service", terms_path, :target => "_blank" %>
+        and
+        <%= link_to "Privacy Policy", privacy_path, :target => "_blank" %>
+        .
+      </div>
+
     </div>
 
-    <div class="notice">
-      By clicking "Sign up with Facebook" you confirm
-      that you accept the
-      <%= link_to "Terms of Service", terms_path, :target => "_blank" %>
-      and
-      <%= link_to "Privacy Policy", privacy_path, :target => "_blank" %>
-      .
+    <div class="panel-footer">
+      Already an iSeekiGive member?
+      <%= link_to "Log in", login_path %>
     </div>
 
-  </div>
-
-  <div class="panel-footer">
-    Already an iSeekiGive member?
-    <%= link_to "Log in", login_path %>
   </div>
 
 </div>

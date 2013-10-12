@@ -3,13 +3,28 @@
     border-color: #040404;
     border-style: double;
     border-width: 5px;
-    height: 290px;
+    min-height: 290px !important;
     left: 179px;
-    width: 290px;
     z-index: 65;
     float: left;
     margin: 10px;
     padding-top: 25px;
+    text-align: center;
+}
+.lplh-22{
+    text-align: center;
+    color:#000000;
+    font-family: arvo;
+    font-size: 21px;
+}
+
+.lplh-20{
+    text-align: center;
+    color:#000000;
+    font-family: trebuchet ms,helvetica,sans-serif;
+}
+.lp-img-circle{
+    height:48px; width:48px;margin: 5px 0 0 8px;
 }
 
 .ui-autocomplete {
@@ -132,6 +147,7 @@
     left: 112px;
     width: 65px;
     z-index: 67;
+    margin-bottom: 10px;
 }
 
 .dashboard_img{
@@ -305,6 +321,9 @@ ul.tagit {
 
 .well-wrap.well{
     padding: 0px;
+}
+.focus-title{
+    font-size: 20px;
 }
 
 .well-wrap .title{
