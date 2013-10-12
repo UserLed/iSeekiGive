@@ -1,10 +1,27 @@
-<div class="page-header">
-  <h1>
-    Password Change
-  </h1>
-</div>
+
+<div class="container">
+  <%= render "users/dashboard_menu" %>
+  <%= render "users/dashboard_sub_menu" %>
+
+  <div class="page-header">
+    <h3>
+      Password Change
+    </h3>
+  </div>
 
     <%= form_for(:user, :url => settings_accounts_path, method: 'POST') do |f| %>
+
+      <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+            <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
     <div class="control-group">
       <%= f.label :password, :class => 'control-label' %>
@@ -26,7 +43,7 @@
       <%= f.submit "Submit", :class => 'btn btn-primary' %>
     </div>
 <% end %>
-
+</div>
 
 <script type='text/javascript'>
     function check(input) {
