@@ -687,13 +687,24 @@ body{
     margin-left: 115px;
     margin-top: -65px;
     width: 165px;
-    font-size: 9px;
+    font-size: small;
     font-weight: bold;
     text-shadow: 0px 1px #030507;
+    color: skyblue;
 }
 
 
 #perspectives {
     overflow-x: hidden;
+}
+
+.public_profile_name{
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px #000000;
+}
+.profile-cover{
+    margin-top: 10px;
 }
 
