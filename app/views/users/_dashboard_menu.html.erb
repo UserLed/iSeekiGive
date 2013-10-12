@@ -20,8 +20,8 @@
         <li>
           <%= link_to "Boosters", 'javascript:void(0)' %>
         </li>
-        <li class="<%= current_page?(account_user_path(current_user)) ? "active" : ""  %>">
-          <%= link_to "Account", account_user_path(current_user) %>
+        <li class= <%= controller.controller_name.eql?('accounts')? "active" : "" %> >
+          <%= link_to "Account", accounts_path %>
         </li>
 
       </ul>

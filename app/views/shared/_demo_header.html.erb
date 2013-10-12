@@ -2,14 +2,14 @@
 <div class="container">
 <div class="row">
 <div class="span2" style="margin: 0; padding: 0">
-  <div class="span2" style="margin: 0 ; padding: 0">  <%= link_to image_tag('logo.png', :style => "width:147px; height:92px"), root_path,:class => "brand"   %>
+  <div class="span2" style="margin: 0 ; padding: 0">  <%= link_to image_tag('logo.png', :style => "width:142px; height:70px"), root_path,:class => "brand"   %>
   </div>
 
 </div>
 
-<div class="span4" style="margin: 30px 0 0 0;">
+<div class="span4" id="search-text" style="margin: 30px 0 0 0;">
   <%= form_tag '#', :method => "get" do %>
-      <%= text_field_tag "tag",'',:class => "input-xlarge" %>
+      <%= text_field_tag "tag",'',:class => "input-xlarge", :placeholder => "Where are you going?" %>
   <% end %>
 </div>
 <div class="span6" style="margin: 25px 0 0 0;">
@@ -29,10 +29,10 @@
   <div class="nav-collapse pull-right" >
     <% if current_user %>
           <ul class="nav">
-            <li class="dropdown">
+            <li class="dropdown" id="profile-name">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <i>
-                  <%= image_tag(current_user.profile_photo.public_profile, :class=>'img-circle profile-image') if current_user.profile_photo.present? %>
+                  <%= image_tag(current_user.profile_photo.public_profile, :class=>'img-rounded profile-image') if current_user.profile_photo.present? %>
                 </i>
                 <%= current_user.name %>
                 <b class="caret"></b>
