@@ -216,7 +216,7 @@
               </h5>
             </div>
             <div class="control-group">
-              <%= label_tag :changed_majors, "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
+              <%= label_tag :changed_majors, "Did you ever start or consider other majors or fields of study than the ones showed above?", :class => "control-label" %>
               <div class="controls">
                 <%= radio_button_tag :"education[#{edu.id}][changed_majors]", 1, edu.changed_majors ? true : false, :class => "change-majors-yes" %>
                 Yes
