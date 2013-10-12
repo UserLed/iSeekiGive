@@ -3,28 +3,13 @@
     border-color: #040404;
     border-style: double;
     border-width: 5px;
-    min-height: 290px !important;
+    height: 290px;
     left: 179px;
+    width: 290px;
     z-index: 65;
     float: left;
     margin: 10px;
     padding-top: 25px;
-    text-align: center;
-}
-.lplh-22{
-    text-align: center;
-    color:#000000;
-    font-family: arvo;
-    font-size: 21px;
-}
-
-.lplh-20{
-    text-align: center;
-    color:#000000;
-    font-family: trebuchet ms,helvetica,sans-serif;
-}
-.lp-img-circle{
-    height:48px; width:48px;margin: 5px 0 0 8px;
 }
 
 .ui-autocomplete {
@@ -45,8 +30,8 @@
     width:100px;
 }
 .profile-image{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
 }
 /*Perspective box*/
 
@@ -123,9 +108,9 @@
 }
 /*Perspective box*/
 
-.caret {margin-top: 23px !important;}
+.caret {margin-top: 8px !important;}
 .form_text_area{
-    width: 75%;
+    width: 95%;
     height: 125px;
 }
 .social-exp{
@@ -147,7 +132,6 @@
     left: 112px;
     width: 65px;
     z-index: 67;
-    margin-bottom: 10px;
 }
 
 .dashboard_img{
@@ -160,7 +144,8 @@
     margin-top: 10px;
 }
 .hint_msg{
-    color: #A5A29F;
+    color: #E6E5E4;
+    font-weight: bold;
 }
 
 .dashboard-container .row-wrap{
@@ -172,7 +157,6 @@
 }
 .profile-tab{
     border: none !important;
-    overflow-x: hidden !important;
 }
 .form-actions {
     background-color: #FFFFFF;
@@ -187,26 +171,12 @@
 .title-page{
     text-align: center;
 }
-.title-page-small{
-    text-align: center;
-    font-size: 26px;
-    color: #FFFFFF;
-    line-height: 1em;
-    margin: 0;
-    position: relative;
-    z-index: 10;
-}
-
 .fb-login{
-    color: #FFFFFF;
-
-}
-.fb-text{
     color: #FFFFFF;
 }
 
 ul.tagit {
-    width:75% !important;
+    width:95% !important;
 }
 /* Dashboard Menu start */
 
@@ -321,9 +291,6 @@ ul.tagit {
 
 .well-wrap.well{
     padding: 0px;
-}
-.focus-title{
-    font-size: 20px;
 }
 
 .well-wrap .title{
@@ -670,13 +637,18 @@ body{
     height: 100px;
 }
 
-.user-info {
-    margin-left: 0px !important;
-    clear: both;
+.logo {
+    width:143px;
+    height:70px
 }
 
-.item-result{
-    /*border-bottom: 1px solid;*/
+#textfield {
+    display: inline-block;
+    margin: 20px 0 0 0;
+    height: 31px;
+    position: relative;
 }
+
+
 
 
