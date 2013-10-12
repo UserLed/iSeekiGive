@@ -108,7 +108,7 @@
 }
 /*Perspective box*/
 
-.caret {margin-top: 23px !important;}
+.caret {margin-top: 8px !important;}
 .form_text_area{
     width: 95%;
     height: 125px;
@@ -636,5 +636,19 @@ body{
     width: 100px;
     height: 100px;
 }
+
+.logo {
+    width:143px;
+    height:70px
+}
+
+#textfield {
+    display: inline-block;
+    margin: 20px 0 0 0;
+    height: 31px;
+    position: relative;
+}
+
+
 
 

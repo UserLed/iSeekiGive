@@ -4341,6 +4341,7 @@ header.main {
 }
 header.main.shrink {
   padding: 15px 0;
+  height: 70px;
 }
 header.main.fixed {
   position: fixed;
