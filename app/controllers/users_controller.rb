@@ -82,4 +82,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user]) and
+    redirect_to request.referrer, :notice => "Successfully Updated"
+  end
+
 end

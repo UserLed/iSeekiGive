@@ -2,13 +2,13 @@
   <div class="container">
     <%= render "dashboard_menu" %>
     <%= render 'shared/breadcrumb' %>
-    <div class="span3">
+    <div class="gap"></div>
+    <div class="span3 no-left-padding no-left-margin">
       <%= render 'sidebar' %>
     </div>
 
     <div class="span8">
-      <%= render "shared/confirmation_notice" %>
-      <div class="gap"></div>
+      <%= render "shared/confirmation_notice" %>   
       <%= render @user.step[@step] %>
     </div>
 

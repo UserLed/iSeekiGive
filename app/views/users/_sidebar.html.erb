@@ -1,6 +1,6 @@
-<ul class="nav nav-list">
-  <li class="nav-header">Edit Profile</li>
-
+<ul class="nav nav-list no-left-padding no-left-margin">
+  <li class="nav-header user-edit-sidebar">Edit Profile</li>
+  <li class="divider"></li>
   <li class="<%= "active" if @step == 0 %>">
     <%= link_to "Edit Profile", edit_user_path(current_user, :step => 0) %>
   </li>

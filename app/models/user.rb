@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :country, :hear, :password,
     :password_confirmation, :authentications_attributes, :type, :promotional_news,
     :city, :linkedin_update, :profile_photo, :cover_photo, :level, :session_method,
-    :skype_id, :contact_number, :other_contact_details, :user_time_zone
+    :skype_id, :contact_number, :other_contact_details, :user_time_zone, :gender, :date_of_birth, :descriptions
   
   attr_accessor :password_confirmation
 
@@ -34,13 +34,15 @@ class User < ActiveRecord::Base
   has_one  :game,               :dependent => :destroy
   has_many :time_slots,         :dependent => :destroy
   has_many :perspectives,       :dependent => :destroy
-  has_many :saved_perspectives, :dependent => :destroy 
+  has_many :saved_perspectives, :dependent => :destroy
+  has_many :languages,          :dependent => :destroy
 
   
   accepts_nested_attributes_for :authentications
   accepts_nested_attributes_for :educations
   accepts_nested_attributes_for :skills
   accepts_nested_attributes_for :experiences
+  accepts_nested_attributes_for :languages, :allow_destroy => true
   
   HOW_HEAR = [
     ["By Friend"],

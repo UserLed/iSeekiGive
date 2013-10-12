@@ -368,7 +368,7 @@ blockquote p {
   content: '';
   width: 50%;
   height: 27%;
-  background: url("../img/earth-flare/default.png");
+  background: url("/assets/img/earth-flare/default.png");
   top: -13.5%;
   left: 25%;
   -webkit-background-size: cover;
@@ -3835,7 +3835,7 @@ footer.main .uneditable-input:focus {
   -webkit-background-size: contain;
   -moz-background-size: contain;
   background-size: contain;
-  background-image: url("../img/device-mockups/macbook.png");
+  background-image: url("/assets/img/device-mockups/macbook.png");
 }
 .device-mockup > .device > .screen {
   background-color: #000;
@@ -3872,7 +3872,7 @@ footer.main .uneditable-input:focus {
   padding-bottom: 81.230769%;
 }
 .device-mockup[data-device="imac"] > .device {
-  background-image: url("../img/device-mockups/imac.png");
+  background-image: url("/assets/img/device-mockups/imac.png");
 }
 .device-mockup[data-device="imac"] > .device > .screen {
   top: 8.20707071%;
@@ -3884,7 +3884,7 @@ footer.main .uneditable-input:focus {
   padding-bottom: 61.775701%;
 }
 .device-mockup[data-device="macbook"] > .device {
-  background-image: url("../img/device-mockups/macbook.png");
+  background-image: url("/assets/img/device-mockups/macbook.png");
 }
 .device-mockup[data-device="macbook"] > .device > .screen {
   top: 11.0438729%;
@@ -3894,7 +3894,7 @@ footer.main .uneditable-input:focus {
 }
 .device-mockup[data-device="iphone5"],
 .device-mockup[data-device="iphone5"][data-orientation="portrait"] {
-  padding-bottom: 200.477897%;
+  padding-bottom: 200.477897big-text%;
 }
 .device-mockup[data-device="iphone5"][data-orientation="landscape"] {
   padding-bottom: 49.9701136%;
@@ -3902,18 +3902,18 @@ footer.main .uneditable-input:focus {
 .device-mockup[data-device="iphone5"] > .device,
 .device-mockup[data-device="iphone5"][data-color="black"] > .device,
 .device-mockup[data-device="iphone5"][data-orientation="portrait"][data-color="black"] > .device {
-  background-image: url("../img/device-mockups/iphone5_port_black.png");
+  background-image: url("/assets/img/device-mockups/iphone5_port_black.png");
 }
 .device-mockup[data-device="iphone5"][data-orientation="landscape"] > .device,
 .device-mockup[data-device="iphone5"][data-orientation="landscape"][data-color="black"] > .device {
-  background-image: url("../img/device-mockups/iphone5_land_black.png");
+  background-image: url("/assets/img/device-mockups/iphone5_land_black.png");
 }
 .device-mockup[data-device="iphone5"][data-color="white"] > .device,
 .device-mockup[data-device="iphone5"][data-orientation="portrait"][data-color="white"] > .device {
-  background-image: url("../img/device-mockups/iphone5_port_white.png");
+  background-image: url("/assets/img/device-mockups/iphone5_port_white.png");
 }
 .device-mockup[data-device="iphone5"][data-orientation="landscape"][data-color="white"] > .device {
-  background-image: url("../img/device-mockups/iphone5_land_white.png");
+  background-image: url("/assets/img/device-mockups/iphone5_land_white.png");
 }
 .device-mockup[data-device="iphone5"] > .device > .screen,
 .device-mockup[data-device="iphone5"][data-orientation="portrait"] > .device > .screen {
@@ -3953,18 +3953,18 @@ footer.main .uneditable-input:focus {
 .device-mockup[data-device="ipad"] > .device,
 .device-mockup[data-device="ipad"][data-color="black"] > .device,
 .device-mockup[data-device="ipad"][data-orientation="portrait"][data-color="black"] > .device {
-  background-image: url("../img/device-mockups/ipad_port_black.png");
+  background-image: url("/assets/img/device-mockups/ipad_port_black.png");
 }
 .device-mockup[data-device="ipad"][data-color="white"] > .device,
 .device-mockup[data-device="ipad"][data-orientation="portrait"][data-color="white"] > .device {
-  background-image: url("../img/device-mockups/ipad_port_white.png");
+  background-image: url("/assets/img/device-mockups/ipad_port_white.png");
 }
 .device-mockup[data-device="ipad"][data-orientation='landscape'] > .device,
 .device-mockup[data-device="ipad"][data-orientation="landscape"][data-color="black"] > .device {
-  background-image: url("../img/device-mockups/ipad_land_black.png");
+  background-image: url("/assets/img/device-mockups/ipad_land_black.png");
 }
 .device-mockup[data-device="ipad"][data-orientation="landscape"][data-color="white"] > .device {
-  background-image: url("../img/device-mockups/ipad_land_white.png");
+  background-image: url("/assets/img/device-mockups/ipad_land_white.png");
 }
 .device-mockup[data-device="ipad"] > .device > .screen,
 .device-mockup[data-device="ipad"][data-orientation="portrait"] > .device > .screen {
@@ -4003,18 +4003,18 @@ footer.main .uneditable-input:focus {
 .device-mockup[data-device="s3"] > .device,
 .device-mockup[data-device="s3"][data-color="black"] > .device,
 .device-mockup[data-device="s3"][data-orientation="portrait"][data-color="black"] > .device {
-  background-image: url("../img/device-mockups/s3_port_black.png");
+  background-image: url("/assets/img/device-mockups/s3_port_black.png");
 }
 .device-mockup[data-device="s3"][data-orientation="landscape"] > .device,
 .device-mockup[data-device="s3"][data-orientation="landscape"][data-color="black"] > .device {
-  background-image: url("../img/device-mockups/s3_land_black.png");
+  background-image: url("/assets/img/device-mockups/s3_land_black.png");
 }
 .device-mockup[data-device="s3"][data-color="white"] > .device,
 .device-mockup[data-device="s3"][data-orientation="portrait"][data-color="white"] > .device {
-  background-image: url("../img/device-mockups/s3_port_white.png");
+  background-image: url("/assets/img/device-mockups/s3_port_white.png");
 }
 .device-mockup[data-device="s3"][data-orientation="landscape"][data-color="white"] > .device {
-  background-image: url("../img/device-mockups/s3_land_white.png");
+  background-image: url("/assets/img/device-mockups/s3_land_white.png");
 }
 .device-mockup[data-device="s3"] > .device > .screen,
 .device-mockup[data-device="s3"][data-orientation="portrait"] > .device > .screen {
@@ -4038,10 +4038,10 @@ footer.main .uneditable-input:focus {
 }
 .device-mockup[data-device="lumia920"] > .device,
 .device-mockup[data-device="lumia920"][data-orientation="portrait"] > .device {
-  background-image: url("../img/device-mockups/lumia920_port.png");
+  background-image: url("/assets/img/device-mockups/lumia920_port.png");
 }
 .device-mockup[data-device="lumia920"][data-orientation="landscape"] > .device {
-  background-image: url("../img/device-mockups/lumia920_land.png");
+  background-image: url("/assets/img/device-mockups/lumia920_land.png");
 }
 .device-mockup[data-device="lumia920"] > .device > .screen,
 .device-mockup[data-device="lumia920"][data-orientation="portrait"] > .device > .screen {
@@ -4065,10 +4065,10 @@ footer.main .uneditable-input:focus {
 }
 .device-mockup[data-device="nexus7"] > .device,
 .device-mockup[data-device="nexus7"][data-orientation="portrait"] > .device {
-  background-image: url("../img/device-mockups/nexus7_port.png");
+  background-image: url("/assets/img/device-mockups/nexus7_port.png");
 }
 .device-mockup[data-device="nexus7"][data-orientation="landscape"] > .device {
-  background-image: url("../img/device-mockups/nexus7_land.png");
+  background-image: url("/assets/img/device-mockups/nexus7_land.png");
 }
 .device-mockup[data-device="nexus7"] > .device > .screen,
 .device-mockup[data-device="nexus7"][data-orientation="portrait"] > .device > .screen {
@@ -4089,7 +4089,7 @@ footer.main .uneditable-input:focus {
 }
 .device-mockup[data-device="surface"] > .device,
 .device-mockup[data-device="surface"][data-orientation="landscape"] > .device {
-  background-image: url("../img/device-mockups/surface.png");
+  background-image: url("/assets/img/device-mockups/surface.png");
 }
 .device-mockup[data-device="surface"] > .device > .screen,
 .device-mockup[data-device="surface"][data-orientation="landscape"] > .device > .screen {
@@ -4546,7 +4546,7 @@ footer.main .help-block {
 .box-cosmos {
   position: relative;
   min-height: 150px;
-  background: url("../img/cosmos.jpg") no-repeat center center fixed;
+  background: url("/assets/img/cosmos.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -4689,7 +4689,7 @@ footer.main .help-block {
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("../img/bg/cosmos.jpg");
+  background-image: url("/assets/img/bg/cosmos.jpg");
 }
 [data-bg-img] {
   background-image: none;
@@ -4699,7 +4699,7 @@ div.bg-img .pricing-table .pricing-inner {
 }
 .bg-pattern {
   background-repeat: repeat;
-  background-image: url("../img/patterns/triangular.png");
+  background-image: url("/assets/img/patterns/triangular.png");
 }
 [data-bg-pattern] {
   background-image: none;
@@ -6176,10 +6176,10 @@ img.mfp-img {
   width: 100px;
   height: 100px;
   margin: -50px 0 0 -50px;
-  background: url("../img/bigplay.svg") no-repeat;
+  background: url("/assets/img/bigplay.svg") no-repeat;
 }
 .no-svg .mejs-overlay-button {
-  background-image: url("../img/bigplay.png");
+  background-image: url("/assets/img/bigplay.png");
 }
 .mejs-overlay:hover .mejs-overlay-button {
   background-position: 0 -100px;
@@ -6197,7 +6197,7 @@ img.mfp-img {
   display: block;
   width: 80px;
   height: 80px;
-  background: transparent url("../img/loading.gif") 50% 50% no-repeat;
+  background: transparent url("/assets/img/loading.gif") 50% 50% no-repeat;
 }
 .mejs-container .mejs-controls {
   position: absolute;
@@ -6236,13 +6236,13 @@ img.mfp-img {
   height: 16px;
   width: 16px;
   border: 0;
-  background: transparent url("../img/controls.svg") no-repeat;
+  background: transparent url("/assets/img/controls.svg") no-repeat;
 }
 .mejs-controls .mejs-button button:focus {
   outline: 1px solid #ff0;
 }
 .no-svg .mejs-controls .mejs-button button {
-  background-image: url("../img/controls.html");
+  background-image: url("/assets/img/controls.html");
 }
 .mejs-container .mejs-controls .mejs-time {
   color: #fff;

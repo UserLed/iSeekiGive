@@ -1,7 +1,7 @@
 ISeekiGive::Application.routes.draw do
 
   resources :phone_numbers
-  match 'tags' => 'tags#get_user_tags'
+  match 'user_tags' => 'tags#get_user_tags'
 
   match 'terms-of-service' => 'public#terms_of_service', :as => :terms
   match 'terms-and-condition' => 'public#terms_and_condition', :as => :terms_n_condition
@@ -9,6 +9,13 @@ ISeekiGive::Application.routes.draw do
   match 'all_tags' => 'public#get_all_users_with_tags'
   match 'how-it-works' => 'public#how_it_works', :as => :how_it_works
   match 'about-us' => 'public#about_us', :as => :about_us
+
+  resources :accounts do
+    collection do
+      match :settings
+    end
+
+  end
 
   resources :seekers do
     resources :sessions, :only => :index, :controller => "seekers/sessions" do
@@ -52,8 +59,10 @@ ISeekiGive::Application.routes.draw do
 
   resources :educations
   resources :skills
+  resources :tags
   resources :experiences
   resources :password_resets
+  resources :languages, :only => [:create, :destroy]
   
   resources :sessions
 

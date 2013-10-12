@@ -1,12 +1,12 @@
 <div class="breadcrumb">
   <li>
     <span></span>
-    <%= link_to "DASHBOARD", '#' %>
+    <%= link_to "DASHBOARD", dashboard_user_path(current_user) %>
   </li>
 
   <li class="current">
     <span></span>
-    <%= link_to "Profile", '#' %>
+    <%= link_to "Profile", edit_user_path(current_user) %>
   </li>
 
   <%= link_to public_profile_user_path(@user), :class => 'btn pull-right eye-button' do %>

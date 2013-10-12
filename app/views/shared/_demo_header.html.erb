@@ -13,8 +13,8 @@
   <% end %>
 </div>
 <div class="span6" style="margin: 25px 0 0 0;">
-  <div class="span3 top-menu" >
-    <nav>
+  <div class="span3 top-menu " >
+    <nav class="pull-right">
       <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
         <li >
           <%= link_to "How it works", how_it_works_path  %>
@@ -26,7 +26,7 @@
     </nav>
   </div>
 
-  <div class="nav-collapse pull-right" style="margin: 5px 0 0 0;">
+  <div class="nav-collapse pull-right" >
     <% if current_user %>
           <ul class="nav">
             <li class="dropdown">
@@ -51,7 +51,7 @@
                       <%= link_to "Manage Sessions", user_perspectives_path(current_user) %>
                     </li>
                     <li class="<%= "active" if current_page?(user_path(current_user)) %>">
-                      <%= link_to "Edit Profile", user_path(current_user) %>
+                      <%= link_to "Edit Profile", edit_user_path(current_user) %>
                     </li>
                     <li>
                       <%= link_to "Boosters", "Javascript:;" %>

@@ -9,7 +9,7 @@
           <%= link_to "Dashboard", dashboard_user_path(current_user) %>
         </li>
         <li class="<%= current_page?(user_path(current_user)) ? "active" : ""  %>">
-          <%= link_to "Profile", user_path(current_user) %>
+          <%= link_to "Profile", edit_user_path(current_user) %>
         </li>
         <li class="<%= current_page?(user_perspectives_path(current_user)) ? "active" : ""  %>">
           <%= link_to "Perspectives", user_perspectives_path(current_user) %>

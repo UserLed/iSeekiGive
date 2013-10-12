@@ -1,17 +1,23 @@
 <h4>
   Pictures
 </h4>
-<% if @user.profile_photo.present? %>
-  <div class="profile-photo">
-    <%= image_tag(user.profile_photo.to_s, :width => "250") %>
-  </div>
-<% end %>
+<div class="row">
+  <% if @user.profile_photo.present? %>
+    <div class="span2">
+      <%= image_tag(@user.profile_photo_url(:thumb)) %>
+      Profile Photo
+    </div>
+  <% end %>
 
-<% if @user.cover_photo.present? %>
-  <div class="cover-photo">
-    <%= image_tag(user.cover_photo.to_s, :width => "400") %>
-  </div>
-<% end %>
+  <% if @user.cover_photo.present? %>
+    <div class="span2">
+      <%= image_tag(@user.cover_photo_url(:thumb)) %>
+      Cover Photo
+    </div>
+  <% end %>
+</div>
+
+<div class="gap"></div>
 
 <%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
 

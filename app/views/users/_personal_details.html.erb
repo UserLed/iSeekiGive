@@ -1,4 +1,11 @@
-<%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
+<%= nested_form_for @user, :html => {:class => "form-horizontal"} do |f| %>
+
+  <div class="control-group">
+    <%= f.label "Display Name", :class => "control-label" %>
+    <div class="controls">
+      <%= @user.full_name %>
+    </div>
+  </div>
 
   <div class="control-group">
     <%= f.label :first_name, :class => "control-label" %>
@@ -92,7 +99,39 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <div class="controls">
+      <ul class="nav nav-pills">
+        <% @user.languages.each do |language| %>
+          <li style="padding: 3px;">
+            <div class='alert alert-info'>
+              <%= link_to language_path(language), :method => :delete, :remote => true do %>
+                <button type='button' class='close' data-dismiss='alert'>×</button>
+              <% end %>
+              <%= language.title %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= text_field_tag :title, nil,:id => "user_language" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to "Add Language", 'javascript:void(0)',:class => "btn btn-primary", :onclick => "update_user_language()" %>
+    </div>
+  </div>
+
+
+
   <div class="form-actions">
     <%= f.submit "Save", :class => "btn btn-primary" %>
   </div>
 <% end %>
+
+<div class="close"></div>
