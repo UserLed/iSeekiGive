@@ -3,9 +3,9 @@ class UserDetails
   def self.update_user_profile(hash, user)
     unless user.linkedin_update
       user_info = hash[:user_info]
-      set_user_skills(user_info["skills"], user)         
       set_user_educations(user_info["educations"], user) 
       set_user_experiences(user_info["positions"], user) 
+      set_user_skills(user_info["skills"], user)         
       user.linkedin_update = true
       user.save
     end
@@ -20,6 +20,32 @@ class UserDetails
         user.tags.create(:name => v["skill"]["name"])
       end
     end
+
+    education_school_tags = user.educations.collect(&:school_name)
+    education_school_tags.each do |tag|
+      user.tags.create(:name => tag)
+    end
+    education_study_field_tags = user.educations.collect(&:field_of_study).uniq
+    education_study_field_tags.each do |tag|
+      user.tags.create(:name => tag)
+    end
+
+    experience_degree_tags = user.educations.collect(&:degree).uniq
+    experience_degree_tags.each do |tag|
+      user.tags.create(:name => tag)
+    end
+    
+    experience_company_tags = user.experiences.collect(&:company_name)
+    experience_company_tags.each do |tag|
+      user.tags.create(:name => tag)
+    end
+
+    experience_title_tags = user.experiences.collect(&:title).uniq
+    experience_title_tags.each do |tag|
+      user.tags.create(:name => tag)
+    end
+
+
   end
 
   def self.set_user_educations(hash, user)
