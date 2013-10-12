@@ -1,12 +1,16 @@
 class StoriesController < ApplicationController
-  before_filter :require_login,:except => [:index]
+  before_filter :require_login
 
-  def index
-    perspectives = Perspective.all
-    @good_stories = perspectives.select{|story| story.story_type.eql?("The Good")}
-    @bad_stories = perspectives.select{|story| story.story_type.eql?("The Bad")}
-    @ugly_stories = perspectives.select{|story| story.story_type.eql?("The Ugly")}
-    @users = User.find(perspectives.collect(&:user_id).uniq)
+  def good_stories
+  	@good_stories = Perspective.all.select{|story| story.story_type.eql?("The Good")}
+  end
+
+  def bad_stories
+  	@bad_stories = Perspective.all.select{|story| story.story_type.eql?("The Bad")}
+  end
+
+  def ugly_stories
+  	@ugly_stories = Perspective.all.select { |story| story.story_type.eql?("The Ugly")}
   end
 
 end

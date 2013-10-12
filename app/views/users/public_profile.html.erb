@@ -1,3 +1,4 @@
+<div class="container_lock">
 <div class="row-fluid">
   <div class="span12 profile-cover" style= 'background-image: url(<%= @user.cover_photo.public_profile_header.url %>);'>
     <%= image_tag @user.profile_photo.public_profile.url, :class => "img-circle profile-photo" if @user.profile_photo.present? %>
@@ -88,3 +89,15 @@
     </div>
   </div>
 </div>
+</div>
+
+<% unless logged_in? %>
+  <script type="text/javascript">
+  $(document).ready(function(){
+      $(".container_lock").block({
+        message : ""
+      });
+  });
+  </script>
+<% end %>
+

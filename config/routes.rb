@@ -99,7 +99,14 @@ ISeekiGive::Application.routes.draw do
       end
     end
   end
-  resources :stories
+  resources :stories do
+    collection do
+      get :good_stories
+      get :bad_stories
+      get :ugly_stories
+    end
+  end
+
   root :to => 'public#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config

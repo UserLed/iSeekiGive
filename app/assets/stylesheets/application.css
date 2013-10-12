@@ -8,14 +8,17 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap_and_overrides
- *= require css/styles
- *= require css/mystyles
- *= require css/switcher
- *= require css/schemes/azure-radiance
- *= require jquery-ui
- *= require fancybox
- *= require jquery.tagit
- *= require tagit.ui-zendesk
- *= require custom
+
+*= require css/switcher
+*= require css/boostrap
+*= require css/boostrap_responsive
+*= require css/font_awesome
+*= require css/styles
+*= require css/mystyles
+*= require jquery-ui
+*= require fancybox
+*= require jquery.tagit
+*= require tagit.ui-zendesk
+*= require custom
+*= require css/schemes/azure-radiance
 */
