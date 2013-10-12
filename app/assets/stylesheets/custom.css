@@ -683,10 +683,17 @@ body{
     margin-top: -7px;
 }
 
-#public-profile-tag {
-    margin: 0 auto;
-    width: 456px;
+.public-profile-tag {
+    margin-left: 115px;
+    margin-top: -65px;
+    width: 165px;
+    font-size: 9px;
+    font-weight: bold;
+    text-shadow: 0px 1px #030507;
 }
 
 
+#perspectives {
+    overflow-x: hidden;
+}
 
