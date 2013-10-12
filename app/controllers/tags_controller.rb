@@ -14,7 +14,7 @@ class TagsController < ApplicationController
 
   def update
     @tag = Tag.find(params[:id])
-    @tag.update_attributes(params[:skill])
+    @tag.update_attributes(params[:tag])
     @tag = Tag.find(params[:id])
     
     respond_to do |format|
