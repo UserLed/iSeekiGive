@@ -36,3 +36,4 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 
 gem 'rvm-capistrano', '>= 1.1.0'
+
