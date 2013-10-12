@@ -12,6 +12,7 @@ $(document).ready(function(){
     $(".change-majors-yes").click(function(){
         if($(this).is(':checked')) {
             $(this).parent().parent(".control-group").next(".desc-changing-majors").show();
+            $("#change_major_submit").show();
         }
     });
     
@@ -20,6 +21,7 @@ $(document).ready(function(){
             var div = $(this).parent().parent(".control-group").next(".desc-changing-majors");
             div.children(".controls").children("textarea").val("");
             div.hide();
+            $("#change_major_submit").hide();
         }
     });
 

@@ -226,8 +226,7 @@
                 <%= text_area_tag :"education[#{@user.educations.first.id}][fields_of_study]", @user.educations.first.fields_of_study, :size => "50x4" %>
               </div>
             </div>
-            <hr/>
-            <%= (submit_tag :submit, :class => "btn btn-primary", :id => "submit", :style => "display:none") %>
+            <%= submit_tag :submit, :class => "btn btn-primary", :id => "change_major_submit" %>
         <%# end %>
     <% end %>
     <%= render "educations/new" %>
