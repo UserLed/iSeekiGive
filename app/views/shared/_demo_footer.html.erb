@@ -58,14 +58,26 @@
                 event.preventDefault();
                 window.location.href = "/users/" + ui.item.value + "/public_profile"
             }
-        })
+          })
                 .data("ui-autocomplete")._renderItem = function (ul, item) {
-            return $("<li>")
-                    .append(itemFormatResult(item))
-                    .appendTo(ul);
+                    if ("<%= current_user %>"){
+                      return $("<li>")
+                        .append(itemFormatResult(item))
+                        .appendTo(ul);
+                    }
+                    else{
+                      return $("<li>")
+                        .append(itemFormatResult(item))
+                        .appendTo(ul)
+                        .block({
+                          message: ""
+                        });
+
+                    }
 
 
-        }
+          }    
+
     });
     function itemFormatResult(item) {
         var markup = "<a href='/users/" + item.value + "/public_profile'><table class='item-result'><tr>";
