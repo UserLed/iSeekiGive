@@ -651,4 +651,13 @@ body{
     height: 100px;
 }
 
+.user-info {
+    margin-left: 0px !important;
+    clear: both;
+}
+
+.item-result{
+    border-bottom: 1px solid;
+}
+
 
