@@ -1,6 +1,32 @@
 class TagsController < ApplicationController
 
-	before_filter :require_login
+  before_filter :require_login
+  
+  def create
+    @tag = current_user.tags.new(params[:tag])
+    @tag.save
+
+    respond_to do |format|
+      format.js
+      format.html {redirect_to request.referrer}
+    end
+  end
+
+  def update
+    @tag = Tag.find(params[:id])
+    @tag.update_attributes(params[:skill])
+    @tag = Tag.find(params[:id])
+    
+    respond_to do |format|
+      format.html {redirect_to request.referrer}
+      format.js
+    end
+  end
+
+  def destroy
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+  end
 	
 	def get_user_tags
 		if request.post? and params[:tag].present? 

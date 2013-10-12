@@ -259,10 +259,10 @@
       </span>
     </p>
   </legend>
-  <% user.skills.each do |skill| %>
-      <%= render skill %>
+  <% user.tags.each do |tag| %>
+      <%= render tag %>
   <% end %>
-  <%= render 'skills/new' %>
+  <%= render 'tags/new' %>
 
 </div>
 
