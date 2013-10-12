@@ -147,7 +147,7 @@
 
 <script type="text/javascript">
   $(function(){
-    $.getJSON("/tags",function(data){
+    $.getJSON("/user_tags",function(data){
       var temp_tags = [];
       $(".keyword_tag1, .keyword_tag2, .keyword_tag3").tagit({
         availableTags : data,
