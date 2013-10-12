@@ -1,117 +1,94 @@
-<style type="text/css">
-    .how_it_box {
-        background: none repeat scroll 0 0 rgba(255, 255, 255, 0);
-        border-color: #040404;
-        border-style: double;
-        border-width: 5px;
-        height: 290px;
-        left: 179px;
-        width: 290px;
-        z-index: 65;
-        float: left;
-        margin: 10px;
-        padding-top: 25px;
-    }
-
-    .lp-pom-box {
-        background: none repeat scroll 0 0 #080707;
-        border-radius: 121px 121px 121px 121px;
-        border-style: none;
-        height: 65px;
-        margin: 0 auto;
-        left: 112px;
-        width: 65px;
-        z-index: 67;
-    }
-
-</style>
 <h1><%=h content_for(:title, "How it Works") %></h1>
 <div class="gap"></div>
 
-<div class="container" style="margin: 0 auto;width:650px;">
-  <div id="how_it_1" class="how_it_box">
-    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
-      <strong>
-        <span style="font-size: 21px;">Perspectives</span>
-      </strong>
-    </p>
 
-    <div  class="lp-element lp-pom-box">
-      <%= image_tag("perspective-users-icon-48.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
+<div class="container dashboard-container">
+  <div class="row row-wrap">
+    <div class=" span3 how_it_box">
+      <p class="lplh-22">
+        <strong>
+          <span>Perspectives</span>
+        </strong>
+      </p>
+
+      <div id="lp-pom-box-344" class="lp-element lp-pom-box">
+        <%= image_tag("perspective-users-icon-48.png", :class => 'lp-img-circle') %>
+      </div>
+      <p class="lplh-20" >
+        <span>Givers share their Perspectives - The Good, The Bad & The Ugly.</span>
+      </p>
+
+      <p class="lplh-20" >
+        <span>Seekers explore areas of interest and learn from Giver's personal experiences.</span>
+      </p>
     </div>
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Givers share their Perspectives - The Good, The Bad & The Ugly.</span>
-    </p>
 
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Seekers explore areas of interest and learn from Giver's personal experiences.</span>
-    </p>
-  </div>
+    <div class="span3 how_it_box">
+      <p class="lplh-22">
+        <strong>
+          <span>Sessions</span>
+        </strong>
+      </p>
 
-  <div id="how_it_2" class="how_it_box">
-    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
-      <strong>
-        <span style="font-size: 21px;">Sessions</span>
-      </strong>
-    </p>
+      <div class="lp-element lp-pom-box">
+        <%= image_tag("perspective-iphone-icon-48.png", :class => 'lp-img-circle') %>
+      </div>
+      <p class="lplh-20" >
+        <span>Givers opt to share time with Seekers to answer specific questions.</span>
+      </p>
 
-    <div  class="lp-element lp-pom-box">
-      <%= image_tag("perspective-iphone-icon-48.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
+
+      <p class="lplh-20" >
+        <span>Seekers pay to receive live direct advice and suggestions from relevant Givers.</span>
+      </p>
+
     </div>
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Givers opt to share time with Seekers to answer specific questions.</span>
-    </p>
+
+    <div class="gap"></div>
+
+    <div class="span3 how_it_box">
+      <p class="lplh-22">
+        <strong>
+          <span>Rewards</span>
+        </strong>
+      </p>
+
+      <div class="lp-element lp-pom-box">
+        <%= image_tag("perspective-shopping-bag-dollar-icon-48.png", :class => 'lp-img-circle') %>
+      </div>
+      <p class="lplh-20" >
+        <span>Everyone has a story to share.</span>
+      </p>
 
 
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Seekers pay to receive live direct advice and suggestions from relevant Givers.</span>
-    </p>
+      <p class="lplh-20" >
+        <span>Share Perspectives and hold Sessions to  earn rewards, cash prizes or donations for charitable causes.</span>
+      </p>
+    </div>
 
+    <div class="span3 how_it_box">
+      <p class="lplh-22">
+        <strong>
+          <span>Boosters</span>
+        </strong>
+      </p>
+
+      <div class="lp-element lp-pom-box">
+        <%= image_tag("perspective-cert-icon-48.png", :class => 'lp-img-circle') %>
+      </div>
+      <p class="lplh-20" >
+        <span>Care about a cause? </span>
+      </p>
+
+
+      <p class="lplh-20" >
+        <span>Start a campaign and invite others to support and raise proceeds in a new way - by sharing their time and perspectives.</span>
+      </p>
+    </div>
   </div>
-
 </div>
-<div class="container" style="margin: 0 auto;width:650px;">
-
-  <div id="how_it_3" class="how_it_box">
-    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
-      <strong>
-        <span style="font-size: 21px;">Rewards</span>
-      </strong>
-    </p>
-
-    <div  class="lp-element lp-pom-box">
-      <%= image_tag("perspective-shopping-bag-dollar-icon-48.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
-    </div>
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Everyone has a story to share.</span>
-    </p>
 
 
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Share Perspectives and hold Sessions to  earn rewards, cash prizes or donations for charitable causes.</span>
-    </p>
-  </div>
-
-  <div id="how_it_4" class="how_it_box">
-    <p class="lplh-22" style="text-align: center;color:#000000;font-family: arvo;">
-      <strong>
-        <span style="font-size: 21px;">Boosters</span>
-      </strong>
-    </p>
-
-    <div  class="lp-element lp-pom-box">
-      <%= image_tag("perspective-cert-icon-48.png", :style => "height:48px; width:48px;margin: 5px 0 0 8px;") %>
-    </div>
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Care about a cause? </span>
-    </p>
-
-
-    <p class="lplh-20" style="text-align: center; padding:10px;color:#000000;font-family: trebuchet ms,helvetica,sans-serif;">
-      <span>Start a campaign and invite others to support and raise proceeds in a new way - by sharing their time and perspectives.</span>
-    </p>
-  </div>
-</div>
 
 <div class="gap"></div>
 <div class="gap"></div>
