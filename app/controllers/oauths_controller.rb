@@ -15,16 +15,16 @@ class OauthsController < ApplicationController
           if provider.eql?("linkedin")
             create_connection(provider) unless current_user.linkedin_connected?
             UserDetails.update_user_profile(user_hash(provider), current_user)
-            redirect_to dashboard_user_path(@user), :notice => "Profile is updated from #{provider.titleize}!"
+            redirect_to dashboard_user_path(current_user), :notice => "Profile is updated from #{provider.titleize}!"
           elsif provider.eql?("facebook")
             create_connection(provider) unless current_user.facebook_connected?
-            redirect_to dashboard_user_path(@user), :notice => "Connected to #{provider.titleize}!"
+            redirect_to dashboard_user_path(current_user), :notice => "Connected to #{provider.titleize}!"
           elsif provider.eql?("twitter")
             create_connection(provider) unless current_user.twitter_connected?
-            redirect_to dashboard_user_path(@user), :notice => "Connected to #{provider.titleize}!"
+            redirect_to dashboard_user_path(current_user), :notice => "Connected to #{provider.titleize}!"
           end
         else
-          redirect_to current_user, :alert => "Already connected with this #{provider.titleize} account!"
+          redirect_to dashboard_user_path(current_user), :alert => "Already connected with this #{provider.titleize} account!"
         end
 
       elsif session[:social_type] == "sign_up"
