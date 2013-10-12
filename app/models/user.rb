@@ -137,4 +137,12 @@ class User < ActiveRecord::Base
     @ugly_perspective
   end
 
+  def have_linked_in_account?
+    self.connections.present?
+  end
+
+  def connection_info(provider)
+    self.connections.where(:provider =>provider)
+  end
+
 end

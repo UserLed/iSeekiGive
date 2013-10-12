@@ -16,4 +16,8 @@ class Education < ActiveRecord::Base
       end
     end
   end
+
+  def self.record_exists?(e)
+    self.where(:school_name => e.school_name, :start_date =>e.start_date,:end_date =>e.end_date).present?
+  end
 end

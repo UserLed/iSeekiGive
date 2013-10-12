@@ -74,103 +74,103 @@
   </legend>
   <div class="gap"></div>
 
-    <%= form_for user, :html => {:class => "form-horizontal"} do |f| %>
-        <div class="control-group">
-          <%= f.label :first_name, :class => "control-label" %>
-          <div class="controls">
-            <%= f.text_field :first_name, :required => true %>
-          </div>
-          <div class="controls">
-            <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
-          </div>
+  <%= form_for user, :html => {:class => "form-horizontal"} do |f| %>
+      <div class="control-group">
+        <%= f.label :first_name, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :first_name, :required => true %>
         </div>
-        <div class="control-group">
-          <%= f.label :last_name, :class => "control-label" %>
-          <div class="controls">
-            <%= f.text_field :last_name, :required => true %>
-          </div>
-          <div class="controls">
-            <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
-          </div>
+        <div class="controls">
+          <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
         </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :last_name, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :last_name, :required => true %>
+        </div>
+        <div class="controls">
+          <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
+        </div>
+      </div>
 
-        <div class="control-group">
-          <%= f.label 'I am', :class => "control-label" %>
-          <div class="controls">
-            <%= f.select(:gender, %w[male female]) %>
-            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
-                <span>Private</span>
-                <i class="icon-lock  hover-icon-top-right hover-hold"></i>
-            <% end %>
-          </div>
-          <div class="controls">
-            <span class="hint_msg">We use this data for analysis and never share it with other users</span>
-          </div>
+      <div class="control-group">
+        <%= f.label 'I am', :class => "control-label" %>
+        <div class="controls">
+          <%= f.select(:gender, %w[male female]) %>
+          <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
+              <span>Private</span>
+              <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+          <% end %>
         </div>
-        <div class="control-group">
-          <%= f.label 'Date of Birth', :class => "control-label" %>
-          <div class="controls">
-            <%= date_select(f.object.class.name.downcase, "date_of_birth", :ampm => true, :order => [:month, :day, :year], :use_short_month => true) %>
-            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
-                <span>Private</span>
-                <i class="icon-lock  hover-icon-top-right hover-hold"></i>
-            <% end %>
-          </div>
-          <div class="controls">
-            <span class="hint_msg">We use this data for analysis and never share it with other users</span>
-          </div>
+        <div class="controls">
+          <span class="hint_msg">We use this data for analysis and never share it with other users</span>
         </div>
-        <div class="control-group">
-          <%= f.label 'Where you Live', :class => "control-label" %>
-          <div class="controls">
-            <%= country_select(f.object.class.name.downcase, "country", ["United States", "United Kingdom"]) %>
-            <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
-                <span>Private</span>
-                <i class="icon-lock  hover-icon-top-right hover-hold"></i>
-            <% end %>
-          </div>
-          <div class="controls">
-            <span class="hint_msg">Many Seekers are considering relocations, new cities and countries</span>
-          </div>
+      </div>
+      <div class="control-group">
+        <%= f.label 'Date of Birth', :class => "control-label" %>
+        <div class="controls">
+          <%= date_select(f.object.class.name.downcase, "date_of_birth", :ampm => true, :order => [:month, :day, :year], :use_short_month => true) %>
+          <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
+              <span>Private</span>
+              <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+          <% end %>
         </div>
+        <div class="controls">
+          <span class="hint_msg">We use this data for analysis and never share it with other users</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label 'Where you Live', :class => "control-label" %>
+        <div class="controls">
+          <%= country_select(f.object.class.name.downcase, "country", ["United States", "United Kingdom"]) %>
+          <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
+              <span>Private</span>
+              <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+          <% end %>
+        </div>
+        <div class="controls">
+          <span class="hint_msg">Many Seekers are considering relocations, new cities and countries</span>
+        </div>
+      </div>
 
-        <% unless user.external? %>
-            <div class="control-group">
-              <%= f.label :email, :class => "control-label" %>
-              <div class="controls">
-                <%= f.email_field :email, :required => true %>
-                <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
-                    <span>Private</span>
-                    <i class="icon-lock  hover-icon-top-right hover-hold"></i>
-                <% end %>
-              </div>
-              <div class="controls">
-                <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
-              </div>
+      <% unless user.external? %>
+          <div class="control-group">
+            <%= f.label :email, :class => "control-label" %>
+            <div class="controls">
+              <%= f.email_field :email, :required => true %>
+              <%= link_to 'javascript:void(0)', :class => 'btn btn-primary  pull-right' do %>
+                  <span>Private</span>
+                  <i class="icon-lock  hover-icon-top-right hover-hold"></i>
+              <% end %>
             </div>
-
-        <% end %>
-
-        <div class="control-group">
-          <%= f.label "Describe Yourself", :class => "control-label" %>
-          <div class="controls">
-            <%= f.text_area :descriptions,:class => 'form_text_area' %>
+            <div class="controls">
+              <span class="hint_msg">This is only shared once you have a confirmed Session with another iSeekiGive user</span>
+            </div>
           </div>
-          <div class="gap-small"></div>
-          <div class="controls">
-            <span class="hint_msg">iSeekiGive is built on real perspectives for life transitions. Help other people get to know you better.</span>
-            <span class="hint_msg">What brings you to iSeekiGive?</span>
-            <span class="hint_msg">Tell them about yourself and any life transitions you may have had</span>
-            <span class="hint_msg">Do you have life motto or tip(s) for your own life?</span>
-          </div>
+
+      <% end %>
+
+      <div class="control-group">
+        <%= f.label "Describe Yourself", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_area :descriptions, :class => 'form_text_area' %>
         </div>
-
-
-        <div class="form-actions">
-          <%= f.submit "Save", :class => "btn btn-primary" %>
+        <div class="gap-small"></div>
+        <div class="controls">
+          <span class="hint_msg">iSeekiGive is built on real perspectives for life transitions. Help other people get to know you better.</span>
+          <span class="hint_msg">What brings you to iSeekiGive?</span>
+          <span class="hint_msg">Tell them about yourself and any life transitions you may have had</span>
+          <span class="hint_msg">Do you have life motto or tip(s) for your own life?</span>
         </div>
+      </div>
 
-    <% end %>
+
+      <div class="form-actions">
+        <%= f.submit "Save", :class => "btn btn-primary" %>
+      </div>
+
+  <% end %>
 
 </div>
 
@@ -184,6 +184,8 @@
                 <i class="icon-linkedin"></i>
               </span>
           Linkedin: Connected
+
+          <%= link_to "Refresh Linkedin", user_path(current_user), :class => "btn btn-primary" %>
       <% else %>
           <%= link_to auth_at_provider_path(:provider => :linkedin) do %>
                 <span class="icon-stack linkedin">
@@ -197,18 +199,24 @@
             As the World's Largest Proressional Network, iSeekiGive verifies your professional credibility using your
             LinkedIn profile details.
           </p>
+
       <% end %>
+
+
+      
     </legend>
   </div>
   <div class="container span6">
-    <legend>
-      <h3>Education </h3>
-    </legend>
-    <% user.educations.each do |education| %>
-        <%= render education %>
-    <% end %>
-    <%= form_tag game_1_user_perspectives_path(current_user) do %>
-        <%# @user.educations.first do |edu| %>
+    <% if @user.educations.present? %>
+        <legend>
+          <h3>Education </h3>
+        </legend>
+        <% user.educations.each do |education| %>
+            <%= render education %>
+        <% end %>
+
+        <%= form_tag game_1_user_perspectives_path(current_user) do %>
+            <%# @user.educations.first do |edu| %>
             <div class="field_text">
             </div>
             <div class="control-group">
@@ -227,17 +235,21 @@
               </div>
             </div>
             <%= submit_tag :submit, :class => "btn btn-primary", :id => "change_major_submit" %>
-        <%# end %>
+            <%# end %>
+        <% end %>
     <% end %>
     <%= render "educations/new" %>
   </div>
   <div class="container span6">
-    <legend>
-      <h3>Experience</h3>
-    </legend>
-    <% user.experiences.each do |experience| %>
-        <%= render experience %>
+    <% if @user.experiences .present? %>
+        <legend>
+          <h3>Experience</h3>
+        </legend>
+        <% user.experiences.each do |experience| %>
+            <%= render experience %>
+        <% end %>
     <% end %>
+
     <%= render 'experiences/new' %>
 
   </div>
@@ -250,10 +262,12 @@
     <p><span class="key_tag_txt">
       Your keyword tags include anything you might share Perspectives about. These keywords associate your profile with the topics and areas you have experience in.
        </span></p>
+
     <p><span class="key_tag_txt">
       Our system will use these to match Seekers who are looking for Perspectives based on
       your unique combination of experiences.
      </span></p>
+
     <p><span class="key_tag_txt">
       We've brought in your skills from LinkedIN -modify the below list for your keyword tags. You can include a place you've lived, a company
       you've been with a specific job, industry, job function, skills or titles you've had- anything you might share Good, Bad or Ugly

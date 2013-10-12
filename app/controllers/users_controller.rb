@@ -53,6 +53,14 @@ class UsersController < ApplicationController
   def show
     #@user = User.find(params[:id])
     @user = current_user
+    user_field = Rails.application.config.sorcery.linkedin.user_info_fields
+    if current_user.have_linked_in_account?
+      linked_in_data = current_user.connection_info('linkedin')
+      client = LinkedIn::Client.new
+      client.authorize_from_access(linked_in_data.first.token, linked_in_data.first.secret)
+      user_social_data = client.profile(:fields => user_field)
+      UserDetails.update_user_social_info(user_social_data,current_user)
+    end
   end
 
   def public_profile
@@ -64,7 +72,7 @@ class UsersController < ApplicationController
   end
 
   def save_perspective
-    unless current_user.saved_perspectives.exists?(:perspective_id =>params[:p])
+    unless current_user.saved_perspectives.exists?(:perspective_id => params[:p])
       perspective = current_user.saved_perspectives.build(:perspective_id => params[:p])
       if perspective.save
         @user_perspectives = current_user.perspectives.where(:anonymous => false).sample(4)
