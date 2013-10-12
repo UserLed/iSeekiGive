@@ -5,6 +5,7 @@
       <div class="public-profile-tag">
       <%= @user.tags.sample(10).collect(&:name).join(",") %>
       </div>
+    <%= link_to("Schedule a Session", "javascript:void(0)", :class => "btn btn-primary btn-large scheduel_button", :style => "margin-left:900px") %>
 
     <%= link_to("Schedule a Session", "javascript:void(0)", :class => "btn btn-primary btn-large", :style => "margin-left:900px") unless @user.time_slots.blank? %>
 
