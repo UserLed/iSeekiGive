@@ -4546,7 +4546,7 @@ footer.main .help-block {
 .box-cosmos {
   position: relative;
   min-height: 150px;
-  background: url("/assets/img/cosmos.jpg") no-repeat center center fixed;
+  background: url("/assets/new-wave/bg/cosmos.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -4689,7 +4689,7 @@ footer.main .help-block {
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("/assets/img/bg/cosmos.jpg");
+  background-image: url("/assets/new-wave/bg/cosmos.jpg");
 }
 [data-bg-img] {
   background-image: none;

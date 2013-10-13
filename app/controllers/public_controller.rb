@@ -57,7 +57,7 @@ class PublicController < ApplicationController
 
     users = User.find(user_ids) || [] 
     users = users - [current_user] if logged_in?
-    render :json => users.collect{|user| {:name => user.full_name, :user_id => user.id, :icon => user.profile_photo.public_profile.url || "/assets/default_user.png", :location => [user.city,user.country].compact.join(", "), :companies => user.experiences.collect(&:company_name).join("<br/>"), :educations => user.educations.collect(&:school_name).join("<br/>") }}
+    render :json => users.collect{|user| {:name => user.full_name, :user_id => user.id, :icon => user.profile_photo.public_profile.url || "/assets/default_user.png", :location => [user.city, user.country].compact.join(", "), :companies => user.experiences.collect{|e| [e.title, e.company_name].join(", ")}.join("<br/>"), :educations => user.educations.collect(&:school_name).join("<br/>") }}
   end
 
   def how_it_works

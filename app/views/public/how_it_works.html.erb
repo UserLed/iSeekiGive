@@ -1,94 +1,96 @@
-<h1><%=h content_for(:title, "How it Works") %></h1>
+<%=h content_for(:title, "| How it Works") %>
+
+<div class="top-title-area bg-img">
+  <div class="container">
+    <h1 class="title-page">
+      How iSeekiGive works 
+    </h1>
+  </div>
+</div>
+
 <div class="gap"></div>
 
-
-<div class="container dashboard-container">
-  <div class="row row-wrap">
-    <div class=" span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Perspectives</span>
-        </strong>
-      </p>
-
-      <div id="lp-pom-box-344" class="lp-element lp-pom-box">
-        <%= image_tag("perspective-users-icon-48.png", :class => 'lp-img-circle') %>
-      </div>
-      <p class="lplh-20" >
-        <span>Givers share their Perspectives - The Good, The Bad & The Ugly.</span>
-      </p>
-
-      <p class="lplh-20" >
-        <span>Seekers explore areas of interest and learn from Giver's personal experiences.</span>
-      </p>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h4 class="centered">
+        Our community is made of Seekers and Givers
+      </h4>
     </div>
+  </div>
 
-    <div class="span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Sessions</span>
-        </strong>
-      </p>
+  <div class="gap gap-small"></div>
 
-      <div class="lp-element lp-pom-box">
-        <%= image_tag("perspective-iphone-icon-48.png", :class => 'lp-img-circle') %>
+  <div class="row">
+    <div class="span3 offset3">
+      <div class="bordered people-love-box">
+        <h4 class="centered pad-10">Perspectives</h4>
+        <i class="icon-group box-icon-big round box-icon-black box-icon-center animate-icon-border-fadeout box-icon-to-inverse"></i>
+        <p class="people-love-text">
+          Givers share their Perspectives - The Good, The Bad & The Ugly.
+        </p>
+        <p class="people-love-text">
+          Givers share their Perspectives - The Good, The Bad & The Ugly.
+          Seekers explore areas of interest and learn from Giver's personal experiences.
+        </p>
       </div>
-      <p class="lplh-20" >
-        <span>Givers opt to share time with Seekers to answer specific questions.</span>
-      </p>
-
-
-      <p class="lplh-20" >
-        <span>Seekers pay to receive live direct advice and suggestions from relevant Givers.</span>
-      </p>
-
     </div>
-
-    <div class="gap"></div>
-
-    <div class="span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Rewards</span>
-        </strong>
-      </p>
-
-      <div class="lp-element lp-pom-box">
-        <%= image_tag("perspective-shopping-bag-dollar-icon-48.png", :class => 'lp-img-circle') %>
+    <div class="span3">
+      <div class="bordered people-love-box">
+        <h4 class="centered pad-10">Sessions</h4>
+        <i class="icon-mobile-phone box-icon-big round box-icon-black box-icon-center animate-icon-border-fadeout box-icon-to-inverse"></i>
+        <p class="people-love-text">
+          Givers opt to share time with Seekers to give specific feedback.
+        </p>
+        <p class="people-love-text">
+          Seekers pay to receive live direct advice and suggestions from relevant Givers.
+        </p>
       </div>
-      <p class="lplh-20" >
-        <span>Everyone has a story to share.</span>
-      </p>
-
-
-      <p class="lplh-20" >
-        <span>Share Perspectives and hold Sessions to  earn rewards, cash prizes or donations for charitable causes.</span>
-      </p>
     </div>
+  </div>
 
-    <div class="span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Boosters</span>
-        </strong>
-      </p>
+  <div class="gap gap-small"></div>
 
-      <div class="lp-element lp-pom-box">
-        <%= image_tag("perspective-cert-icon-48.png", :class => 'lp-img-circle') %>
+  <div class="row">
+    <div class="span3 offset3">
+      <div class="bordered people-love-box">
+        <h4 class="centered pad-10">Rewards</h4>
+        <i class="icon-dollar box-icon-big round box-icon-black box-icon-center animate-icon-border-fadeout box-icon-to-inverse"></i>
+        <p class="people-love-text">
+          Everyone has a story to share.
+        </p>
+        <p class="people-love-text">
+          Share Perspectives and hold Sessions to earn rewards, cash prizes or donations for charitable causes. 
+        </p>
       </div>
-      <p class="lplh-20" >
-        <span>Care about a cause? </span>
-      </p>
-
-
-      <p class="lplh-20" >
-        <span>Start a campaign and invite others to support and raise proceeds in a new way - by sharing their time and perspectives.</span>
-      </p>
+    </div>
+    <div class="span3">
+      <div class="bordered people-love-box">
+        <h4 class="centered pad-10">Boosters</h4>
+        <i class="icon-gear box-icon-big round box-icon-black box-icon-center animate-icon-border-fadeout box-icon-to-inverse"></i>
+        <p class="people-love-text">
+          Care about a cause?
+        </p>
+        <p class="people-love-text">
+          Start a campaign and invite others to support and raise proceeds in a new way - by sharing their time and perspectives.
+        </p>
+      </div>
     </div>
   </div>
 </div>
 
-
-
 <div class="gap"></div>
+
+<div class="bg-gray">
+  <div class="container">
+    <div class="gap">
+      <div class="row">
+        <div class="span12 center">
+          <%= link_to "GET STARTED NOW", logged_in? ? "javascript:;" : signup_path, :class => "btn btn-primary-inverse btn-mega" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="gap"></div>
