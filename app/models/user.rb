@@ -34,13 +34,15 @@ class User < ActiveRecord::Base
   has_one  :game,               :dependent => :destroy
   has_many :time_slots,         :dependent => :destroy
   has_many :perspectives,       :dependent => :destroy
-  has_many :saved_perspectives, :dependent => :destroy 
+  has_many :saved_perspectives, :dependent => :destroy
+  has_many :languages,          :dependent => :destroy
 
   
   accepts_nested_attributes_for :authentications
   accepts_nested_attributes_for :educations
   accepts_nested_attributes_for :skills
   accepts_nested_attributes_for :experiences
+  accepts_nested_attributes_for :languages, :allow_destroy => true
   
   HOW_HEAR = [
     ["By Friend"],
@@ -48,6 +50,10 @@ class User < ActiveRecord::Base
     ["Advertisement"],
     ["Others"]
   ]
+
+  def step
+    %w[personal_details photos educations_experiences_social skills trust_and_verifications review]
+  end
 
   def name
     "#{first_name} #{last_name}"

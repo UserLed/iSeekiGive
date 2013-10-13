@@ -10,7 +10,7 @@ development:
   database: iSeekiGive_development
   pool: 5
   username: root
-  # password: root
+  password: root
 
 
 # Warning: The database defined as "test" will be erased and

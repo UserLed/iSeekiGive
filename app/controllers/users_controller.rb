@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => [:activate, :resend_confirmation]
 
+  def edit
+    @step = params[:step].to_i or 0
+    @user = User.find(params[:id])
+  end
+
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
@@ -83,6 +88,12 @@ class UsersController < ApplicationController
         render :nothing => true
       end
     end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user]) and
+    redirect_to request.referrer, :notice => "Successfully Updated"
   end
 
 end

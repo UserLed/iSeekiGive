@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'activeadmin'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem "nested_form"
 
 
 group :development  do

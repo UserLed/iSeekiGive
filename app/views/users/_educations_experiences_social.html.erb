@@ -1,0 +1,69 @@
+<div class="social-exp">
+
+  <legend>
+    <% if @user.linkedin_connected? %>
+      <span class="icon-stack linkedin">
+        <i class="icon-circle icon-stack-base"></i>
+        <i class="icon-linkedin"></i>
+      </span>
+      Linkedin: Connected
+    <% else %>
+      <%= link_to auth_at_provider_path(:provider => :linkedin) do %>
+        <span class="icon-stack linkedin">
+          <i class="icon-circle icon-stack-base"></i>
+          <i class="icon-linkedin"></i>
+        </span>
+        Log-on with LinkedIn and complete 98% of this section in seconds
+
+      <% end %>
+      <p>
+        As the World's Largest Proressional Network, iSeekiGive verifies your professional credibility using your
+        LinkedIn profile details.
+      </p>
+    <% end %>
+  </legend>
+</div>
+
+<legend>
+  <h3>Education </h3>
+</legend>
+<% @user.educations.each do |education| %>
+  <%= render education %>
+<% end %>
+<%= form_tag game_1_user_perspectives_path(current_user) do %>
+  <% @user.educations.each do |edu| %>
+    <div class="field_text">
+      <h5>
+        <%= edu.degree %>,
+        <%= edu.field_of_study %>
+      </h5>
+    </div>
+    <div class="control-group">
+      <%= label_tag :changed_majors, "During your college or university studies – did you ever change majors or consider a different field of study?", :class => "control-label" %>
+      <div class="controls">
+        <%= radio_button_tag :"education[#{edu.id}][changed_majors]", 1, edu.changed_majors ? true : false, :class => "change-majors-yes" %>
+        Yes
+        <%= radio_button_tag :"education[#{edu.id}][changed_majors]", 0, edu.changed_majors ? false : true, :class => "change-majors-no" %>
+        No
+      </div>
+    </div>
+    <div class="control-group desc-changing-majors" style="display:none">
+      <%= label_tag :"education[#{edu.id}][fields_of_study]", "Please list all fields of study that you ever considered or studied – even shortly, before changing majors", :class => "control-label" %>
+      <div class="controls">
+        <%= text_area_tag :"education[#{edu.id}][fields_of_study]", edu.fields_of_study, :size => "50x4" %>
+      </div>
+    </div>
+    <hr/>
+    <%= (submit_tag :submit, :class => "btn btn-primary", :id => "submit") if edu.id.eql?(@user.educations.last.id) %>
+  <% end %>
+<% end %>
+<%= render "educations/new" %>
+
+
+<legend>
+  <h3>Experience</h3>
+</legend>
+<% @user.experiences.each do |experience| %>
+  <%= render experience %>
+<% end %>
+<%= render 'experiences/new' %>

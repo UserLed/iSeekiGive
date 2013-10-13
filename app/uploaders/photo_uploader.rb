@@ -35,8 +35,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
   version :public_profile do
     process :resize_to_fill => [100, 100]
   end
-    version :public_profile_header do
+  version :public_profile_header do
     process :resize_to_fill => [1302, 300]
+  end
+
+  version :thumb do
+    process :resize_to_fill => [200, 200]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

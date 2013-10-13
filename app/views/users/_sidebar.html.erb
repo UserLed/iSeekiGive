@@ -1,0 +1,27 @@
+<ul class="nav nav-list no-left-padding no-left-margin">
+  <li class="nav-header user-edit-sidebar">Edit Profile</li>
+  <li class="divider"></li>
+  <li class="<%= "active" if @step == 0 %>">
+    <%= link_to "Edit Profile", edit_user_path(current_user, :step => 0) %>
+  </li>
+
+  <li class="<%= "active" if @step == 1 %>">
+    <%= link_to "Photos", edit_user_path(current_user, :step => 1) %>
+  </li>
+
+  <li class="<%= "active" if @step == 2 %>">
+    <%= link_to "Education and Experience", edit_user_path(current_user, :step => 2) %>
+  </li>
+
+  <li class="<%= "active" if @step == 3 %>">
+    <%= link_to "Your Keyword Tag", edit_user_path(current_user, :step => 3) %>
+  </li>
+
+  <li class="<%= "active" if @step == 4 %>">
+    <%= link_to "Trust and Verification", edit_user_path(current_user, :step => 4) %>
+  </li>
+
+  <li class="<%= "active" if @step == 5 %>">
+    <%= link_to "Reviews", edit_user_path(current_user, :step => 5) %>
+  </li>
+</ul>

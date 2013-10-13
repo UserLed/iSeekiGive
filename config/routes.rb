@@ -62,6 +62,7 @@ ISeekiGive::Application.routes.draw do
   resources :tags
   resources :experiences
   resources :password_resets
+  resources :languages, :only => [:create, :destroy]
   
   resources :sessions
 

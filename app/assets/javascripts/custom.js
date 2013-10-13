@@ -5,6 +5,12 @@ $(document).ready(function(){
         $('.field_form').hide();
     });
 
+
+    $('.close').click(function(){
+      $(this).closest('li').remove();
+    });
+
+
     $('.close-popup').click(function(){
         parent.$.fancybox.close();
     });
@@ -69,4 +75,20 @@ function another_locations(){
         $("#game_locations").val("");
         $(".localtion-list-field").hide();
     }
+}
+
+function update_user_language(){
+    if($('#user_language').val().length > 0){
+        $.ajax({
+            url: "/languages",
+            type: "POST",
+            dataType: "script",
+            data: {
+                title : $('#user_language').val()
+            }
+        });
+    }
+    else{
+        alert('Please Enter Language');
+    }   
 }
