@@ -100,3 +100,24 @@ ul.ui-autocomplete{
     font-weight: normal;
 }
 
+@media (min-width: 768px) and (max-width: 1199px){
+    .people-love-box{
+        min-height: 300px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px){
+    .people-love-box{
+        min-height: 370px;
+    }
+}
+
+@media (max-width: 768px){
+    .people-love-box{
+        min-height: auto;
+        margin-bottom: 10px;
+    }
+    .testimonial-top-left{
+        margin-bottom: 10px;
+    }
+}
