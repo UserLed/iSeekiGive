@@ -10,27 +10,25 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHATS TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 
-
-//= require js/easing.min
-//= require js/touch-swipe
-//= require js/flexnav.min
-//= require js/countdown.min
-//= require js/magnific.min
-//= require js/mediaelement.min
-//= require js/fitvids.min
-//= require js/gridrotator.min
-//= require js/fredsel.min
-//= require js/backgroundsize.min
-//= require js/superslides.min
-//= require js/one-page-nav.min
-//= require js/scroll-to
-//= require js/tweet.min
-//= require js/mixitup.min
-//= require js/mail.min
-//= require js/transit-modified
-//= require js/layerslider-transitions.min
-//= require js/layerslider
-//= require js/custom
-//= require js/switcher
-
+//= require new-wave/easing.min
+//= require new-wave/touch-swipe
+//= require new-wave/boostrap.min
+//= require new-wave/flexnav.min
+//= require new-wave/countdown.min
+//= require new-wave/magnific.min
+//= require new-wave/mediaelement.min
+//= require new-wave/fitvids.min
+//= require new-wave/gridrotator.min
+//= require new-wave/fredsel.min
+//= require new-wave/backgroundsize.min
+//= require new-wave/superslides.min
+//= require new-wave/one-page-nav.min
+//= require new-wave/scroll-to
+//= require new-wave/tweet.min
+//= require new-wave/mixitup.min
+//= require new-wave/mail.min
+//= require new-wave/transit-modified
+//= require new-wave/layerslider-transitions.min
+//= require new-wave/layerslider
+//= require new-wave/custom
 

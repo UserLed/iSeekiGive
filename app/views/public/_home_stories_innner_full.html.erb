@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h4 class="centered">
+        Learn about topics that interest you from Givers who've been there before
+      </h4>
+    </div>
+  </div>
+
+  <div class="gap gap-small"></div>
+
+  <div class="row">
+    <div class="span4">
+      <h5>The Good</h5>
+      <%= link_to good_stories_stories_path, :class => "hover-img" do %>
+        <%= image_tag("new-wave/good_job_800x600.jpg") %>
+        <div class="hover-inner">
+          <p>
+            The good things Givers like and things you might like about…(a city, a job function, a company, a school, etc)
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="span4">
+      <h5>The Bad</h5>
+      <%= link_to bad_stories_stories_path, :class => "hover-img" do %>
+        <%= image_tag("new-wave/business_group_800x600.jpg") %>
+        <div class="hover-inner">
+          <p>
+            The not-so-good things Givers didn’t like and things you might not like about …(a city, a job function, a company, a school, etc)
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="span4">
+      <h5>The Ugly</h5>
+      <%= link_to ugly_stories_stories_path, :class => "hover-img" do %>
+        <%= image_tag("new-wave/machine_businessman_800x600.jpg") %>
+        <div class="hover-inner">
+          <p>
+            Red flags and warnings.  Risks and things to be careful of, be aware of or watch out for in…(a city, a job function, a company, a school, etc)
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

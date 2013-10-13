@@ -1,87 +1,35 @@
-<div class="navbar navbar-fluid-top">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <%= link_to "iSeekiGive", root_path, :class => "brand" %>
-
-      <div class="nav-collapse">
-        <ul class="nav">
-          <% unless current_user %>
-            <li class="<%= "active" if current_page?(signup_path) %>">
-              <%= link_to "Sign Up", signup_path  %>
-            </li>
-            <li class="<%= "active" if current_page?(login_path) %>">
-              <%= link_to "Log In", login_path  %>
-            </li>
+<header class="main shrink">
+  <div class="container">
+    <div class="row">
+      <div class="span2">
+        <div class="logo-container">
+          <%= link_to image_tag("logo.png"), root_path, :class => "logo" %>
+        </div>
+      </div>
+      <div class="span7">
+        <div class="row">
+          <%= form_tag '#', :method => "get", :class => "find-givers-form" do %>
+            <i class="icon-search"></i>
+            <%= text_field_tag "search_keywords", '' ,:class => "span3", :placeholder => "Find Givers" %>
           <% end %>
-        </ul>
-      </div><!--/.nav-collapse -->
-
-      <% if current_user %>
-        <div class="nav-collapse pull-right">
-          <ul class="nav">
-            <li class="dropdown">
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <i>
-                  <%= image_tag(current_user.profile_photo.public_profile.to_s, :style => "height:26px") if current_user.profile_photo.present? %>
-                </i>
-                <%= current_user.name %>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-
-                <% if current_user.seeker? %>
-
-                  <li class="<%= "active" if current_page?(dashboard_user_path(current_user)) %>">
-                    <%= link_to "Dashboard", dashboard_user_path(current_user) %>
-                  </li>
-                  <li class="<%= "active" if current_page?(user_perspectives_path(current_user)) %>">
-                    <%= link_to "Perspectives", user_perspectives_path(current_user) %>
-                  </li>
-                  <li class="<%= "active" if current_page?(user_perspectives_path(current_user)) %>">
-                    <%= link_to "Manage Sessions", user_perspectives_path(current_user) %>
-                  </li>
-                  <li class="<%= "active" if current_page?(current_user) %>">
-                    <%= link_to "Edit Profile", current_user %>
-                  </li>
-                  <li>
-                    <%= link_to "Boosters", "Javascript:;" %>
-                  </li>
-
-                <% else %>
-
-                  <li class="<%= "active" if current_page?(dashboard_user_path(current_user)) %>">
-                    <%= link_to "Dashboard", dashboard_user_path(current_user) %>
-                  </li>
-                  <li class="<%= "active" if current_page?(user_perspectives_path(current_user)) %>">
-                    <%= link_to "Perspectives", user_perspectives_path(current_user) %>
-                  </li>
-                  <li class="<%= "active" if !current_page?(user_perspectives_path(current_user)) %>">
-                    <%= link_to "Manage Sessions", current_user.level == 2 ? user_perspectives_path(current_user) : "Javascript:;" %>
-                  </li>
-                  <li class="<%= "active" if current_page?(current_user) %>">
-                    <%= link_to "Edit Profile", user_path(current_user) %>
-                  </li>
-                  <li>
-                    <%= link_to "Boosters", "Javascript:;" %>
-                  </li>
-
-                <% end %>
-
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Logout", logout_path %>
-                </li>
-              </ul>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
+        <nav>
+          <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
+            <li class="<%= "active" if current_page?(how_it_works_path) %>">
+              <%= link_to "How it works", how_it_works_path %>
+            </li>
+            <li class="<%= "active" if current_page?(about_us_path) %>">
+              <%= link_to "About Us", "http://facelift.iseekigive.com/clkn/http/blog.iseekigive.com/ourstory", :target => "_blank" %>
+            </li>
+            <li>
+              <%= link_to "Login", login_path %>
             </li>
           </ul>
-        </div>
-      <% end %>
-
+        </nav>
+      </div>
     </div>
   </div>
-</div>
+</header>

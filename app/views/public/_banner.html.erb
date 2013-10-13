@@ -1,0 +1,34 @@
+<!-- TOP AREA -->
+<div class="top-area shadow-inner show-onload">
+  <div class="top-bg-area bg-mask" data-bg-img="/assets/new-wave/bg/business-people-blur.jpg">
+    <div class="earth-top to-bottom mask-front">
+      <div class="earth-rotate flare">
+        <%= image_tag 'new-wave/earth-models/render/earth-america.png' %>
+      </div>
+    </div>
+    <div class="bg-mask-front bg-mask-darken full">
+      <div class="vertical-center mask-front white">
+        <div class="container">
+          <div class="row">
+            <div class="span8 offset2 center">
+              <h1 class="super-hero-title">
+                Empowering Young Professionals
+              </h1>
+              <p class="big-text">
+                To get Real Perspectives for Life Transitions: 
+                New Jobs, Industries or Career Change,
+                Academic Programs & Certifications,
+                Moving to a New City or Country,
+                Step outside your network and 
+                gain fresh perspectives to redefine your future.
+              </p>
+              <div class="gap gap-small"></div>
+              <%= link_to "Sign-up for Access", logged_in? ? "javascript:;" : signup_path, :class => "btn btn-primary btn-mega" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END TOP AREA  -->

@@ -27,6 +27,6 @@ ActiveAdmin.register User do
   member_action :login do
     @user = User.find(params[:id])
     auto_login @user
-    redirect_to @user
+    redirect_to dashboard_user_path(@user)
   end
 end

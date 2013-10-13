@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_filter :require_login
+  #before_filter :require_login
 
   def good_stories
   	@good_stories = Perspective.all.select{|story| story.story_type.eql?("The Good")}

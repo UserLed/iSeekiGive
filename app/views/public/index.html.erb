@@ -1,286 +1,31 @@
-<div class="top-area shadow-inner show-onload">
-  <div class="top-bg-area bg-mask" data-bg-img="/assets/img/bg/homebackground.png">
-    <div class="earth-top to-bottom mask-front">
-      <div class="earth-rotate flare">
-        <%= image_tag 'img/earth-models/render/earth-america.png', :alt => "Image Alternative text", :title => "Image Title" %>
-      </div>
-    </div>
-    <div class="bg-mask-front bg-mask-darken full">
-      <div class="vertical-center mask-front white">
-        <div class="container">
-          <div class="row">
-            <div class="span8 offset2 center">
-              <p class="big-text focus-title">Empowering young professionals to get Real Perspectives for Life
-                Transitions:</p>
-
-              <p class="big-text focus-title">New Jobs, Industries or Career Change </p>
-
-              <p class="big-text focus-title">Academic Programs & Certfications </p>
-
-              <p class="big-text focus-title"> Moving to a New City or Country </p>
-
-              <p class="big-text focus-title"> Step outside your network and gain fresh perspectives to redefine your
-                future</p>
-
-              <%= link_to "Sign-up for Access", (logged_in?) ? "javascript:void(0)" : signup_path, :class => "btn btn-primary btn-mega" %>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- END TOP AREA  -->
+<%= render "banner" %>
 
 <div class="gap"></div>
-<div class="top-title-area bg-img">
+
+<%= render "home_stories_innner_full" %>
+
+<div class="gap"></div>
+<hr/>
+
+<%= render "home_people_love_section" %>
+
+<div class="gap"></div>
+<hr/>
+
+<%= render "home_people_are_saying" %>
+
+<div class="gap"></div>
+
+<div class="bg-gray">
   <div class="container">
-    <h1 class="title-page-small">Learn about topics that interest you from Givers who've been there before</h1>
-  </div>
-</div>
-<div class="gap"></div>
-
-<div class="container dashboard-container">
-  <div class="row row-wrap">
-    <div class="span3">
-      <div class="thumb-header">
-        <h5>The Good</h5>
-        <%= link_to good_stories_stories_path, :class => "hover-img" do %>
-            <%= image_tag 'img/good_job_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
-            <div class="hover-inner">
-              <p>The good things Givers like and things you might like about…(a city, a job function, a company, a
-                school,
-                etc)</p>
-            </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="span3">
-      <div class=" thumb-header">
-        <h5>The Bad</h5>
-
-        <%= link_to bad_stories_stories_path, :class => "hover-img" do %>
-            <%= image_tag 'img/business_group_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
-            <div class="hover-inner">
-              <p>The not-so-good things Givers didn’t like and things you might not like about …(a city, a job function,
-                a
-                company, a school, etc)</p>
-            </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="span3">
-      <div class=" thumb-header">
-        <h5>The Ugly</h5>
-        <%= link_to ugly_stories_stories_path, :class => "hover-img" do %>
-            <%= image_tag 'img/working_in_the_nature_800x600.jpg', :alt => "Image Alternative text", :title => "Business Group" %>
-            <div class="hover-inner">
-              <p>Red flags and warnings. Risks and things to be careful of, be aware of or watch out for in…(a city, a
-                job
-                function, a company, a school, etc)</p>
-            </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="gap"></div>
-
-<div class="gap"></div>
-<div class="top-title-area bg-img">
-  <div class="container">
-    <h1 class="title-page-small">Why people love <em> iSeekiGive</em></h1>
-  </div>
-</div>
-<div class="gap"></div>
-
-<div class="container dashboard-container">
-  <div class="row row-wrap">
-    <div class=" span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Credible</span>
-        </strong>
-      </p>
-
-      <div id="lp-pom-box-344" class="lp-element lp-pom-box">
-        <%= image_tag("credible.png", :class => 'lp-img-circle') %>
-      </div>
-      <p class="lplh-20">
-        <span>Our commuity is based on real perspectives from users who've "been there, done that".</span>
-      </p>
-    </div>
-
-    <div class="span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Relevant</span>
-        </strong>
-      </p>
-
-      <div class="lp-element lp-pom-box">
-        <%= image_tag("relevant.png", :class => 'lp-img-circle') %>
-      </div>
-      <p class="lplh-20">
-        <span> Perspectives help users easily identify relevant feedback to support their life transitions.  Sessions are backed by our no risk relevance policy.</span>
-      </p>
-
-    </div>
-
-    <div class="gap"></div>
-
-    <div class="span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Effective</span>
-        </strong>
-      </p>
-
-      <div class="lp-element lp-pom-box">
-        <%= image_tag("effective.png", :class => 'lp-img-circle') %>
-      </div>
-      <p class="lplh-20">
-        <span>We reduce the time and energy needed to gain fresh perspectives and relevant advice.</span>
-      </p>
-
-
-      <p class="lplh-20">
-        <span>Explore interests and share feedback, we'll facilitate the logistics.</span>
-      </p>
-    </div>
-
-    <div class="span3 how_it_box">
-      <p class="lplh-22">
-        <strong>
-          <span>Rewarding</span>
-        </strong>
-      </p>
-
-      <div class="lp-element lp-pom-box">
-        <%= image_tag("reward.png", :class => 'lp-img-circle') %>
-      </div>
-      <p class="lplh-20">
-        <span>Giving back never felt so good. </span>
-      </p>
-
-      <p class="lplh-20">
-        <span>Help others progress and earn rewards.</span>
-      </p>
-
-      <p class="lplh-20">
-        <span>Why wouldn't you Give?</span>
-      </p>
-    </div>
-  </div>
-</div>
-
-
-
-<div class="gap"></div>
-<div class="top-title-area bg-img">
-  <div class="container">
-    <h1 class="title-page-small">What people are saying.</h1>
-  </div>
-</div>
-<div class="gap"></div>
-<div class="container">
-  <div class="gap">
-    <div class="row row-wrap">
-      <div class="span4">
-        <!-- START TESTIMONIAL -->
-        <div class="testimonial">
-          <div class="testimonial-inner">
-            <blockquote>
-              <p>Amazing service that made my life much easier. It would've taken me months to learn this on my own!</p>
-            </blockquote>
-          </div>
-          <div class="testimonial-author">
-            <%= image_tag "default_user.png", :alt => "Image Alternative text", :title => "ppl talk" %>
-            <p class="testimonial-author-name">Khalil A.</p>
-
-            <small class="block text-muted">Software Project Manager</small>
-            <small class="block text-muted">Boston, MA</small>
-          </div>
+    <div class="gap">
+      <div class="row">
+        <div class="span12 center">
+          <%= link_to "GET STARTED NOW", logged_in? ? "javascript:;" : signup_path, :class => "btn btn-primary-inverse btn-mega" %>
         </div>
-        <!-- END TESTIMONIAL -->
       </div>
-      <div class="span4">
-        <!-- START TESTIMONIAL -->
-        <div class="testimonial">
-          <div class="testimonial-inner">
-            <blockquote>
-              <p>Solid advice and refreshing perspectives, I'll keep coming back for more.</p>
-            </blockquote>
-          </div>
-          <div class="testimonial-author">
-            <%= image_tag "default_user.png", :alt => "Image Alternative text", :title => "ppl talk" %>
-            <p class="testimonial-author-name">Andrew L.</p>
-
-            <small class="block text-muted">Graduate Student, International Relations</small>
-
-            <small class="block text-muted">New York, NY</small>
-          </div>
-        </div>
-        <!-- END TESTIMONIAL -->
-      </div>
-      <div class="span4">
-        <!-- START TESTIMONIAL -->
-        <div class="testimonial">
-          <div class="testimonial-inner">
-            <blockquote>
-              <p>
-                I could not get this kind of feedback anywhere else. It was straight to the point, no BS.
-              </p>
-            </blockquote>
-          </div>
-          <div class="testimonial-author">
-            <%= image_tag "default_user.png", :alt => "Image Alternative text", :title => "ppl talk" %>
-            <p class="testimonial-author-name">Cindy Y.</p>
-
-            <small class="block text-muted"> Relocating Abroad</small>
-
-            <small class="block text-muted">San Francisco, CA</small>
-          </div>
-        </div>
-        <!-- END TESTIMONIAL -->
-      </div>
-    </div>
-    <div class="row row-wrap">
-      <div class="span4">
-        <!-- START TESTIMONIAL -->
-        <div class="testimonial">
-          <div class="testimonial-inner">
-            <blockquote>
-              <p>
-                ...Made it easy to talk openly and figure out a game plan that's right for me.
-              </p>
-            </blockquote>
-          </div>
-          <div class="testimonial-author">
-            <%= image_tag "default_user.png", :alt => "Image Alternative text", :title => "ppl talk" %>
-            <p class="testimonial-author-name">Tim D.</p>
-
-            <small class="block text-muted"> Financial Services</small>
-
-            <small class="block text-muted">Charlotte, NC</small>
-          </div>
-        </div>
-        <!-- END TESTIMONIAL -->
-      </div>
-
     </div>
   </div>
-
-  <div class="gap gap-small"></div>
-
-  <div class="container dashboard-container">
-    <div class="row row-wrap">
-      <%= link_to "GET STARTED NOW", (logged_in?) ? "javascript:void(0)" : signup_path, :class => "btn btn-primary btn-mega" %>
-    </div>
-  </div>
-
 </div>
 
 <div class="gap"></div>
-
