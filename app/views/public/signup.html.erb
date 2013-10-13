@@ -1,7 +1,36 @@
-<div class="container">
-<h2>Our Community is made-up of Seekers and Givers</h2>
+<%=h content_for(:title, "| How it Works") %>
 
-<%= link_to "Seeker", signup_path(:type => "seeker"), :class => "btn btn-large btn-primary fancybox fancybox.ajax no-transform" %>
 
-<%= link_to "Giver", signup_path(:type => "giver"), :class => "btn btn-large btn-primary fancybox fancybox.ajax no-transform" %>
+<div class="top-title-area bg-img">
+  <div class="container">
+    <h1 class="title-page">
+      Sign-up
+    </h1>
+  </div>
 </div>
+
+<div class="gap"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h4 class="centered">
+        Our community is made of Seekers and Givers
+      </h4>
+    </div>
+  </div>
+
+  <div class="gap gap-small"></div>
+
+  <div class="row">
+    <div class="span12 center">
+      <%= link_to "Seeker", signup_path(:type => "seeker"), :class => "btn btn-large btn-primary fancybox fancybox.ajax no-transform" %>
+
+      <%= link_to "Giver", signup_path(:type => "giver"), :class => "btn btn-large btn-primary fancybox fancybox.ajax no-transform" %>
+    </div>
+  </div>
+</div>
+
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

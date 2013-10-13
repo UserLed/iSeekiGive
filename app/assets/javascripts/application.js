@@ -13,4 +13,6 @@
 //= require new-wave/modernizr.custom.26633
 //= require new-wave/jquery
 //= require jquery-ui
+//= require fancybox
+//= require fancybox-config
 //= require customscript

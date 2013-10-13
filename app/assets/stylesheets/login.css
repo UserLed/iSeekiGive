@@ -1,3 +1,61 @@
+.well-wrap label.small{
+    width: 100px;
+    padding-top: 3px;
+}
+
+.well-wrap {
+    width: 350px;
+    margin: auto;
+}
+
+.well-wrap.well{
+    padding: 0px;
+}
+.focus-title{
+    font-size: 20px;
+}
+
+.well-wrap .title{
+    border-radius: 4px 4px 0 0;
+    border-top: 0 none;
+    background-color: #E5E5E5;
+    background-image: -moz-linear-gradient(center top , #F6F6F6 0%, #E5E5E5 100%);
+    border-bottom: 1px solid #D0D0D0;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2), 0 0 0 #000000;
+    padding: 5px 15px;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #393C3D;
+    font-weight: bold;
+    margin: 3px 0;
+    text-rendering: optimizelegibility;
+}
+
+.well-wrap .panel-content{
+    padding: 10px 15px;
+}
+
+
+.panel-footer:before, .panel-footer:after {
+    content: "";
+    display: table;
+}
+.panel-footer:after {
+    clear: both;
+}
+.panel-footer:before, .panel-footer:after {
+    content: "";
+    display: table;
+}
+
+.panel-footer {
+    border-radius: 0 0 6px 6px;
+    border-top: 1px solid #D5D5D5;
+    box-shadow: 0 1px 0 #FFFFFF inset, 0 0 0 #000000;
+    margin-bottom: 0;
+    padding: 14px 15px 15px;
+}
+
 .well-wrap .btn.icon-btn{
     display: inline-block;
     padding: 0;
@@ -141,6 +199,10 @@
     padding: 0 10px;
 }
 
+.well-wrap .signup-or-separator .text.signup{
+    background-color: #F5F5F5;
+}
+
 .well-wrap .signup-or-separator hr {
     margin: -20px auto 10px;
     width: 200px;
@@ -175,4 +237,32 @@
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.well-wrap .btn.no-transform{
+    text-transform: none;
+}
+
+.well-wrap .signup-email{
+    width: 100%;
+    text-align: center;
+}
+
+.well-wrap .signup-email a{
+    text-decoration: underline;
+}
+
+.well-wrap .notice{
+    color: #393C3D;
+    font-size: 12px;
+    padding-top: 20px;
+}
+
+.signup-wrap{
+    width: 600px;
+    margin: auto;
+}
+
+.signup-wrap label.small{
+    padding-top: 3px;
 }
