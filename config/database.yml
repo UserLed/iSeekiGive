@@ -23,7 +23,7 @@ test:
   database: iSeekiGive_test
   pool: 5
   username: root
-  # password: root
+  password: root
 
 
 production:
