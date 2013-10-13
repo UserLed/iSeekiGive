@@ -1,19 +1,23 @@
-<div class="page-header">
-  <h1>
-    Reset Password
-  </h1>
-</div>
+<div class="signup-wrap">
+
+  <div class="page-header">
+    <h1>
+      Reset Password
+    </h1>
+  </div>
 
 
-<%= form_tag password_resets_path, :method => :post do %>
-  <div class="control-group">
-    <%= label_tag :email, "Email", :class => 'control-label' %>
-    <div class="controls">
-      <%= email_field_tag :email, params[:email], :class => 'text_field', :required => true %>
+  <%= form_tag password_resets_path, :method => :post do %>
+    <div class="control-group">
+      <%= label_tag :email, "Email", :class => 'control-label' %>
+      <div class="controls">
+        <%= email_field_tag :email, params[:email], :class => 'text_field', :required => true %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-actions">
-    <%= submit_tag "Reset my password!", :class => 'btn btn-primary' %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= submit_tag "Reset my password!", :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+</div>

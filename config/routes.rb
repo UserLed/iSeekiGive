@@ -3,9 +3,8 @@ ISeekiGive::Application.routes.draw do
   resources :phone_numbers
   match 'user_tags' => 'tags#get_user_tags'
 
-  match 'terms-of-service' => 'public#terms_of_service', :as => :terms
-  match 'terms-and-condition' => 'public#terms_and_condition', :as => :terms_n_condition
-  match 'privacy' => 'public#privacy', :as => :privacy
+  match 'terms-of-service' => 'public#terms_of_service', :as => :terms_of_service
+  match 'privacy-policy' => 'public#privacy_policy', :as => :privacy_policy
   match 'search-users' => 'public#get_all_users_with_tags'
   match 'how-it-works' => 'public#how_it_works', :as => :how_it_works
   match 'about-us' => 'public#about_us', :as => :about_us
