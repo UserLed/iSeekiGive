@@ -6,6 +6,13 @@ class UserDetails
       set_user_skills(user_info["skills"], user)
       set_user_educations(user_info["educations"], user)
       set_user_experiences(user_info["positions"], user)
+      set_user_languages(user_info["languages"], user)
+
+      if user.date_of_birth.blank? and user_info["dateOfBirth"].present?
+        b = user_info["dateOfBirth"]
+        user.date_of_birth = "#{b['year']}-#{b['month']}-#{b['day']}"
+      end
+
       user.linkedin_update = true
       user.save
     end
@@ -15,19 +22,27 @@ class UserDetails
     set_user_skills(user_social_data["skills"], user)
     set_user_educations(user_social_data["educations"], user)
     set_user_experiences(user_social_data["positions"], user)
-
   end
 
   private
 
+  def self.set_user_languages(hash, user)
+    hash.vine("values").each do |v|
+      if v["language"].present?
+        unless user.languages.where(:name => v["language"]["name"]).present?
+          user.languages.create(:name => v["language"]["name"])
+        end
+      end
+    end
+  end
+
   def self.set_user_skills(hash, user)
     hash.vine("values").each do |v|
       if v["skill"].present? and v["skill"]["name"].present?
-       unless Tag.record_exists?(v["skill"]["name"])
-         user.skills.create(:name => v["skill"]["name"])
-        user.tags.create(:name => v["skill"]["name"])
-       else
-       end
+        unless Tag.record_exists?(v["skill"]["name"])
+          user.tags.create(:name => v["skill"]["name"])
+        else
+        end
       end
     end
 

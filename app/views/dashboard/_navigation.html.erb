@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="span10">
+      <nav class="dashboard" role="navigation">
+        <div class="navbar-collapse navbar-ex1-collapse">
+          <ul class="nav nav-pills">
+            <%= nav_link "Dashboard", dashboard_path %>
+            <%= nav_link "Profile", profile_path %>
+            <%= nav_link "Perspectives", perspectives_path %>
+            <%= nav_link "Sessions", 'javascript:void(0)' %>
+            <%= nav_link "Boosters", 'javascript:void(0)' %>
+
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Account<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <%= nav_link "Notifications", "javascript:void(0);" %>
+                <%= nav_link "Payout Preferences", "javascript:void(0);" %>
+                <%= nav_link "Transaction History", "javascript:void(0);" %>
+                <%= nav_link "Settings", settings_accounts_path %>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+    </div>
+    <div class="span2" style="padding-top:6px;">
+      <% if current_page?(profile_path) %>
+        <%= link_to "View Profile", public_profile_user_path(@user), :class => "btn btn-success", :target => "_blank" %>
+      <% end %>
+    </div>
+  </div>
+  <hr class="dashboard-nav-hr"/>
+<%#= render "breadcrumb" %>
+</div>

@@ -121,3 +121,40 @@ ul.ui-autocomplete{
         margin-bottom: 10px;
     }
 }
+
+.hover-hold.black-back{
+    background-color: black;
+}
+
+.dashboard-nav-hr{
+    margin: 0px;
+    margin-top: 10px;
+}
+
+nav.dashboard ul{
+    margin-bottom: 0px;
+}
+
+.breadcrumb-container .breadcrumb{
+    padding: 0px;
+}
+
+.right{
+    float: right;
+}
+
+.profile-image{
+    margin-top: -7px;
+    max-height: 25px;
+    width: auto;
+}
+
+.alert{
+    margin-bottom: 0px;
+}
+
+.field-notice{
+    clear: both;
+    font-size: 10px;
+    color: #777;
+}

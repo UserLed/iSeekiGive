@@ -95,8 +95,8 @@ Rails.application.config.sorcery.configure do |config|
     config.linkedin.callback_url = "http://localhost:3000/oauth/linkedin/callback"
   end
   
-  config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'id', 'location:(name)', 'positions', 'skills', 'educations']
-  config.linkedin.user_info_mapping = {:email => "emailAddress", :first_name => "firstName", :last_name => "lastName", :country => "location/name"}
+  config.linkedin.user_info_fields = ['first-name', 'last-name', 'email-address', 'date-of-birth', 'id', 'location:(name)', 'positions', 'skills', 'educations', 'languages']
+  config.linkedin.user_info_mapping = {:email => "emailAddress", :display_name => "firstName", :first_name => "firstName", :last_name => "lastName", :location => "location/name"}
   config.linkedin.access_permissions = ['r_fullprofile', 'r_emailaddress', 'r_network', 'r_contactinfo']
 
   #Facebook Config
@@ -110,7 +110,7 @@ Rails.application.config.sorcery.configure do |config|
     config.facebook.callback_url = "http://localhost:3000/oauth/facebook/callback"
   end
   
-  config.facebook.user_info_mapping = {:email => "email", :first_name => "first_name", :last_name => "last_name", :country => "location/name"}
+  config.facebook.user_info_mapping = {:email => "email", :display_name => "first_name", :first_name => "first_name", :last_name => "last_name", :location => "location/name", :date_of_birth => "birthday", :gender => "gender"}
   config.facebook.access_permissions = ["offline_access", "email", "read_friendlists", "user_likes", "user_interests", "user_birthday", "user_education_history", "user_hometown", "user_location", "user_about_me"]
 
   #Twitter Config

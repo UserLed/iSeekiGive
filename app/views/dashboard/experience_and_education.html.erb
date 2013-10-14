@@ -1,0 +1,32 @@
+<%=h content_for(:title, "| Profile") %>
+
+<%= render "navigation" %>
+
+<%= render "shared/confirmation_notice" %>
+
+<div class="gap gap-small"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <%= render "profile_side_nav" %>
+    </div>
+    <div class="span9">
+      <% if @user.linkedin_connected? %>
+        <i class="icon-linkedin box-icon round"></i>
+        Linkedin: Connected
+
+        <%#= link_to "Refresh Linkedin", user_path(@user), :class => "btn btn-primary" %>
+      <% else %>
+        <%= link_to auth_at_provider_path(:provider => :linkedin) do %>
+          <i class="icon-linkedin box-icon round"></i>
+          Log-on with LinkedIn and complete 98% of this section in seconds
+        <% end %>
+        <p>
+          As the World's Largest Professional Network, iSeekiGive verifies your professional credibility using your
+          LinkedIn profile details.
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

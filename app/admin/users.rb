@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
   filter :email
-  filter :country
+  filter :location
   filter :type
 
   index do
@@ -12,8 +12,7 @@ ActiveAdmin.register User do
     column :id
     column :name
     column :email
-    column :city
-    column :country
+    column :location
     column :type
     column :provider
     column :activation_state

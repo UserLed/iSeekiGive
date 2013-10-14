@@ -13,6 +13,7 @@
 *= require new-wave/boostrap
 *= require new-wave/boostrap_responsive
 *= require new-wave/font_awesome
+*= require new-wave/datepicker
 *= require new-wave/styles
 *= require new-wave/mystyles
 *= require fancybox

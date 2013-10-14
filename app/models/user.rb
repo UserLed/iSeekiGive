@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
   
-  attr_accessible :email, :first_name, :last_name, :country, :hear, :password,
+  attr_accessible :email, :first_name, :last_name, :hear, :password,
     :password_confirmation, :authentications_attributes, :type, :promotional_news,
-    :city, :linkedin_update, :profile_photo, :cover_photo, :level, :session_method,
-    :skype_id, :contact_number, :other_contact_details, :user_time_zone, :gender, :date_of_birth, :descriptions
+    :linkedin_update, :profile_photo, :cover_photo, :level, :session_method,
+    :skype_id, :contact_number, :other_contact_details, :user_time_zone, :gender, 
+    :date_of_birth, :descriptions, :display_name, :location, :other_locations
   
   attr_accessor :password_confirmation
 
@@ -17,7 +18,7 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true
   validates :email, :presence => true
   validates_uniqueness_of :email, :message =>" This %{value}  email is already registered"
-  validates :country, :presence => true
+  validates :location, :presence => true
   validates_length_of :password, :minimum => 3, :if => :password
   validates_confirmation_of :password, :if => :password
   
@@ -106,13 +107,6 @@ class User < ActiveRecord::Base
   def show_this_popup(controller, action)
     popup = self.popups.where("controller = ? AND action = ?", controller, action)
     popup.blank? or popup.first.status == true
-  end
-
-  def current_location
-    l = []
-    l << self.city if self.city.present?
-    l << self.country if self.country.present?
-    l.join(", ")
   end
 
   def self.email_verified?(email)

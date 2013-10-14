@@ -15,4 +15,6 @@
 //= require jquery-ui
 //= require fancybox
 //= require fancybox-config
+//= require twitter/bootstrap/bootstrap-dropdown
+//= require datepicker
 //= require customscript

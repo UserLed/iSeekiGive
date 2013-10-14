@@ -1,0 +1,150 @@
+<%=h content_for(:title, "| Profile") %>
+
+<%= render "navigation" %>
+
+<%= render "shared/confirmation_notice" %>
+
+<div class="gap gap-small"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <%= render "profile_side_nav" %>
+    </div>
+    <div class="span9">
+      <%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
+        <fieldset>
+          <div class="control-group">
+            <%= f.label :display_name, :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.text_field :display_name, :class => "span3" %>
+              <div class="field-notice">
+                This is the name that will display on your public profile and posts.
+              </div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :first_name, :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.text_field :first_name, :class => "span3" %>
+              <div class="field-notice">
+                This is only shared once your have a confirmed Session with another iSeekiGive user.
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= f.label :last_name, :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.text_field :last_name, :class => "span3" %>
+              <div class="field-notice">
+                This is only shared once your have a confirmed Session with another iSeekiGive user.
+              </div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :gender, :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.select :gender, ["male", "female"], :class => "span3" %>
+              <div class="field-notice">
+                We use this data for analysis and never share it with other users.
+              </div>
+            </div>
+            <div class="span2 right">
+              <span class="label">
+                Private
+                <i class="icon-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :date_of_birth, :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.text_field :date_of_birth, :value => @user.date_of_birth.strftime("%m/%d/%Y"), :class => "span3", :"data-datepicker" => "datepicker" %>
+              <div class="field-notice">
+                We use this data for analysis and never share it with other users.
+              </div>
+            </div>
+            <div class="span2 right">
+              <span class="label">
+                Private
+                <i class="icon-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :email, "Email Address", :class => "control-label" %>
+            <div class="controls span6">
+              <% if @user.external? %>
+                <%= f.text_field :email, :class => "span3", :readonly => true %>
+              <% else %>
+                <%= f.text_field :email, :class => "span3" %>
+              <% end %>
+              <div class="field-notice">
+                This is only shared once your have a confirmed Session with another iSeekiGive user.
+              </div>
+            </div>
+            <div class="span2 right">
+              <span class="label">
+                Private
+                <i class="icon-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :location, "Where You Live", :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.text_field :location, :class => "span3" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :other_locations, "Places you've lived before", :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.text_field :other_locations, :class => "span3" %>
+              <div class="field-notice">
+                Many Seekers are considering relocations, new cities and countries.<br/>
+                If you've lived in other cities, this will help increase relevant matching
+                of your experiences and perspectives.
+              </div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :descriptions, "Describe Yourself", :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.text_area :descriptions, :class => "span3", :rows => 5 %>
+              <div class="field-notice">
+                iSeekiGive is built on real perspectives for life transitions.<br/>
+                Help other people get to know you better.<br/>
+                What brings you to iSeekiGive?<br/>
+                Tell them about yourself and any  life transitions you may have had<br/>
+                Do you have a life motto or tip(s) for your own life?
+              </div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :descriptions, "Describe Yourself", :class => "control-label" %>
+            <div class="controls span6">
+              <% @user.languages.each do |l| %>
+              <span class="label">
+                <%= l.name %>
+                <i class="icon-remove"></i>
+              </span>
+              <% end %>
+              <div class="field-notice">
+                Add languages you speak.
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+</div>

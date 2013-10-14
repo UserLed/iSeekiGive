@@ -6,7 +6,7 @@
           <%= link_to image_tag("logo.png"), root_path, :class => "logo" %>
         </div>
       </div>
-      <div class="span7">
+      <div class="<%= logged_in? ? "span6" : "span7" %>">
         <div class="row">
           <%= form_tag '#', :method => "get", :class => "find-givers-form" do %>
             <i class="icon-search"></i>
@@ -14,19 +14,34 @@
           <% end %>
         </div>
       </div>
-      <div class="span3">
+      <div class="<%= logged_in? ? "span4 offset1" : "span3" %>">
         <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
         <nav>
           <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-            <li class="<%= "active" if current_page?(how_it_works_path) %>">
-              <%= link_to "How it works", how_it_works_path %>
-            </li>
+            <%= nav_link "How it works", how_it_works_path %>
             <li>
               <%= link_to "About Us", "http://facelift.iseekigive.com/clkn/http/blog.iseekigive.com/ourstory", :target => "_blank" %>
             </li>
-            <li class="<%= "active" if current_page?(login_path) %>">
-              <%= link_to "Login", login_path %>
-            </li>
+            <% if logged_in? %>
+              <li>
+                <%= link_to "javascript:;" do %>
+                  <i class="icon-box">
+                    <%= image_tag(current_user.profile_photo.public_profile, :class=>'img-rounded profile-image') if current_user.profile_photo.present? %>
+                  </i>
+                  <%= current_user.full_name %>
+                <% end %>
+                <ul>
+                  <%= nav_link "Dashboard", dashboard_path %>
+                  <%= nav_link "Perspectivs", perspectives_path %>
+                  <%= nav_link "Manage Sessions", "javascript:;" %>
+                  <%= nav_link "Edit Profile", profile_path %>
+                  <%= nav_link "Boosters", "javascript:;" %>
+                  <%= nav_link "Logout", logout_path %>
+                </ul>
+              </li>
+            <% else %>
+              <%= nav_link "Login", login_path %>
+            <% end %>
           </ul>
         </nav>
       </div>

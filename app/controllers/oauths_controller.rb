@@ -15,16 +15,16 @@ class OauthsController < ApplicationController
           if provider.eql?("linkedin")
             create_connection(provider) unless current_user.linkedin_connected?
             UserDetails.update_user_profile(user_hash(provider), current_user)
-            redirect_to dashboard_user_path(current_user), :notice => "Profile is updated from #{provider.titleize}!"
+            redirect_to dashboard_path, :notice => "Profile is updated from #{provider.titleize}!"
           elsif provider.eql?("facebook")
             create_connection(provider) unless current_user.facebook_connected?
-            redirect_to dashboard_user_path(current_user), :notice => "Connected to #{provider.titleize}!"
+            redirect_to dashboard_path, :notice => "Connected to #{provider.titleize}!"
           elsif provider.eql?("twitter")
             create_connection(provider) unless current_user.twitter_connected?
-            redirect_to dashboard_user_path(current_user), :notice => "Connected to #{provider.titleize}!"
+            redirect_to dashboard_path, :notice => "Connected to #{provider.titleize}!"
           end
         else
-          redirect_to dashboard_user_path(current_user), :alert => "Already connected with this #{provider.titleize} account!"
+          redirect_to dashboard_path, :alert => "Already connected with this #{provider.titleize} account!"
         end
 
       elsif session[:social_type] == "sign_up"
@@ -33,10 +33,10 @@ class OauthsController < ApplicationController
             @user = create_and_validate_from(provider)
             unless @user.new_record?
               update_authentication_with_token(provider)
-              update_user_with_type(session[:user_type])
+              update_user_with_type(session[:user_type], provider)
               reset_session # protect from session fixation attack
               auto_login(@user)
-              redirect_to dashboard_user_path(@user), :notice => "Logged in from #{provider.titleize}!"
+              redirect_to dashboard_path
             else
               if @user.present? and @user.errors.present? and @user.errors.messages[:email].present?
                 flash[:alert] = "This email address is already registered!"
@@ -57,7 +57,7 @@ class OauthsController < ApplicationController
       elsif session[:social_type] == "login"
 
         if @user = login_from(provider)
-          redirect_to dashboard_user_path(@user), :notice => "Logged in from #{provider.titleize}!"
+          redirect_to dashboard_path
         else
           redirect_to login_path, :alert => "You are not registered by this provider!"
         end
@@ -104,21 +104,12 @@ class OauthsController < ApplicationController
     @auth.save
   end
 
-  def update_user_with_type(user_type)
+  def update_user_with_type(user_type, provider)
     @user.type = user_type.capitalize.classify
-
-    if @user.provider == "facebook"
-      location = @user.country.split(", ")
-      @user.city = location.first
-      @user.country = location.last
+    if provider.eql?("facebook")
+      @user.date_of_birth = user_hash(provider)[:user_info]["birthday"].to_date.strftime("%Y-%d-%m").to_s if user_hash(provider)[:user_info]["birthday"].present?
     end
-
     @user.save
-    if @user.seeker?
-      @user = Seeker.find(@user.id)
-    else
-      @user = Giver.find(@user.id)
-    end
   end
 
   def create_connection(provider)

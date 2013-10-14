@@ -1,8 +1,8 @@
 class Language < ActiveRecord::Base
-  attr_accessible :title, :user_id
+  attr_accessible :name, :user_id
 
   belongs_to :user
 
-  validates :title, :presence => true
+  validates :name, :presence => true
   
 end

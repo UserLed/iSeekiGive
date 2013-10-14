@@ -1,0 +1,27 @@
+<div class="row breadcrumb-container">
+  <div class="span12">
+    <ul class="breadcrumb">
+      <% if current_page?(dashboard_path) %>
+        <li class="active">
+          Dashboard
+        </li>
+      <% elsif current_page?(profile_path) %>
+        <li>
+          <%= link_to "Dashboard", dashboard_path %>
+          <span class="divider">></span>
+        </li>
+        <li class="active">
+          Profile
+        </li>
+      <% elsif current_page?(perspectives_path) %>
+        <li>
+          <%= link_to "Dashboard", dashboard_path %>
+          <span class="divider">></span>
+        </li>
+        <li class="active">
+          Perspectives
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

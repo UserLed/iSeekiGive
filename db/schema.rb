@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012103002) do
+ActiveRecord::Schema.define(:version => 20131014022309) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20131012103002) do
 
   create_table "languages", :force => true do |t|
     t.integer  "user_id"
-    t.string   "title"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -240,7 +240,6 @@ ActiveRecord::Schema.define(:version => 20131012103002) do
     t.string   "email",                                              :null => false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "country"
     t.string   "hear"
     t.string   "crypted_password"
     t.string   "salt"
@@ -256,7 +255,6 @@ ActiveRecord::Schema.define(:version => 20131012103002) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.boolean  "promotional_news",                :default => false
-    t.string   "city"
     t.boolean  "linkedin_update",                 :default => false
     t.string   "profile_photo"
     t.string   "cover_photo"
@@ -266,9 +264,12 @@ ActiveRecord::Schema.define(:version => 20131012103002) do
     t.string   "contact_number"
     t.string   "other_contact_details"
     t.string   "user_time_zone"
+    t.string   "display_name"
     t.string   "gender"
     t.string   "descriptions"
-    t.datetime "date_of_birth"
+    t.date     "date_of_birth"
+    t.string   "location"
+    t.text     "other_locations"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

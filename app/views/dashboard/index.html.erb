@@ -1,0 +1,66 @@
+<%=h content_for(:title, "| Dashboard") %>
+
+<%= render "navigation" %>
+
+<div class="gap gap-small"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="span4 offset2">
+      <%= link_to profile_path, :class => "hover-img" do %>
+        <%= image_tag("new-wave/going_out_tonight_800x600.jpg") %>
+        <h5 class="hover-title-bottom-left hover-hold black-back">Profile</h5>
+        <div class="hover-inner">
+          <p>
+            Tell us about yourself. Completed profiles help us match the relevance of Seeker
+            - Giver experiences and interests.
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="span4">
+      <%= link_to perspectives_path, :class => "hover-img" do %>
+        <%= image_tag("new-wave/in_the_bokeh_forest_800x600.jpg") %>
+        <h5 class="hover-title-bottom-left hover-hold black-back">PERSPECTIVE</h5>
+        <div class="hover-inner">
+          <p>
+            Read or Share stories of "The Good, The Bad and The Ugly".
+            Keep track of your stats and Perspectives from others you've saved.
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="gap gap-small"></div>
+
+  <div class="row">
+    <div class="span4 offset2">
+      <%= link_to "javascript:;", :class => "hover-img" do %>
+        <%= image_tag("new-wave/a_dreamy_jump_800x600.jpg") %>
+        <h5 class="hover-title-bottom-left hover-hold black-back">SESSION</h5>
+        <i class="icon-lock hover-icon hover-hold icon-5x"></i>
+        <div class="hover-inner">
+          <p>
+            Exchange your free time for rewards and make yourself available to chat with a relevant Seeker.
+            Manage schedules, sessions and rewards here.
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="span4">
+      <%= link_to "javascript:;", :class => "hover-img" do %>
+        <%= image_tag("new-wave/the_hidden_power_of_the_heart_800x600.jpg") %>
+        <h5 class="hover-title-bottom-left hover-hold black-back">BOOSTER</h5>
+        <div class="hover-inner">
+          <p>
+            Start a campaign and raise proceeds for a cause you care about.
+            Easily invite others to share their time and give back to support your campaign.
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="gap"></div>
