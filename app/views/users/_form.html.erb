@@ -38,7 +38,7 @@
   <div class="control-group">
     <%= f.label :location, :class => 'control-label' %>
     <div class="controls">
-      <%= country_select(@user.class.name.downcase, "location", ["United States", "United Kingdom"]) %>
+      <%= f.text_field :location %>
     </div>
   </div>
 

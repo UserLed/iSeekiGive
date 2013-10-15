@@ -109,20 +109,20 @@ $('#datepicker').datepicker();
 // 4. Profile - Locations autocomplete (tagit)
 
 $(function(){
+    $("#new_user #user_location").autocomplete({
+        delay: 0,
+        minLength: 2,
+        source: '/locations.json'
+    });
+});
+
+$(function(){
     $("#locations").tagit({
         requireAutocomplete: true,
         autocomplete: {
             delay: 0,
             minLength: 2,
             source: '/locations.json'
-        },
-        afterTagAdded: function(event, ui) {
-      
-            
-        },
-        afterTagRemoved: function(event, ui) {
-
-            
         },
         placeholderText: "Type here",
         allowSpaces : true
