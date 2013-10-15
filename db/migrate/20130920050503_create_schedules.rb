@@ -9,5 +9,8 @@ class CreateSchedules < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :schedules, :giver_id
+    add_index :schedules, :seeker_id
   end
 end

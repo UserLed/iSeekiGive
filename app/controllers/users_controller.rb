@@ -1,20 +1,53 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login, :only => [:activate, :resend_confirmation]
+  skip_before_filter :require_login, :only => [:new, :activate, :resend_confirmation]
+
+  def index
+    
+  end
+
+  def new
+    @user = User.new
+    @type = session[:user_type]
+  end
+
+  def create
+    @user = User.new(params[:user])
+    @user.role = session[:user_type]
+    
+    if @user.save
+      auto_login(@user)
+      redirect_to dashboard_path, :notice => "Successfully Signed Up!"
+    else
+      @password = params[:user][:password]
+      @password_confirmation = params[:user][:password_confirmation]
+      render :action  => "new"
+    end
+  end
 
   def edit
     @step = params[:step].to_i or 0
     @user = User.find(params[:id])
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+
+    if params[:locations].present?
+      @user.locations.each{|l| l.destroy }
+      params[:locations].split(",").each do |location|
+        @user.locations.create(:name => location)
+      end
+    end
+
+    redirect_to request.referrer, :notice => "Successfully Updated"
+  end
+
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
       auto_login(@user)
-      if @user.seeker?
-        redirect_to seeker_perspectives_path(@user), :notice => 'User was successfully activated.'
-      else
-        redirect_to dashboard_giver_path(@user), :notice => 'User was successfully activated.'
-      end
+      redirect_to dashboard_path, :notice => 'User was successfully activated.'
     else
       not_authenticated
     end
@@ -25,11 +58,6 @@ class UsersController < ApplicationController
     @user.resend_activation_email!
     redirect_to request.referrer, :notice => "Please check your email to activate your account!"
   end
-
-  def account
-
-  end
-
 
   def popup
     @popup = current_user.popups.where("controller = ? AND action = ?", params[:con], params[:act])
@@ -51,10 +79,6 @@ class UsersController < ApplicationController
     @verified = true if User.email_verified?(params[:email])
   end
 
-  def dashboard
-    @user = User.find(params[:id])
-  end
-
   def show
     #@user = User.find(params[:id])
     @user = current_user
@@ -70,30 +94,9 @@ class UsersController < ApplicationController
 
   def public_profile
     @user = User.find(params[:id])
-    @user_perspectives = @user.perspectives.where(:anonymous => false).sample(4)
+    @user_perspectives = @user.perspectives.where(:anonymous => false)
     @user_perspectives.each do |p|
       p.update_column(:viewed, p.viewed+1)
     end
   end
-
-  def save_perspective
-    unless current_user.saved_perspectives.exists?(:perspective_id => params[:p])
-      perspective = current_user.saved_perspectives.build(:perspective_id => params[:p])
-      if perspective.save
-        @user_perspectives = current_user.perspectives.where(:anonymous => false).sample(4)
-        respond_to do |format|
-          format.js
-        end
-      else
-        render :nothing => true
-      end
-    end
-  end
-
-  def update
-    @user = User.find(params[:id])
-    @user.update_attributes(params[:user]) and
-    redirect_to request.referrer, :notice => "Successfully Updated"
-  end
-
 end

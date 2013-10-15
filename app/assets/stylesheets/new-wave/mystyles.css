@@ -147,6 +147,7 @@ nav.dashboard ul{
     margin-top: -7px;
     max-height: 25px;
     width: auto;
+    margin-right: 3px;
 }
 
 .alert{
@@ -158,3 +159,142 @@ nav.dashboard ul{
     font-size: 10px;
     color: #777;
 }
+
+a.red{
+    color: #B94A48;
+}
+
+.locations-field ul.tagit{
+    margin: 0px;
+}
+
+.add-more a{
+    outline: none;
+    -moz-outline-style: none;
+}
+
+.languaes-container{
+    margin-bottom: 5px;
+}
+
+.languaes-container span.label{
+    margin-right: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.icon-linkedin.blue{
+    color: #007BB6;
+}
+
+.skill-container{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    padding-top: 4px;
+}
+
+.public-profile-photo{
+    width: 150px;
+    height: 150px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 2px solid white;
+}
+
+.public-profile .tags{
+    color: white;
+    padding-top: 20px;
+}
+
+.public-profile .session{
+    padding-top: 120px;
+}
+
+.perspectives-private ul.nav-tabs{
+    margin-bottom: 0px;
+}
+
+.perspectives-private .tab-content{
+    border-bottom: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    padding: 12px;
+}
+
+.perspectives-private .post-container{
+    border: 1px solid #EBEFF6;
+    border-color: #EBEFF6;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+}
+
+.perspectives-private .post-container form{
+    margin: 0px;
+}
+
+.perspectives-private #perspective_story{
+    width: 98%;
+    height: 60px;
+    border: 0px;
+}
+
+.perspectives-private .keywords-container{
+    background-color: #F9FAFC;
+    padding: 10px;
+    border-top: 1px solid #EBEFF6;
+}
+
+.perspectives-private #keywords{
+    margin-bottom: 0px;
+}
+
+.perspectives-private .keywords-container ul.tagit{
+    margin: 0px;
+    width: 90%;
+}
+
+.anonymous-box input,
+.anonymous-box label
+{
+    float: left;
+    margin-right: 2px;
+}
+
+
+.post-box {
+    border: 1px solid #EBEFF6;
+    border-radius: 2px 2px 2px 2px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+
+.thumb-sm {
+    display: inline-block;
+    width: 36px;
+}
+
+.m-r {
+    margin-right: 15px;
+}
+
+.m-b {
+    margin-bottom: 15px;
+}
+
+.block {
+    display: block;
+}
+.text-muted {
+    color: #979797;
+}
+
+/*body.width1200 .row-fluid.post-box-container [class*="span"]:nth-child(2n+1){
+    margin-left: 0px;
+}*/

@@ -1,0 +1,137 @@
+<%=h content_for(:title, "| Perspectives") %>
+
+<%= render "dashboard/navigation" %>
+
+<div class="gap gap-small"></div>
+
+<div class="container perspectives-private">
+  <div class="row">
+    <div class="span8">
+      <p>
+        Share your personal experiences: The Good, The Bad and The Ugly.  
+      </p>
+      <p>
+        Step 1. Choose 1 of 3 story types |
+        Step 2. Share your perspectives |
+        Step 3. Add your keyword tags and select Post.
+      </p>
+      <p>
+        Sharing your Perspectives will help Seekers and help them to find you.
+      </p>
+
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a id="the_good_selector" href="#good" data-toggle="tab">The Good</a>
+        </li>
+        <li>
+          <a id="the_bad_selector" href="#bad" data-toggle="tab">The Bad</a>
+        </li>
+        <li>
+          <a id="the_ugly_selector" href="#ugly" data-toggle="tab">The Ugly</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="good" class ="tab-pane active">
+          The good things I like or things someone might like about…(my current of former city, job function, company, school, industry, etc)
+        </div>
+
+        <div id="bad" class ="tab-pane">
+          The things I didn’t like or things someone might not like about …(my current of former city, job function, company, school, industry, etc)
+        </div>
+
+        <div id="ugly" class ="tab-pane">
+          Red flags and warnings.  Risks and things to be careful of, be aware of or watch out for in…(my current of former city, job function, company, school, industry, etc)
+        </div>
+
+        <div class="post-container">
+          <%= form_for @perspective do |f| %>
+            <%= f.hidden_field :story_type, :value => "The Good" %>
+            <%= f.text_area :story, :placeholder => "What is your Perspective..." %>
+            <div class="keywords-container">
+              <div class="row-fluid">
+                <div class="span2">
+                  Keyword Tags
+                </div>
+                <div class="span6">
+                  <%= text_field_tag :keywords, "", :class => "span6", :id => "perspectives_keywords" %>
+                </div>
+                <div class="span2 anonymous-box">
+                  <%= f.check_box :anonymous %>
+                  <%= f.label :anonymous %>
+                </div>
+                <div class="span2">
+                  <%= f.submit "POST", :class => "btn btn-primary" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="gap gap-small"></div>
+
+      <div class="row-fluid post-box-container">
+        <% if @perspectives.present? %>
+          <% @perspectives.each_with_index do |perspective, index| %>
+            <% if index % 2 == 0 %>
+              <div class="row-fluid">
+              <% end %>
+              <div class="span6">
+                <%= render perspective %>
+              </div>
+              <% if (index + 1) % 2 == 0 or (index + 1) == @perspectives.count %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <div class="span12">
+            You have no shared posts and no Saved posts
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="span4">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>The Good</th>
+            <th>The Bad</th>
+            <th>The Ugly</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Views</td>
+            <td>
+              <%= @good_view_count %>
+            </td>
+            <td>
+              <%= @bad_view_count %>
+            </td>
+            <td>
+              <%= @ugly_view_count %>
+            </td>
+          </tr>
+          <tr>
+            <td>Saved</td>
+            <td>
+              <%= @good_saved_count %>
+            </td>
+            <td>
+              <%= @bad_saved_count %>
+            </td>
+            <td>
+              <%= @ugly_saved_count %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="gap"></div>
+

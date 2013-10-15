@@ -1,6 +1,5 @@
 class PublicController < ApplicationController
   def index
-
   end
 
   def signup
@@ -9,7 +8,7 @@ class PublicController < ApplicationController
     elsif params[:type]
       session[:user_type] = params[:type]
       @type = session[:user_type]
-      render 'signup_form', :layout => false
+      render 'signup_selection', :layout => false
     end
   end
 
@@ -24,24 +23,24 @@ class PublicController < ApplicationController
 
   def get_all_users_with_tags
     term   = params[:term]
-# perspective tag
+    # perspective tag
     perspective_tag_search = PerspectiveTag.where("name LIKE ?", "%#{term}%" )
     perspectives  = perspective_tag_search.collect(&:perspective_id).uniq 
     perspective_tag_user_ids = Perspective.find(perspectives).collect(&:user_id)
 
-# education
+    # education
     education_search = Education.where("school_name LIKE ? OR degree LIKE ? or field_of_study LIKE ?", "%#{term}%","%#{term}%","%#{term}%")
     education_user_ids = education_search.collect(&:user_id)
 
-# User
+    # User
     user_search = User.where("first_name LIKE ? OR last_name LIKE ? OR country LIKE ? OR city LIKE ?", "%#{term}%","%#{term}%","%#{term}%","%#{term}%" )
     user_search_ids = user_search.collect(&:id)
 
-# experience
+    # experience
     experience_search = Experience.where("title LIKE ? or company_name LIKE ?", "%#{term}%","%#{term}%")
     experience_user_ids = experience_search.collect(&:user_id)
 
-# perspective
+    # perspective
     perspective_search =  Perspective.where("story LIKE ? or story_type LIKE ?", "%#{term}%", "%#{term}%")
     perspective_user_ids = perspective_search.collect(&:user_id)
 
@@ -62,6 +61,16 @@ class PublicController < ApplicationController
   end
 
   def about_us
-    #render :layout => 'demo_layout'
+  end
+
+  def locations
+
+    cities = [
+      "Dhaka - Bangladesh",
+      "Tangail - Bangladesh",
+      "Khulna - Bangladesh"
+    ]
+
+    render :json => cities
   end
 end

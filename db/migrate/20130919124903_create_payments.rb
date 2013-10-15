@@ -1,10 +1,12 @@
 class CreatePayments < ActiveRecord::Migration
   def change
     create_table :payments do |t|
-      t.integer :charge_id
-      t.integer :event_id
-      t.integer :charge_amount
+      t.integer :user_id
+      t.integer :schedule_id
+      t.float :amount
+      t.string :transaction_id
       t.string :status
+      t.boolean :paid
 
       t.timestamps
     end

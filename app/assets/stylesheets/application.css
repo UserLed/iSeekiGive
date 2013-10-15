@@ -10,6 +10,8 @@
  *
 
 *= require jquery-ui
+*= require jquery.tagit
+*= require tagit.ui-zendesk
 *= require new-wave/boostrap
 *= require new-wave/boostrap_responsive
 *= require new-wave/font_awesome

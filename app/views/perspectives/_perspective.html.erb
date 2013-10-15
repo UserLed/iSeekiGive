@@ -1,0 +1,34 @@
+<div class="post-box">
+  <div class="clearfix m-b">
+    <small class="text-muted pull-right">
+      <%= distance_of_time_in_words(perspective.created_at, Time.now) %>
+      ago
+    </small>
+    <%= link_to image_tag(profile_photo_path(perspective.user, {:width => 25, :height => 25, :version => :icon}), :class => "img-circle user-image"), public_profile_user_path(perspective.user), :class => "thumb-sm pull-left m-r" %>
+    <div class="clear">
+      <%= link_to public_profile_user_path(perspective.user) do %>
+        <strong>
+          <%= perspective.user.display_name %>
+        </strong>
+      <% end %>
+      <br/>
+      <small class="block text-muted">
+        <%= perspective.user.location %>
+      </small>
+    </div>
+  </div>
+  <p>
+    Keyword Tags :
+    <%= perspective.perspective_tags.collect{|t| t.name}.join(", ") %>
+  </p>
+  <p>
+  <h6>
+    <%= perspective.story_type %>
+  </h6>
+</p>
+<p>
+  <span class="story">
+    <%= perspective.story %>
+  </span>
+</p>
+</div>

@@ -1,8 +1,10 @@
 class LanguagesController < ApplicationController
   
   def create
-    @language = current_user.languages.new(:title => params[:title])
-    @language.save
+    @language = current_user.languages.new(:name => params[:name])
+    if @language.save
+      @saved = true
+    end
   end
 
   def destroy

@@ -5,17 +5,16 @@ ActiveAdmin.register User do
   filter :last_name
   filter :email
   filter :location
-  filter :type
+  filter :role
 
   index do
     selectable_column
     column :id
+    column :display_name
     column :name
     column :email
     column :location
-    column :type
-    column :provider
-    column :activation_state
+    column :role
     column :created_at
     column "Manage" do |user|
       link_to "Login", login_admin_user_path(user), :target => "_blank"
@@ -26,6 +25,6 @@ ActiveAdmin.register User do
   member_action :login do
     @user = User.find(params[:id])
     auto_login @user
-    redirect_to dashboard_user_path(@user)
+    redirect_to dashboard_path
   end
 end

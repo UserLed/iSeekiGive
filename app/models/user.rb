@@ -1,49 +1,51 @@
 class User < ActiveRecord::Base
-  mount_uploader :profile_photo, PhotoUploader
-  mount_uploader :cover_photo, PhotoUploader
+  mount_uploader :profile_photo, ProfilePhotoUploader
+  mount_uploader :cover_photo, CoverPhotoUploader
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
   
-  attr_accessible :email, :first_name, :last_name, :hear, :password,
-    :password_confirmation, :authentications_attributes, :type, :promotional_news,
-    :linkedin_update, :profile_photo, :cover_photo, :level, :session_method,
-    :skype_id, :contact_number, :other_contact_details, :user_time_zone, :gender, 
-    :date_of_birth, :descriptions, :display_name, :location, :other_locations
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation,
+    :role, :display_name, :gender, :date_of_birth, :location, :how_hear,
+    :profile_photo, :cover_photo, :descriptions, :time_zone, :level,
+    :promotional_news, :considered_fields
+
+  attr_accessible :authentications_attributes, :locations_attributes
   
   attr_accessor :password_confirmation
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :email, :presence => true
-  validates_uniqueness_of :email, :message =>" This %{value}  email is already registered"
+  validates_uniqueness_of :email, :message =>" This %{value} email is already registered"
   validates :location, :presence => true
-  validates_length_of :password, :minimum => 3, :if => :password
+  validates_length_of :password, :minimum => 6, :if => :password
   validates_confirmation_of :password, :if => :password
   
   has_many :authentications,    :dependent => :destroy
-  has_many :educations,         :dependent => :destroy
-  has_many :skills,             :dependent => :destroy
-  has_many :experiences,        :dependent => :destroy
   has_many :connections,        :dependent => :destroy
+    
+  has_many :educations,         :dependent => :destroy
+  has_many :experiences,        :dependent => :destroy
   has_many :popups,             :dependent => :destroy
   has_one  :phone_number,       :dependent => :destroy
   has_many :tags,               :dependent => :destroy
   has_one  :billing_setting,    :dependent => :destroy
-  #has_many :schedules,          :dependent => :destroy
-  has_one  :game,               :dependent => :destroy
   has_many :time_slots,         :dependent => :destroy
   has_many :perspectives,       :dependent => :destroy
   has_many :saved_perspectives, :dependent => :destroy
   has_many :languages,          :dependent => :destroy
+  has_many :locations,          :dependent => :destroy
 
-  
   accepts_nested_attributes_for :authentications
   accepts_nested_attributes_for :educations
-  accepts_nested_attributes_for :skills
+  accepts_nested_attributes_for :tags
   accepts_nested_attributes_for :experiences
   accepts_nested_attributes_for :languages, :allow_destroy => true
+  accepts_nested_attributes_for :locations, :allow_destroy => true
+
+  before_create {|user| user.display_name = user.first_name }
   
   HOW_HEAR = [
     ["By Friend"],
@@ -78,11 +80,11 @@ class User < ActiveRecord::Base
   end
 
   def seeker?
-    self.type.eql?("Seeker")
+    self.role.eql?("Seeker")
   end
 
   def giver?
-    self.type.eql?("Giver")
+    self.role.eql?("Giver")
   end
 
   def linkedin_connected?
@@ -93,6 +95,10 @@ class User < ActiveRecord::Base
   def facebook_connected?
     self.connections.where(:provider => "facebook").present? or
       self.authentications.where(:provider => "facebook").present? ? true : false
+  end
+
+  def facebook
+    self.authentications.find_by_provider("facebook") || self.connections.find_by_provider("facebook")
   end
 
   def twitter_connected?

@@ -1,0 +1,42 @@
+<%=h content_for(:title, "| Profile") %>
+
+<%= render "dashboard/navigation" %>
+
+<%= render "shared/confirmation_notice" %>
+
+<div class="gap gap-small"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <%= render "profile_side_nav" %>
+    </div>
+    <div class="span9">
+      <h3>
+        Your Keyword Tags
+      </h3>
+      <p>
+        Your keyword tags include anything you might share Perspectives about.
+        These keywords associate your profile with the topics and areas you have experience in.
+      </p>
+      <p>
+        Our system will use these to match Seekers who are looking for Perspectives based on your unique combination of experiences.
+      </p>
+      <p>
+        We've brought in your skills from LinkedIN - modify the below list for your keyword tags.  You can include  a place you've lived, a company you've been with, a specific job, industry, job function, skills or titles you've had - anything you might share Good, Bad or Ugly Pespectives about
+      </p>
+
+      <div class="gap gap-small"></div>
+
+      <%= render 'tags/new' %>
+
+      <% @tags.each do |tag| %>
+        <%= render tag %>
+      <% end %>
+
+      <%= will_paginate @tags %>
+    </div>
+  </div>
+</div>
+
+<div class="gap"></div>

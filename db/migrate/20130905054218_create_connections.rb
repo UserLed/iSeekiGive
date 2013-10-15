@@ -10,5 +10,7 @@ class CreateConnections < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :connections, :user_id
   end
 end

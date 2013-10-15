@@ -21,7 +21,12 @@ module ApplicationHelper
 
 
   NAV = {
-    "account" => [{:controller => "accounts", :action => "settings"}]
+    "account" => [{:controller => "accounts", :action => "settings"}],
+    "profile" => [{:controller => "profile", :action => "index"},
+      {:controller => "profile", :action => "photos"},
+      {:controller => "profile", :action => "experience_and_education"},
+      {:controller => "profile", :action => "your_keywords_tags"}
+    ]
   }
 
 
@@ -43,6 +48,15 @@ module ApplicationHelper
 
   def match_controller_action?(link)
     params[:controller] == link[:controller] and params[:action] == link[:action]
+  end
+
+
+  def profile_photo_path(user, hash)
+    if user.profile_photo.blank? and user.facebook.present?
+      "https://graph.facebook.com/#{user.facebook.uid}/picture?width=#{hash[:width]}&height=#{hash[:height]}"
+    else
+      user.profile_photo.send(hash[:version])
+    end
   end
 
 end

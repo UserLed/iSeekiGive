@@ -6,5 +6,8 @@ class CreatePerspectiveTags < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :perspective_tags, :perspective_id
+    add_index :perspective_tags, :name
   end
 end

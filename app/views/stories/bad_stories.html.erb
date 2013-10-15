@@ -1,56 +1,24 @@
-<div class="container">
-<% unless @bad_stories.blank? %>
-  		<% @bad_stories.each do |story| %>
-            <div class="col-lg-6 col-sm-6">
-              <section class="panel">
-                <div class="panel-body">
-                  <div class="clearfix m-b">
-                    <small class="text-muted pull-right">
+<%=h content_for(:title, "| Perspectives") %>
 
-                      <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
-
-                    </small>
-                    <%= link_to  public_profile_user_path(story.user.id), :class => "thumb-sm pull-left m-r"  do %>
-                        <%= image_tag((story.user.profile_photo.public_profile.present?) ? story.user.profile_photo.public_profile : 'default_user.png', :class => 'img-circle profile-image') %>
-                    <% end %>
-
-                    <div class="clear"><a href="#"><strong>
-
-                      <%= story.user.full_name %>
-
-                    </strong></a>
-
-                      <small class="block text-muted">
-
-                        <%= [story.user.city, story.user.country].compact.join(",") %>
-
-                      </small>
-                      <small class="block text-muted story">
-
-                        <%= story.perspective_tags.collect(&:name).join(",") %>
-
-                      </small>
-                    </div>
-                  </div>
-                  <p > <span class="story">
-
-                <%= story.story %>
-
-              </span></p>
-                </div>
-              </section>
-              <hr>
-            </div>
-
-  		<% end %>
-  	<% end %>
+<div class="top-title-area bg-img">
+  <div class="container">
+    <h1 class="title-page">
+      Perspectives
+    </h1>
+  </div>
 </div>
 
+<div class="gap"></div>
 
-<script type="text/javascript">
-	$(function(){
-		$(".story").readmore({
-			maxHeight: 80
-		});
-	});
-</script>
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      Filters
+    </div>
+    <div class="span9">
+      <%= render "header" %>
+
+      <%= render "stories" %>
+    </div>
+  </div>
+</div>

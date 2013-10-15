@@ -1,0 +1,6 @@
+<span class="label" id="language_<%= language.id %>">
+  <%= language.name %>
+  <%= link_to language, :method => :delete, :remote => true, :class => "red" do %>
+    <i class="icon-remove"></i>
+  <% end %>
+</span>

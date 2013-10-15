@@ -4,16 +4,4 @@ class DashboardController < ApplicationController
   def index
     @user = current_user
   end
-
-  def profile
-    @user = current_user
-  end
-
-  def experience_and_education
-    @user = current_user
-  end
-
-  def perspectives
-    @user = current_user
-  end
 end

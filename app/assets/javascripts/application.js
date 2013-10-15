@@ -13,8 +13,11 @@
 //= require new-wave/modernizr.custom.26633
 //= require new-wave/jquery
 //= require jquery-ui
+//= require jquery_ujs
 //= require fancybox
 //= require fancybox-config
 //= require twitter/bootstrap/bootstrap-dropdown
 //= require datepicker
+//= require tag-it
+//= require readmore
 //= require customscript

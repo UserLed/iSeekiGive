@@ -1,2 +1,4 @@
-$('#user_language').val("");
-$('.nav-pills').append('<%= escape_javascript(render 'added_language', :language => @language) %>')
+<% if @saved.present? and @saved %>
+  $('#language').val("");
+  $('.languaes-container').append('<%= escape_javascript(render @language) %>')
+<% end %>

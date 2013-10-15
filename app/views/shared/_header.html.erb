@@ -26,9 +26,9 @@
               <li>
                 <%= link_to "javascript:;" do %>
                   <i class="icon-box">
-                    <%= image_tag(current_user.profile_photo.public_profile, :class=>'img-rounded profile-image') if current_user.profile_photo.present? %>
+                    <%= image_tag(profile_photo_path(current_user, {:width => 25, :height => 25, :version => :icon}), :class=>'img-rounded profile-image') %>
                   </i>
-                  <%= current_user.full_name %>
+                  <%= current_user.display_name %>
                 <% end %>
                 <ul>
                   <%= nav_link "Dashboard", dashboard_path %>

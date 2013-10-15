@@ -5,7 +5,7 @@
         <div class="navbar-collapse navbar-ex1-collapse">
           <ul class="nav nav-pills">
             <%= nav_link "Dashboard", dashboard_path %>
-            <%= nav_link "Profile", profile_path %>
+            <%= nav_link "Profile", profile_path, ApplicationHelper::NAV["profile"] %>
             <%= nav_link "Perspectives", perspectives_path %>
             <%= nav_link "Sessions", 'javascript:void(0)' %>
             <%= nav_link "Boosters", 'javascript:void(0)' %>
@@ -24,8 +24,11 @@
       </nav>
     </div>
     <div class="span2" style="padding-top:6px;">
-      <% if current_page?(profile_path) %>
-        <%= link_to "View Profile", public_profile_user_path(@user), :class => "btn btn-success", :target => "_blank" %>
+      <% if controller.controller_name == "profile" %>
+        <%= link_to public_profile_user_path(@user), :class => "btn btn-default", :target => "_blank" do %>
+          <i class="icon-eye-open"></i>
+          View Profile
+        <% end %>
       <% end %>
     </div>
   </div>

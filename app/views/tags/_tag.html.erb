@@ -1,13 +1,16 @@
-<div id="skill_<%= tag.id %>" class="skill-container">
-  <div class="info-container">
+<div id="skill_<%= tag.id %>" class="skill-container row-fluid">
+  <div class="info-container span12">
     <p>
+    <div class="span6">
       <%= tag.name %>
+    </div>
+    <div class="span3">
       <%= link_to 'edit', 'javascript:void(0)', :class => "btn btn-medium btn-primary btn-edit" %>
       <%= link_to 'delete', tag, :method => :delete, :remote => true, :class => "btn btn-medium btn-primary" %>
+    </div>
     </p>
   </div>
-  <div class="form-container" style="display:none">
+  <div class="span12 form-container" style="display:none">
     <%= render 'tags/form', :tag => tag %>
   </div>
-  <hr/>
 </div>

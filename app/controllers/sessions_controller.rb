@@ -6,14 +6,14 @@ class SessionsController < ApplicationController
     
     @user = User.new
     if current_user.present?
-      redirect_to current_user
+      redirect_to dashboard_path
     end
   end
 
   def create
     if @user = login(params[:email], params[:password], params[:remember])
       if @user
-        redirect_to dashboard_user_path(@user)
+        redirect_to dashboard_path
       end
     else
       flash.now[:alert] = "Invalid email or password."

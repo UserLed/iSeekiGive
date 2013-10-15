@@ -1,68 +1,22 @@
 <% if @user_perspectives.present? %>
-  <% @user_perspectives.each do |story| %>
+  <% @user_perspectives.each do |perspective| %>
 
-        <div class="col-lg-6 col-sm-6">
-          <section class="panel">
-            <div class="panel-body">
-              <div class="clearfix m-b">
-                <small class="text-muted pull-right">
+    <div class="col-lg-6 col-sm-6">
+      <%= render perspective %>
 
-                  <%= distance_of_time_in_words(Time.now, story.created_at) %> ago..
-
-                </small>
-                <%= link_to  public_profile_user_path(story.user.id), :class => "thumb-sm pull-left m-r"  do %>
-                    <%= image_tag((story.user.profile_photo.public_profile.present?) ? story.user.profile_photo.public_profile : 'default_user.png', :class => 'img-circle profile-image') %>
-                <% end %>
-
-                <div class="clear"><a href="#"><strong>
-
-                  <%= story.user.full_name %>
-
-                </strong></a>
-
-                  <small class="block text-muted">
-
-                    <%= [story.user.city, story.user.country].compact.join(",") %>
-
-                  </small>
-                  <small class="block text-muted story">
-
-                    <%= story.perspective_tags.collect(&:name).join(",") %>
-
-                  </small>
-                </div>
-              </div>
-              <p > <span class="story">
-
-                <%= story.story %>
-
-              </span></p>
-            </div>
-          </section>
-          <% unless logged_in? %>
-              <%= link_to "Save", "javascript:void",:class => "btn btn-success disabled" %>
-          <% else %>
-              <% if current_user.saved_perspectives.collect(&:perspective_id).include?(story.id) %>
-                  <%= link_to "Saved", "javascript:void(0)", :class => "btn btn-success disabled" %>
-              <% else %>
-                  <%= link_to "Save", save_perspective_user_path(current_user, :p => story.id), :remote => true, :class => "btn btn-success" %>
-              <% end %>
-          <% end %>
-          <hr>
-        </div>
+      <% unless logged_in? %>
+        <%= link_to "Save", "javascript:;",:class => "btn btn-success disabled" %>
+      <% else %>
+        <% if current_user.saved_perspectives.where(:perspective_id => perspective.id).present? %>
+          <%= link_to "Saved", "javascript:;", :class => "btn btn-success disabled" %>
+        <% else %>
+          <%= link_to "Save", save_perspective_path(perspective.id), :remote => true, :class => "btn btn-success", :id => "save_perspective_#{perspective.id}" %>
+        <% end %>
+      <% end %>
+      <hr/>
+    </div>
   <% end %>
- 
+
 <% else %>
-   <div class="container">
-     <span>You have no shared posts and no Saved posts</span>
-   </div>
+  <span>No Posts</span>
 <% end %>
-
-
-<script type="text/javascript">
-  $(function(){
-    $(".story").readmore({
-      maxheight: 30
-    });
-  });
-</script>

@@ -6,5 +6,8 @@ class CreateSavedPerspectives < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :saved_perspectives, :user_id
+    add_index :saved_perspectives, :perspective_id
   end
 end

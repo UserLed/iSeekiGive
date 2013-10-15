@@ -1,7 +1,13 @@
 <% unless current_user.activated? %>
-  <div class="alert fade in alert-success">
-    <button class="close" data-dismiss="alert">×</button>
-    Confirmation email sent to you.
-    (<%= link_to "send email again", resend_confirmation_user_path(current_user.id) %>)
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="alert fade in alert-success">
+          <button class="close" data-dismiss="alert">×</button>
+          Confirmation email sent to you.
+          (<%= link_to "send email again", resend_confirmation_user_path(current_user.id) %>)
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

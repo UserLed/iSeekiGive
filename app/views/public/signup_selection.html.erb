@@ -7,10 +7,10 @@
 
     <div class="panel-content">
       <%= link_to auth_at_provider_path(:provider => :facebook, :social_type => 'sign_up'), :class => "fb-blue btn icon-btn btn-block padded-btn-block large" do %>
-      <span class="icon-container">
-        <i class="icon icon-facebook"></i>
-      </span>
-          <span class="text-container fb-text"> Sign up with Facebook </span>
+        <span class="icon-container">
+          <i class="icon icon-facebook"></i>
+        </span>
+        <span class="text-container fb-text"> Sign up with Facebook </span>
       <% end %>
 
       <div class="signup-or-separator shift">
@@ -19,11 +19,7 @@
       </div>
 
       <div class="signup-email">
-        <% if @type == "seeker" %>
-            <%= link_to "Sign up with Email", new_seeker_path %>
-        <% else %>
-            <%= link_to "Sign up with Email", new_giver_path %>
-        <% end %>
+        <%= link_to "Sign up with Email", new_user_path %>
       </div>
 
       <div class="notice">

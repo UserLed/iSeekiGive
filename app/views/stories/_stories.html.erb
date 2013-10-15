@@ -1,0 +1,28 @@
+<% @stories.each do |perspective| %>
+  <div class="row-fluid">
+    <div class="testimonial-left">
+      <div class="testimonial-author">
+        <% if perspective.anonymous %>
+           <%= image_tag("fallback/icon_default.png", :class => "img-circle") %>
+        <% else %>
+          <%= link_to image_tag(profile_photo_path(perspective.user, {:width => 50, :height => 50, :version => :thumb}), :class => "img-circle"), public_profile_user_path(perspective.user), :class => "thumb-sm pull-left m-r" %>
+        <% end %>
+      </div>
+      <p class="testimonial-author-name">
+        <%= perspective.user.display_name %>
+      </p>
+      <div class="testimonial-inner">
+        <p>
+          Keyword Tags :
+          <%= perspective.perspective_tags.collect{|t| t.name}.join(", ") %>
+        </p>
+        <p>
+          <span class="story">
+            <%= perspective.story %>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="gap gap-small"></div>
+<% end %>

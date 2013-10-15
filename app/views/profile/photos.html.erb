@@ -1,0 +1,70 @@
+<%=h content_for(:title, "| Profile") %>
+
+<%= render "dashboard/navigation" %>
+
+<%= render "shared/confirmation_notice" %>
+
+<div class="gap gap-small"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <%= render "profile_side_nav" %>
+    </div>
+    <div class="span9">
+      <h3>
+        Profile Photo
+      </h3>
+      <p>
+        Clear frontal face photos are an important way for Seekers and Givers to learn about each other.
+      </p>
+      <p>
+        Upload a cover photo for a personal touch, creating a background or landscape for your profile photo.
+      </p>
+
+      <div class="gap gap-small"></div>
+
+
+      <%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
+        <fieldset>
+          <div class="control-group">
+            <%= f.label :profile_photo, :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.file_field :profile_photo, :class => "span3" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= f.label :cover_photo, :class => "control-label" %>
+            <div class="controls span6">
+              <%= f.file_field :cover_photo, :class => "span3" %>
+            </div>
+          </div>
+          <div class="field-notice">
+            Allowed file extensions (jpg / jpeg / gif / png)<br/>
+            Maximum file size 5MB
+          </div>
+          <div class="control-group">
+            <div class="span2"></div>
+            <div class="controls span6">
+              <%= f.submit "Upload", :class => "btn btn-primary" %>
+            </div>
+          </div>
+        </fieldset>
+      <% end %>
+
+      <div class="gap"></div>
+
+      <div class="row-fluid">
+        <div class="span3">
+          <%= image_tag(@user.profile_photo.thumb) if @user.profile_photo.present? %>
+        </div>
+        <div class="span9">
+          <%= image_tag(@user.cover_photo.wide) if @user.cover_photo.present? %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="gap"></div>

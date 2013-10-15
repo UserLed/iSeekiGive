@@ -1,8 +1,9 @@
 <div class="signup-wrap">
   <div class="page-header">
     <h1>
-      Giver Registration
+      <%= @type == "seeker" ? "Seeker" : "Giver" %>
+      Registration
     </h1>
   </div>
-  <%= render :partial => 'form' %>
+  <%= render "form" %>
 </div>

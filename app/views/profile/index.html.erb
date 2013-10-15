@@ -1,6 +1,6 @@
 <%=h content_for(:title, "| Profile") %>
 
-<%= render "navigation" %>
+<%= render "dashboard/navigation" %>
 
 <%= render "shared/confirmation_notice" %>
 
@@ -27,7 +27,7 @@
           <div class="control-group">
             <%= f.label :first_name, :class => "control-label" %>
             <div class="controls span6">
-              <%= f.text_field :first_name, :class => "span3" %>
+              <%= f.text_field :first_name, :class => "span3", :readonly => @user.external? %>
               <div class="field-notice">
                 This is only shared once your have a confirmed Session with another iSeekiGive user.
               </div>
@@ -36,7 +36,7 @@
           <div class="control-group">
             <%= f.label :last_name, :class => "control-label" %>
             <div class="controls span6">
-              <%= f.text_field :last_name, :class => "span3" %>
+              <%= f.text_field :last_name, :class => "span3", :readonly => @user.external? %>
               <div class="field-notice">
                 This is only shared once your have a confirmed Session with another iSeekiGive user.
               </div>
@@ -62,7 +62,7 @@
           <div class="control-group">
             <%= f.label :date_of_birth, :class => "control-label" %>
             <div class="controls span6">
-              <%= f.text_field :date_of_birth, :value => @user.date_of_birth.strftime("%m/%d/%Y"), :class => "span3", :"data-datepicker" => "datepicker" %>
+              <%= f.text_field :date_of_birth, :class => "span3", :"data-datepicker" => "datepicker", :readonly => @user.external? %>
               <div class="field-notice">
                 We use this data for analysis and never share it with other users.
               </div>
@@ -78,11 +78,7 @@
           <div class="control-group">
             <%= f.label :email, "Email Address", :class => "control-label" %>
             <div class="controls span6">
-              <% if @user.external? %>
-                <%= f.text_field :email, :class => "span3", :readonly => true %>
-              <% else %>
-                <%= f.text_field :email, :class => "span3" %>
-              <% end %>
+              <%= f.text_field :email, :class => "span3", :readonly => @user.external? %>
               <div class="field-notice">
                 This is only shared once your have a confirmed Session with another iSeekiGive user.
               </div>
@@ -98,14 +94,14 @@
           <div class="control-group">
             <%= f.label :location, "Where You Live", :class => "control-label" %>
             <div class="controls span6">
-              <%= f.text_field :location, :class => "span3" %>
+              <%= f.text_field :location, :class => "span3", :readonly => @user.external? %>
             </div>
           </div>
 
-          <div class="control-group">
-            <%= f.label :other_locations, "Places you've lived before", :class => "control-label" %>
+          <div class="control-group locations-field">
+            <%= label_tag :locations, "Places you've lived before", :class => "control-label" %>
             <div class="controls span6">
-              <%= f.text_field :other_locations, :class => "span3" %>
+              <%= text_field_tag :locations, @user.locations.collect{|l| l.name }.join(","), :class => "span3" %>
               <div class="field-notice">
                 Many Seekers are considering relocations, new cities and countries.<br/>
                 If you've lived in other cities, this will help increase relevant matching
@@ -131,15 +127,31 @@
           <div class="control-group">
             <%= f.label :descriptions, "Describe Yourself", :class => "control-label" %>
             <div class="controls span6">
-              <% @user.languages.each do |l| %>
-              <span class="label">
-                <%= l.name %>
-                <i class="icon-remove"></i>
-              </span>
-              <% end %>
+              <div class="languaes-container">
+                <% @user.languages.each do |l| %>
+                  <%= render l %>
+                <% end %>
+              </div>
+              <div class="language-field" style="display:none">
+                <%= text_field_tag :language %>
+                <%= link_to "Add", "javascript:;", :id => "submit-language", :class => "btn btn-primary" %>
+              </div>
+              <div class="add-more">
+                <%= link_to "javascript:;", :id => "add-language" do %>
+                  <i class="icon-plus-sign icon-box round"></i>
+                  Add More
+                <% end %>
+              </div>
               <div class="field-notice">
                 Add languages you speak.
               </div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="span2"></div>
+            <div class="controls span6">
+              <%= f.submit "SAVE", :class => "btn btn-primary" %>
             </div>
           </div>
 

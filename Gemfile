@@ -14,6 +14,8 @@ gem 'activeadmin'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "nested_form"
 
+gem 'american_date'
+gem 'will_paginate', '~> 3.0'
 
 group :development  do
   gem "letter_opener"

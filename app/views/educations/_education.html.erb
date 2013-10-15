@@ -1,10 +1,10 @@
 <div id="education_<%= education.id %>" class="education-container">
   <div class="info-container">
-    <h4>
+    <h5>
       <%= education.school_name %>
       <%# link_to 'edit', 'javascript:;', :class => "btn btn-mini btn-primary btn-edit" %>
       <%# link_to 'delete', education, :method => :delete, :remote => true, :class => "btn btn-mini btn-primary" %>
-    </h4>
+    </h5>
     <p>
       <%= education.degree %>,
       <%= education.field_of_study %>
@@ -16,8 +16,8 @@
       </p>
     <% end %>
   </div>
-  <div class="form-container" style="display:none">
-    <%= render "educations/form", :education => education %>
-  </div>
+<%#*<div class="form-container" style="display:none">%>
+<%#= render "educations/form", :education => education %>
+<%#*</div>%>
   <hr/>
 </div>
