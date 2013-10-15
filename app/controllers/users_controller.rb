@@ -82,14 +82,15 @@ class UsersController < ApplicationController
   def show
     #@user = User.find(params[:id])
     @user = current_user
-    user_field = Rails.application.config.sorcery.linkedin.user_info_fields
-    if current_user.have_linked_in_account?
-      linked_in_data = current_user.connection_info('linkedin')
-      client = LinkedIn::Client.new
-      client.authorize_from_access(linked_in_data.first.token, linked_in_data.first.secret)
-      user_social_data = client.profile(:fields => user_field)
-      UserDetails.update_user_social_info(user_social_data,current_user)
-    end
+    #    user_field = Rails.application.config.sorcery.linkedin.user_info_fields
+    #    if current_user.have_linked_in_account?
+    #      linked_in_data = current_user.connection_info('linkedin')
+    #      client = LinkedIn::Client.new
+    #      client.authorize_from_access(linked_in_data.first.token, linked_in_data.first.secret)
+    #      user_social_data = client.profile(:fields => user_field)
+    #      UserDetails.update_user_social_info(user_social_data,current_user)
+    #    end
+    redirect_to dashboard_path
   end
 
   def public_profile

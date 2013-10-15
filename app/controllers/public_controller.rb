@@ -4,7 +4,7 @@ class PublicController < ApplicationController
 
   def signup
     if current_user.present?
-      redirect_to current_user
+      redirect_to dashboard_path
     elsif params[:type]
       session[:user_type] = params[:type]
       @type = session[:user_type]
