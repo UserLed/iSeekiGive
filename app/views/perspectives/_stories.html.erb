@@ -1,4 +1,5 @@
 <% @perspectives.each do |perspective| %>
+  <% perspective.view_counter %>
   <div class="row-fluid">
     <div class="testimonial-left">
       <div class="testimonial-author">
@@ -9,7 +10,7 @@
         <% end %>
       </div>
       <p class="testimonial-author-name">
-        <%= perspective.user.display_name %>
+        <%= perspective.user.display_name unless perspective.anonymous %>
       </p>
       <div class="testimonial-inner">
         <p>
@@ -28,5 +29,5 @@
 <% end %>
 
 <%= will_paginate @tags %>
-  
+
 <div class="gap gap-small"></div>

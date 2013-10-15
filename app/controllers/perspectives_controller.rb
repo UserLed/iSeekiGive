@@ -36,7 +36,9 @@ class PerspectivesController < ApplicationController
     #cancan
     @perspective = Perspective.find(params[:id])
     @saved_perspective = current_user.saved_perspectives.build(:perspective_id => @perspective.id)
-    unless @saved_perspective.save
+    if @saved_perspective.save
+      @perspective.saved_counter
+    else
       render :nothing => true
     end
   end

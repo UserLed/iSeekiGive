@@ -1,18 +1,20 @@
 <% if @user_perspectives.present? %>
   <% @user_perspectives.each do |perspective| %>
 
-    <div class="col-lg-6 col-sm-6">
+    <div class="col-lg-6 col-sm-6 perspective-container">
       <%= render perspective %>
 
-      <% unless logged_in? %>
-        <%= link_to "Save", "javascript:;",:class => "btn btn-success disabled" %>
-      <% else %>
-        <% if current_user.saved_perspectives.where(:perspective_id => perspective.id).present? %>
-          <%= link_to "Saved", "javascript:;", :class => "btn btn-success disabled" %>
+      <div class="perspective-save-button">
+        <% unless logged_in? %>
+          <%= link_to "Save", "javascript:;",:class => "btn btn-success disabled" %>
         <% else %>
-          <%= link_to "Save", save_perspective_path(perspective.id), :remote => true, :class => "btn btn-success", :id => "save_perspective_#{perspective.id}" %>
+          <% if current_user.saved_perspectives.where(:perspective_id => perspective.id).present? %>
+            <%= link_to "Saved", "javascript:;", :class => "btn btn-success disabled" %>
+          <% else %>
+            <%= link_to "Save", save_perspective_path(perspective.id), :remote => true, :class => "btn btn-success", :id => "save_perspective_#{perspective.id}" %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
       <hr/>
     </div>
   <% end %>

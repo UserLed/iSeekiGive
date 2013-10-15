@@ -294,3 +294,13 @@ a.red{
 .text-muted {
     color: #979797;
 }
+
+.perspective-container{
+    position: relative;
+}
+
+.perspective-save-button{
+    position: absolute;
+    bottom: 32px;
+    right: 10px;
+}

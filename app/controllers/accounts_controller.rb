@@ -10,7 +10,7 @@ class AccountsController < UsersController
     if request.post?
       @user.password_confirmation = params[:user][:password_confirmation]
       if @user.change_password!(params[:user][:password])
-        redirect_to(accounts_path, :notice => 'Password was successfully updated.')
+        redirect_to(settings_accounts_path, :notice => 'Password was successfully updated.')
       else
 
       end
