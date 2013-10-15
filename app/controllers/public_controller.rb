@@ -33,7 +33,7 @@ class PublicController < ApplicationController
     education_user_ids = education_search.collect(&:user_id)
 
     # User
-    user_search = User.where("first_name LIKE ? OR last_name LIKE ? OR country LIKE ? OR city LIKE ?", "%#{term}%","%#{term}%","%#{term}%","%#{term}%" )
+    user_search = User.where("first_name LIKE ? OR last_name LIKE ? OR location LIKE ?", "%#{term}%","%#{term}%","%#{term}%")
     user_search_ids = user_search.collect(&:id)
 
     # experience
@@ -53,7 +53,7 @@ class PublicController < ApplicationController
 
     users = User.find(user_ids) || [] 
     users = users - [current_user] if logged_in?
-    render :json => users.collect{|user| {:name => user.full_name, :user_id => user.id, :icon => user.profile_photo.public_profile.url || "/assets/default_user.png", :location => [user.city, user.country].compact.join(", "), :companies => user.experiences.collect{|e| [e.title, e.company_name].join(", ")}.join("<br/>"), :educations => user.educations.collect(&:school_name).join("<br/>") }}
+    render :json => users.collect{|user| {:name => user.full_name, :user_id => user.id, :icon => user.profile_photo.icon.url, :location => user.location, :companies => user.experiences.collect{|e| [e.title, e.company_name].join(", ")}.join("<br/>"), :educations => user.educations.collect(&:school_name).join("<br/>") }}
   end
 
   def how_it_works
