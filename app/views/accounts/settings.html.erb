@@ -6,8 +6,6 @@
 
 
 <div class="container">
-  <%#= render "users/dashboard_menu" %>
-  <%#= render "users/dashboard_sub_menu" %>
 
   <div class="page-header">
     <h3>
@@ -15,7 +13,7 @@
     </h3>
   </div>
 
-    <%= form_for(:user, :url => settings_accounts_path, method: 'POST') do |f| %>
+    <%= form_for(:user, :url => account_settings_path, method: 'POST') do |f| %>
 
       <% if @user.errors.any? %>
           <div id="error_explanation">

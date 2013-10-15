@@ -12,12 +12,7 @@ ISeekiGive::Application.routes.draw do
 
   match 'search-users' => 'public#get_all_users_with_tags'
   
-
-  resources :accounts do
-    collection do
-      match :settings
-    end
-  end
+  match 'account-settings' => 'accounts#settings', :as => :account_settings
 
   resources :educations
   resources :skills
@@ -38,7 +33,6 @@ ISeekiGive::Application.routes.draw do
     member do
       get  :activate
       get :resend_confirmation
-      get :account
       get :public_profile
       get :display_calendar
       post :create_schedule
