@@ -64,13 +64,8 @@ class PublicController < ApplicationController
   end
 
   def locations
-
-    cities = [
-      "Dhaka, Bangladesh",
-      "Tangail, Bangladesh",
-      "Khulna, Bangladesh"
-    ]
-
+    cities = WorldCity.where("name like ?", "%#{params[:term]}%")
+    cities = cities.collect{|c| "#{c.name}, #{c.country}"}
     render :json => cities
   end
 end
