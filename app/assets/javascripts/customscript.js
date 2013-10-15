@@ -119,6 +119,8 @@ $(function(){
 $(function(){
     $("#locations").tagit({
         requireAutocomplete: true,
+        singleField: true,
+        singleFieldDelimiter: "+",
         autocomplete: {
             delay: 0,
             minLength: 2,

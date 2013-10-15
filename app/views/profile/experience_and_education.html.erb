@@ -29,41 +29,45 @@
 
       <div class="gap gap-small"></div>
 
-      <h3>Education</h3>
-      <hr/>
-      <% @educations.each do |education| %>
-        <%= render education  %>
-      <% end %>
+      <% if @educations.present? %>
+        <h3>Education</h3>
+        <hr/>
+        <% @educations.each do |education| %>
+          <%= render education  %>
+        <% end %>
 
-      <div class="gap gap-small"></div>
+        <div class="gap gap-small"></div>
 
-      <%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
-        <fieldset>
-          <div class="control-group">
-            <%= f.label :considered_fields, "Did you ever start or consider other majors or fields of study than the ones shown above?", :class => "control-label" %>
-            <div class="controls span6">
-              <%= f.text_area :considered_fields, :class => "span4", :rows => 4 %>
-              <div class="field-notice">
-                Many Seekers are looking for Perspectives based on their current and past interests.<br/>
-                If you've changed your interests, sharing these details may provide inspiration for others trying to follow similar paths.
+        <%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
+          <fieldset>
+            <div class="control-group">
+              <%= f.label :considered_fields, "Did you ever start or consider other majors or fields of study than the ones shown above?", :class => "control-label" %>
+              <div class="controls span6">
+                <%= f.text_area :considered_fields, :class => "span4", :rows => 4, :placeholder => "Write here... (Comma Separated)" %>
+                <div class="field-notice">
+                  Many Seekers are looking for Perspectives based on their current and past interests.<br/>
+                  If you've changed your interests, sharing these details may provide inspiration for others trying to follow similar paths.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="control-group">
-            <div class="span2"></div>
-            <div class="controls span6">
-              <%= f.submit "SAVE", :class => "btn btn-primary" %>
+            <div class="control-group">
+              <div class="span2"></div>
+              <div class="controls span6">
+                <%= f.submit "SAVE", :class => "btn btn-primary" %>
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
+        <% end %>
+
+        <div class="gap"></div>
       <% end %>
 
-      <div class="gap"></div>
-
-      <h3>Experience</h3>
-      <hr/>
-      <% @experiences.each do |experience| %>
-        <%= render experience  %>
+      <% if @experiences.present? %>
+        <h3>Experience</h3>
+        <hr/>
+        <% @experiences.each do |experience| %>
+          <%= render experience  %>
+        <% end %>
       <% end %>
 
     </div>

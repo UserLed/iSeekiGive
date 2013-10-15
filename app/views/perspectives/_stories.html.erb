@@ -1,9 +1,9 @@
-<% @stories.each do |perspective| %>
+<% @perspectives.each do |perspective| %>
   <div class="row-fluid">
     <div class="testimonial-left">
       <div class="testimonial-author">
         <% if perspective.anonymous %>
-           <%= image_tag("fallback/icon_default.png", :class => "img-circle") %>
+          <%= image_tag("fallback/icon_default.png", :class => "img-circle") %>
         <% else %>
           <%= link_to image_tag(profile_photo_path(perspective.user, {:width => 50, :height => 50, :version => :thumb}), :class => "img-circle"), public_profile_user_path(perspective.user), :class => "thumb-sm pull-left m-r" %>
         <% end %>
@@ -26,3 +26,7 @@
   </div>
   <div class="gap gap-small"></div>
 <% end %>
+
+<%= will_paginate @tags %>
+  
+<div class="gap gap-small"></div>

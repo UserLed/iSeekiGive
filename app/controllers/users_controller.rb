@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
     if params[:locations].present?
       @user.locations.each{|l| l.destroy }
-      params[:locations].split(",").each do |location|
+      params[:locations].split("+").each do |location|
         @user.locations.create(:name => location)
       end
     end

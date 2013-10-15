@@ -6,6 +6,8 @@ class PerspectivesController < ApplicationController
     @perspective = Perspective.new
     @sp = @user.saved_perspectives.collect(&:perspective_id)
     @perspectives = Perspective.where("user_id = ? or id in (?)", @user.id, @sp).order("created_at desc")
+    @perspectives = @perspectives.paginate(:page => params[:page], :per_page => 20)
+
     @user_perspectives = @user.perspectives
     @good_view_count = @user_perspectives.where(:story_type => "The Good").sum(&:viewed)
     @bad_view_count = @user_perspectives.where(:story_type => "The Bad").sum(&:viewed)
@@ -37,5 +39,20 @@ class PerspectivesController < ApplicationController
     unless @saved_perspective.save
       render :nothing => true
     end
+  end
+
+  def good
+    @perspectives = Perspective.where(:story_type => "The Good")
+    @perspectives = @perspectives.paginate(:page => params[:page], :per_page => 20)
+  end
+
+  def bad
+  	@perspectives = Perspective.where(:story_type => "The Bad")
+    @perspectives = @perspectives.paginate(:page => params[:page], :per_page => 20)
+  end
+
+  def ugly
+  	@perspectives = Perspective.where(:story_type => "The Ugly")
+    @perspectives = @perspectives.paginate(:page => params[:page], :per_page => 20)
   end
 end

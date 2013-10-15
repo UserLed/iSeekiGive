@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :locations, :allow_destroy => true
 
   before_create {|user| user.display_name = user.first_name }
+
+  before_save :split_tags
   
   HOW_HEAR = [
     ["By Friend"],
@@ -53,6 +55,17 @@ class User < ActiveRecord::Base
     ["Advertisement"],
     ["Others"]
   ]
+
+  def split_tags
+    if self.considered_fields_was.blank? and self.considered_fields.present?
+      self.considered_fields.split(/[,]|[,\s]/).each do |value|
+        if value.size > 0
+          tag = self.tags.new(:name => value)
+          tag.save
+        end
+      end
+    end
+  end
 
   def step
     %w[personal_details photos educations_experiences_social skills trust_and_verifications review]

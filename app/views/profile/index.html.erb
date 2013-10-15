@@ -101,7 +101,7 @@
           <div class="control-group locations-field">
             <%= label_tag :locations, "Places you've lived before", :class => "control-label" %>
             <div class="controls span6">
-              <%= text_field_tag :locations, @user.locations.collect{|l| l.name }.join(","), :class => "span3" %>
+              <%= text_field_tag :locations, @user.locations.collect{|l| l.name }.join("+"), :class => "span3" %>
               <div class="field-notice">
                 Many Seekers are considering relocations, new cities and countries.<br/>
                 If you've lived in other cities, this will help increase relevant matching

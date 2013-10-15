@@ -80,7 +80,7 @@
               <div class="span6">
                 <%= render perspective %>
               </div>
-              <% if (index + 1) % 2 == 0 or (index + 1) == @perspectives.count %>
+              <% if (index + 1) % 2 == 0 or (index + 1) == @perspectives.size %>
               </div>
             <% end %>
           <% end %>
@@ -90,7 +90,7 @@
           </div>
         <% end %>
       </div>
-
+      <%= will_paginate @tags %>
     </div>
     <div class="span4">
       <table class="table table-striped">

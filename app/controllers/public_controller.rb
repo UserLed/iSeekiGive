@@ -66,9 +66,9 @@ class PublicController < ApplicationController
   def locations
 
     cities = [
-      "Dhaka - Bangladesh",
-      "Tangail - Bangladesh",
-      "Khulna - Bangladesh"
+      "Dhaka, Bangladesh",
+      "Tangail, Bangladesh",
+      "Khulna, Bangladesh"
     ]
 
     render :json => cities

@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs">
+  <li class="<%= "active" if current_page?(good_perspectives_path) %>">
+    <%= link_to "The Good", good_perspectives_path %>
+  </li>
+  <li class="<%= "active" if current_page?(bad_perspectives_path) %>">
+    <%= link_to "The Bad", bad_perspectives_path %>
+  </li>
+  <li class="<%= "active" if current_page?(ugly_perspectives_path) %>">
+    <%= link_to "The Ugly", ugly_perspectives_path %>
+  </li>
+</ul>
+
+<div class="gap gap-small"></div>

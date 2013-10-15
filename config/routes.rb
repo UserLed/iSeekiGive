@@ -19,10 +19,6 @@ ISeekiGive::Application.routes.draw do
     end
   end
 
-  resources :seekers
-  
-  resources :givers
-
   resources :educations
   resources :skills
   resources :tags
@@ -49,17 +45,14 @@ ISeekiGive::Application.routes.draw do
     end
   end
 
-  resources :stories do
-    collection do
-      get :good_stories
-      get :bad_stories
-      get :ugly_stories
-    end
-  end
-
   resources :perspectives do
     member do
       get :save
+    end
+    collection do
+      get :good
+      get :bad
+      get :ugly
     end
   end
 
