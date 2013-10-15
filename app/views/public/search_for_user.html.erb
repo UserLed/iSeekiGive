@@ -1,9 +1,0 @@
-<%unless @users.blank? %>
-	<p> We have found <%= @users.count %> users</p>
-
-	<% @users.each do |user| %>
-		<%= link_to user.full_name, public_profile_user_path(user) %>
-	<% end %>
-<% else %>
-	<p>Sorry, we could not find any user </p>
-<% end %>
