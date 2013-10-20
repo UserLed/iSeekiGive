@@ -20,4 +20,5 @@
 //= require datepicker
 //= require tag-it
 //= require readmore
+//= require jquery.Jcrop
 //= require customscript

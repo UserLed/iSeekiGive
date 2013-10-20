@@ -19,5 +19,6 @@
 *= require new-wave/styles
 *= require new-wave/mystyles
 *= require fancybox
+*= require jquery.Jcrop
 *= require login
 */

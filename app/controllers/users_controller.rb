@@ -40,7 +40,11 @@ class UsersController < ApplicationController
       end
     end
 
-    redirect_to request.referrer, :notice => "Successfully Updated"
+    if params[:user][:profile_photo].present?
+      render :crop
+    else
+      redirect_to request.referrer, :notice => "Successfully Updated"
+    end
   end
 
   def activate

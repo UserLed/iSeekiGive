@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :authentications_attributes, :locations_attributes
   
-  attr_accessor :password_confirmation
+  attr_accessor :password_confirmation, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -48,6 +49,12 @@ class User < ActiveRecord::Base
   before_create {|user| user.display_name = user.first_name }
 
   before_save :split_tags
+
+  after_update :crop_profile_photo
+
+  def crop_profile_photo
+    profile_photo.recreate_versions! if crop_x.present?
+  end
   
   HOW_HEAR = [
     ["By Friend"],
