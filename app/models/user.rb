@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :authentications_attributes, :locations_attributes
   
-  attr_accessor :password_confirmation, :crop_x, :crop_y, :crop_w, :crop_h
-  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :password_confirmation, :crop_x, :crop_y, :crop_w, :crop_h,:crop_r_width, :crop_r_height
+  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h, :crop_r_width, :crop_r_height
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
