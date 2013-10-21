@@ -1,4 +1,6 @@
 class ProfilePhotoUploader < PhotoUploader
+  process :resize_to_fill => [200, 200]
+
   version :icon do
     process :resize_to_fill => [50, 50]
   end
@@ -6,8 +8,8 @@ class ProfilePhotoUploader < PhotoUploader
   version :thumb do
     # resize_to_fill(200,200)
     process :crop
-    process :resize_to_fit => [200,200]
-    # process :get_geometry 
+    process :resize_to_fill => [200, 200]
+    #process :get_geometry 
 
   end
 
@@ -32,7 +34,8 @@ class ProfilePhotoUploader < PhotoUploader
         y = model.crop_y.to_i 
         w = model.crop_w.to_i
         h = model.crop_h.to_i
-        cropped_img = img.crop(x*width_ratio.to_i,y*height_ratio.to_i,w*width_ratio.to_i,h*height_ratio.to_i)
+        #raise [x,y,w,h].inspect
+        cropped_img = img.crop(x,y,w,h)
         # new_img= cropped_img.resize_to_fill(200,200)
         # destroy_image(cropped_img)
         destroy_image(img)
