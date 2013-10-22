@@ -809,3 +809,7 @@ body{
 .user-edit-sidebar{
     font-size: 24px;
 }
+
+.gap-small .crop-button {
+    width: 200px;
+}

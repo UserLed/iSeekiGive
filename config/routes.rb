@@ -32,10 +32,11 @@ ISeekiGive::Application.routes.draw do
   resources :users do
     member do
       get  :activate
-      get :resend_confirmation
-      get :public_profile
-      get :display_calendar
+      get  :resend_confirmation
+      get  :public_profile
+      get  :display_calendar
       post :create_schedule
+      put  :crop_photo
     end
   end
 

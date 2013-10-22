@@ -266,3 +266,13 @@
 .signup-wrap label.small{
     padding-top: 3px;
 }
+
+.gap-small .crop-button {
+    width: 200px;
+}
+
+.crop-profile-photo{
+    float:none; 
+    margin: 0 auto;
+    display: inline-block;
+}

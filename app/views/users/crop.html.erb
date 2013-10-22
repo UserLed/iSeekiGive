@@ -1,19 +1,18 @@
-<div class="container" style="overfolw:scroll">
-	<div class="row ">
-		<div class="span3" style="width:auto;height:auto">
-		<%= image_tag current_user.profile_photo.thumb, :id => "profile_photo" %>
+<div class="container-fluid" style="overfolw:scroll">
+	<div class="row-fluid text-center">
+		<div class="crop-profile-photo" >
+		<%= image_tag current_user.profile_photo.thumb, :id => "profile_photo", :style => 'width: 200px; height: auto;' if current_user.profile_photo.present? %>
+
+			<%= form_for @user, :url => crop_photo_user_path(@user) do |f| %>
+			  <% %w[x y w h r_width r_height].each do |attribute| %>
+			    <%= f.hidden_field "crop_#{attribute}" %>
+			  <% end %>
+			  <div class="gap-small">
+			    <%= f.submit "Crop", :class => 'btn btn-primary btn-large crop-button' %>
+			  </div>
+			<% end %>
 		</div>
 	</div>
-
-
-	<%= form_for @user do |f| %>
-	  <% %w[x y w h r_width r_height].each do |attribute| %>
-	    <%= f.hidden_field "crop_#{attribute}" %>
-	  <% end %>
-	  <div >
-	    <%= f.submit "Crop", :class => 'btn btn-success' %>
-	  </div>
-	<% end %>
 </div>
 
 
@@ -40,7 +39,6 @@
 		$("#user_crop_h").val(c.h);
 		$("#user_crop_r_height").val($("#profile_photo").height());
 		$("#user_crop_r_width").val($("#profile_photo").width());
-		console.log("x2: ",c.x2);
-		console.log("y2: ",c.y2);
+
 	}
 </script>

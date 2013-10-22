@@ -104,4 +104,11 @@ class UsersController < ApplicationController
       p.update_column(:viewed, p.viewed+1)
     end
   end
+
+  def crop_photo
+    @user = current_user
+    @user.update_attributes(params[:user])
+    redirect_to profile_photos_path
+  end
+
 end
