@@ -7,7 +7,6 @@ class ProfilePhotoUploader < PhotoUploader
 
   version :thumb do
     process :crop
-    process :resize_to_fill => [200, 200]
   end
 
   
@@ -21,7 +20,7 @@ class ProfilePhotoUploader < PhotoUploader
         h = model.crop_h.to_i
         cropped_img = img.crop(x,y,w,h)
         destroy_image(img)
-        cropped_img
+        new_img = cropped_img.resize_to_fill(200,200)
       end
     end
   end

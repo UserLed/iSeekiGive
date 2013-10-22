@@ -1,7 +1,7 @@
 <div class="container-fluid" style="overfolw:scroll">
 	<div class="row-fluid text-center">
 		<div class="crop-profile-photo" >
-		<%= image_tag current_user.profile_photo.thumb, :id => "profile_photo", :style => 'width: 200px; height: auto;' if current_user.profile_photo.present? %>
+		<%= image_tag current_user.profile_photo, :id => "profile_photo", :style => 'width: 200px; height: auto;' if current_user.profile_photo.present? %>
 
 			<%= form_for @user, :url => crop_photo_user_path(@user) do |f| %>
 			  <% %w[x y w h r_width r_height].each do |attribute| %>
