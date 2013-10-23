@@ -276,3 +276,15 @@
     margin: 0 auto;
     display: inline-block;
 }
+.gap-small .skip-button{
+    width: 165px;
+}
+
+.small-top-margin {
+    margin-top: 15px;
+}
+
+.small-top-margin .crop-btn-margin {
+    margin-bottom: 50px;
+    margin-left: 30px !important;
+}

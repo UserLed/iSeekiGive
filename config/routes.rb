@@ -4,7 +4,8 @@ ISeekiGive::Application.routes.draw do
   match 'profile/your-keywords-tags' => 'profile#your_keywords_tags', :as => :your_keywords_tags
   match 'profile/experience-and-education' => 'profile#experience_and_education', :as => :experience_and_education
   match 'profile' => 'profile#index', :as => :profile
-    
+  match 'profile/photos/crop' => 'profile#crop_profile_photo'
+  match 'profile/cover_photo/crop' => 'profile#crop_cover_photo'  
   match 'dashboard' => 'dashboard#index', :as => :dashboard
 
   resources :phone_numbers
@@ -36,7 +37,6 @@ ISeekiGive::Application.routes.draw do
       get  :public_profile
       get  :display_calendar
       post :create_schedule
-      put  :crop_photo
     end
   end
 

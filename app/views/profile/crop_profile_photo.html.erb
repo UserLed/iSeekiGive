@@ -1,9 +1,15 @@
-<div class="container-fluid" style="overfolw:scroll">
-	<div class="row-fluid text-center">
-		<div class="crop-profile-photo" >
-		<%= image_tag current_user.profile_photo, :id => "profile_photo", :style => 'width: 200px; height: auto;' if current_user.profile_photo.present? %>
+<%= render "dashboard/navigation" %>
 
-			<%= form_for @user, :url => crop_photo_user_path(@user) do |f| %>
+<div class="span3">
+	<%= render "profile_side_nav" %>
+</div>
+
+<div class="container-fluid" style="overfolw:scroll">
+	<div class="row-fluid text-center small-top-margin">
+		<div class="crop-profile-photo" >
+			<%= image_tag current_user.profile_photo, :id => "profile_photo", :style => 'width: 200px; height: auto;' if current_user.profile_photo.present? %>
+
+			<%= form_for @user, :url => profile_photos_crop_path do |f| %>
 			  <% %w[x y w h r_width r_height].each do |attribute| %>
 			    <%= f.hidden_field "crop_#{attribute}" %>
 			  <% end %>
@@ -11,6 +17,12 @@
 			    <%= f.submit "Crop", :class => 'btn btn-primary btn-large crop-button' %>
 			  </div>
 			<% end %>
+			<div class="gap-small">
+			    <%= link_to "Skip to cover photo",profile_cover_photo_crop_path, :class => 'btn btn-primary btn-large skip-button' %>
+			</div>
+			<div class="gap-small">
+			    <%= link_to "Skip to photos",profile_photos_path, :class => 'btn btn-primary btn-large skip-button' %>
+			</div>
 		</div>
 	</div>
 </div>
@@ -22,7 +34,6 @@
 <script type="text/javascript">
 	$(function(){
 		$("#profile_photo").Jcrop({
-			aspectRatio: 1,
 			maxSize: 0,
 			minSize: 0,
 			trueSize : [200,200],

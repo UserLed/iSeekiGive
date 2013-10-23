@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :authentications_attributes, :locations_attributes
   
-  attr_accessor :password_confirmation, :crop_x, :crop_y, :crop_w, :crop_h,:crop_r_width, :crop_r_height
-  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h, :crop_r_width, :crop_r_height
+  attr_accessor :password_confirmation, :crop_x, :crop_y, :crop_w, :crop_h,:crop_r_width, :crop_r_height,:crop_c_x, :crop_c_y, :crop_c_w, :crop_c_h
+  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h, :crop_r_width, :crop_r_height,:crop_c_x, :crop_c_y, :crop_c_w, :crop_c_h
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -51,9 +51,14 @@ class User < ActiveRecord::Base
   before_save :split_tags
 
   after_update :crop_profile_photo
+  after_update :crop_cover_photo
 
   def crop_profile_photo
     profile_photo.recreate_versions! if crop_x.present?
+  end
+
+  def crop_cover_photo
+    cover_photo.recreate_versions! if crop_c_x.present?
   end
   
   HOW_HEAR = [

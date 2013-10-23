@@ -41,7 +41,13 @@ class UsersController < ApplicationController
     end
 
     if params[:user][:profile_photo].present?
-      render :crop
+       redirect_to profile_photos_crop_path
+       return
+    
+    elsif params[:user][:cover_photo].present?
+       redirect_to profile_cover_photo_crop_path
+       return
+
     else
       redirect_to request.referrer, :notice => "Successfully Updated"
     end
@@ -103,12 +109,6 @@ class UsersController < ApplicationController
     @user_perspectives.each do |p|
       p.update_column(:viewed, p.viewed+1)
     end
-  end
-
-  def crop_photo
-    @user = current_user
-    @user.update_attributes(params[:user])
-    redirect_to profile_photos_path
   end
 
 end

@@ -1,0 +1,52 @@
+<%= render "dashboard/navigation" %>
+
+<div class="span3">
+	<%= render "profile_side_nav" %>
+</div>
+<div class="container-fluid" style="overfolw:scroll">
+	<div class="row-fluid small-top-margin">
+		<div class="span9">
+			<%= image_tag current_user.cover_photo, :id => "cover_photo", :style => 'width: 1302px; height: 300px;' if current_user.cover_photo.present? %>
+
+			<%= form_for @user, :url => profile_cover_photo_crop_path do |f| %>
+			  <% %w[x y w h].each do |attribute| %>
+			    <%= f.hidden_field "crop_c_#{attribute}" %>
+			  <% end %>
+			  <div class="row">
+			  <div class="span4 crop-btn-margin gap-small">
+			  	<%= f.submit "Crop", :class => 'pull-left btn btn-primary btn-large btn-block' %>
+			  </div>
+			  <div class="span4 crop-btn-margin gap-small" >
+			  	<%= link_to "skip to photos", profile_photos_path, :class => 'pull-left btn btn-primary btn-large btn-block' %>
+			  </div>
+			    
+			  </div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+	$(function(){
+		$("#cover_photo").Jcrop({
+			maxSize: 0,
+			minSize: 0,
+			trueSize : [1302,300],
+			onSelect : showCoords,
+			onChange : showCoords,
+			setSelect:   [ 500, 500, 90, 90 ]
+		});
+	});
+
+	function showCoords(c){
+		$("#user_crop_c_x").val(c.x);
+		$("#user_crop_c_y").val(c.y);
+		$("#user_crop_c_w").val(c.w);
+		$("#user_crop_c_h").val(c.h);
+
+	}
+</script>
