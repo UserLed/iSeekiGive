@@ -2,11 +2,11 @@ class CoverPhotoUploader < PhotoUploader
     process :resize_to_fill => [1302, 300]
 
   version :wide do
-  	process :crop
+  	process :crop_cover
   end
 
-    def crop
-    if model.crop_x.present?
+  def crop_cover
+    if model.crop_c_x.present?
       manipulate! do |img|
 
         x = model.crop_c_x.to_i

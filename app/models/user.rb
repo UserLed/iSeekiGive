@@ -50,8 +50,7 @@ class User < ActiveRecord::Base
 
   before_save :split_tags
 
-  after_update :crop_profile_photo
-  after_update :crop_cover_photo
+  after_update :crop_profile_photo, :crop_cover_photo
 
   def crop_profile_photo
     profile_photo.recreate_versions! if crop_x.present?
